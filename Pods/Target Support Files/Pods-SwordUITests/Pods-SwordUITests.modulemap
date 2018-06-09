@@ -1,0 +1,6 @@
+framework module Pods_SwordUITests {
+  umbrella header "Pods-SwordUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_Sword {
+  umbrella header "Pods-Sword-umbrella.h"
+
+  export *
+  module * { export * }
+}
