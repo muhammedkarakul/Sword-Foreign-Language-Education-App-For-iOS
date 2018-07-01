@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RankViewController: UIViewController {
+class RankViewController: CustomMainViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

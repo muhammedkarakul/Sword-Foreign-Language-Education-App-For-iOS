@@ -7,34 +7,28 @@
 //
 
 import UIKit
-import Koloda
 
-private let overlayRightImageName = "overlay_skip"
-private let overlayLeftImageName = "overlay_like"
-
-class CustomOverlayView: OverlayView {
+class CustomOverlayView: UIView {
     
-    @IBOutlet lazy var overlayImageView: UIImageView! = {
-        [unowned self] in
-
-        var imageView = UIImageView(frame: self.bounds)
-        self.addSubview(imageView)
-
-        return imageView
-        }()
-
-
-    override var overlayState: SwipeResultDirection?  {
-        didSet {
-            switch overlayState {
-            case .left? :
-                overlayImageView.image = UIImage(named: overlayLeftImageName)
-            case .right? :
-                overlayImageView.image = UIImage(named: overlayRightImageName)
-            default:
-                overlayImageView.image = nil
-            }
-
-        }
+    @IBOutlet var userProfilePhotoImageView: UIImageView!
+    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var userExperienceProgressBar: UIProgressView!
+    @IBOutlet var userExperienceLabel: UILabel!
+    @IBOutlet var healthImageView: UIImageView!
+    @IBOutlet var healthLabel: UILabel!
+    @IBOutlet var coinImageView: UIImageView!
+    @IBOutlet var coinLabel: UILabel!
+    
+    override func draw(_ rect: CGRect) {
+        userProfilePhotoImageView.layer.borderWidth = 2
+        userProfilePhotoImageView.layer.masksToBounds = false
+        userProfilePhotoImageView.layer.borderColor = UIColor.white.cgColor
+        userProfilePhotoImageView.layer.cornerRadius = userProfilePhotoImageView.frame.height/2
+        userProfilePhotoImageView.clipsToBounds = true
+        
+        
+        // Kullanıcı bilgileri navigation bara yazdırılıyor.
+        userNameLabel.text = "Bingo!"
     }
+    
 }

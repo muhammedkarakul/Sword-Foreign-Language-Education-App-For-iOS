@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: CustomViewController {
 
     // MARK: Preferences -
     
@@ -18,12 +18,12 @@ class MainViewController: UIViewController {
 //        super.viewDidLoad()
 //
 //    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Status bar color turns white
-        UIApplication.shared.statusBarStyle = .lightContent
+        //UIApplication.shared.statusBarStyle = .lightContent
         
     }
     
@@ -32,11 +32,11 @@ class MainViewController: UIViewController {
         
         //loginWithUserNameButton.titleLabel?.textColor = UIColor.white
         
-        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
-        updateUserInterface()
+        //NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        //updateUserInterface()
         
     }
-    
+    /*
     func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }
         switch status {
@@ -57,13 +57,9 @@ class MainViewController: UIViewController {
         print("Reachable:", Network.reachability?.isReachable ?? "nil")
         print("Wifi:", Network.reachability?.isReachableViaWiFi ?? "nil")
     }
+    
     @objc func statusManager(_ notification: Notification) {
         updateUserInterface()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func networkAlert() {
@@ -86,7 +82,7 @@ class MainViewController: UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
+    */
     
     @IBAction func loginWithUserName(_ sender: UIButtonWithRoundedCorners) {
         // Status bar color turns default(black)
@@ -110,6 +106,11 @@ class MainViewController: UIViewController {
         
         // Go to sign up view
         performSegue(withIdentifier: "segueSignUp", sender: self)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 

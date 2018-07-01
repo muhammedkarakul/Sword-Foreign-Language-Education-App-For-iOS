@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
+//import FirebaseDatabase
 import ProgressHUD
+import FirebaseFirestore
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
@@ -19,8 +20,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var passwordValidationTextField: UITextField!
     
+    let db = Firestore.firestore()
+    
     // Firebase Database Properties
-    var databaseReferance: DatabaseReference?
+    //var databaseReferance: DatabaseReference?
     //var databaseHandle: DatabaseHandle?
 
     override func viewDidLoad() {
@@ -32,7 +35,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.passwordValidationTextField.delegate = self
         
         // Set the firebase referance
-        databaseReferance = Database.database().reference()
+        //databaseReferance = Database.database().reference()
         
 //        // Create user and listen for changes
 //        databaseHandle = databaseReferance?.child("Users").observe(.childAdded, with: { (snapshot) in
@@ -58,12 +61,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpTouchUpInside() {
-        if let name = nameTextField.text,
+        if  let name = nameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text,
             let passwordValidation = passwordValidationTextField.text {
             
-            let tempUser = User(name: name, email: email, diamond: 200, createdDay: Date(), hearth: 4, profilePhotoURL: "Profile_photo_url" , score: 9999)
+            let timestamp = Timestamp()
+            let date = timestamp.dateValue()
+            
+            let tempUser = User(id: "", name: name, email: email, diamond: 000, createdDate: date, hearth: 4, profilePhotoURL: "Profile_photo_url" , score: 0000, level: "", topic: "")
             
             if password == passwordValidation {
                 
@@ -71,17 +77,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if let _ = user {
                         print("SUCCESS: USER CREATED")
                         
-                        self.databaseReferance?.child("User").child((user?.uid)!).setValue(["username" : tempUser.getName()!, "email" : tempUser.getEmail()!, "createdDate" : tempUser.getCreatedDay()!.toMillis(), "diamond" : tempUser.getDiamond()!, "hearth" : tempUser.getHearth()!, "photo" : tempUser.getProfilePhotoURL()!, "score" : tempUser.getScore()!] , withCompletionBlock: { (error, ref) in
-                            
-                            if let e = error {
-                                print("ERROR: DATA NOT SAVED")
-                                ProgressHUD.showError(e.localizedDescription)
-                            } else {
-                                print("SUCCESS: DATA SAVED")
-                                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
-                            }
-                            
-                        })
+                        // Save user data to Firebase Firestore Database
+                        self.saveUserDataToDatabase(user: tempUser)
+                        
+                        // Save user data to Firebase Real Time Database
+                        //self.saveUserDataToRealTimeDatabase(user: tempUser, id: user?.user.uid)
+                        
+                        // Save user to Realm local database
+                        let realmUser = RealmUser()
+                        realmUser.id = user?.user.uid
+                        realmUser.name = tempUser.getName()
+                        realmUser.email = tempUser.getEmail()
+                        realmUser.profilePhotoURL = tempUser.getProfilePhotoURL()
+                        realmUser.createdDate = tempUser.getCreatedDate()
+                        realmUser.diamond.value = tempUser.getDiamond()
+                        realmUser.score.value = tempUser.getScore()
+                        realmUser.level = "Beginner"
+                        realmUser.topic = "General"
+                        realmUser.writeToRealm()
+
                         
                     } else {
                         print("ERROR: USER NOT CREATED")
@@ -118,6 +132,66 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    /**
+     This method saves user data to Firebase Firestore Database.
+     - parameter user: The user to be registered to the database.
+     */
+    private func saveUserDataToDatabase(user: User) {
+        
+        let docData: [String : Any] = [
+            "createdDate" : user.getCreatedDate()!,
+            "diamond" : user.getDiamond()!,
+            "email" : user.getEmail()!,
+            "hearth" : user.getHearth()!,
+            "photo_url" : user.getProfilePhotoURL()!,
+            "score" : user.getScore()!,
+            "username" : user.getName()!
+        ]
+        
+        db.collection("User").document((Auth.auth().currentUser?.uid)!).setData(docData) { error in
+            if let err = error {
+                print("ERROR: \(err)")
+                ProgressHUD.showError(err.localizedDescription)
+            } else {
+                print("SUCCESS: Document successfully written!")
+                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+            }
+        }
+        
+//        db.collection("User").document().setData(docData) { error in
+//            if let err = error {
+//                print("ERROR: \(err)")
+//                ProgressHUD.showError(err.localizedDescription)
+//            } else {
+//                print("SUCCESS: Document successfully written!")
+//                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+//            }
+//        }
+    }
+    
+    /**
+     This method saves user data to Firebase Realtime Database.
+     - parameter id: The ID of the user to be registered in the database.
+     - parameter user: The user to be registered to the database.
+     */
+    
+    /*
+    private func saveUserDataToRealTimeDatabase(user: User, id: String?) {
+        self.databaseReferance?.child("User").child((id)!).setValue(["username" : user.getName()!, "email" : user.getEmail()!, "createdDate" : user.getCreatedDay()!.toMillis(), "diamond" : user.getDiamond()!, "hearth" : user.getHearth()!, "photo" : user.getProfilePhotoURL()!, "score" : user.getScore()!] , withCompletionBlock: { (error, ref) in
+
+            if let e = error {
+                print("ERROR: DATA NOT SAVED")
+                ProgressHUD.showError(e.localizedDescription)
+            } else {
+                print("SUCCESS: DATA SAVED")
+                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+            }
+
+        })
+    }
+    */
+ 
+ 
     /*
     // MARK: - Navigation
 

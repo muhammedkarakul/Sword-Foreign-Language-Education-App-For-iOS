@@ -31,6 +31,7 @@ class CustomView: UIView {
         super.init(coder: aDecoder)
         
         self.backgroundColor = UIColor.clear
+        self.bounds.size.width = UIScreen.main.bounds.width
         
         setImageView(profileImageView)
         setUserNameLabel(userNameLabel)

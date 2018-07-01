@@ -9,11 +9,15 @@
 import UIKit
 import CoreData
 import Firebase
+import RealmSwift
+
+var uiRealm = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+//    var words = [Word]()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -37,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Firebase
         FirebaseApp.configure()
-        
-        let db = Firestore.firestore()
         
         return true
     }

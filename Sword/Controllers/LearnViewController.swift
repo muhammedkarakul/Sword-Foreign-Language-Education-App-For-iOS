@@ -8,11 +8,12 @@
 
 import UIKit
 import Koloda
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+import DeviceKit
 
 
-
-class LearnViewController: UIViewController {
+class LearnViewController: CustomMainViewController {
     
 
     
@@ -25,36 +26,43 @@ class LearnViewController: UIViewController {
     @IBOutlet weak var wordCounterLabel: UILabel! // Which word you are in
     @IBOutlet weak var selectWordContainerView: UIView! // If user wasn't select words this view appears
     
-    var db: Firestore!
+    let db = Firestore.firestore()
     
-    // Learn cards data source
-    fileprivate var dataSource: [String] = {
-        var array: [String] = ["Home", "Window", "Door", "Shoe", "Glasses", "Desk", "Chair", "Bed", "Computer", "Call"]
-        //        for index in 0..<numberOfCards {
-        //            array.append(UIImage(named: "Card_like_\(index + 1)")!)
-        //        }
-        
-        return array
-    }()
+    var words = [Word]()
+    
+    private var numberOfCards: Int = 0
     
     // Current card index
     var currentCardIndex = 0
     
     
-    private var numberOfCards: Int = 10
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        writeUserDataToRealm()
+        
         // Do any additional setup after loading the view.
         kolodaView.delegate = self
         kolodaView.dataSource = self
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
-        updateView()
+//        let headerView = Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?.first as? CustomOverlayView
+//        self.view.addSubview(headerView!)
+//        
+//        let device = Device()
+//        
+//        if device == .iPhoneX {
+//            // Eğer mobil cihaz iphone x modeli ise üstten 50 pixel boşluk bırak.
+//            headerView?.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
+//        } else {
+//            // Eğer mobil cihaz diğer iphone modelleriyse boşluk bırakmadan headerView'ı konumlandır.
+//            headerView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: 50)
+//        }
         
-        getCardData()
+        //let realmUser = RealmUser()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,18 +97,45 @@ class LearnViewController: UIViewController {
     // MARK: - Fire Base -
     
     private func getCardData() {
-        db.collection("User").getDocuments { (querySnapshot, error) in
+        
+        
+        db.collection("Word").getDocuments { (querySnapshot, error) in
             if let err = error {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+                    //print("\(document.documentID) => tr: \(document.data()["tr"]!), en: \(document.data()["en"]!)")
+                    let id = document.documentID
+                    let foreignLang = document.data()["en"] as? String
+                    let motherLang = document.data()["tr"] as? String
+                    let createdDate = document.data()["createdDate"] as? Date
+                    let users = document.data()["users"] as? [User]
+                    
+                    let word = Word(id: id, foreignLang: foreignLang, motherLang: motherLang, createdDate: createdDate, users: users)
+                    
+                    self.words.append(word)
+                    
+                    let realmWord = RealmWord()
+                    realmWord.id = word.getId()
+                    realmWord.foreignLang = word.getForeignLang()
+                    realmWord.motherLang = word.getMotherLang()
+                    
+                    self.grabData(wordToAdd: realmWord)
+                    
                 }
+                
+                self.numberOfCards = self.words.count
+                
+                self.updateView()
+                
             }
         }
     }
     
-    
+    func grabData(wordToAdd: RealmWord) {
+        print("SUCCESS: Word datas added to Realm Database.")
+        wordToAdd.writeToRealm()
+    }
     
     /*
     // MARK: - Navigation
@@ -119,12 +154,6 @@ class LearnViewController: UIViewController {
 extension LearnViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-//        let position = kolodaView.currentCardIndex
-//        for i in 1...4 {
-//            dataSource.append(UIImage(named: "Card_like_\(i)")!)
-//
-//        }
-//        kolodaView.insertCardAtIndexRange(position..<position + 4, animated: true)
         print("KARTLAR BİTTİ")
     }
     
@@ -134,15 +163,16 @@ extension LearnViewController: KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         print("\(index) INDEX CARD SWIPED")
-        if currentCardIndex < dataSource.count {
+        if currentCardIndex < words.count {
             currentCardIndex = currentCardIndex + 1
         }
         updateView()
     }
     
     func updateView() {
-        wordCounterLabel.text = "\(currentCardIndex)/\(dataSource.count)"
-        wordProgressView.progress = (Float(currentCardIndex))/10.0
+        wordCounterLabel.text = "\(currentCardIndex)/\(words.count)"
+        wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCards)
+        kolodaView.reloadData()
     }
     
 }
@@ -152,7 +182,7 @@ extension LearnViewController: KolodaViewDelegate {
 extension LearnViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return dataSource.count
+        return words.count
     }
     
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -160,8 +190,6 @@ extension LearnViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        //return UIImageView(image: dataSource[Int(index)])
-        
         
         return setCard(index)
     }
@@ -170,7 +198,7 @@ extension LearnViewController: KolodaViewDataSource {
         let labelBGColor = UIColor(displayP3Red: (213.0 + CGFloat(index))/255.0, green: (234.0 + CGFloat(index))/255.0, blue: (245.0 + CGFloat(index))/255.0, alpha: 1.0)
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = dataSource[index]
+        label.text = "\(words[index].getForeignLang()!)\n\n\(words[index].getMotherLang()!)"
         label.backgroundColor = labelBGColor
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.black
@@ -184,5 +212,55 @@ extension LearnViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
+    
+    
+     func writeUserDataToRealm() {
+         if let currentUserId = Auth.auth().currentUser?.uid {
+             print("CURRENT USER ID: \(currentUserId)")
+             let userRef = db.collection("User").document(currentUserId)
+             userRef.getDocument { (document, error) in
+             if let doc = document, doc.exists {
+                 //let dataDescription = doc.data().map(String.init(describing: )) ?? "nil"
+                 let dataDescription = doc.data()
+                 print("Document data: \(dataDescription!)")
+                 let username = dataDescription!["username"] as? String
+                 let email = dataDescription!["email"] as? String
+                 let photoUrl = dataDescription!["photo_url"] as? String
+                 let hearth = dataDescription!["hearth"] as? Int
+                 let diamond = dataDescription!["diamond"] as? Int
+                 let score = dataDescription!["score"] as? Int
+                 let createdDate = dataDescription!["createdDate"] as? Date
+                 let level = dataDescription!["level"] as? String
+                 let topic = dataDescription!["topic"] as? String
+                 
+                 let realmUser = RealmUser()
+                 realmUser.id = currentUserId
+                 realmUser.name = username
+                 realmUser.email = email
+                 realmUser.profilePhotoURL = photoUrl
+                 realmUser.hearth.value = hearth
+                 realmUser.diamond.value = diamond
+                 realmUser.score.value = score
+                 realmUser.createdDate = createdDate
+                 realmUser.level = level
+                 realmUser.topic = topic
+                
+                 realmUser.writeToRealm()
+                
+                if level != nil || topic != nil {
+                    self.getCardData()
+                } else {
+                    self.performSegue(withIdentifier: "LanguageLevelSegue", sender: nil)
+                }
+             
+             } else {
+                print("Document does not exist.")
+             }
+             
+             }
+         }
+     }
+     
+ 
     
 }

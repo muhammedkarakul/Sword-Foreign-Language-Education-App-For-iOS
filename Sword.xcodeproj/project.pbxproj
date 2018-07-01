@@ -15,6 +15,8 @@
 		5708672D2084EDCF00D4B8FF /* SwordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708672C2084EDCF00D4B8FF /* SwordTests.swift */; };
 		570867382084EDCF00D4B8FF /* SwordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570867372084EDCF00D4B8FF /* SwordUITests.swift */; };
 		570867492084F28300D4B8FF /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570867482084F28300D4B8FF /* Walkthrough.storyboard */; };
+		571944C420DF808200C3E56B /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571944C320DF808200C3E56B /* CustomViewController.swift */; };
+		571944C620DF82E200C3E56B /* CustomMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571944C520DF82E200C3E56B /* CustomMainViewController.swift */; };
 		5719B0D9208C9E4B00962F1B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5719B0D8208C9E4B00962F1B /* Reachability.swift */; };
 		5719B0DB208CB38500962F1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5719B0DA208CB38500962F1B /* GoogleService-Info.plist */; };
 		5719B0DD208CCE3A00962F1B /* LoginWithUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5719B0DC208CCE3A00962F1B /* LoginWithUserNameViewController.swift */; };
@@ -22,6 +24,7 @@
 		5720954F20AD8B1D006C869D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720954E20AD8B1D006C869D /* MainViewController.swift */; };
 		5720955120AD8B2C006C869D /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720955020AD8B2C006C869D /* WalkthroughViewController.swift */; };
 		5720955320AD8B34006C869D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720955220AD8B34006C869D /* SignUpViewController.swift */; };
+		5737FAFE20D2F5CA00209C9F /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */; };
 		574CC32420A31EDA003F0AA9 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */; };
 		574CC32820A32056003F0AA9 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32720A32056003F0AA9 /* LearnViewController.swift */; };
 		574CC32A20A32080003F0AA9 /* DuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32920A32080003F0AA9 /* DuelViewController.swift */; };
@@ -31,6 +34,8 @@
 		574CC33220A324FE003F0AA9 /* LanguageLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33120A324FE003F0AA9 /* LanguageLevelViewController.swift */; };
 		574CC33420A32723003F0AA9 /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33320A32723003F0AA9 /* TopicsViewController.swift */; };
 		574CC33620A33005003F0AA9 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33520A33005003F0AA9 /* CustomView.swift */; };
+		578CFB5D20CC19F80051F56C /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CFB5C20CC19F80051F56C /* Word.swift */; };
+		578CFB5F20CC2DC50051F56C /* Date+TimeStampToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */; };
 		579388A0209DD4790081B4D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793889F209DD4790081B4D2 /* User.swift */; };
 		579388A2209DD93B0081B4D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579388A1209DD93B0081B4D2 /* Main.storyboard */; };
 		579388A6209E07590081B4D2 /* Date+toMillis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579388A5209E07590081B4D2 /* Date+toMillis.swift */; };
@@ -80,6 +85,8 @@
 		570867372084EDCF00D4B8FF /* SwordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordUITests.swift; sourceTree = "<group>"; };
 		570867392084EDCF00D4B8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		570867482084F28300D4B8FF /* Walkthrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		571944C320DF808200C3E56B /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomViewController.swift; path = "Custom Classes/CustomViewController.swift"; sourceTree = "<group>"; };
+		571944C520DF82E200C3E56B /* CustomMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomMainViewController.swift; path = "Custom Classes/CustomMainViewController.swift"; sourceTree = "<group>"; };
 		5719B0D8208C9E4B00962F1B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Helpers/Reachability.swift; sourceTree = "<group>"; };
 		5719B0DA208CB38500962F1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5719B0DC208CCE3A00962F1B /* LoginWithUserNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginWithUserNameViewController.swift; path = Controllers/LoginWithUserNameViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 		5720954E20AD8B1D006C869D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
 		5720955020AD8B2C006C869D /* WalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkthroughViewController.swift; path = Controllers/WalkthroughViewController.swift; sourceTree = "<group>"; };
 		5720955220AD8B34006C869D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = Controllers/SignUpViewController.swift; sourceTree = "<group>"; };
+		5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmObjects.swift; path = Models/RealmObjects.swift; sourceTree = "<group>"; };
 		574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBarViewController.swift; path = Controllers/CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		574CC32720A32056003F0AA9 /* LearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnViewController.swift; path = Controllers/LearnViewController.swift; sourceTree = "<group>"; };
 		574CC32920A32080003F0AA9 /* DuelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuelViewController.swift; path = Controllers/DuelViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +104,8 @@
 		574CC33120A324FE003F0AA9 /* LanguageLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LanguageLevelViewController.swift; path = Controllers/LanguageLevelViewController.swift; sourceTree = "<group>"; };
 		574CC33320A32723003F0AA9 /* TopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopicsViewController.swift; path = Controllers/TopicsViewController.swift; sourceTree = "<group>"; };
 		574CC33520A33005003F0AA9 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = "Custom Classes/CustomView.swift"; sourceTree = "<group>"; };
+		578CFB5C20CC19F80051F56C /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Word.swift; path = Models/Word.swift; sourceTree = "<group>"; };
+		578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+TimeStampToDate.swift"; path = "Extensions/Date+TimeStampToDate.swift"; sourceTree = "<group>"; };
 		5793889F209DD4790081B4D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		579388A1209DD93B0081B4D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		579388A5209E07590081B4D2 /* Date+toMillis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+toMillis.swift"; path = "Extensions/Date+toMillis.swift"; sourceTree = "<group>"; };
@@ -260,6 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				5793889F209DD4790081B4D2 /* User.swift */,
+				578CFB5C20CC19F80051F56C /* Word.swift */,
+				5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -271,6 +283,8 @@
 				574CC33520A33005003F0AA9 /* CustomView.swift */,
 				57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */,
 				57A32BC620AF09D200857A02 /* CustomOverlayView.swift */,
+				571944C320DF808200C3E56B /* CustomViewController.swift */,
+				571944C520DF82E200C3E56B /* CustomMainViewController.swift */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
@@ -280,6 +294,7 @@
 			children = (
 				57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */,
 				579388A5209E07590081B4D2 /* Date+toMillis.swift */,
+				578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -498,11 +513,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Sword/Pods-Sword-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BWWalkthrough/BWWalkthrough.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -515,11 +533,14 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BWWalkthrough.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -571,17 +592,22 @@
 				5720955120AD8B2C006C869D /* WalkthroughViewController.swift in Sources */,
 				574CC32820A32056003F0AA9 /* LearnViewController.swift in Sources */,
 				574CC32E20A320CA003F0AA9 /* RankViewController.swift in Sources */,
+				578CFB5D20CC19F80051F56C /* Word.swift in Sources */,
 				57C500D7209A721C0037CD03 /* ForgotPasswordViewController.swift in Sources */,
 				5708671D2084EDCE00D4B8FF /* Sword.xcdatamodeld in Sources */,
+				5737FAFE20D2F5CA00209C9F /* RealmObjects.swift in Sources */,
 				5720954F20AD8B1D006C869D /* MainViewController.swift in Sources */,
+				571944C620DF82E200C3E56B /* CustomMainViewController.swift in Sources */,
 				5719B0DD208CCE3A00962F1B /* LoginWithUserNameViewController.swift in Sources */,
 				574CC32420A31EDA003F0AA9 /* CustomTabBarViewController.swift in Sources */,
 				5720955320AD8B34006C869D /* SignUpViewController.swift in Sources */,
 				574CC32A20A32080003F0AA9 /* DuelViewController.swift in Sources */,
+				571944C420DF808200C3E56B /* CustomViewController.swift in Sources */,
 				5719B0DF208CCE4B00962F1B /* LoginWithFaceBookViewController.swift in Sources */,
 				57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */,
 				574CC32C20A32095003F0AA9 /* MarketViewController.swift in Sources */,
 				57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */,
+				578CFB5F20CC2DC50051F56C /* Date+TimeStampToDate.swift in Sources */,
 				570867152084EDCE00D4B8FF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

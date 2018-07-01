@@ -60,7 +60,7 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if let _ = user {
                     print("SIGN IN: SUCCESS")
-                    
+ 
                     // User is found, go to main screen
                     self.performSegue(withIdentifier: "MainViewSegue", sender: self)
                 } else {

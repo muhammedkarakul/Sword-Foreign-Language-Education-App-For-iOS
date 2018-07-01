@@ -9,10 +9,17 @@
 import UIKit
 import BWWalkthrough
 import FirebaseAuth
+//import FirebaseFirestore
+//import FirebaseDatabase
 
 class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDelegate {
     
+    //var db: Firestore!
+    
     override func viewDidAppear(_ animated: Bool) {
+        
+        //db = Firestore.firestore()
+        
         super.viewDidAppear(animated)
 
         let userDefaults = UserDefaults.standard
@@ -72,7 +79,7 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
     func walkthroughCloseButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
-
+ 
     /*
     // MARK: - Navigation
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DuelViewController: UIViewController {
+class DuelViewController: CustomMainViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

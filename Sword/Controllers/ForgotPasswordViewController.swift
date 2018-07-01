@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+import ProgressHUD
 
 class ForgotPasswordViewController: UIViewController {
 
+    @IBOutlet var emailTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +25,23 @@ class ForgotPasswordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func closeButtonTouchUpInside(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func submitButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
+        if let email = emailTextField.text {
+            Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+                if let err = error {
+                    ProgressHUD.showError(err.localizedDescription)
+                } else {
+                    ProgressHUD.showSuccess("Hesabınızı kurtarma maili gönderilmiştir.")
+                }
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
