@@ -38,14 +38,14 @@ class LearnViewController: CustomMainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        writeUserDataToRealm()
         
         // Do any additional setup after loading the view.
         kolodaView.delegate = self
         kolodaView.dataSource = self
         
-        self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        //getCardData()
+        
+        //self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
 //        let headerView = Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?.first as? CustomOverlayView
 //        self.view.addSubview(headerView!)
@@ -62,7 +62,11 @@ class LearnViewController: CustomMainViewController {
         
         //let realmUser = RealmUser()
         
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        writeUserDataToRealm()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +77,7 @@ class LearnViewController: CustomMainViewController {
     // MARK: - Actions -
     
     @IBAction func selectWordsTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "LanguageLevelSegue", sender: self)
+        performSegue(withIdentifier: "levelAndTopicView", sender: nil)
     }
     
     @IBAction func learnButtonTapped(_ sender: UIButtonWithRoundedCorners) {
@@ -94,12 +98,22 @@ class LearnViewController: CustomMainViewController {
         updateView()
     }
     
+    @IBAction func changeLevelAndTopicButtonTouchUpInside(_ sender: UIButton) {
+        performSegue(withIdentifier: "levelAndTopicView", sender: self)
+    }
+    
     // MARK: - Fire Base -
     
     private func getCardData() {
         
+        // Show activity indicator with transparent background.
+        self.startActivityIndicator()
         
         db.collection("Word").getDocuments { (querySnapshot, error) in
+            
+            // Hide activity indicator and transparent background.
+            self.stopActivityIndicator()
+            
             if let err = error {
                 print("Error getting documents: \(err)")
             } else {
@@ -132,9 +146,65 @@ class LearnViewController: CustomMainViewController {
         }
     }
     
-    func grabData(wordToAdd: RealmWord) {
+    private func grabData(wordToAdd: RealmWord) {
         print("SUCCESS: Word datas added to Realm Database.")
         wordToAdd.writeToRealm()
+    }
+    
+    private func writeUserDataToRealm() {
+        
+        self.startActivityIndicator()
+        
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            print("CURRENT USER ID: \(currentUserId)")
+            let userRef = db.collection("User").document(currentUserId)
+            userRef.getDocument { (document, error) in
+                
+                self.stopActivityIndicator()
+                
+                if let doc = document, doc.exists {
+                    //let dataDescription = doc.data().map(String.init(describing: )) ?? "nil"
+                    let dataDescription = doc.data()
+                    print("User data: \(dataDescription!)")
+                    let username = dataDescription!["username"] as? String
+                    let email = dataDescription!["email"] as? String
+                    let photoUrl = dataDescription!["photo_url"] as? String
+                    let hearth = dataDescription!["hearth"] as? Int
+                    let diamond = dataDescription!["diamond"] as? Int
+                    let score = dataDescription!["score"] as? Int
+                    let createdDate = dataDescription!["createdDate"] as? Date
+                    let level = dataDescription!["level"] as? String
+                    let topic = dataDescription!["topic"] as? String
+                    
+                    let realmUser = RealmUser()
+                    realmUser.id = currentUserId
+                    realmUser.name = username
+                    realmUser.email = email
+                    realmUser.profilePhotoURL = photoUrl
+                    realmUser.hearth.value = hearth
+                    realmUser.diamond.value = diamond
+                    realmUser.score.value = score
+                    realmUser.createdDate = createdDate
+                    realmUser.level = level
+                    realmUser.topic = topic
+                    
+                    realmUser.writeToRealm()
+                    
+                    if level != nil || topic != nil {
+                        // User was pick level and topics get datas from firebase.
+                        self.learnContainerView.isHidden = false
+                        self.getCardData()
+                    } else {
+                        // User don't pick level and topics show selectWordContainerView.
+                        self.selectWordContainerView.isHidden = false
+                    }
+                    
+                } else {
+                    print("User does not exist.")
+                }
+                
+            }
+        }
     }
     
     /*
@@ -173,6 +243,7 @@ extension LearnViewController: KolodaViewDelegate {
         wordCounterLabel.text = "\(currentCardIndex)/\(words.count)"
         wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCards)
         kolodaView.reloadData()
+        
     }
     
 }
@@ -212,55 +283,5 @@ extension LearnViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
-    
-    
-     func writeUserDataToRealm() {
-         if let currentUserId = Auth.auth().currentUser?.uid {
-             print("CURRENT USER ID: \(currentUserId)")
-             let userRef = db.collection("User").document(currentUserId)
-             userRef.getDocument { (document, error) in
-             if let doc = document, doc.exists {
-                 //let dataDescription = doc.data().map(String.init(describing: )) ?? "nil"
-                 let dataDescription = doc.data()
-                 print("Document data: \(dataDescription!)")
-                 let username = dataDescription!["username"] as? String
-                 let email = dataDescription!["email"] as? String
-                 let photoUrl = dataDescription!["photo_url"] as? String
-                 let hearth = dataDescription!["hearth"] as? Int
-                 let diamond = dataDescription!["diamond"] as? Int
-                 let score = dataDescription!["score"] as? Int
-                 let createdDate = dataDescription!["createdDate"] as? Date
-                 let level = dataDescription!["level"] as? String
-                 let topic = dataDescription!["topic"] as? String
-                 
-                 let realmUser = RealmUser()
-                 realmUser.id = currentUserId
-                 realmUser.name = username
-                 realmUser.email = email
-                 realmUser.profilePhotoURL = photoUrl
-                 realmUser.hearth.value = hearth
-                 realmUser.diamond.value = diamond
-                 realmUser.score.value = score
-                 realmUser.createdDate = createdDate
-                 realmUser.level = level
-                 realmUser.topic = topic
-                
-                 realmUser.writeToRealm()
-                
-                if level != nil || topic != nil {
-                    self.getCardData()
-                } else {
-                    self.performSegue(withIdentifier: "LanguageLevelSegue", sender: nil)
-                }
-             
-             } else {
-                print("Document does not exist.")
-             }
-             
-             }
-         }
-     }
-     
- 
     
 }

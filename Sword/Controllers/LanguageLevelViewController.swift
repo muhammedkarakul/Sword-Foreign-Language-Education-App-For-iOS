@@ -12,13 +12,12 @@ import FirebaseFirestore
 class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Properties
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet var containerView: UIView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var contentTableView: UITableView!
     @IBOutlet var submitButton: UIButtonWithRoundedCorners!
     
     // Firebase Firestore Referance
+    let firestoreReferance = Firestore.firestore()
     
 
     override func viewDidLoad() {
@@ -38,7 +37,8 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Actions -
     
     @IBAction func nextTapped(_ sender: UIButtonWithRoundedCorners) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        tabBarController?.selectedIndex = 1
     }
     
     // MARK: - Table View Data Source And Delegate
@@ -50,11 +50,22 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.textLabel?.text = "Cell \(indexPath.row)"
+        cell?.textLabel?.textAlignment = .center
+        cell?.textLabel?.textColor = UIColor.lightGray
+        cell?.selectionStyle = .none
+        
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.textLabel?.textColor = UIColor.white
         submitButton.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.textLabel?.textColor = UIColor.lightGray
     }
     
 
