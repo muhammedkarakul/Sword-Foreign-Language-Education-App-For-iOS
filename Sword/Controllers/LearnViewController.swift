@@ -26,14 +26,14 @@ class LearnViewController: CustomMainViewController {
     @IBOutlet weak var wordCounterLabel: UILabel! // Which word you are in
     @IBOutlet weak var selectWordContainerView: UIView! // If user wasn't select words this view appears
     
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     
-    var words = [Word]()
+    private var words = [Word]()
     
     private var numberOfCards: Int = 0
     
     // Current card index
-    var currentCardIndex = 0
+    private var currentCardIndex = 0
     
     
     override func viewDidLoad() {
@@ -106,7 +106,7 @@ class LearnViewController: CustomMainViewController {
     
     private func getCardData() {
         
-        // Show activity indicator with transparent background.
+        // Show activity indicator and disable user interaction with view.
         self.startActivityIndicator()
         
         db.collection("Word").getDocuments { (querySnapshot, error) in
@@ -117,24 +117,21 @@ class LearnViewController: CustomMainViewController {
             if let err = error {
                 print("Error getting documents: \(err)")
             } else {
-                for document in querySnapshot!.documents {
+                for word in querySnapshot!.documents {
                     //print("\(document.documentID) => tr: \(document.data()["tr"]!), en: \(document.data()["en"]!)")
-                    let id = document.documentID
-                    let foreignLang = document.data()["en"] as? String
-                    let motherLang = document.data()["tr"] as? String
-                    let createdDate = document.data()["createdDate"] as? Date
-                    let users = document.data()["users"] as? [User]
+                    let id = word.documentID
+                    let foreignLang = word.data()["en"] as? String
+                    let motherLang = word.data()["tr"] as? String
+                    let createdDate = word.data()["createdDate"] as? Date
+                    let users = word.data()["users"] as? [User]
                     
-                    let word = Word(id: id, foreignLang: foreignLang, motherLang: motherLang, createdDate: createdDate, users: users)
+                    let tempWord = Word(id: id, foreignLang: foreignLang, motherLang: motherLang, createdDate: createdDate, users: users)
                     
-                    self.words.append(word)
+                    self.words.append(tempWord)
                     
-                    let realmWord = RealmWord()
-                    realmWord.id = word.getId()
-                    realmWord.foreignLang = word.getForeignLang()
-                    realmWord.motherLang = word.getMotherLang()
                     
-                    self.grabData(wordToAdd: realmWord)
+                    
+                    self.addWordToRealm(wordToAdd: tempWord)
                     
                 }
                 
@@ -146,9 +143,14 @@ class LearnViewController: CustomMainViewController {
         }
     }
     
-    private func grabData(wordToAdd: RealmWord) {
+    private func addWordToRealm(wordToAdd: Word) {
         print("SUCCESS: Word datas added to Realm Database.")
-        wordToAdd.writeToRealm()
+        
+        let realmWord = RealmWord()
+        realmWord.id = wordToAdd.getId()
+        realmWord.foreignLang = wordToAdd.getForeignLang()
+        realmWord.motherLang = wordToAdd.getMotherLang()
+        realmWord.writeToRealm()
     }
     
     private func writeUserDataToRealm() {
