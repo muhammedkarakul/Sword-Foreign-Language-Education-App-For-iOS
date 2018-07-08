@@ -109,6 +109,8 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
         realmLevel.name = level.getName()
         realmLevel.score.value = level.getScore()
         realmLevel.topics = self.topicsArrayString
+        
+        realmLevel.writeToRealm()
     }
     
     // MARK: - Actions
