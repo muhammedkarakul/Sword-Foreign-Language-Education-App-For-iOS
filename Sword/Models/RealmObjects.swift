@@ -68,3 +68,20 @@ class RealmLevel: Object {
     }
 }
 
+class RealmTopic: Object {
+    @objc dynamic var id: String? = nil
+    @objc dynamic var createdDate: Date? = nil
+    @objc dynamic var name: String? = nil
+    @objc dynamic var words: String? = nil
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    func writeToRealm() {
+        try! uiRealm.write {
+            uiRealm.add(self, update: true)
+        }
+    }
+}
+

@@ -102,7 +102,6 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Functions
     
     private func addLevelToRealm(_ level: Level) {
-        print("SUCCESS: Level item added to Realm.")
         let realmLevel = RealmLevel()
         realmLevel.id = level.getId()
         realmLevel.createdDate = level.getCreatedDate()
@@ -111,6 +110,8 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
         realmLevel.topics = self.topicsArrayString
         
         realmLevel.writeToRealm()
+        
+        print("SUCCESS: Level item added to Realm.")
     }
     
     // MARK: - Actions
@@ -140,6 +141,7 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = UIColor.white
         submitButton.isHidden = false
+        print("Selected Level: \(levels[indexPath.row].getName() ?? "no level selected")")
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

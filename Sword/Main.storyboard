@@ -328,6 +328,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="LAn-t9-EKk"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="containerTableView" destination="Po3-rt-Hab" id="j15-zb-2Bx"/>
                         <outlet property="submitButton" destination="aOx-uE-SeA" id="J4B-HP-O6U"/>
                     </connections>
                 </viewController>

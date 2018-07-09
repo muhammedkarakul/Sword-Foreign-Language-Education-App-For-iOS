@@ -36,6 +36,7 @@
 		574CC33620A33005003F0AA9 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33520A33005003F0AA9 /* CustomView.swift */; };
 		575EDA9920E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */; };
 		577761C620F246C40008C849 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577761C520F246C40008C849 /* Level.swift */; };
+		577761C820F29D2A0008C849 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577761C720F29D2A0008C849 /* Topic.swift */; };
 		578CFB5D20CC19F80051F56C /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CFB5C20CC19F80051F56C /* Word.swift */; };
 		578CFB5F20CC2DC50051F56C /* Date+TimeStampToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */; };
 		579388A0209DD4790081B4D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793889F209DD4790081B4D2 /* User.swift */; };
@@ -108,6 +109,7 @@
 		574CC33520A33005003F0AA9 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = "Custom Classes/CustomView.swift"; sourceTree = "<group>"; };
 		575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+activityIndicatorStatus.swift"; path = "Extensions/UIViewController+activityIndicatorStatus.swift"; sourceTree = "<group>"; };
 		577761C520F246C40008C849 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Level.swift; path = Models/Level.swift; sourceTree = "<group>"; };
+		577761C720F29D2A0008C849 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Models/Topic.swift; sourceTree = "<group>"; };
 		578CFB5C20CC19F80051F56C /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Word.swift; path = Models/Word.swift; sourceTree = "<group>"; };
 		578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+TimeStampToDate.swift"; path = "Extensions/Date+TimeStampToDate.swift"; sourceTree = "<group>"; };
 		5793889F209DD4790081B4D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				578CFB5C20CC19F80051F56C /* Word.swift */,
 				5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */,
 				577761C520F246C40008C849 /* Level.swift */,
+				577761C720F29D2A0008C849 /* Topic.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */,
 				5720955120AD8B2C006C869D /* WalkthroughViewController.swift in Sources */,
 				574CC32820A32056003F0AA9 /* LearnViewController.swift in Sources */,
+				577761C820F29D2A0008C849 /* Topic.swift in Sources */,
 				574CC32E20A320CA003F0AA9 /* RankViewController.swift in Sources */,
 				578CFB5D20CC19F80051F56C /* Word.swift in Sources */,
 				57C500D7209A721C0037CD03 /* ForgotPasswordViewController.swift in Sources */,
