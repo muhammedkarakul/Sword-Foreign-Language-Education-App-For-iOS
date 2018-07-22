@@ -19,7 +19,7 @@ class User {
     private var profilePhotoURL: String?
     private var score: Int?
     private var level: String?
-    private var topic: String?
+    private var topics: [String]?
     
     // MARK: - Constructor Methods -
     
@@ -33,10 +33,10 @@ class User {
         profilePhotoURL = ""
         score = 0
         level = ""
-        topic = ""
+        topics = [String]()
     }
     
-    init(id: String, name: String, email: String, diamond: Int, createdDate: Date, hearth: Int, profilePhotoURL: String, score: Int, level: String, topic: String) {
+    init(id: String, name: String, email: String, diamond: Int, createdDate: Date, hearth: Int, profilePhotoURL: String, score: Int, level: String, topics: [String]?) {
         self.id = id
         self.name = name
         self.email = email
@@ -47,6 +47,7 @@ class User {
         self.score = score
         self.level = level
         self.score = score
+        self.topics = topics
     }
     
     // MARK: - Getter Methods -
@@ -60,7 +61,7 @@ class User {
     func getScore() -> Int? { return score }
     func getProfilePhotoURL() -> String? { return profilePhotoURL }
     func getLevel() -> String? { return level }
-    func getTopic() -> String? { return topic }
+    func getTopics() -> [String]? { return topics }
     
     // MARK: - Setter Methods -
     
@@ -73,7 +74,7 @@ class User {
     func setProfilePhotoURL(profilePhotoURL: String) { self.profilePhotoURL = profilePhotoURL }
     func setScore(score: Int) { self.score = score}
     func setLevel(level: String) { self.level = level }
-    func setTopic(topic: String) { self.topic = topic }
+    func setTopic(topics: [String]?) { self.topics = topics }
     
     // MARK: - Utilities Methods -
     
@@ -88,7 +89,7 @@ class User {
         print("profile photo url: \(getProfilePhotoURL()!)")
         print("score: \(getScore()!)")
         print("level: \(getLevel()!)")
-        print("topic: \(getTopic()!)")
+        print("topic: \(getTopics()!)")
         print("*****************")
     }
     

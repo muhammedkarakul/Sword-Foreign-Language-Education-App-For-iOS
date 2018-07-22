@@ -35,6 +35,8 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
             if Auth.auth().currentUser != nil {
                 // User is signed in.
                 print("USER IS SIGNED IN. GO TO MAIN SCREEN.")
+                userDefaults.set(Auth.auth().currentUser?.uid , forKey: "uid")
+                userDefaults.synchronize()
                 performSegue(withIdentifier: "MainViewSegue", sender: self)
             } else {
                 // No user is signed in.

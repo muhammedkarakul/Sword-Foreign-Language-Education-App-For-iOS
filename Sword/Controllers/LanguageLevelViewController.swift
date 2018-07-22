@@ -22,6 +22,12 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     // Level data array.
     private var levels = [Level]()
     
+    private var selectedLevel = Level()
+    
+    //private var topicIdArray = [String?]()
+    
+    //private var selectedLevelName: String?
+    
     // Topics array is storing with string type.
     var topicsArrayString: String?
 
@@ -118,6 +124,10 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func nextTapped(_ sender: UIButtonWithRoundedCorners) {
         // Go to topics view
+        let topicsViewController = self.tabBarController?.viewControllers![1] as! TopicsViewController
+        topicsViewController.selectedLevel = selectedLevel
+        //topicsViewController.topicIdArray = topicIdArray
+        //topicsViewController.levelName = selectedLevelName
         tabBarController?.selectedIndex = 1
     }
     
@@ -140,8 +150,13 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = UIColor.white
+        selectedLevel = levels[indexPath.row]
+        //topicIdArray = levels[indexPath.row].getTopics()
+        //selectedLevelName = levels[indexPath.row].getName()
+        //print("Selected Level Topics: \(levels[indexPath.row].getTopics())")
         submitButton.isHidden = false
-        print("Selected Level: \(levels[indexPath.row].getName() ?? "no level selected")")
+        //print("Selected Level: \(levels[indexPath.row].getName() ?? "no level selected")")
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

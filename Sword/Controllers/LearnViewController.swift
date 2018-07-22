@@ -12,10 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import DeviceKit
 
-
 class LearnViewController: CustomMainViewController {
-    
-
     
     // MARK: - Preferences -
     @IBOutlet var messageLabel: UILabel! // Info message about word choice
@@ -30,11 +27,14 @@ class LearnViewController: CustomMainViewController {
     
     private var words = [Word]()
     
+    private let userDefaults = UserDefaults.standard
+    
+    public var wordsIdArray = [String?]()
+    
     private var numberOfCards: Int = 0
     
     // Current card index
     private var currentCardIndex = 0
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +49,9 @@ class LearnViewController: CustomMainViewController {
         
 //        let headerView = Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?.first as? CustomOverlayView
 //        self.view.addSubview(headerView!)
-//        
+//
 //        let device = Device()
-//        
+//
 //        if device == .iPhoneX {
 //            // Eğer mobil cihaz iphone x modeli ise üstten 50 pixel boşluk bırak.
 //            headerView?.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
@@ -66,7 +66,17 @@ class LearnViewController: CustomMainViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         writeUserDataToRealm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        for word in wordsIdArray {
+            print("Word: \(word ?? "no word") getted form Learn View!")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +87,7 @@ class LearnViewController: CustomMainViewController {
     // MARK: - Actions -
     
     @IBAction func selectWordsTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "levelAndTopicView", sender: nil)
+        performSegue(withIdentifier: "levelAndTopicView", sender: self)
     }
     
     @IBAction func learnButtonTapped(_ sender: UIButtonWithRoundedCorners) {
@@ -164,38 +174,39 @@ class LearnViewController: CustomMainViewController {
                 
                 self.stopActivityIndicator()
                 
+                self.isLevelAndTopicSelected()
+                
                 if let doc = document, doc.exists {
                     //let dataDescription = doc.data().map(String.init(describing: )) ?? "nil"
                     let dataDescription = doc.data()
                     print("User data: \(dataDescription!)")
-                    let username = dataDescription!["username"] as? String
-                    let email = dataDescription!["email"] as? String
-                    let photoUrl = dataDescription!["photo_url"] as? String
-                    let hearth = dataDescription!["hearth"] as? Int
-                    let diamond = dataDescription!["diamond"] as? Int
-                    let score = dataDescription!["score"] as? Int
-                    let createdDate = dataDescription!["createdDate"] as? Date
-                    let level = dataDescription!["level"] as? String
-                    let topic = dataDescription!["topic"] as? String
-                    
-                    let realmUser = RealmUser()
-                    realmUser.id = currentUserId
-                    realmUser.name = username
-                    realmUser.email = email
-                    realmUser.profilePhotoURL = photoUrl
-                    realmUser.hearth.value = hearth
-                    realmUser.diamond.value = diamond
-                    realmUser.score.value = score
-                    realmUser.createdDate = createdDate
-                    realmUser.level = level
-                    realmUser.topic = topic
-                    
-                    realmUser.writeToRealm()
-                    
-                    if level != nil || topic != nil {
-                        // User was pick level and topics get datas from firebase.
+                    if let username = dataDescription!["username"] as? String,
+                       let email = dataDescription!["email"] as? String,
+                       let photoUrl = dataDescription!["photo_url"] as? String,
+                       let hearth = dataDescription!["hearth"] as? Int,
+                       let diamond = dataDescription!["diamond"] as? Int,
+                       let score = dataDescription!["score"] as? Int,
+                       let createdDate = dataDescription!["createdDate"] as? Date,
+                       let level = dataDescription!["level"] as? String,
+                       let topic = dataDescription!["topic"] as? String {
+                        
+                        let realmUser = RealmUser()
+                        realmUser.id = currentUserId
+                        realmUser.name = username
+                        realmUser.email = email
+                        realmUser.profilePhotoURL = photoUrl
+                        realmUser.hearth.value = hearth
+                        realmUser.diamond.value = diamond
+                        realmUser.score.value = score
+                        realmUser.createdDate = createdDate
+                        realmUser.level = level
+                        realmUser.topic = topic
+                        
+                        realmUser.writeToRealm()
+                        
                         self.learnContainerView.isHidden = false
                         self.getCardData()
+                        
                     } else {
                         // User don't pick level and topics show selectWordContainerView.
                         self.selectWordContainerView.isHidden = false
@@ -209,15 +220,15 @@ class LearnViewController: CustomMainViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func isLevelAndTopicSelected() {
+        if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
+            selectWordContainerView.isHidden = true
+            learnContainerView.isHidden = false
+        } else {
+            selectWordContainerView.isHidden = false
+            learnContainerView.isHidden = true
+        }
     }
-    */
 
 }
 

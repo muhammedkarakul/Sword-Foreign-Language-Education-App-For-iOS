@@ -69,7 +69,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             let timestamp = Timestamp()
             let date = timestamp.dateValue()
             
-            let tempUser = User(id: "", name: name, email: email, diamond: 000, createdDate: date, hearth: 4, profilePhotoURL: "Profile_photo_url" , score: 0000, level: "", topic: "")
+            let tempUser = User(id: "", name: name, email: email, diamond: 000, createdDate: date, hearth: 4, profilePhotoURL: "Profile_photo_url" , score: 0000, level: "", topics: [String]())
             
             if password == passwordValidation {
                 

@@ -247,7 +247,6 @@
 		574CC32520A32012003F0AA9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5720954E20AD8B1D006C869D /* MainViewController.swift */,
 				5720955020AD8B2C006C869D /* WalkthroughViewController.swift */,
 				5719B0DC208CCE3A00962F1B /* LoginWithUserNameViewController.swift */,
 				5719B0DE208CCE4B00962F1B /* LoginWithFaceBookViewController.swift */,
@@ -262,6 +261,7 @@
 			children = (
 				574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */,
 				574CC32720A32056003F0AA9 /* LearnViewController.swift */,
+				5720954E20AD8B1D006C869D /* MainViewController.swift */,
 				574CC32920A32080003F0AA9 /* DuelViewController.swift */,
 				574CC32B20A32095003F0AA9 /* MarketViewController.swift */,
 				574CC32D20A320CA003F0AA9 /* RankViewController.swift */,
