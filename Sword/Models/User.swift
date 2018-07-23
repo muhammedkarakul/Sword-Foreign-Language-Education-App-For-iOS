@@ -36,7 +36,7 @@ class User {
         topics = [String]()
     }
     
-    init(id: String, name: String, email: String, diamond: Int, createdDate: Date, hearth: Int, profilePhotoURL: String, score: Int, level: String, topics: [String]?) {
+    init(id: String?, name: String?, email: String?, diamond: Int?, createdDate: Date?, hearth: Int?, profilePhotoURL: String?, score: Int?, level: String?, topics: [String]?) {
         self.id = id
         self.name = name
         self.email = email
@@ -65,31 +65,31 @@ class User {
     
     // MARK: - Setter Methods -
     
-    func setId(id: String) { self.id = id }
-    func setName(name: String) { self.name = name }
-    func setEmail(email: String) { self.email = email }
-    func setDiamond(diamond: Int) { self.diamond = diamond }
-    func setCreatedDate(createdDate: Date) { self.createdDate = createdDate }
-    func setHearth(hearth: Int) { self.hearth = hearth }
+    func setId(id: String?) { self.id = id }
+    func setName(name: String?) { self.name = name }
+    func setEmail(email: String?) { self.email = email }
+    func setDiamond(diamond: Int?) { self.diamond = diamond }
+    func setCreatedDate(createdDate: Date?) { self.createdDate = createdDate }
+    func setHearth(hearth: Int?) { self.hearth = hearth }
     func setProfilePhotoURL(profilePhotoURL: String) { self.profilePhotoURL = profilePhotoURL }
-    func setScore(score: Int) { self.score = score}
-    func setLevel(level: String) { self.level = level }
+    func setScore(score: Int?) { self.score = score}
+    func setLevel(level: String?) { self.level = level }
     func setTopic(topics: [String]?) { self.topics = topics }
     
     // MARK: - Utilities Methods -
     
     func printUserData() {
         print("*** USER DATA ***")
-        print("id: \(getId()!)")
-        print("name: \(getName()!)")
-        print("email: \(getEmail()!)")
-        print("diamond: \(getDiamond()!)")
-        print("created date: \(getCreatedDate()!)")
-        print("hearth: \(getHearth()!)")
-        print("profile photo url: \(getProfilePhotoURL()!)")
-        print("score: \(getScore()!)")
-        print("level: \(getLevel()!)")
-        print("topic: \(getTopics()!)")
+        print("id: \(getId() ?? "")")
+        print("name: \(getName() ?? "")")
+        print("email: \(getEmail() ?? "")")
+        print("diamond: \(getDiamond() ?? 0)")
+        print("created date: \(getCreatedDate() ?? Date())")
+        print("hearth: \(getHearth() ?? 0)")
+        print("profile photo url: \(getProfilePhotoURL() ?? "")")
+        print("score: \(getScore() ?? 0)")
+        print("level: \(getLevel() ?? "")")
+        print("topic: \(getTopics() ?? [String]())")
         print("*****************")
     }
     

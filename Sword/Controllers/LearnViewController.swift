@@ -27,7 +27,7 @@ class LearnViewController: CustomMainViewController {
     
     private var words = [Word]()
     
-    private let userDefaults = UserDefaults.standard
+    //private let userDefaults = UserDefaults.standard
     
     public var wordsIdArray = [String?]()
     
@@ -68,6 +68,7 @@ class LearnViewController: CustomMainViewController {
         super.viewDidAppear(animated)
         
         writeUserDataToRealm()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +77,9 @@ class LearnViewController: CustomMainViewController {
         for word in wordsIdArray {
             print("Word: \(word ?? "no word") getted form Learn View!")
         }
+        
+        learnContainerView.isHidden = true
+        selectWordContainerView.isHidden = true
         
     }
 
@@ -117,12 +121,14 @@ class LearnViewController: CustomMainViewController {
     private func getCardData() {
         
         // Show activity indicator and disable user interaction with view.
-        self.startActivityIndicator()
+        //self.startActivityIndicator()
         
         db.collection("Word").getDocuments { (querySnapshot, error) in
             
             // Hide activity indicator and transparent background.
             self.stopActivityIndicator()
+            
+            self.isLevelAndTopicSelected()
             
             if let err = error {
                 print("Error getting documents: \(err)")
@@ -151,6 +157,7 @@ class LearnViewController: CustomMainViewController {
                 
             }
         }
+        
     }
     
     private func addWordToRealm(wordToAdd: Word) {
@@ -172,9 +179,8 @@ class LearnViewController: CustomMainViewController {
             let userRef = db.collection("User").document(currentUserId)
             userRef.getDocument { (document, error) in
                 
-                self.stopActivityIndicator()
-                
-                self.isLevelAndTopicSelected()
+                //self.stopActivityIndicator()
+                self.getCardData()
                 
                 if let doc = document, doc.exists {
                     //let dataDescription = doc.data().map(String.init(describing: )) ?? "nil"
@@ -209,7 +215,7 @@ class LearnViewController: CustomMainViewController {
                         
                     } else {
                         // User don't pick level and topics show selectWordContainerView.
-                        self.selectWordContainerView.isHidden = false
+                        //self.selectWordContainerView.isHidden = false
                     }
                     
                 } else {
@@ -218,9 +224,12 @@ class LearnViewController: CustomMainViewController {
                 
             }
         }
+        
+        
     }
     
     private func isLevelAndTopicSelected() {
+        let userDefaults = UserDefaults.standard
         if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
             selectWordContainerView.isHidden = true
             learnContainerView.isHidden = false

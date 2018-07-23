@@ -45,6 +45,7 @@
 		57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A32BC620AF09D200857A02 /* CustomOverlayView.swift */; };
 		57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */; };
 		57B9B08320ADA06400535920 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B9B08220ADA06400535920 /* OverlayView.xib */; };
+		57C486DB21056B1900FC8862 /* String+ArrayToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C486DA21056B1900FC8862 /* String+ArrayToString.swift */; };
 		57C500D7209A721C0037CD03 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C500D6209A721C0037CD03 /* ForgotPasswordViewController.swift */; };
 		57C500D9209B00870037CD03 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C500D8209B00870037CD03 /* AlertHelper.swift */; };
 		57CA9395209736F70012EC23 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57CA9394209736F70012EC23 /* Login.storyboard */; };
@@ -118,6 +119,7 @@
 		57A32BC620AF09D200857A02 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = "Custom Classes/CustomOverlayView.swift"; sourceTree = "<group>"; };
 		57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = "Custom Classes/CustomKolodaView.swift"; sourceTree = "<group>"; };
 		57B9B08220ADA06400535920 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OverlayView.xib; path = Views/OverlayView.xib; sourceTree = "<group>"; };
+		57C486DA21056B1900FC8862 /* String+ArrayToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+ArrayToString.swift"; path = "Extensions/String+ArrayToString.swift"; sourceTree = "<group>"; };
 		57C500D6209A721C0037CD03 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Controllers/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		57C500D8209B00870037CD03 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertHelper.swift; path = Helpers/AlertHelper.swift; sourceTree = "<group>"; };
 		57CA9394209736F70012EC23 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				579388A5209E07590081B4D2 /* Date+toMillis.swift */,
 				578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */,
 				575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */,
+				57C486DA21056B1900FC8862 /* String+ArrayToString.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 			files = (
 				579388A0209DD4790081B4D2 /* User.swift in Sources */,
 				574CC33220A324FE003F0AA9 /* LanguageLevelViewController.swift in Sources */,
+				57C486DB21056B1900FC8862 /* String+ArrayToString.swift in Sources */,
 				57C500D9209B00870037CD03 /* AlertHelper.swift in Sources */,
 				574CC33020A320E5003F0AA9 /* ProfileViewController.swift in Sources */,
 				574CC33420A32723003F0AA9 /* TopicsViewController.swift in Sources */,

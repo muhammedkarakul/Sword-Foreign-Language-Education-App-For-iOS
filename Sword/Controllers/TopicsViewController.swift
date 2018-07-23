@@ -27,6 +27,8 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
     
     public var selectedLevel = Level()
     
+    //private var currentUser = User()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -145,7 +147,8 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Actions
     
     @IBAction func nextTapped(_ sender: UIButton) {
-        getCurrentUserFromRealm().printUserData()
+        //getCurrentUserFromRealm().printUserData()
+        updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: getCurrentUserFromRealm())
         dismiss(animated: true, completion: nil)
     }
     
@@ -188,7 +191,7 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         updateSubmitButtonAppearance()
     }
     
-    func updateSubmitButtonAppearance() {
+    private func updateSubmitButtonAppearance() {
         if selectedCellCounter > 0 {
             submitButton.isHidden = false
         } else {
@@ -204,20 +207,18 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         
         for realmUser in realmUsers {
             var tempUser = User()
-            if let id = realmUser.id, let name = realmUser.name, let email = realmUser.email, let diamond = realmUser.diamond.value, let createdDate = realmUser.createdDate, let hearth = realmUser.hearth.value, let profilePhotoURL = realmUser.profilePhotoURL, let score = realmUser.score.value, let level = realmUser.level, let topics = realmUser.topic {
                 tempUser = User(
-                    id: id,
-                    name: name,
-                    email: email,
-                    diamond: diamond,
-                    createdDate: createdDate,
-                    hearth: hearth,
-                    profilePhotoURL: profilePhotoURL,
-                    score: score,
-                    level: level,
-                    topics: splitStringWithComma(str: topics)  ?? [String]()
+                    id: realmUser.id,
+                    name: realmUser.name,
+                    email: realmUser.email,
+                    diamond: realmUser.diamond.value,
+                    createdDate: realmUser.createdDate,
+                    hearth: realmUser.hearth.value,
+                    profilePhotoURL: realmUser.profilePhotoURL,
+                    score: realmUser.score.value,
+                    level: realmUser.level,
+                    topics: realmUser.topic?.components(separatedBy: ",")
                 )
-            }
            
             users.append(tempUser)
         }
@@ -231,12 +232,33 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         return currentUser
     }
     
-    private func splitStringWithComma(str: String?) -> [String]? {
-        var strArray = [String]()
-        if let s = str{
-            strArray = s.components(separatedBy: ",")
+    private func updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: User) {
+        user.setLevel(level: selectedLevel.getId())
+        var topicsId = [String]()
+        for topic in topics {
+            topicsId.append(topic.getId() ?? "")
         }
-        return strArray
+        user.setTopic(topics: topicsId)
+        
+        let tempRealmUser = RealmUser()
+        
+        tempRealmUser.id = user.getId()
+        tempRealmUser.name = user.getName()
+        tempRealmUser.email = user.getEmail()
+        tempRealmUser.diamond.value = user.getDiamond()
+        tempRealmUser.createdDate = user.getCreatedDate()
+        tempRealmUser.hearth.value = user.getHearth()
+        tempRealmUser.profilePhotoURL = user.getProfilePhotoURL()
+        tempRealmUser.score.value = user.getScore()
+        tempRealmUser.level = user.getLevel()
+        //tempRealmUser.topic = appendStringArrayWithComma(strArray: user.getTopics()!)
+        tempRealmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+        
+        tempRealmUser.writeToRealm()
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(true, forKey: "isLevelAndTopicsSelected")
+        userDefaults.synchronize()
     }
     
     // MARK: - Navigation
