@@ -9,17 +9,19 @@
 import UIKit
 import BWWalkthrough
 import FirebaseAuth
-//import FirebaseFirestore
-//import FirebaseDatabase
+import FirebaseFirestore
 
 class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDelegate {
     
-    //var db: Firestore!
+    private var db: Firestore?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        db = Firestore.firestore()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        //db = Firestore.firestore()
-        
         super.viewDidAppear(animated)
 
         let userDefaults = UserDefaults.standard
@@ -34,14 +36,16 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
             // Check if user has already logged in
             if Auth.auth().currentUser != nil {
                 // User is signed in.
-                print("USER IS SIGNED IN. GO TO MAIN SCREEN.")
+                print("USER WAS LOGGED IN. GO TO MAIN SCREEN.")
                 userDefaults.set(Auth.auth().currentUser?.uid , forKey: "uid")
                 userDefaults.synchronize()
-                performSegue(withIdentifier: "MainViewSegue", sender: self)
+                // User was logged in. Go to Learn Screen.
+                //self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+                getUserDataFromFirebaseWithUserIdAndWriteToRealm(Auth.auth().currentUser?.uid)
             } else {
                 // No user is signed in.
-                print("NO USER IS SIGNED IN. GO TO SIGN IN SCREEN.")
-                 performSegue(withIdentifier: "LoginViewSegue", sender: self)
+                print("NO USER WAS LOGGED IN. GO TO LOG IN SCREEN.")
+                performSegue(withIdentifier: "LoginViewSegue", sender: self)
             }
             
            
@@ -81,6 +85,75 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
     func walkthroughCloseButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: - Firebase -
+    
+    private func getUserDataFromFirebaseWithUserIdAndWriteToRealm(_ userId: String?) {
+        
+        startActivityIndicator()
+        
+        if let id = userId {
+            let userRef = db!.collection("User").document(id)
+            
+            userRef.getDocument { (user, error) in
+                if let u = user, user!.exists {
+                    let dataDescription = u.data().map(String.init(describing: )) ?? "nil"
+                    print("Document data: \(dataDescription)")
+                    
+                    var date = Date()
+                    let timestampOptional = u.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
+                    
+                    let currentUser = User(
+                        id: u.documentID,
+                        name: u.data()?["username"] as? String,
+                        email: u.data()?["email"] as? String,
+                        diamond: u.data()?["diamond"] as? Int,
+                        createdDate: date,
+                        hearth: u.data()?["hearth"] as? Int,
+                        profilePhotoURL: u.data()?["photo_url"] as? String,
+                        score: u.data()?["score"] as? Int,
+                        level: u.data()?["level"] as? String,
+                        topics: u.data()?["topic"] as? [String]
+                    )
+                    
+                    currentUser.printUserData()
+                    
+                    self.writeUserDataToRealm(user: currentUser)
+                    
+                    // User was logged in. Go to Learn Screen.
+                    self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+                    
+                } else {
+                    print("Document does not exist")
+                    self.performSegue(withIdentifier: "LoginViewSegue", sender: self)
+                }
+            }
+        }
+    }
+    
+    private func writeUserDataToRealm(user: User) {
+        let realmUser = RealmUser()
+        realmUser.id = user.getId()
+        realmUser.name = user.getName()
+        realmUser.email = user.getEmail()
+        realmUser.diamond.value = user.getDiamond()
+        realmUser.createdDate = user.getCreatedDate()
+        realmUser.hearth.value = user.getHearth()
+        realmUser.profilePhotoURL = user.getProfilePhotoURL()
+        realmUser.score.value = user.getScore()
+        realmUser.level = user.getLevel()
+        realmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+        
+        realmUser.writeToRealm()
+        
+        stopActivityIndicator()
+        
+        print("USER WROTE TO REALM SUCCESSFULLY")
+    }
+ 
  
     /*
     // MARK: - Navigation

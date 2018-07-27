@@ -120,17 +120,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
      */
     private func saveUserDataToDatabase(user: User) {
         
-        let docData: [String : Any] = [
-            "createdDate" : user.getCreatedDate()!,
-            "diamond" : user.getDiamond()!,
-            "email" : user.getEmail()!,
-            "hearth" : user.getHearth()!,
-            "photo_url" : user.getProfilePhotoURL()!,
-            "score" : user.getScore()!,
-            "username" : user.getName()!
+        let userData: [String : Any] = [
+            "createdDate" : user.getCreatedDate() ?? Date(),
+            "diamond" : user.getDiamond() ?? 0,
+            "email" : user.getEmail() ?? "",
+            "hearth" : user.getHearth() ?? 0,
+            "photo_url" : user.getProfilePhotoURL() ?? "",
+            "score" : user.getScore() ?? 0,
+            "username" : user.getName() ?? ""
         ]
         
-        db.collection("User").document((Auth.auth().currentUser?.uid)!).setData(docData) { error in
+        
+        db.collection("User").document((Auth.auth().currentUser?.uid)!).setData(userData) { error in
             if let err = error {
                 print("ERROR: \(err)")
                 ProgressHUD.showError(err.localizedDescription)

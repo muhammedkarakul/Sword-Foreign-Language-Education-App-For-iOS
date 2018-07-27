@@ -66,7 +66,7 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
                 for level in snapshot!.documents {
                     
                     var date = Date()
-                    let timestampOptional = level.get("crearedDate") as? Timestamp
+                    let timestampOptional = level.get("createdDay") as? Timestamp
                     if let timestamp = timestampOptional {
                         date = timestamp.dateValue()
                     }

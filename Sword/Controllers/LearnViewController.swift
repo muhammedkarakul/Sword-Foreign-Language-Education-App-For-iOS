@@ -33,6 +33,8 @@ class LearnViewController: CustomMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getLevelsDataFromFirebaseAndWriteToRealm()
+        
         // Do any additional setup after loading the view.
         kolodaView.delegate = self
         kolodaView.dataSource = self
@@ -41,9 +43,6 @@ class LearnViewController: CustomMainViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        getWordsDataFromFirebaseAndWriteToRealm()
-        getTopicsDataFromFirebaseAndWriteToRealm()
         
         isLevelAndTopicSelected()
         
@@ -72,15 +71,16 @@ class LearnViewController: CustomMainViewController {
         let topics = currentUser.getTopics()
         //let userDefaults = UserDefaults.standard
         //if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
-        if level != nil || topics != nil {
+        if level != nil && topics != nil {
+            
+            getSelectedTopicsWordsFromRealm()
+            
             selectWordContainerView.isHidden = true
             learnContainerView.isHidden = false
         } else {
             
-            getSelectedTopicsWordsFromRealm()
-            
-            //selectWordContainerView.isHidden = false
-            //learnContainerView.isHidden = true
+            selectWordContainerView.isHidden = false
+            learnContainerView.isHidden = true
         }
     }
     
@@ -121,7 +121,8 @@ class LearnViewController: CustomMainViewController {
         db.collection("Level").getDocuments { (querySnapshot, error) in
             
             // Stop activity indicator and enable user interaction with view.
-            self.stopActivityIndicator()
+            //self.stopActivityIndicator()
+            self.getTopicsDataFromFirebaseAndWriteToRealm()
             
             if let err = error {
                 print("Error getting documents: \(err)")
@@ -148,10 +149,45 @@ class LearnViewController: CustomMainViewController {
         }
     }
     
+    private func getTopicsDataFromFirebaseAndWriteToRealm() {
+        // Start activity indicator and disable user interaction with view.
+        //startActivityIndicator()
+        
+        db.collection("Topic").getDocuments { (querySnapshot, error) in
+            
+            // Stop activity indicator and enable user interaction with view.
+            //self.stopActivityIndicator()
+            self.getWordsDataFromFirebaseAndWriteToRealm()
+            
+            if let err = error {
+                print("Error getting documents: \(err)")
+            } else {
+                for topic in querySnapshot!.documents {
+                    
+                    var date = Date()
+                    let timestampOptional = topic.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
+                    
+                    let tempTopic = Topic(
+                        id: topic.documentID,
+                        createdDate: date,
+                        name: topic.data()["name"] as? String,
+                        words: topic.data()["words"] as? [String]
+                    )
+                    
+                    self.addTopicToRealm(topic: tempTopic)
+                    
+                }
+            }
+        }
+    }
+    
     private func getWordsDataFromFirebaseAndWriteToRealm() {
         
         // Start activity indicator and disable user interaction with view.
-        startActivityIndicator()
+        //startActivityIndicator()
         
         db.collection("Word").getDocuments { (querySnapshot, error) in
             
@@ -180,46 +216,6 @@ class LearnViewController: CustomMainViewController {
                     self.addWordToRealm(word: tempWord)
                     
                 }
-                
-                self.numberOfCards = self.words.count
-                
-                self.updateView()
-                
-            }
-        }
-        
-    }
-    
-    private func getTopicsDataFromFirebaseAndWriteToRealm() {
-        // Start activity indicator and disable user interaction with view.
-        startActivityIndicator()
-        
-        db.collection("Topic").getDocuments { (querySnapshot, error) in
-            
-            // Stop activity indicator and enable user interaction with view.
-            self.stopActivityIndicator()
-            
-            if let err = error {
-                print("Error getting documents: \(err)")
-            } else {
-                for topic in querySnapshot!.documents {
-                    
-                    var date = Date()
-                    let timestampOptional = topic.get("crearedDate") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
-                    }
-                    
-                    let tempTopic = Topic(
-                        id: topic.documentID,
-                        createdDate: date,
-                        name: topic.data()["name"] as? String,
-                        words: topic.data()["words"] as? [String]
-                    )
-                    
-                    self.addTopicToRealm(topic: tempTopic)
-                    
-                }
             }
         }
     }
@@ -229,15 +225,24 @@ class LearnViewController: CustomMainViewController {
     private func getSelectedTopicsWordsFromRealm() {
         let currentUser = getCurrentUserFromRealm()
         
-        if let topics = currentUser.getTopics() {
-            for topic in topics {
-                
+        if let topicIds = currentUser.getTopics() {
+            for topicId in topicIds {
+                if let tempTopic = getTopicDataFromRealmWithID(id: topicId) {
+                    if let wordIds = tempTopic.getWords() {
+                        for wordId in wordIds {
+                            words.append(getWordDataFromRealmWithID(id: wordId)!)
+                        }
+                    }
+                }
             }
         }
         
+        updateView()
+        
     }
     
-    private func getWordDataFromRealmWithID(id: String?) {
+    private func getWordDataFromRealmWithID(id: String?) -> Word? {
+        var word = Word()
         let realmWords = uiRealm.objects(RealmWord.self)
         for realmWord in realmWords {
             let tempWord = Word(
@@ -249,9 +254,31 @@ class LearnViewController: CustomMainViewController {
             )
             
             if tempWord.getId() == id {
-                 words.append(tempWord)
+                 word = tempWord
             }
         }
+        
+        return word
+    }
+    
+    private func getTopicDataFromRealmWithID(id: String?) -> Topic? {
+        var topic = Topic()
+        let realmTopics = uiRealm.objects(RealmTopic.self)
+        for realmTopic in realmTopics {
+            let tempTopic = Topic(
+                id: realmTopic.id,
+                createdDate: realmTopic.createdDate,
+                name: realmTopic.name,
+                words: realmTopic.words?.components(separatedBy: ",")
+            )
+            
+            if tempTopic.getId() == id {
+                topic = tempTopic
+            }
+            
+        }
+        
+        return topic
     }
     
     
@@ -299,6 +326,7 @@ class LearnViewController: CustomMainViewController {
         realmLevel.createdDate = level.getCreatedDate()
         realmLevel.score.value = level.getScore()
         realmLevel.topics = String.arrayToString(stringArray: level.getTopics(), divideBy: ",")
+        realmLevel.writeToRealm()
     }
     
     private func addWordToRealm(word: Word) {
@@ -346,10 +374,10 @@ extension LearnViewController: KolodaViewDelegate {
     }
     
     func updateView() {
+        numberOfCards = self.words.count
         wordCounterLabel.text = "\(currentCardIndex)/\(words.count)"
         wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCards)
         kolodaView.reloadData()
-        
     }
     
 }

@@ -64,7 +64,7 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if let u = user {
-                    self.getUserDataFromFirebaseWithUserId(u.user.uid)
+                    self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(u.user.uid)
                     
                     print("SIGN IN: SUCCESS")
                     
@@ -84,7 +84,7 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "ForgotPasswordSegue", sender: self)
     }
     
-    private func getUserDataFromFirebaseWithUserId(_ userId: String?) {
+    private func getUserDataFromFirebaseWithUserIdAndWriteToRealm(_ userId: String?) {
         var currentUser: User?
         
         if let id = userId {

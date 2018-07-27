@@ -12,38 +12,25 @@ import FirebaseFirestore
 class TopicsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var submitButton: UIButtonWithRoundedCorners!
-    
     @IBOutlet var containerTableView: UITableView!
-    
+
     private var topics = [Topic]()
-    
-    public var wordsIdArray = [String?]()
-    
+    private var selectedTopics = [Topic]()
     private var selectedCellCounter = 0
-    
     private var db = Firestore.firestore()
-    
-    private var wordsArrayString: String?
     
     public var selectedLevel = Level()
     
-    //private var currentUser = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         containerTableView.delegate = self
         containerTableView.dataSource = self
-        // Do any additional setup after loading the view.
-        //submitButton.isHidden = true
+
         updateSubmitButtonAppearance()
-        
-        //getTopicData()
+
         getTopicDataWithId()
-        
-        //getCurrentUserFromRealm().printUserData()
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,72 +74,11 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                     }
                     
-                    self.addTopicToRealm(tempTopic)
                 }
                 
                 self.containerTableView.reloadData()
             }
         }
-    }
-    
-    private func getTopicData() {
-        // Show activity indicator and disable user interaction with view.
-        startActivityIndicator()
-        
-        db.collection("Topic").getDocuments { (snapshot, error) in
-            
-            // Stop and hide activity indicator and disable user interaction with view.
-            self.stopActivityIndicator()
-            
-            if let err = error {
-                // if error is not nil(fail) works here.
-                print("Error: \(err)")
-            } else {
-                // if error is nil(success) works here.
-                for topic in snapshot!.documents {
-                    let id = topic.documentID
-                    let createdDate = topic.data()["createdDate"] as? Date
-                    let name = topic.data()["name"] as? String
-                    let words = topic.data()["words"] as? [String]
-                    self.wordsArrayString = ""
-                    
-                    let tempTopic = Topic(id: id, createdDate: createdDate, name: name, words: words)
-                    
-                    self.topics.append(tempTopic)
-                    
-                    var wordCounter = 0
-                    if let tempWords = words {
-                        for word in tempWords {
-                            
-                            wordCounter = wordCounter + 1
-                            
-                            self.wordsArrayString = self.wordsArrayString! + String(word)
-                            
-                            if wordCounter != wordCounter {
-                                self.wordsArrayString = self.wordsArrayString! + ","
-                            }
-                        }
-                    }
-                    
-                    
-                    self.addTopicToRealm(tempTopic)
-                }
-                
-                self.containerTableView.reloadData()
-            }
-        }
-    }
-    
-    private func addTopicToRealm(_ topic: Topic) {
-        let realmTopic = RealmTopic()
-        realmTopic.id = topic.getId()
-        realmTopic.createdDate = topic.getCreatedDate()
-        realmTopic.name = topic.getName()
-        realmTopic.words = ""
-        
-        realmTopic.writeToRealm()
-        
-        print("SUCCESS: Topic item added to Realm.")
     }
     
     // MARK: - Actions
@@ -174,7 +100,6 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         
         cell?.textLabel?.text = topics[indexPath.row].getName()
-        //cell?.textLabel?.text = topicIdArray[indexPath.row]
         cell?.textLabel?.textAlignment = .center
         cell?.textLabel?.textColor = UIColor.lightGray
         cell?.selectionStyle = .none
@@ -185,16 +110,9 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = UIColor.white
         selectedCellCounter = selectedCellCounter + 1
-        if let words = topics[indexPath.row].getWords() {
-            for word in words{
-                wordsIdArray.append(word)
-                print("\(word)'s id added to wordIdArray.")
-            }
-        }
-        
         updateSubmitButtonAppearance()
-        print("Selected Level: \(topics[indexPath.row].getName() ?? "no topic selected")")
-        //print("Selected Level: \(topicIdArray[indexPath.row] ?? "no topic selected")")
+        selectedTopics.append(topics[indexPath.row])
+        print("Selected Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
         
     }
     
@@ -249,7 +167,7 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
     private func updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: User) {
         user.setLevel(level: selectedLevel.getId())
         var topicsId = [String]()
-        for topic in topics {
+        for topic in selectedTopics {
             topicsId.append(topic.getId() ?? "")
         }
         user.setTopic(topics: topicsId)
@@ -270,9 +188,9 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         
         tempRealmUser.writeToRealm()
         
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "isLevelAndTopicsSelected")
-        userDefaults.synchronize()
+        //let userDefaults = UserDefaults.standard
+        //userDefaults.set(true, forKey: "isLevelAndTopicsSelected")
+        //userDefaults.synchronize()
     }
     
     // MARK: - Navigation
