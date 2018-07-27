@@ -41,7 +41,7 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         //getTopicData()
         getTopicDataWithId()
         
-        getCurrentUserFromRealm().printUserData()
+        //getCurrentUserFromRealm().printUserData()
         
         
     }
@@ -65,16 +65,25 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
                 print("Error: \(err)")
             } else {
                 for topic in snapshot!.documents {
-                    let id = topic.documentID
-                    let createdDate = topic.data()["createdDate"] as? Date
-                    let name = topic.data()["name"] as? String
-                    let words = topic.data()["words"] as! [String?]
                     
-                    let tempTopic = Topic(id: id, createdDate: createdDate, name: name, words: words)
+                    var date = Date()
+                    let timestampOptional = topic.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
                     
-                    for id in self.selectedLevel.getTopics() {
-                        if tempTopic.getId() == id {
-                            self.topics.append(tempTopic)
+                    let tempTopic = Topic(
+                        id: topic.documentID,
+                        createdDate: date,
+                        name: topic.data()["name"] as? String,
+                        words: topic.data()["words"] as? [String]
+                    )
+                    
+                    if let topics = self.selectedLevel.getTopics() {
+                        for id in topics {
+                            if tempTopic.getId() == id {
+                                self.topics.append(tempTopic)
+                            }
                         }
                     }
                     
@@ -104,7 +113,7 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
                     let id = topic.documentID
                     let createdDate = topic.data()["createdDate"] as? Date
                     let name = topic.data()["name"] as? String
-                    let words = topic.data()["words"] as! [String?]
+                    let words = topic.data()["words"] as? [String]
                     self.wordsArrayString = ""
                     
                     let tempTopic = Topic(id: id, createdDate: createdDate, name: name, words: words)
@@ -112,17 +121,19 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
                     self.topics.append(tempTopic)
                     
                     var wordCounter = 0
-                    
-                    for word in words {
-                        
-                        wordCounter = wordCounter + 1
-                        
-                        self.wordsArrayString = self.wordsArrayString! + String(word!)
-                        
-                        if wordCounter != wordCounter {
-                            self.wordsArrayString = self.wordsArrayString! + ","
+                    if let tempWords = words {
+                        for word in tempWords {
+                            
+                            wordCounter = wordCounter + 1
+                            
+                            self.wordsArrayString = self.wordsArrayString! + String(word)
+                            
+                            if wordCounter != wordCounter {
+                                self.wordsArrayString = self.wordsArrayString! + ","
+                            }
                         }
                     }
+                    
                     
                     self.addTopicToRealm(tempTopic)
                 }
@@ -174,10 +185,13 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = UIColor.white
         selectedCellCounter = selectedCellCounter + 1
-        for word in topics[indexPath.row].getWords() {
-            wordsIdArray.append(word)
-            print("\(word ?? "no word")'s id added to wordIdArray.")
+        if let words = topics[indexPath.row].getWords() {
+            for word in words{
+                wordsIdArray.append(word)
+                print("\(word)'s id added to wordIdArray.")
+            }
         }
+        
         updateSubmitButtonAppearance()
         print("Selected Level: \(topics[indexPath.row].getName() ?? "no topic selected")")
         //print("Selected Level: \(topicIdArray[indexPath.row] ?? "no topic selected")")

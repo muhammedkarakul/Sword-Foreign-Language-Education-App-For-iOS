@@ -15,7 +15,7 @@ class Word {
     private var foreignLang: String?
     private var motherLang: String?
     private var createdDate: Date?
-    private var users: [User]?
+    private var users: [String]?
     
     // MARK: - Init Methods
     
@@ -24,10 +24,10 @@ class Word {
         foreignLang = ""
         motherLang = ""
         createdDate = Date()
-        users = [User()]
+        users = [String]()
     }
     
-    init(id: String?, foreignLang: String?, motherLang: String?, createdDate: Date?, users: [User]?) {
+    init(id: String?, foreignLang: String?, motherLang: String?, createdDate: Date?, users: [String]?) {
         self.id = id
         self.foreignLang = foreignLang
         self.motherLang = motherLang
@@ -40,13 +40,13 @@ class Word {
     public func setForeignLang(foreignLang: String?) { self.foreignLang = foreignLang }
     public func setMotherLang(motherLang: String?) { self.motherLang = motherLang }
     public func setCreatedDate(createdDate: Date?) { self.createdDate = createdDate }
-    public func setUsers(users: [User]?) { self.users = users }
+    public func setUsers(users: [String]?) { self.users = users }
     
     // MARK: - Getter Methods
     public func getId() -> String? {return self.id}
     public func getForeignLang() -> String? { return self.foreignLang }
     public func getMotherLang() -> String? { return self.motherLang }
     public func getCreatedDate() -> Date? { return self.createdDate }
-    public func getUsers() -> [User]? { return self.users }
+    public func getUsers() -> [String]? { return self.users }
     
 }

@@ -24,10 +24,6 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     
     private var selectedLevel = Level()
     
-    //private var topicIdArray = [String?]()
-    
-    //private var selectedLevelName: String?
-    
     // Topics array is storing with string type.
     var topicsArrayString: String?
 
@@ -62,41 +58,30 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
             
             // Check error.
             if let err = error {
-                // if error is not nil(fail) works here.
+                // Error is not nil(fail).
                 print("Error: \(err)")
             } else {
-                // if error is nil(success) works here.
+                // Error is nil(success).
                 
                 for level in snapshot!.documents {
-                    let id = level.documentID
-                    let createdDate = level.data()["createdDate"] as? Date
-                    let name = level.data()["name"] as? String
-                    let score = level.data()["score"] as? Int
-                    let topics = level.data()["topics"] as! [String?]
-                    self.topicsArrayString = ""
+                    
+                    var date = Date()
+                    let timestampOptional = level.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
                     
                     // Create temporary Level object to be add to levels array.
-                    let tempLevel = Level(id: id, createdDate: createdDate, name: name, score: score, topics: topics)
+                    let tempLevel = Level(
+                        id: level.documentID,
+                        createdDate: date,
+                        name: level.data()["name"] as? String,
+                        score: level.data()["score"] as? Int,
+                        topics: level.data()["topics"] as? [String]
+                    )
                     
                     // Add temporary Level object to levels array's end.
                     self.levels.append(tempLevel)
-                    
-                    // Count current level's topics.
-                    var topicCounter = 0
-                    
-                    // Append topics to string with comma.
-                    for topic in topics {
-                        topicCounter = topicCounter + 1
-                        
-                        self.topicsArrayString = self.topicsArrayString! +  String(topic!)
-                        
-                        if topicCounter != topics.count {
-                            self.topicsArrayString = self.topicsArrayString! + ","
-                        }
-                    }
-                    
-                    // Add level datas to Realm.
-                    self.addLevelToRealm(tempLevel)
                     
                 }
                 

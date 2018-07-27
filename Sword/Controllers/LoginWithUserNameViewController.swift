@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import ProgressHUD
 
 class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
@@ -15,6 +16,8 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
     // Preferences
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    
+    private let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,13 +59,15 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInTouchUpInside () {
         // Sign in operations.
         
+        startActivityIndicator()
+        
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                if let _ = user {
+                if let u = user {
+                    self.getUserDataFromFirebaseWithUserId(u.user.uid)
+                    
                     print("SIGN IN: SUCCESS")
- 
-                    // User is found, go to main screen
-                    self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+                    
                 } else {
                     print("SIGN IN: FAIL")
                     // Error: Check error and show message
@@ -77,6 +82,72 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
         print("FORGOT BUTTON PRESSED")
         // Go to forgot password view.
         performSegue(withIdentifier: "ForgotPasswordSegue", sender: self)
+    }
+    
+    private func getUserDataFromFirebaseWithUserId(_ userId: String?) {
+        var currentUser: User?
+        
+        if let id = userId {
+            let userRef = db.collection("User").document(id)
+            
+            userRef.getDocument { (user, error) in
+                if let u = user, user!.exists {
+                    let dataDescription = u.data().map(String.init(describing: )) ?? "nil"
+                    print("Document data: \(dataDescription)")
+                    
+                    var date = Date()
+                    let timestampOptional = u.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
+                    
+                    currentUser = User(
+                        id: u.documentID,
+                        name: u.data()?["username"] as? String,
+                        email: u.data()?["email"] as? String,
+                        diamond: u.data()?["diamond"] as? Int,
+                        createdDate: date,
+                        hearth: u.data()?["hearth"] as? Int,
+                        profilePhotoURL: u.data()?["photo_url"] as? String,
+                        score: u.data()?["score"] as? Int,
+                        level: u.data()?["level"] as? String,
+                        topics: u.data()?["topic"] as? [String]
+                    )
+                    
+                    currentUser?.printUserData()
+                    
+                    if let user = currentUser {
+                        self.writeUserDataToRealm(user: user)
+                    }
+                    
+                    // Login process completed. Go to Learn Screen.
+                    self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+                    
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
+    
+    private func writeUserDataToRealm(user: User) {
+        let realmUser = RealmUser()
+        realmUser.id = user.getId()
+        realmUser.name = user.getName()
+        realmUser.email = user.getEmail()
+        realmUser.diamond.value = user.getDiamond()
+        realmUser.createdDate = user.getCreatedDate()
+        realmUser.hearth.value = user.getHearth()
+        realmUser.profilePhotoURL = user.getProfilePhotoURL()
+        realmUser.score.value = user.getScore()
+        realmUser.level = user.getLevel()
+        realmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+        
+        realmUser.writeToRealm()
+        
+        self.stopActivityIndicator()
+        
+        print("USER WROTE TO REALM SUCCESSFULLY")
     }
     
     /*

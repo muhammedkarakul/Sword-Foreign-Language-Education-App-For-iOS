@@ -15,7 +15,7 @@ class Topic {
     private var id: String?
     private var createdDate: Date?
     private var name: String?
-    private var words: [String?]
+    private var words: [String]?
     
     // MARK: - Initializers
     
@@ -23,10 +23,10 @@ class Topic {
         id = ""
         createdDate = Date()
         name = ""
-        words = [String?]()
+        words = [String]()
     }
     
-    init(id: String?, createdDate: Date?, name: String?, words: [String?]) {
+    init(id: String?, createdDate: Date?, name: String?, words: [String]?) {
         self.id = id
         self.createdDate = createdDate
         self.name = name
@@ -37,11 +37,11 @@ class Topic {
     public func setId(id: String?) { self.id = id }
     public func setCreatedDate(createdDate: Date?) { self.createdDate = createdDate }
     public func setName(name: String?) { self.name = name }
-    public func setWords(words: [String?]) { self.words = words }
+    public func setWords(words: [String]?) { self.words = words }
     
     // MARK: - Getter Methods
     public func getId() -> String? { return id }
     public func getCreatedDate() -> Date? { return createdDate }
     public func getName() -> String? { return name }
-    public func getWords() -> [String?] { return words }
+    public func getWords() -> [String]? { return words }
 }

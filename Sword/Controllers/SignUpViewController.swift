@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseAuth
-//import FirebaseDatabase
 import ProgressHUD
 import FirebaseFirestore
 
@@ -21,10 +20,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var passwordValidationTextField: UITextField!
     
     let db = Firestore.firestore()
-    
-    // Firebase Database Properties
-    //var databaseReferance: DatabaseReference?
-    //var databaseHandle: DatabaseHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +29,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.passwordTextField.delegate = self
         self.passwordValidationTextField.delegate = self
         
-        // Set the firebase referance
-        //databaseReferance = Database.database().reference()
-        
-//        // Create user and listen for changes
-//        databaseHandle = databaseReferance?.child("Users").observe(.childAdded, with: { (snapshot) in
-//            // Code to execute when a child is added under "Users"
-//
-//        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,32 +56,43 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             let timestamp = Timestamp()
             let date = timestamp.dateValue()
             
-            let tempUser = User(id: "", name: name, email: email, diamond: 000, createdDate: date, hearth: 4, profilePhotoURL: "Profile_photo_url" , score: 0000, level: "", topics: [String]())
+            let tempUser = User(
+                id: "",
+                name: name,
+                email: email,
+                diamond: 000,
+                createdDate: date,
+                hearth: 4,
+                profilePhotoURL: nil,
+                score: 0000,
+                level: nil,
+                topics: [String]()
+            )
             
             if password == passwordValidation {
                 
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                    if let _ = user {
+                    
+                    if let u = user {
                         print("SUCCESS: USER CREATED")
-                        
-                        // Save user data to Firebase Firestore Database
-                        self.saveUserDataToDatabase(user: tempUser)
-                        
-                        // Save user data to Firebase Real Time Database
-                        //self.saveUserDataToRealTimeDatabase(user: tempUser, id: user?.user.uid)
                         
                         // Save user to Realm local database
                         let realmUser = RealmUser()
-                        realmUser.id = user?.user.uid
+                        realmUser.id = u.user.uid
                         realmUser.name = tempUser.getName()
                         realmUser.email = tempUser.getEmail()
                         realmUser.profilePhotoURL = tempUser.getProfilePhotoURL()
-                        realmUser.createdDate = tempUser.getCreatedDate()
+                        realmUser.createdDate = date
+                        realmUser.hearth.value = tempUser.getHearth()
                         realmUser.diamond.value = tempUser.getDiamond()
                         realmUser.score.value = tempUser.getScore()
-                        realmUser.level = "Beginner"
-                        realmUser.topic = "General"
+                        realmUser.level = nil
+                        realmUser.topic = nil
+
                         realmUser.writeToRealm()
+                        
+                        // Save user data to Firebase Firestore Database
+                        self.saveUserDataToDatabase(user: tempUser)
 
                         
                     } else {
@@ -114,22 +112,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             print("ERROR: EMPTY FIELDS")
             ProgressHUD.showError("Lütfen tüm alanları eksiksiz doldurup tekrar deneyiniz.")
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
-        switch textField.tag {
-        case 1:
-            emailTextField.becomeFirstResponder()
-        case 2:
-            passwordTextField.becomeFirstResponder()
-        case 3:
-            passwordValidationTextField.becomeFirstResponder()
-        default:
-            textField.resignFirstResponder()
-            signUpTouchUpInside()
-        }
-        return true
     }
     
     /**
@@ -158,38 +140,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-//        db.collection("User").document().setData(docData) { error in
-//            if let err = error {
-//                print("ERROR: \(err)")
-//                ProgressHUD.showError(err.localizedDescription)
-//            } else {
-//                print("SUCCESS: Document successfully written!")
-//                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
-//            }
-//        }
     }
-    
-    /**
-     This method saves user data to Firebase Realtime Database.
-     - parameter id: The ID of the user to be registered in the database.
-     - parameter user: The user to be registered to the database.
-     */
-    
-    /*
-    private func saveUserDataToRealTimeDatabase(user: User, id: String?) {
-        self.databaseReferance?.child("User").child((id)!).setValue(["username" : user.getName()!, "email" : user.getEmail()!, "createdDate" : user.getCreatedDay()!.toMillis(), "diamond" : user.getDiamond()!, "hearth" : user.getHearth()!, "photo" : user.getProfilePhotoURL()!, "score" : user.getScore()!] , withCompletionBlock: { (error, ref) in
-
-            if let e = error {
-                print("ERROR: DATA NOT SAVED")
-                ProgressHUD.showError(e.localizedDescription)
-            } else {
-                print("SUCCESS: DATA SAVED")
-                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
-            }
-
-        })
-    }
-    */
  
  
     /*

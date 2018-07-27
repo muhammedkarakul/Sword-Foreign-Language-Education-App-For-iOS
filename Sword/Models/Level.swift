@@ -15,7 +15,7 @@ class Level {
     private var createdDate: Date?
     private var name: String?
     private var score: Int?
-    private var topics: [String?]
+    private var topics: [String]?
     
     // MARK: - Initializers
     
@@ -38,7 +38,7 @@ class Level {
      *  - parameter score: Level score.
      *  - parameter topics: Level topics.
      */
-    init(id: String?, createdDate: Date?, name: String?, score: Int?, topics: [String?]) {
+    init(id: String?, createdDate: Date?, name: String?, score: Int?, topics: [String]?) {
         self.id = id
         self.createdDate = createdDate
         self.name = name
@@ -52,7 +52,7 @@ class Level {
     public func setCreatedDate(createdDate: Date?) { self.createdDate = createdDate }
     public func setName(name: String?) { self.name = name }
     public func setScore(score: Int?) { self.score = score }
-    public func setTopics(topics: [String?]) { self.topics = topics }
+    public func setTopics(topics: [String]?) { self.topics = topics }
     
     
     // MARK: - Getter Methods
@@ -61,5 +61,5 @@ class Level {
     public func getCreatedDate() -> Date? { return createdDate }
     public func getName() -> String? { return name }
     public func getScore() -> Int? { return score }
-    public func getTopics() -> [String?] { return topics }
+    public func getTopics() -> [String]? { return topics }
 }

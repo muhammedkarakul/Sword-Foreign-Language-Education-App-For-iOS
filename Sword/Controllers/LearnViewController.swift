@@ -24,16 +24,10 @@ class LearnViewController: CustomMainViewController {
     @IBOutlet weak var selectWordContainerView: UIView! // If user wasn't select words this view appears
     
     private let db = Firestore.firestore()
-    
+    private var topics = [Topic]()
     private var words = [Word]()
-    
-    //private let userDefaults = UserDefaults.standard
-    
     public var wordsIdArray = [String?]()
-    
     private var numberOfCards: Int = 0
-    
-    // Current card index
     private var currentCardIndex = 0
     
     override func viewDidLoad() {
@@ -43,31 +37,15 @@ class LearnViewController: CustomMainViewController {
         kolodaView.delegate = self
         kolodaView.dataSource = self
         
-        //getCardData()
-        
-        //self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        
-//        let headerView = Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?.first as? CustomOverlayView
-//        self.view.addSubview(headerView!)
-//
-//        let device = Device()
-//
-//        if device == .iPhoneX {
-//            // Eğer mobil cihaz iphone x modeli ise üstten 50 pixel boşluk bırak.
-//            headerView?.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
-//        } else {
-//            // Eğer mobil cihaz diğer iphone modelleriyse boşluk bırakmadan headerView'ı konumlandır.
-//            headerView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: 50)
-//        }
-        
-        //let realmUser = RealmUser()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        writeUserDataToRealm()
+        getWordsDataFromFirebaseAndWriteToRealm()
+        getTopicsDataFromFirebaseAndWriteToRealm()
+        
+        isLevelAndTopicSelected()
         
     }
     
@@ -86,6 +64,24 @@ class LearnViewController: CustomMainViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func isLevelAndTopicSelected() {
+        let currentUser = getCurrentUserFromRealm()
+        let level = currentUser.getLevel()
+        let topics = currentUser.getTopics()
+        //let userDefaults = UserDefaults.standard
+        //if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
+        if level != nil || topics != nil {
+            selectWordContainerView.isHidden = true
+            learnContainerView.isHidden = false
+        } else {
+            
+            getSelectedTopicsWordsFromRealm()
+            
+            //selectWordContainerView.isHidden = false
+            //learnContainerView.isHidden = true
+        }
     }
     
     // MARK: - Actions -
@@ -118,36 +114,70 @@ class LearnViewController: CustomMainViewController {
     
     // MARK: - Fire Base -
     
-    private func getCardData() {
+    private func getLevelsDataFromFirebaseAndWriteToRealm() {
+        // Start activity indicator and disable user interaction with view.
+        startActivityIndicator()
         
-        // Show activity indicator and disable user interaction with view.
-        //self.startActivityIndicator()
+        db.collection("Level").getDocuments { (querySnapshot, error) in
+            
+            // Stop activity indicator and enable user interaction with view.
+            self.stopActivityIndicator()
+            
+            if let err = error {
+                print("Error getting documents: \(err)")
+            } else {
+                for level in querySnapshot!.documents {
+                    
+                    var date = Date()
+                    let timestampOptional = level.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
+                    
+                    let tempLevel = Level(
+                        id: level.documentID,
+                        createdDate: date,
+                        name: level.data()["name"] as? String,
+                        score: level.data()["score"] as? Int,
+                        topics: level.data()["topics"] as? [String]
+                    )
+                    
+                    self.addLevelToRealm(level: tempLevel)
+                }
+            }
+        }
+    }
+    
+    private func getWordsDataFromFirebaseAndWriteToRealm() {
+        
+        // Start activity indicator and disable user interaction with view.
+        startActivityIndicator()
         
         db.collection("Word").getDocuments { (querySnapshot, error) in
             
-            // Hide activity indicator and transparent background.
+            // Stop activity indicator and enable user interaction with view.
             self.stopActivityIndicator()
-            
-            self.isLevelAndTopicSelected()
             
             if let err = error {
                 print("Error getting documents: \(err)")
             } else {
                 for word in querySnapshot!.documents {
-                    //print("\(document.documentID) => tr: \(document.data()["tr"]!), en: \(document.data()["en"]!)")
-                    let id = word.documentID
-                    let foreignLang = word.data()["en"] as? String
-                    let motherLang = word.data()["tr"] as? String
-                    let createdDate = word.data()["createdDate"] as? Date
-                    let users = word.data()["users"] as? [User]
                     
-                    let tempWord = Word(id: id, foreignLang: foreignLang, motherLang: motherLang, createdDate: createdDate, users: users)
+                    var date = Date()
+                    let timestampOptional = word.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
+                    }
                     
-                    self.words.append(tempWord)
+                    let tempWord = Word(
+                        id: word.documentID,
+                        foreignLang: word.data()["en"] as? String,
+                        motherLang: word.data()["tr"] as? String,
+                        createdDate: date,
+                        users: word.data()["users"] as? [String]
+                    )
                     
-                    
-                    
-                    self.addWordToRealm(wordToAdd: tempWord)
+                    self.addWordToRealm(word: tempWord)
                     
                 }
                 
@@ -160,83 +190,137 @@ class LearnViewController: CustomMainViewController {
         
     }
     
-    private func addWordToRealm(wordToAdd: Word) {
-        print("SUCCESS: Word datas added to Realm Database.")
+    private func getTopicsDataFromFirebaseAndWriteToRealm() {
+        // Start activity indicator and disable user interaction with view.
+        startActivityIndicator()
         
-        let realmWord = RealmWord()
-        realmWord.id = wordToAdd.getId()
-        realmWord.foreignLang = wordToAdd.getForeignLang()
-        realmWord.motherLang = wordToAdd.getMotherLang()
-        realmWord.writeToRealm()
-    }
-    
-    private func writeUserDataToRealm() {
-        
-        self.startActivityIndicator()
-        
-        if let currentUserId = Auth.auth().currentUser?.uid {
-            print("CURRENT USER ID: \(currentUserId)")
-            let userRef = db.collection("User").document(currentUserId)
-            userRef.getDocument { (document, error) in
-                
-                //self.stopActivityIndicator()
-                self.getCardData()
-                
-                if let doc = document, doc.exists {
-                    //let dataDescription = doc.data().map(String.init(describing: )) ?? "nil"
-                    let dataDescription = doc.data()
-                    print("User data: \(dataDescription!)")
-                    if let username = dataDescription!["username"] as? String,
-                       let email = dataDescription!["email"] as? String,
-                       let photoUrl = dataDescription!["photo_url"] as? String,
-                       let hearth = dataDescription!["hearth"] as? Int,
-                       let diamond = dataDescription!["diamond"] as? Int,
-                       let score = dataDescription!["score"] as? Int,
-                       let createdDate = dataDescription!["createdDate"] as? Date,
-                       let level = dataDescription!["level"] as? String,
-                       let topic = dataDescription!["topic"] as? String {
-                        
-                        let realmUser = RealmUser()
-                        realmUser.id = currentUserId
-                        realmUser.name = username
-                        realmUser.email = email
-                        realmUser.profilePhotoURL = photoUrl
-                        realmUser.hearth.value = hearth
-                        realmUser.diamond.value = diamond
-                        realmUser.score.value = score
-                        realmUser.createdDate = createdDate
-                        realmUser.level = level
-                        realmUser.topic = topic
-                        
-                        realmUser.writeToRealm()
-                        
-                        self.learnContainerView.isHidden = false
-                        self.getCardData()
-                        
-                    } else {
-                        // User don't pick level and topics show selectWordContainerView.
-                        //self.selectWordContainerView.isHidden = false
+        db.collection("Topic").getDocuments { (querySnapshot, error) in
+            
+            // Stop activity indicator and enable user interaction with view.
+            self.stopActivityIndicator()
+            
+            if let err = error {
+                print("Error getting documents: \(err)")
+            } else {
+                for topic in querySnapshot!.documents {
+                    
+                    var date = Date()
+                    let timestampOptional = topic.get("crearedDate") as? Timestamp
+                    if let timestamp = timestampOptional {
+                        date = timestamp.dateValue()
                     }
                     
-                } else {
-                    print("User does not exist.")
+                    let tempTopic = Topic(
+                        id: topic.documentID,
+                        createdDate: date,
+                        name: topic.data()["name"] as? String,
+                        words: topic.data()["words"] as? [String]
+                    )
+                    
+                    self.addTopicToRealm(topic: tempTopic)
+                    
                 }
+            }
+        }
+    }
+ 
+    // MARK: - Get From Realm -
+    
+    private func getSelectedTopicsWordsFromRealm() {
+        let currentUser = getCurrentUserFromRealm()
+        
+        if let topics = currentUser.getTopics() {
+            for topic in topics {
                 
             }
         }
         
-        
     }
     
-    private func isLevelAndTopicSelected() {
-        let userDefaults = UserDefaults.standard
-        if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
-            selectWordContainerView.isHidden = true
-            learnContainerView.isHidden = false
-        } else {
-            selectWordContainerView.isHidden = false
-            learnContainerView.isHidden = true
+    private func getWordDataFromRealmWithID(id: String?) {
+        let realmWords = uiRealm.objects(RealmWord.self)
+        for realmWord in realmWords {
+            let tempWord = Word(
+                id: realmWord.id,
+                foreignLang: realmWord.foreignLang,
+                motherLang: realmWord.motherLang,
+                createdDate: realmWord.createdDate,
+                users: realmWord.users?.components(separatedBy: ",")
+            )
+            
+            if tempWord.getId() == id {
+                 words.append(tempWord)
+            }
         }
+    }
+    
+    
+    private func getCurrentUserFromRealm() -> User {
+        let realmUsers = uiRealm.objects(RealmUser.self)
+        var users = [User]()
+        let userDefaults = UserDefaults.standard
+        var currentUser = User()
+        
+        for realmUser in realmUsers {
+            var tempUser = User()
+            tempUser = User(
+                id: realmUser.id,
+                name: realmUser.name,
+                email: realmUser.email,
+                diamond: realmUser.diamond.value,
+                createdDate: realmUser.createdDate,
+                hearth: realmUser.hearth.value,
+                profilePhotoURL: realmUser.profilePhotoURL,
+                score: realmUser.score.value,
+                level: realmUser.level,
+                topics: realmUser.topic?.components(separatedBy: ",")
+            )
+            
+            users.append(tempUser)
+        }
+        
+        for user in users {
+            if user.getId() == userDefaults.string(forKey: "uid") {
+                currentUser = user
+            }
+        }
+        
+        return currentUser
+    }
+    
+    // MARK: - Add To Realm -
+    
+    private func addLevelToRealm(level: Level) {
+        print("SUCCESS: Level datas added to Realm Database.")
+        
+        let realmLevel = RealmLevel()
+        realmLevel.id = level.getId()
+        realmLevel.name = level.getName()
+        realmLevel.createdDate = level.getCreatedDate()
+        realmLevel.score.value = level.getScore()
+        realmLevel.topics = String.arrayToString(stringArray: level.getTopics(), divideBy: ",")
+    }
+    
+    private func addWordToRealm(word: Word) {
+        print("SUCCESS: Word datas added to Realm Database.")
+        
+        let realmWord = RealmWord()
+        realmWord.id = word.getId()
+        realmWord.foreignLang = word.getForeignLang()
+        realmWord.motherLang = word.getMotherLang()
+        realmWord.users = String.arrayToString(stringArray: word.getUsers(), divideBy: ",")
+        realmWord.writeToRealm()
+    }
+    
+    private func addTopicToRealm(topic: Topic) {
+        print("SUCCESS: Topic datas added to Realm Database.")
+        
+        let realmTopic = RealmTopic()
+        realmTopic.id = topic.getId()
+        realmTopic.name = topic.getName()
+        realmTopic.createdDate = topic.getCreatedDate()
+        realmTopic.words = String.arrayToString(stringArray: topic.getWords(), divideBy: ",")
+        realmTopic.writeToRealm()
     }
 
 }

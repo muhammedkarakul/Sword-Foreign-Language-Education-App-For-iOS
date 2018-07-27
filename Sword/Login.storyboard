@@ -42,7 +42,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe" translatesAutoresizingMaskIntoConstraints="NO" id="gnS-wC-tFe">
                                 <rect key="frame" x="137" y="100" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="OgY-ih-Nbn"/>
+                                    <constraint firstAttribute="height" constant="100" id="sdS-b8-bVS"/>
+                                    <constraint firstAttribute="width" constant="100" id="t5t-eY-Kfq"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sword" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYw-Kd-k1n">
@@ -58,6 +59,7 @@
                                 <rect key="frame" x="62" y="338" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ulq-GW-HnQ"/>
+                                    <constraint firstAttribute="width" constant="250" id="xkK-iu-Nmj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,6 +76,7 @@
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Mqz-C1-LvM"/>
+                                    <constraint firstAttribute="width" constant="250" id="hzt-KL-jFg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,19 +89,19 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF0-H1-Opx">
-                                <rect key="frame" x="16" y="271" width="343" height="59"/>
+                                <rect key="frame" x="16" y="271" width="343" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Bir dil öğrenmek dünyaya açılan bir pencere daha demektir&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uT-NA-XD0">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="DHK-NL-ojo"/>
+                                            <constraint firstAttribute="height" constant="36" id="DHK-NL-ojo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="11"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="highlightedColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Çin Atasözü)" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziT-bc-lUK">
-                                        <rect key="frame" x="0.0" y="25" width="343" height="18"/>
+                                        <rect key="frame" x="0.0" y="44" width="343" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="PFX-bk-h7F"/>
                                         </constraints>
@@ -110,8 +113,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ziT-bc-lUK" firstAttribute="leading" secondItem="eF0-H1-Opx" secondAttribute="leading" id="8fR-Iw-0fz"/>
-                                    <constraint firstAttribute="height" constant="59" id="PUU-Pu-jU1"/>
-                                    <constraint firstItem="ziT-bc-lUK" firstAttribute="top" secondItem="6uT-NA-XD0" secondAttribute="bottom" id="cRk-3X-3CC"/>
+                                    <constraint firstAttribute="height" constant="70" id="PUU-Pu-jU1"/>
+                                    <constraint firstItem="ziT-bc-lUK" firstAttribute="top" secondItem="6uT-NA-XD0" secondAttribute="bottom" constant="8" id="cRk-3X-3CC"/>
                                     <constraint firstAttribute="trailing" secondItem="6uT-NA-XD0" secondAttribute="trailing" id="iXd-Vy-vzg"/>
                                     <constraint firstItem="6uT-NA-XD0" firstAttribute="top" secondItem="eF0-H1-Opx" secondAttribute="top" id="kkJ-ki-U9g"/>
                                     <constraint firstAttribute="trailing" secondItem="ziT-bc-lUK" secondAttribute="trailing" id="yd2-4L-kML"/>
@@ -122,6 +125,7 @@
                                 <rect key="frame" x="75" y="475" width="225" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="1dJ-CR-F2b"/>
+                                    <constraint firstAttribute="width" constant="225" id="gHm-mW-sbS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Henüz bir hesabın yok mu? &quot;Kayıt Ol&quot;">
@@ -134,22 +138,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.22745098039215686" green="0.59999999999999998" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="siZ-HS-T82" firstAttribute="trailing" secondItem="GP0-he-m0a" secondAttribute="trailing" constant="63" id="60m-r4-OP9"/>
-                            <constraint firstItem="siZ-HS-T82" firstAttribute="trailing" secondItem="gnS-wC-tFe" secondAttribute="trailing" constant="138" id="70O-f2-Nih"/>
-                            <constraint firstItem="tYw-Kd-k1n" firstAttribute="top" secondItem="gnS-wC-tFe" secondAttribute="bottom" constant="16" id="C3S-hQ-Cjg"/>
-                            <constraint firstItem="uTU-kv-lIV" firstAttribute="leading" secondItem="siZ-HS-T82" secondAttribute="leading" constant="75" id="Cf2-o6-Afk"/>
                             <constraint firstItem="GP0-he-m0a" firstAttribute="top" secondItem="373-zm-C2I" secondAttribute="bottom" constant="27" id="I6z-KB-495"/>
+                            <constraint firstItem="uTU-kv-lIV" firstAttribute="centerX" secondItem="Qwy-UQ-Lii" secondAttribute="centerX" id="J8S-Mh-UoT"/>
                             <constraint firstItem="siZ-HS-T82" firstAttribute="trailing" secondItem="eF0-H1-Opx" secondAttribute="trailing" constant="16" id="JPL-7b-qkL"/>
-                            <constraint firstItem="373-zm-C2I" firstAttribute="top" secondItem="eF0-H1-Opx" secondAttribute="bottom" constant="8" id="KF3-LQ-2RP"/>
-                            <constraint firstItem="373-zm-C2I" firstAttribute="leading" secondItem="siZ-HS-T82" secondAttribute="leading" constant="62" id="U72-51-Bsk"/>
-                            <constraint firstItem="gnS-wC-tFe" firstAttribute="leading" secondItem="siZ-HS-T82" secondAttribute="leading" constant="137" id="VDW-PW-gZN"/>
-                            <constraint firstItem="gnS-wC-tFe" firstAttribute="top" secondItem="siZ-HS-T82" secondAttribute="top" constant="80" id="Vvf-Wf-t90"/>
+                            <constraint firstItem="GP0-he-m0a" firstAttribute="centerX" secondItem="Qwy-UQ-Lii" secondAttribute="centerX" id="JhG-8K-c1j"/>
+                            <constraint firstItem="373-zm-C2I" firstAttribute="top" secondItem="eF0-H1-Opx" secondAttribute="bottom" constant="-3" id="KF3-LQ-2RP"/>
+                            <constraint firstItem="gnS-wC-tFe" firstAttribute="top" secondItem="siZ-HS-T82" secondAttribute="top" constant="80" id="Zhu-mW-mfv"/>
                             <constraint firstItem="siZ-HS-T82" firstAttribute="trailing" secondItem="tYw-Kd-k1n" secondAttribute="trailing" constant="16" id="aiI-WM-90f"/>
-                            <constraint firstItem="siZ-HS-T82" firstAttribute="trailing" secondItem="373-zm-C2I" secondAttribute="trailing" constant="63" id="gWh-EO-vv9"/>
-                            <constraint firstItem="siZ-HS-T82" firstAttribute="trailing" secondItem="uTU-kv-lIV" secondAttribute="trailing" constant="75" id="ikG-zN-Rny"/>
-                            <constraint firstItem="GP0-he-m0a" firstAttribute="leading" secondItem="siZ-HS-T82" secondAttribute="leading" constant="62" id="nuY-HM-10v"/>
+                            <constraint firstItem="gnS-wC-tFe" firstAttribute="centerX" secondItem="Qwy-UQ-Lii" secondAttribute="centerX" id="b6b-xu-W8I"/>
                             <constraint firstItem="tYw-Kd-k1n" firstAttribute="leading" secondItem="siZ-HS-T82" secondAttribute="leading" constant="16" id="oBh-w2-BPr"/>
                             <constraint firstItem="uTU-kv-lIV" firstAttribute="top" secondItem="GP0-he-m0a" secondAttribute="bottom" constant="10" id="pB6-ZN-i9d"/>
+                            <constraint firstItem="373-zm-C2I" firstAttribute="centerX" secondItem="Qwy-UQ-Lii" secondAttribute="centerX" id="sS9-sp-xsj"/>
+                            <constraint firstItem="tYw-Kd-k1n" firstAttribute="top" secondItem="gnS-wC-tFe" secondAttribute="bottom" constant="16" id="uBq-zg-pLQ"/>
                             <constraint firstItem="eF0-H1-Opx" firstAttribute="top" secondItem="tYw-Kd-k1n" secondAttribute="bottom" constant="5" id="wnh-Jk-pbs"/>
                             <constraint firstItem="eF0-H1-Opx" firstAttribute="leading" secondItem="siZ-HS-T82" secondAttribute="leading" constant="16" id="z1R-SC-PzW"/>
                         </constraints>
@@ -165,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3hi-sH-bxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="143"/>
+            <point key="canvasLocation" x="1424.8" y="142.57871064467767"/>
         </scene>
         <!--Login With Face Book View Controller-->
         <scene sceneID="pT1-Nb-QDf">
@@ -674,6 +674,6 @@
         <image name="mail" width="15" height="11"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9d9-yX-h5u"/>
+        <segue reference="yoC-fK-th5"/>
     </inferredMetricsTieBreakers>
 </document>

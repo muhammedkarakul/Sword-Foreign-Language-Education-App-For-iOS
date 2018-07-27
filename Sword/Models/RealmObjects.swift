@@ -14,6 +14,7 @@ class RealmWord: Object {
     @objc dynamic var foreignLang: String? = nil
     @objc dynamic var motherLang: String? = nil
     @objc dynamic var createdDate: Date? = nil
+    @objc dynamic var users: String? = nil
     //var learnStatus = RealmOptional<Bool>()
     
     override static func primaryKey() -> String? {
