@@ -13,7 +13,7 @@ import FirebaseFirestore
 import DeviceKit
 import AVFoundation
 
-class LearnViewController: CustomMainViewController {
+class LearnViewController: CustomMainViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Preferences -
     @IBOutlet var messageLabel: UILabel! // Info message about word choice
@@ -23,6 +23,10 @@ class LearnViewController: CustomMainViewController {
     @IBOutlet weak var wordProgressView: UIProgressView! // Progress bar about word learning
     @IBOutlet weak var wordCounterLabel: UILabel! // Which word you are in
     @IBOutlet weak var selectWordContainerView: UIView! // If user wasn't select words this view appears
+    @IBOutlet weak var letsLearnContainerView: UIView!
+    @IBOutlet weak var selectedWordsTableView: UITableView!
+    @IBOutlet weak var letsLearnViewHeaderLabel: UILabel!
+    @IBOutlet weak var letsLearnButton: UIButtonWithRoundedCorners!
     
     private let db = Firestore.firestore()
     private var topics = [Topic]()
@@ -32,6 +36,8 @@ class LearnViewController: CustomMainViewController {
     public var wordsIdArray = [String?]()
     private var numberOfCards: Int = 0
     private var currentCardIndex = 0
+    private var isLevelAndTopicsNotSelected = false
+    private var isToBeLearnedWordsSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +64,7 @@ class LearnViewController: CustomMainViewController {
         
         learnContainerView.isHidden = true
         selectWordContainerView.isHidden = true
+        letsLearnContainerView.isHidden = true
         
         words = [Word]()
         topics = [Topic]()
@@ -80,15 +87,18 @@ class LearnViewController: CustomMainViewController {
         let currentUser = getCurrentUserFromRealm()
         let level = currentUser.getLevel()
         let topics = currentUser.getTopics()
-        //let userDefaults = UserDefaults.standard
-        //if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
+        
         if level != nil && topics != nil {
-            getSelectedTopicsWordsFromRealm()
-            selectWordContainerView.isHidden = true
-            learnContainerView.isHidden = false
+            if isToBeLearnedWordsSelected {
+                letsLearnContainerView.isHidden = false
+            } else {
+                getSelectedTopicsWordsFromRealm()
+                selectWordContainerView.isHidden = true
+                learnContainerView.isHidden = false
+            }
+            
         } else {
-            selectWordContainerView.isHidden = false
-            learnContainerView.isHidden = true
+            isLevelAndTopicsNotSelected = true
         }
     }
     
@@ -100,21 +110,11 @@ class LearnViewController: CustomMainViewController {
     
     @IBAction func learnButtonTapped(_ sender: UIButtonWithRoundedCorners) {
         print("LEARNBUTTONTAPPED")
-        
-        toBeLearnedWords.append(words[currentCardIndex])
-        
-        print("\(words[currentCardIndex].getForeignLang() ?? "no") word added to learn.")
-        
         kolodaView.swipe(.left)
     }
     
     @IBAction func knowButtonTapped(_ sender: UIButtonWithRoundedCorners) {
         print("KNOWBUTTONTAPPED")
-        
-        knownWords.append(words[currentCardIndex])
-        
-        print("\(words[currentCardIndex].getForeignLang() ?? "no") word added to known.")
-        
         kolodaView.swipe(.right)
     }
 
@@ -130,6 +130,7 @@ class LearnViewController: CustomMainViewController {
     }
     
     @IBAction func changeLevelAndTopicButtonTouchUpInside(_ sender: UIButton) {
+        isToBeLearnedWordsSelected = false
         performSegue(withIdentifier: "levelAndTopicView", sender: self)
     }
     
@@ -141,8 +142,6 @@ class LearnViewController: CustomMainViewController {
         
         db.collection("Level").getDocuments { (querySnapshot, error) in
             
-            // Stop activity indicator and enable user interaction with view.
-            //self.stopActivityIndicator()
             self.getTopicsDataFromFirebaseAndWriteToRealm()
             
             if let err = error {
@@ -176,8 +175,6 @@ class LearnViewController: CustomMainViewController {
         
         db.collection("Topic").getDocuments { (querySnapshot, error) in
             
-            // Stop activity indicator and enable user interaction with view.
-            //self.stopActivityIndicator()
             self.getWordsDataFromFirebaseAndWriteToRealm()
             
             if let err = error {
@@ -214,6 +211,11 @@ class LearnViewController: CustomMainViewController {
             
             // Stop activity indicator and enable user interaction with view.
             self.stopActivityIndicator()
+            
+            if self.isLevelAndTopicsNotSelected {
+                self.selectWordContainerView.isHidden = false
+                self.learnContainerView.isHidden = true
+            }
             
             if let err = error {
                 print("Error getting documents: \(err)")
@@ -382,7 +384,25 @@ class LearnViewController: CustomMainViewController {
             return false
         }
     }
-
+    
+    // Selected words table view delegate and datasource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return toBeLearnedWords.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        cell?.textLabel?.textAlignment = .center
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
+        cell?.textLabel?.text = toBeLearnedWords[indexPath.row].getForeignLang()
+        return cell!
+    }
+    
 }
 
 // MARK: - KolodaViewDelegate -
@@ -393,6 +413,12 @@ extension LearnViewController: KolodaViewDelegate {
         print("KARTLAR BİTTİ")
         
         if !isWordsSelected() {
+            isToBeLearnedWordsSelected = true
+            selectWordContainerView.isHidden = true
+            learnContainerView.isHidden = true
+            letsLearnContainerView.isHidden = false
+            letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
+            selectedWordsTableView.reloadData()
             print("10 kelime sınırına ulaşılamadı. Seçilen kelimelerle devam etmek ister misin?")
         }
     }
@@ -410,21 +436,36 @@ extension LearnViewController: KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         print("\(index) INDEX CARD SWIPED")
         
+        switch direction {
+        case .left:
+            toBeLearnedWords.append(words[index])
+            if currentCardIndex < words.count {
+                currentCardIndex = currentCardIndex + 1
+            }
+            //words.remove(at: index)
+        case .right: knownWords.append(words[index])
+        default:
+            break
+        }
+        
         if isWordsSelected() {
+            isToBeLearnedWordsSelected = true
+            selectWordContainerView.isHidden = true
+            learnContainerView.isHidden = true
+            letsLearnContainerView.isHidden = false
+            
+            letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
+            selectedWordsTableView.reloadData()
             print("10 kelimeyi başarıyla seçtin. Hadi artık öğrenmeye başlayalım.")
         }
         
-        if currentCardIndex < words.count {
-            currentCardIndex = currentCardIndex + 1
-        }
+        
         updateView()
     }
     
     func updateView() {
         let numberOfCardsToBeSelected = 10
         numberOfCards = self.words.count
-        //wordCounterLabel.text = "\(currentCardIndex)/\(words.count)"
-        //wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCards)
         wordCounterLabel.text = "\(currentCardIndex)/\(numberOfCardsToBeSelected)"
         wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCardsToBeSelected)
         kolodaView.reloadData()
@@ -453,7 +494,8 @@ extension LearnViewController: KolodaViewDataSource {
         let labelBGColor = UIColor(displayP3Red: (213.0 + CGFloat(index))/255.0, green: (234.0 + CGFloat(index))/255.0, blue: (245.0 + CGFloat(index))/255.0, alpha: 1.0)
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "\(words[index].getForeignLang()!)\n\n\(words[index].getMotherLang()!)"
+        label.text = "\(words[index].getForeignLang()!)\n\n\(words[index].getMotherLang()!)\n\n"
+        label.addImage(imageName: "Sound", afterLabel: true)
         label.backgroundColor = labelBGColor
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.black
@@ -470,3 +512,5 @@ extension LearnViewController: KolodaViewDataSource {
     }
     
 }
+
+

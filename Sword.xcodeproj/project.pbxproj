@@ -42,6 +42,7 @@
 		579388A0209DD4790081B4D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793889F209DD4790081B4D2 /* User.swift */; };
 		579388A2209DD93B0081B4D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579388A1209DD93B0081B4D2 /* Main.storyboard */; };
 		579388A6209E07590081B4D2 /* Date+toMillis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579388A5209E07590081B4D2 /* Date+toMillis.swift */; };
+		57A0E81A210E6F3200C4C584 /* UILabel+addImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */; };
 		57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A32BC620AF09D200857A02 /* CustomOverlayView.swift */; };
 		57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */; };
 		57B9B08320ADA06400535920 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B9B08220ADA06400535920 /* OverlayView.xib */; };
@@ -116,6 +117,7 @@
 		5793889F209DD4790081B4D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		579388A1209DD93B0081B4D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		579388A5209E07590081B4D2 /* Date+toMillis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+toMillis.swift"; path = "Extensions/Date+toMillis.swift"; sourceTree = "<group>"; };
+		57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UILabel+addImage.swift"; path = "Extensions/UILabel+addImage.swift"; sourceTree = "<group>"; };
 		57A32BC620AF09D200857A02 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = "Custom Classes/CustomOverlayView.swift"; sourceTree = "<group>"; };
 		57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = "Custom Classes/CustomKolodaView.swift"; sourceTree = "<group>"; };
 		57B9B08220ADA06400535920 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OverlayView.xib; path = Views/OverlayView.xib; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */,
 				575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */,
 				57C486DA21056B1900FC8862 /* String+ArrayToString.swift */,
+				57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				574CC32C20A32095003F0AA9 /* MarketViewController.swift in Sources */,
 				57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */,
 				578CFB5F20CC2DC50051F56C /* Date+TimeStampToDate.swift in Sources */,
+				57A0E81A210E6F3200C4C584 /* UILabel+addImage.swift in Sources */,
 				577761C620F246C40008C849 /* Level.swift in Sources */,
 				570867152084EDCE00D4B8FF /* AppDelegate.swift in Sources */,
 			);
