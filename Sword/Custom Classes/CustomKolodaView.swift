@@ -12,6 +12,5 @@ import Koloda
 class CustomKolodaView: KolodaView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
 }

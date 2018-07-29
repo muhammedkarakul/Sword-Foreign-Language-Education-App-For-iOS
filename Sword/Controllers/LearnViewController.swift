@@ -11,6 +11,7 @@ import Koloda
 import FirebaseAuth
 import FirebaseFirestore
 import DeviceKit
+import AVFoundation
 
 class LearnViewController: CustomMainViewController {
     
@@ -26,6 +27,8 @@ class LearnViewController: CustomMainViewController {
     private let db = Firestore.firestore()
     private var topics = [Topic]()
     private var words = [Word]()
+    private var toBeLearnedWords = [Word]()
+    private var knownWords = [Word]()
     public var wordsIdArray = [String?]()
     private var numberOfCards: Int = 0
     private var currentCardIndex = 0
@@ -43,9 +46,7 @@ class LearnViewController: CustomMainViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         isLevelAndTopicSelected()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +64,8 @@ class LearnViewController: CustomMainViewController {
         wordsIdArray = [String]()
         currentCardIndex = 0
         numberOfCards = 0
+        toBeLearnedWords = [Word]()
+        knownWords = [Word]()
         
         updateView()
         
@@ -80,13 +83,10 @@ class LearnViewController: CustomMainViewController {
         //let userDefaults = UserDefaults.standard
         //if userDefaults.bool(forKey: "isLevelAndTopicsSelected") {
         if level != nil && topics != nil {
-            
             getSelectedTopicsWordsFromRealm()
-            
             selectWordContainerView.isHidden = true
             learnContainerView.isHidden = false
         } else {
-            
             selectWordContainerView.isHidden = false
             learnContainerView.isHidden = true
         }
@@ -100,19 +100,32 @@ class LearnViewController: CustomMainViewController {
     
     @IBAction func learnButtonTapped(_ sender: UIButtonWithRoundedCorners) {
         print("LEARNBUTTONTAPPED")
+        
+        toBeLearnedWords.append(words[currentCardIndex])
+        
+        print("\(words[currentCardIndex].getForeignLang() ?? "no") word added to learn.")
+        
         kolodaView.swipe(.left)
     }
     
     @IBAction func knowButtonTapped(_ sender: UIButtonWithRoundedCorners) {
         print("KNOWBUTTONTAPPED")
+        
+        knownWords.append(words[currentCardIndex])
+        
+        print("\(words[currentCardIndex].getForeignLang() ?? "no") word added to known.")
+        
         kolodaView.swipe(.right)
     }
 
     @IBAction func goToPreviousWordButtonTapped(_ sender: UIButton) {
+        
         kolodaView.revertAction()
+        
         if currentCardIndex > 0 {
             currentCardIndex = currentCardIndex - 1
         }
+        
         updateView()
     }
     
@@ -358,6 +371,17 @@ class LearnViewController: CustomMainViewController {
         realmTopic.words = String.arrayToString(stringArray: topic.getWords(), divideBy: ",")
         realmTopic.writeToRealm()
     }
+    
+    
+    // MARK: - Control
+    
+    public func isWordsSelected() -> Bool{
+        if toBeLearnedWords.count == 10 {
+            return true
+        } else {
+            return false
+        }
+    }
 
 }
 
@@ -367,14 +391,29 @@ extension LearnViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         print("KARTLAR BİTTİ")
+        
+        if !isWordsSelected() {
+            print("10 kelime sınırına ulaşılamadı. Seçilen kelimelerle devam etmek ister misin?")
+        }
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         print("\(index) INDEXED CARD SELECTED")
+        
+        let utterance = AVSpeechUtterance(string: words[index].getForeignLang() ?? "")
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         print("\(index) INDEX CARD SWIPED")
+        
+        if isWordsSelected() {
+            print("10 kelimeyi başarıyla seçtin. Hadi artık öğrenmeye başlayalım.")
+        }
+        
         if currentCardIndex < words.count {
             currentCardIndex = currentCardIndex + 1
         }
@@ -382,9 +421,12 @@ extension LearnViewController: KolodaViewDelegate {
     }
     
     func updateView() {
+        let numberOfCardsToBeSelected = 10
         numberOfCards = self.words.count
-        wordCounterLabel.text = "\(currentCardIndex)/\(words.count)"
-        wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCards)
+        //wordCounterLabel.text = "\(currentCardIndex)/\(words.count)"
+        //wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCards)
+        wordCounterLabel.text = "\(currentCardIndex)/\(numberOfCardsToBeSelected)"
+        wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCardsToBeSelected)
         kolodaView.reloadData()
     }
     
@@ -415,6 +457,7 @@ extension LearnViewController: KolodaViewDataSource {
         label.backgroundColor = labelBGColor
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.black
+        label.font = UIFont(name: "HelveticaNeue-Thin", size: 24.0)
         label.layer.borderWidth = 2
         label.layer.borderColor = labelBGColor.cgColor
         label.layer.cornerRadius = 8
