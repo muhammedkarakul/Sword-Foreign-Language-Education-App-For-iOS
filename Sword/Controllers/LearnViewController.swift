@@ -58,6 +58,14 @@ class LearnViewController: CustomMainViewController {
         learnContainerView.isHidden = true
         selectWordContainerView.isHidden = true
         
+        words = [Word]()
+        topics = [Topic]()
+        wordsIdArray = [String]()
+        currentCardIndex = 0
+        numberOfCards = 0
+        
+        updateView()
+        
     }
 
     override func didReceiveMemoryWarning() {

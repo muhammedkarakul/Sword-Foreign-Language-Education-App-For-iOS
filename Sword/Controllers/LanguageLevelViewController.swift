@@ -126,7 +126,7 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.textLabel?.text = levels[indexPath.row].getName()
         cell?.textLabel?.textAlignment = .center
-        cell?.textLabel?.textColor = UIColor.lightGray
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
         cell?.selectionStyle = .none
         
         return cell!
@@ -134,19 +134,14 @@ class LanguageLevelViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.textLabel?.textColor = UIColor.white
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 1.0)
         selectedLevel = levels[indexPath.row]
-        //topicIdArray = levels[indexPath.row].getTopics()
-        //selectedLevelName = levels[indexPath.row].getName()
-        //print("Selected Level Topics: \(levels[indexPath.row].getTopics())")
         submitButton.isHidden = false
-        //print("Selected Level: \(levels[indexPath.row].getName() ?? "no level selected")")
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.textLabel?.textColor = UIColor.lightGray
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
     }
     
 

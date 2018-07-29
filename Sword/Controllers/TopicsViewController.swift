@@ -101,26 +101,29 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell?.textLabel?.text = topics[indexPath.row].getName()
         cell?.textLabel?.textAlignment = .center
-        cell?.textLabel?.textColor = UIColor.lightGray
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
         cell?.selectionStyle = .none
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.textLabel?.textColor = UIColor.white
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 1.0)
         selectedCellCounter = selectedCellCounter + 1
         updateSubmitButtonAppearance()
         selectedTopics.append(topics[indexPath.row])
-        print("Selected Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
+        print("Appended Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
         
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.textLabel?.textColor = UIColor.lightGray
+        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
         selectedCellCounter = selectedCellCounter - 1
         updateSubmitButtonAppearance()
+        print("Removed Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
+        selectedTopics.remove(at: indexPath.row)
+        
     }
     
     private func updateSubmitButtonAppearance() {
