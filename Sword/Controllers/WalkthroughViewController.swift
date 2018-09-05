@@ -10,20 +10,35 @@ import UIKit
 import BWWalkthrough
 import FirebaseAuth
 import FirebaseFirestore
+import AVFoundation
 
-class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDelegate {
+class WalkthroughViewController: CustomViewController, BWWalkthroughViewControllerDelegate {
+    
+    @IBOutlet var iconImageView: UIImageView!
     
     private var db: Firestore?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Play splash screen sound.
+        playSound(withName: "splash")
+        
+        // Status bar color turns white
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         db = Firestore.firestore()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
+    }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    private func checkUserLoggedIn() {
         let userDefaults = UserDefaults.standard
         
         if !userDefaults.bool(forKey: "walkthroughPresented") {
@@ -39,24 +54,19 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
                 print("USER WAS LOGGED IN. GO TO MAIN SCREEN.")
                 userDefaults.set(Auth.auth().currentUser?.uid , forKey: "uid")
                 userDefaults.synchronize()
-                // User was logged in. Go to Learn Screen.
-                //self.performSegue(withIdentifier: "MainViewSegue", sender: self)
+                
+                // User was logged in. Update user date and go to Learn Screen.
                 getUserDataFromFirebaseWithUserIdAndWriteToRealm(Auth.auth().currentUser?.uid)
+                
             } else {
                 // No user is signed in.
                 print("NO USER WAS LOGGED IN. GO TO LOG IN SCREEN.")
                 performSegue(withIdentifier: "LoginViewSegue", sender: self)
             }
-            
-           
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
-    func showWalkthrough() {
+    private func showWalkthrough() {
         // Get view controllers and build the walkthrough
         let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
         let walkthrough = storyboard.instantiateViewController(withIdentifier: "walk") as! BWWalkthroughViewController
@@ -83,14 +93,16 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
     }
     
     func walkthroughCloseButtonPressed() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            self.checkUserLoggedIn()
+        }
     }
     
     // MARK: - Firebase -
     
     private func getUserDataFromFirebaseWithUserIdAndWriteToRealm(_ userId: String?) {
         
-        startActivityIndicator()
+        //startActivityIndicator()
         
         if let id = userId {
             let userRef = db!.collection("User").document(id)
@@ -149,11 +161,18 @@ class WalkthroughViewController: UIViewController, BWWalkthroughViewControllerDe
         
         realmUser.writeToRealm()
         
-        stopActivityIndicator()
+        //stopActivityIndicator()
         
         print("USER WROTE TO REALM SUCCESSFULLY")
     }
  
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.iconImageView.alpha = 0.0
+        }
+        checkUserLoggedIn()
+    }
  
     /*
     // MARK: - Navigation

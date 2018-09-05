@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginWithFaceBookViewController: UIViewController {
+class LoginWithFaceBookViewController: CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

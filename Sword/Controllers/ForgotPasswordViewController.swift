@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import ProgressHUD
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: CustomViewController {
 
     @IBOutlet var emailTextField: UITextField!
     

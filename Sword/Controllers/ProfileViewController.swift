@@ -9,12 +9,23 @@
 import UIKit
 import FirebaseAuth
 
-class ProfileViewController: CustomMainViewController {
+class ProfileViewController: CustomMainViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    // MARK: - Properties
+    @IBOutlet var pickProfilePicturePopUpView: UIView!
+    @IBOutlet var profilePicturesCollectionView: UICollectionView!
+    let profilePictures: [String] = ["defaultProfilePhoto-0", "defaultProfilePhoto-1",  "defaultProfilePhoto-2", "defaultProfilePhoto-3", "defaultProfilePhoto-4", "defaultProfilePhoto-5", "defaultProfilePhoto-6", "defaultProfilePhoto-7", "defaultProfilePhoto-8", "defaultProfilePhoto-9", "defaultProfilePhoto-10", "defaultProfilePhoto-11", "defaultProfilePhoto-12", "defaultProfilePhoto-13", "defaultProfilePhoto-14", "defaultProfilePhoto-15", "defaultProfilePhoto-16", "defaultProfilePhoto-19", "defaultProfilePhoto-20", "defaultProfilePhoto-21", "defaultProfilePhoto-22", "defaultProfilePhoto-23", "defaultProfilePhoto-24", "defaultProfilePhoto-25", "defaultProfilePhoto-26", "defaultProfilePhoto-27", "defaultProfilePhoto-28", "defaultProfilePhoto-29", "defaultProfilePhoto-30", "defaultProfilePhoto-31", "defaultProfilePhoto-32", "defaultProfilePhoto-33", "defaultProfilePhoto-34", ]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Pop up view with rounded corners.
+        pickProfilePicturePopUpView.layer.cornerRadius = 10
+        
+        // Profile picture collection view delegate and datasource
+        profilePicturesCollectionView.delegate = self
+        profilePicturesCollectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +33,23 @@ class ProfileViewController: CustomMainViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Actions
+    
+    @IBAction func cancelProfilePictureSelection(_ sender: UIButton) {
+        pickProfilePicturePopUpView.removeFromSuperview()
+    }
+    
+    @IBAction func pickProfilePicture(_ sender: UIButton) {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+        
+        self.view.addSubview(pickProfilePicturePopUpView)
+        pickProfilePicturePopUpView.center = self.view.center
+    }
     
     @IBAction func logOutButtonTouchUpInside(_ sender: UIButton) {
         
@@ -41,7 +69,21 @@ class ProfileViewController: CustomMainViewController {
         
     }
     
-
+    // MARK: - ProfilePicturesCollectionView Datasource And Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return profilePictures.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfilePictureCollectionViewCell
+        
+        cell.imageView.image = UIImage(named: profilePictures[indexPath.row])
+        
+        return cell
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -52,4 +94,8 @@ class ProfileViewController: CustomMainViewController {
     }
     */
 
+}
+
+class ProfilePictureCollectionViewCell: UICollectionViewCell {
+    @IBOutlet var imageView: UIImageView!
 }

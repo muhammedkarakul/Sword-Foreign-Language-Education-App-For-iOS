@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
-class CustomViewController: UIViewController {
+class CustomViewController: UIViewController, AVAudioPlayerDelegate {
+    
+    public var player: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +23,13 @@ class CustomViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //loginWithUserNameButton.titleLabel?.textColor = UIColor.white
-        
+        checkInternetConnection()
+    }
+    
+    public func checkInternetConnection() {
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         
         updateUserInterface()
-        
     }
     
     func updateUserInterface() {
@@ -77,6 +81,27 @@ class CustomViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    public func playSound(withName name: String) {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "mp3") else { return }
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+
+            guard let player = player else { return }
+
+            // Audio player delegate
+            player.delegate = self
+
+            player.play()
+
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
     }
     
 

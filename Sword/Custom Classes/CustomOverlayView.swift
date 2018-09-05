@@ -33,6 +33,7 @@ class CustomOverlayView: UIView {
         
         // Kullanıcı bilgileri navigation bara yazdırılıyor.
         userNameLabel.text = user.getName()
+        userExperienceLabel.text = "\(user.getScore() ?? 0)/1000"
         healthLabel.text = String(user.getHearth() ?? 0)
         coinLabel.text = String(user.getDiamond() ?? 0)
     }

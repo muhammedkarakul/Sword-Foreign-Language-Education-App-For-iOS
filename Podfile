@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.3'
 
 target 'Sword' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -15,6 +15,9 @@ target 'Sword' do
   pod "Koloda"
   pod 'RealmSwift'
   pod 'DeviceKit', '~> 1.3'
+  pod "GTProgressBar"
+  pod 'Charts'
+  pod 'SwiftyPlistManager'
   
   target 'SwordTests' do
     inherit! :search_paths
@@ -29,10 +32,9 @@ target 'Sword' do
 end
 
 post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
-        end
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings.delete('CODE_SIGNING_ALLOWED')
+        config.build_settings.delete('CODE_SIGNING_REQUIRED')
     end
 end
 

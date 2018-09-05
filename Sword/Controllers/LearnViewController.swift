@@ -2,79 +2,98 @@
 //  LearnViewController.swift
 //  Sword
 //
-//  Created by Muhammed Karakul on 9.05.2018.
+//  Created by Muhammed Karakul on 2.08.2018.
 //  Copyright © 2018 Muhammed Karakul. All rights reserved.
 //
 
 import UIKit
 import Koloda
-import FirebaseAuth
-import FirebaseFirestore
-import DeviceKit
+import GTProgressBar
 import AVFoundation
+import SwiftyPlistManager
 
-class LearnViewController: CustomMainViewController, UITableViewDelegate, UITableViewDataSource {
+class LearnViewController: CustomViewController {
     
-    // MARK: - Preferences -
-    @IBOutlet var messageLabel: UILabel! // Info message about word choice
+    @IBOutlet var quizProgressBar: GTProgressBar!
+    
     @IBOutlet var kolodaView: KolodaView! // Card stack view
-    @IBOutlet weak var learnContainerView: UIView! // When user chose words this view appears
-    @IBOutlet weak var titleMessageLabel: UILabel! // Info message about learn screen
-    @IBOutlet weak var wordProgressView: UIProgressView! // Progress bar about word learning
-    @IBOutlet weak var wordCounterLabel: UILabel! // Which word you are in
-    @IBOutlet weak var selectWordContainerView: UIView! // If user wasn't select words this view appears
-    @IBOutlet weak var letsLearnContainerView: UIView!
-    @IBOutlet weak var selectedWordsTableView: UITableView!
-    @IBOutlet weak var letsLearnViewHeaderLabel: UILabel!
-    @IBOutlet weak var letsLearnButton: UIButtonWithRoundedCorners!
     
-    private let db = Firestore.firestore()
-    private var topics = [Topic]()
-    private var words = [Word]()
-    private var toBeLearnedWords = [Word]()
-    private var knownWords = [Word]()
-    public var wordsIdArray = [String?]()
-    private var numberOfCards: Int = 0
-    private var currentCardIndex = 0
-    private var isLevelAndTopicsNotSelected = false
-    private var isToBeLearnedWordsSelected = false
+    // Writing items.
+    @IBOutlet var writingView: UIView!
+    @IBOutlet var writingViewHeaderLabel: UILabel!
+    @IBOutlet var writingAnswerTextField: UITextField!
+    @IBOutlet var checkAnswerButton: UIButtonWithRoundedCorners!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getLevelsDataFromFirebaseAndWriteToRealm()
-        
-        // Do any additional setup after loading the view.
-        kolodaView.delegate = self
-        kolodaView.dataSource = self
-        
+    // Multiple selection items.
+    @IBOutlet var multipleSelectionView: UIView!
+    @IBOutlet var multipleSelectionViewHeaderLabel: UILabel!
+    @IBOutlet var multipleSelectionFirstButton: UIButtonWithRoundedCornersAndBottomShadow!
+    @IBOutlet var multipleSelectionSecondButton: UIButtonWithRoundedCornersAndBottomShadow!
+    @IBOutlet var multipleSelectionThirdButton: UIButtonWithRoundedCornersAndBottomShadow!
+    @IBOutlet var multipleSelectionFourthButton: UIButtonWithRoundedCornersAndBottomShadow!
+    
+    // Answer buttons array.
+    private var answerButtons = [UIButtonWithRoundedCornersAndBottomShadow]()
+    
+    // Words to be learning.
+    public var words: [Word]?
+    
+    // Question container word models.
+    private var learnWords = [LearnWord]()
+    
+    // Total question number
+    private var questionNumber: CGFloat = 25
+    
+    // Current progress
+    private var progress: CGFloat = 0
+    
+    // Learn words order.
+    private var learnWordOrder = [[String : String]]()
+    
+    // Current question index
+    private var currentQuestionIndex: Int {
+        get {
+            return kolodaView.currentCardIndex
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        isLevelAndTopicSelected()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        for word in wordsIdArray {
-            print("Word: \(word ?? "no word") getted form Learn View!")
+        setup(multipleSelectionView, withAlpha: 1.0, andHiddenState: false)
+        setup(writingView, withAlpha: 0.0, andHiddenState: true)
+        
+        answerButtons = [self.multipleSelectionFirstButton, self.multipleSelectionSecondButton, self.multipleSelectionThirdButton, self.multipleSelectionFourthButton]
+        
+        // Update question and view
+        updateView()
+        
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupQuestions()
+        
+        // Get learn words order from plist file and set a variable.
+        SwiftyPlistManager.shared.getValue(for: "LearnWords", fromPlistWithName: "LearnWordsOrder-Info") { (data, error) in
+            if let err = error {
+                print("Error: \(err.localizedDescription)")
+            } else {
+                if let d = data as? [[String : String]] {
+                    learnWordOrder = d
+                }
+                
+            }
         }
         
-        learnContainerView.isHidden = true
-        selectWordContainerView.isHidden = true
-        letsLearnContainerView.isHidden = true
-        
-        words = [Word]()
-        topics = [Topic]()
-        wordsIdArray = [String]()
-        currentCardIndex = 0
-        numberOfCards = 0
-        toBeLearnedWords = [Word]()
-        knownWords = [Word]()
-        
-        updateView()
+        // Koloda view delegate and datasource
+        kolodaView.delegate = self
+        kolodaView.dataSource = self
         
     }
 
@@ -83,326 +102,194 @@ class LearnViewController: CustomMainViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    private func isLevelAndTopicSelected() {
-        let currentUser = getCurrentUserFromRealm()
-        let level = currentUser.getLevel()
-        let topics = currentUser.getTopics()
-        
-        if level != nil && topics != nil {
-            if isToBeLearnedWordsSelected {
-                letsLearnContainerView.isHidden = false
-            } else {
-                getSelectedTopicsWordsFromRealm()
-                selectWordContainerView.isHidden = true
-                learnContainerView.isHidden = false
+    private func setup(_ view: UIView, withAlpha alpha: CGFloat, andHiddenState state: Bool) {
+        view.alpha = alpha
+        view.isHidden = state
+    }
+    
+    private func setupQuestions() {
+        // Setup Questions
+        if let words = self.words {
+            while learnWords.count < words.count {
+                
+                var learnWord = LearnWord()
+                
+                let questions = learnWord.setupQuestions(withWords: words)
+                
+                let multipleSelections = learnWord.setupMultipleSelections(withQuestions: questions, andWords: words)
+                
+                let writings = learnWord.setupWritings(withQuestions: questions)
+                
+                learnWord = LearnWord(multipleSelections: multipleSelections, writings: writings)
+                
+                learnWords.insert(learnWord, at: learnWords.count)
             }
-            
-        } else {
-            isLevelAndTopicsNotSelected = true
         }
     }
     
-    // MARK: - Actions -
-    
-    @IBAction func selectWordsTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "levelAndTopicView", sender: self)
+    private func updateView() {
+        
+        switch learnWordOrder[currentQuestionIndex]["AnswerType"] {
+        case "MultipleSelection":
+            
+            self.view.endEditing(true)
+            
+            turnDefaultButtonsAppearence()
+            
+            for (index, answerButton) in answerButtons.enumerated() {
+                var answer = ""
+                
+                if learnWordOrder[currentQuestionIndex]["QuestionType"] == "Reading" {
+                    if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
+                        answer = "Mother"
+                    } else {
+                        answer = "Foreign"
+                    }
+                } else {
+                    if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
+                        answer = "Foreign"
+                    } else {
+                        answer = "Mother"
+                    }
+                }
+                
+                answerButton.setTitle("\(answer) - \(index + 1)", for: .normal)
+            }
+        case "Writing":
+            turnDefaultTextFieldAppearence()
+            changeAnswerType()
+        default: print("Böyle bir seçenek yok!")
+        }
+        
     }
     
-    @IBAction func learnButtonTapped(_ sender: UIButtonWithRoundedCorners) {
-        print("LEARNBUTTONTAPPED")
-        kolodaView.swipe(.left)
+    private func turnDefaultButtonsAppearence() {
+        for answerButton in answerButtons {
+            turnDefaultButtonAppearence(button: answerButton)
+        }
     }
     
-    @IBAction func knowButtonTapped(_ sender: UIButtonWithRoundedCorners) {
-        print("KNOWBUTTONTAPPED")
-        kolodaView.swipe(.right)
+    private func turnDefaultTextFieldAppearence() {
+        writingAnswerTextField.text = ""
+        writingAnswerTextField.textColor = UIColor.black
+    }
+    
+    private func turnDefaultButtonAppearence(button: UIButtonWithRoundedCornersAndBottomShadow) {
+        button.setTitleColor(UIColor.customColors.swordBlue, for: UIControlState.normal)
+        button.backgroundColor = UIColor.white
+        button.layer.borderColor = UIColor.white.cgColor
     }
 
-    @IBAction func goToPreviousWordButtonTapped(_ sender: UIButton) {
+    private func changeAnswerType() {
         
-        kolodaView.revertAction()
-        
-        if currentCardIndex > 0 {
-            currentCardIndex = currentCardIndex - 1
-        }
-        
-        updateView()
-    }
-    
-    @IBAction func changeLevelAndTopicButtonTouchUpInside(_ sender: UIButton) {
-        isToBeLearnedWordsSelected = false
-        performSegue(withIdentifier: "levelAndTopicView", sender: self)
-    }
-    
-    // MARK: - Fire Base -
-    
-    private func getLevelsDataFromFirebaseAndWriteToRealm() {
-        // Start activity indicator and disable user interaction with view.
-        startActivityIndicator()
-        
-        db.collection("Level").getDocuments { (querySnapshot, error) in
-            
-            self.getTopicsDataFromFirebaseAndWriteToRealm()
-            
-            if let err = error {
-                print("Error getting documents: \(err)")
-            } else {
-                for level in querySnapshot!.documents {
-                    
-                    var date = Date()
-                    let timestampOptional = level.get("crearedDate") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
-                    }
-                    
-                    let tempLevel = Level(
-                        id: level.documentID,
-                        createdDate: date,
-                        name: level.data()["name"] as? String,
-                        score: level.data()["score"] as? Int,
-                        topics: level.data()["topics"] as? [String]
-                    )
-                    
-                    self.addLevelToRealm(level: tempLevel)
-                }
+        if multipleSelectionView.isHidden {
+            multipleSelectionView.isHidden = false
+            UIView.animate(withDuration: 0.2) {
+                self.multipleSelectionView.alpha = 1.0
+                self.writingView.alpha = 0.0
             }
-        }
-    }
-    
-    private func getTopicsDataFromFirebaseAndWriteToRealm() {
-        // Start activity indicator and disable user interaction with view.
-        //startActivityIndicator()
-        
-        db.collection("Topic").getDocuments { (querySnapshot, error) in
-            
-            self.getWordsDataFromFirebaseAndWriteToRealm()
-            
-            if let err = error {
-                print("Error getting documents: \(err)")
-            } else {
-                for topic in querySnapshot!.documents {
-                    
-                    var date = Date()
-                    let timestampOptional = topic.get("crearedDate") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
-                    }
-                    
-                    let tempTopic = Topic(
-                        id: topic.documentID,
-                        createdDate: date,
-                        name: topic.data()["name"] as? String,
-                        words: topic.data()["words"] as? [String]
-                    )
-                    
-                    self.addTopicToRealm(topic: tempTopic)
-                    
-                }
-            }
-        }
-    }
-    
-    private func getWordsDataFromFirebaseAndWriteToRealm() {
-        
-        // Start activity indicator and disable user interaction with view.
-        //startActivityIndicator()
-        
-        db.collection("Word").getDocuments { (querySnapshot, error) in
-            
-            // Stop activity indicator and enable user interaction with view.
-            self.stopActivityIndicator()
-            
-            if self.isLevelAndTopicsNotSelected {
-                self.selectWordContainerView.isHidden = false
-                self.learnContainerView.isHidden = true
-            }
-            
-            if let err = error {
-                print("Error getting documents: \(err)")
-            } else {
-                for word in querySnapshot!.documents {
-                    
-                    var date = Date()
-                    let timestampOptional = word.get("crearedDate") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
-                    }
-                    
-                    let tempWord = Word(
-                        id: word.documentID,
-                        foreignLang: word.data()["en"] as? String,
-                        motherLang: word.data()["tr"] as? String,
-                        createdDate: date,
-                        users: word.data()["users"] as? [String]
-                    )
-                    
-                    self.addWordToRealm(word: tempWord)
-                    
-                }
-            }
-        }
-    }
- 
-    // MARK: - Get From Realm -
-    
-    private func getSelectedTopicsWordsFromRealm() {
-        let currentUser = getCurrentUserFromRealm()
-        
-        if let topicIds = currentUser.getTopics() {
-            for topicId in topicIds {
-                if let tempTopic = getTopicDataFromRealmWithID(id: topicId) {
-                    if let wordIds = tempTopic.getWords() {
-                        for wordId in wordIds {
-                            words.append(getWordDataFromRealmWithID(id: wordId)!)
-                        }
-                    }
-                }
-            }
-        }
-        
-        updateView()
-        
-    }
-    
-    private func getWordDataFromRealmWithID(id: String?) -> Word? {
-        var word = Word()
-        let realmWords = uiRealm.objects(RealmWord.self)
-        for realmWord in realmWords {
-            let tempWord = Word(
-                id: realmWord.id,
-                foreignLang: realmWord.foreignLang,
-                motherLang: realmWord.motherLang,
-                createdDate: realmWord.createdDate,
-                users: realmWord.users?.components(separatedBy: ",")
-            )
-            
-            if tempWord.getId() == id {
-                 word = tempWord
-            }
-        }
-        
-        return word
-    }
-    
-    private func getTopicDataFromRealmWithID(id: String?) -> Topic? {
-        var topic = Topic()
-        let realmTopics = uiRealm.objects(RealmTopic.self)
-        for realmTopic in realmTopics {
-            let tempTopic = Topic(
-                id: realmTopic.id,
-                createdDate: realmTopic.createdDate,
-                name: realmTopic.name,
-                words: realmTopic.words?.components(separatedBy: ",")
-            )
-            
-            if tempTopic.getId() == id {
-                topic = tempTopic
-            }
-            
-        }
-        
-        return topic
-    }
-    
-    
-    private func getCurrentUserFromRealm() -> User {
-        let realmUsers = uiRealm.objects(RealmUser.self)
-        var users = [User]()
-        let userDefaults = UserDefaults.standard
-        var currentUser = User()
-        
-        for realmUser in realmUsers {
-            var tempUser = User()
-            tempUser = User(
-                id: realmUser.id,
-                name: realmUser.name,
-                email: realmUser.email,
-                diamond: realmUser.diamond.value,
-                createdDate: realmUser.createdDate,
-                hearth: realmUser.hearth.value,
-                profilePhotoURL: realmUser.profilePhotoURL,
-                score: realmUser.score.value,
-                level: realmUser.level,
-                topics: realmUser.topic?.components(separatedBy: ",")
-            )
-            
-            users.append(tempUser)
-        }
-        
-        for user in users {
-            if user.getId() == userDefaults.string(forKey: "uid") {
-                currentUser = user
-            }
-        }
-        
-        return currentUser
-    }
-    
-    // MARK: - Add To Realm -
-    
-    private func addLevelToRealm(level: Level) {
-        print("SUCCESS: Level datas added to Realm Database.")
-        
-        let realmLevel = RealmLevel()
-        realmLevel.id = level.getId()
-        realmLevel.name = level.getName()
-        realmLevel.createdDate = level.getCreatedDate()
-        realmLevel.score.value = level.getScore()
-        realmLevel.topics = String.arrayToString(stringArray: level.getTopics(), divideBy: ",")
-        realmLevel.writeToRealm()
-    }
-    
-    private func addWordToRealm(word: Word) {
-        print("SUCCESS: Word datas added to Realm Database.")
-        
-        let realmWord = RealmWord()
-        realmWord.id = word.getId()
-        realmWord.foreignLang = word.getForeignLang()
-        realmWord.motherLang = word.getMotherLang()
-        realmWord.users = String.arrayToString(stringArray: word.getUsers(), divideBy: ",")
-        realmWord.writeToRealm()
-    }
-    
-    private func addTopicToRealm(topic: Topic) {
-        print("SUCCESS: Topic datas added to Realm Database.")
-        
-        let realmTopic = RealmTopic()
-        realmTopic.id = topic.getId()
-        realmTopic.name = topic.getName()
-        realmTopic.createdDate = topic.getCreatedDate()
-        realmTopic.words = String.arrayToString(stringArray: topic.getWords(), divideBy: ",")
-        realmTopic.writeToRealm()
-    }
-    
-    
-    // MARK: - Control
-    
-    public func isWordsSelected() -> Bool{
-        if toBeLearnedWords.count == 10 {
-            return true
+            writingView.isHidden = true
         } else {
-            return false
+            writingView.isHidden = false
+            UIView.animate(withDuration: 0.2) {
+                self.writingView.alpha = 1.0
+                self.multipleSelectionView.alpha = 0.0
+            }
+            multipleSelectionView.isHidden = true
         }
     }
     
-    // Selected words table view delegate and datasource
+    @IBAction func answerButtonTouchUpInside(_ sender: UIButtonWithRoundedCornersAndBottomShadow) {
+        
+        print("Quiz question answered.")
+        
+        var answer = ""
+        
+        if learnWordOrder[currentQuestionIndex]["QuestionType"] == "Reading" {
+            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
+                answer = "Mother"
+            } else {
+                answer = "Foreign"
+            }
+        } else {
+            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
+                answer = "Foreign"
+            } else {
+                answer = "Mother"
+            }
+        }
+        
+        let isAnswerRight = "\(answer) - \(currentQuestionIndex)" == "\(sender.titleLabel?.text ?? "Empty")"
+        
+        if isAnswerRight {
+            sender.setTitleColor(UIColor.white, for: UIControlState.normal)
+            sender.backgroundColor = UIColor.customColors.green
+            sender.layer.borderColor = UIColor.customColors.borderGreen.cgColor
+            playSound(withName: "right")
+            progress = quizProgressBar.progress + 1 / questionNumber
+            quizProgressBar.animateTo(progress: progress)
+        } else {
+            sender.setTitleColor(UIColor.white, for: UIControlState.normal)
+            sender.backgroundColor = UIColor.customColors.red
+            sender.layer.borderColor = UIColor.customColors.borderRed.cgColor
+            playSound(withName: "wrong")
+        }
+        
+    }
+
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    @IBAction func answerWritingButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
+        
+        print("Writing question answered.")
+        
+        var answer = ""
+        
+        if learnWordOrder[currentQuestionIndex]["QuestionType"] == "Reading" {
+            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
+                answer = "Mother"
+            } else {
+                answer = "Foreign"
+            }
+        } else {
+            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
+                answer = "Foreign"
+            } else {
+                answer = "Mother"
+            }
+        }
+        
+        let isAnswerRight =  "\(answer) - \(currentQuestionIndex % 5)" == writingAnswerTextField.text
+        
+        if isAnswerRight {
+            writingAnswerTextField.textColor = UIColor.customColors.green
+            playSound(withName: "right")
+        } else {
+            writingAnswerTextField.textColor = UIColor.customColors.red
+            playSound(withName: "worng")
+        }
+        
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toBeLearnedWords.count
+    @IBAction func thenContinueButtonTouchUpInside(sender: UIButton) {
+        performSegue(withIdentifier: "pickUpWordsViewSegue", sender: self)
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.textAlignment = .center
-        cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
-        cell?.textLabel?.text = toBeLearnedWords[indexPath.row].getForeignLang()
-        return cell!
+
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("AUDIO PLAYER DID FINISH PLAYING.")
+        kolodaView.swipe(.left)
+        updateView()
     }
-    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
 
 // MARK: - KolodaViewDelegate -
@@ -412,63 +299,16 @@ extension LearnViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         print("KARTLAR BİTTİ")
         
-        if !isWordsSelected() {
-            isToBeLearnedWordsSelected = true
-            selectWordContainerView.isHidden = true
-            learnContainerView.isHidden = true
-            letsLearnContainerView.isHidden = false
-            letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
-            selectedWordsTableView.reloadData()
-            print("10 kelime sınırına ulaşılamadı. Seçilen kelimelerle devam etmek ister misin?")
-        }
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         print("\(index) INDEXED CARD SELECTED")
         
-        let utterance = AVSpeechUtterance(string: words[index].getForeignLang() ?? "")
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        
-        let synth = AVSpeechSynthesizer()
-        synth.speak(utterance)
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         print("\(index) INDEX CARD SWIPED")
-        
-        switch direction {
-        case .left:
-            toBeLearnedWords.append(words[index])
-            if currentCardIndex < words.count {
-                currentCardIndex = currentCardIndex + 1
-            }
-            //words.remove(at: index)
-        case .right: knownWords.append(words[index])
-        default:
-            break
-        }
-        
-        if isWordsSelected() {
-            isToBeLearnedWordsSelected = true
-            selectWordContainerView.isHidden = true
-            learnContainerView.isHidden = true
-            letsLearnContainerView.isHidden = false
-            
-            letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
-            selectedWordsTableView.reloadData()
-            print("10 kelimeyi başarıyla seçtin. Hadi artık öğrenmeye başlayalım.")
-        }
-        
-        
-        updateView()
-    }
     
-    func updateView() {
-        let numberOfCardsToBeSelected = 10
-        numberOfCards = self.words.count
-        wordCounterLabel.text = "\(currentCardIndex)/\(numberOfCardsToBeSelected)"
-        wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCardsToBeSelected)
-        kolodaView.reloadData()
     }
     
 }
@@ -478,7 +318,7 @@ extension LearnViewController: KolodaViewDelegate {
 extension LearnViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return words.count
+        return learnWordOrder.count
     }
     
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -486,7 +326,6 @@ extension LearnViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        
         return setCard(index)
     }
     
@@ -494,8 +333,18 @@ extension LearnViewController: KolodaViewDataSource {
         let labelBGColor = UIColor(displayP3Red: (213.0 + CGFloat(index))/255.0, green: (234.0 + CGFloat(index))/255.0, blue: (245.0 + CGFloat(index))/255.0, alpha: 1.0)
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "\(words[index].getForeignLang()!)\n\n\(words[index].getMotherLang()!)\n\n"
-        label.addImage(imageName: "Sound", afterLabel: true)
+        
+        switch learnWordOrder[index]["QuestionType"] {
+        case "Listening": label.addImage(imageName: "Sound", afterLabel: true)
+        case "Reading":
+            switch learnWordOrder[index]["LanguageType"] {
+            case "Foreign": label.text = "Foreing - \(index % 5)"
+            case "Mother": label.text = "Mother - \(index % 5)"
+            default: break
+            }
+        default: break
+        }
+        
         label.backgroundColor = labelBGColor
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.black
@@ -513,4 +362,12 @@ extension LearnViewController: KolodaViewDataSource {
     
 }
 
-
+extension UIColor {
+    struct customColors {
+        static let green = UIColor(red: 57/255, green: 202/255, blue: 116/255, alpha: 1.0)
+        static let red = UIColor(red: 229/255, green: 77/255, blue: 66/255, alpha: 1.0)
+        static let borderGreen = UIColor(red: 54/255, green: 184/255, blue: 132/255, alpha: 1.0)
+        static let borderRed = UIColor(red: 205/255, green: 83/255, blue: 79/255, alpha: 1.0)
+        static let swordBlue = UIColor(red: 58/255, green: 153/255, blue: 216/255, alpha: 1.0)
+    }
+}

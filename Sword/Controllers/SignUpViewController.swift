@@ -11,7 +11,7 @@ import FirebaseAuth
 import ProgressHUD
 import FirebaseFirestore
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: CustomViewController, UITextFieldDelegate {
     
     // Properties
     @IBOutlet var nameTextField: UITextField!

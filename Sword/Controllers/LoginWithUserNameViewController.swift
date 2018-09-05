@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import ProgressHUD
 
-class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
+class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate {
     
     // Preferences
     @IBOutlet var emailTextField: UITextField!
@@ -64,8 +64,8 @@ class LoginWithUserNameViewController: UIViewController, UITextFieldDelegate {
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if let u = user {
-                    self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(u.user.uid)
                     
+                    self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(u.user.uid)
                     print("SIGN IN: SUCCESS")
                     
                 } else {

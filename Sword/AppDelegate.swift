@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import RealmSwift
+import SwiftyPlistManager
 
 var uiRealm = try! Realm()
 
@@ -41,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Firebase
         FirebaseApp.configure()
+        
+        // Start swifty plist manager
+        SwiftyPlistManager.shared.start(plistNames: ["LearnWordsOrder-Info"], logging: true)
         
         return true
     }

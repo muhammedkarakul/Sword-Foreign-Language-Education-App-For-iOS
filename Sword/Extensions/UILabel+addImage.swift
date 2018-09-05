@@ -18,7 +18,7 @@ extension UILabel
         
         if (bolAfterLabel)
         {
-            let strLabelText: NSMutableAttributedString = NSMutableAttributedString(string: self.text!)
+            let strLabelText: NSMutableAttributedString = NSMutableAttributedString(string: self.text ?? "")
             strLabelText.append(attachmentString)
             
             self.attributedText = strLabelText

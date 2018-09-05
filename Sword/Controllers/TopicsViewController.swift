@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 
-class TopicsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TopicsViewController: CustomViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var submitButton: UIButtonWithRoundedCorners!
     @IBOutlet var containerTableView: UITableView!
@@ -127,10 +127,18 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     private func updateSubmitButtonAppearance() {
-        if selectedCellCounter > 0 {
-            submitButton.isHidden = false
+        if isAnyCellSelected() {
+            isSubmitButtonHidden(false)
         } else {
-            submitButton.isHidden = true
+            isSubmitButtonHidden(true)
+        }
+    }
+    
+    private func isAnyCellSelected() -> Bool {
+        if selectedCellCounter > 0 {
+            return true
+        } else {
+            return false
         }
     }
     
@@ -194,6 +202,20 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         //let userDefaults = UserDefaults.standard
         //userDefaults.set(true, forKey: "isLevelAndTopicsSelected")
         //userDefaults.synchronize()
+    }
+    
+    private func isSubmitButtonHidden(_ state: Bool) {
+        if state {
+            UIView.animate(withDuration: 0.2) {
+                self.submitButton.alpha = 0.0
+                self.submitButton.isHidden = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.2) {
+                self.submitButton.isHidden = false
+                self.submitButton.alpha = 1.0
+            }
+        }
     }
     
     // MARK: - Navigation

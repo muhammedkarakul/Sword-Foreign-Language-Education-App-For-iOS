@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Realm
 
 class Word {
     // MARK: - Properties
@@ -16,6 +15,7 @@ class Word {
     private var motherLang: String?
     private var createdDate: Date?
     private var users: [String]?
+    private var learnStatus: Bool?
     
     // MARK: - Init Methods
     
@@ -25,6 +25,7 @@ class Word {
         motherLang = ""
         createdDate = Date()
         users = [String]()
+        learnStatus = false
     }
     
     init(id: String?, foreignLang: String?, motherLang: String?, createdDate: Date?, users: [String]?) {
@@ -33,6 +34,7 @@ class Word {
         self.motherLang = motherLang
         self.createdDate = createdDate
         self.users = users
+        learnStatus = false
     }
     
     // MARK: - Setter Methods
@@ -41,6 +43,7 @@ class Word {
     public func setMotherLang(motherLang: String?) { self.motherLang = motherLang }
     public func setCreatedDate(createdDate: Date?) { self.createdDate = createdDate }
     public func setUsers(users: [String]?) { self.users = users }
+    public func setLearnStatus(learnStatus: Bool?) { self.learnStatus = learnStatus}
     
     // MARK: - Getter Methods
     public func getId() -> String? {return self.id}
@@ -48,5 +51,6 @@ class Word {
     public func getMotherLang() -> String? { return self.motherLang }
     public func getCreatedDate() -> Date? { return self.createdDate }
     public func getUsers() -> [String]? { return self.users }
+    public func getLearnStatus() -> Bool? {return self.learnStatus}
     
 }
