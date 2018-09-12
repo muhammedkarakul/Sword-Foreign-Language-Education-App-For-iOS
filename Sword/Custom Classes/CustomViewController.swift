@@ -11,8 +11,12 @@ import AVFoundation
 
 class CustomViewController: UIViewController, AVAudioPlayerDelegate {
     
-    public var player: AVAudioPlayer?
-
+    private var player: AVAudioPlayer?
+    
+    //private var blurEffectView = UIVisualEffectView()
+    
+    private var alert = UIAlertController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,7 +87,7 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    public func playSound(withName name: String) {
+    internal func playSound(withName name: String) {
         guard let url = Bundle.main.url(forResource: name, withExtension: "mp3") else { return }
 
         do {
@@ -104,7 +108,42 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
+//    internal func showBlurEffect( completion: ((Bool) -> Void)?) {
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = self.view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        blurEffectView.alpha = 0.0
+//        self.view.addSubview(blurEffectView)
+//
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.blurEffectView.alpha = 1.0
+//        }, completion: completion)
+//    }
+//
+//    internal func hideBlurEffect() {
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.blurEffectView.alpha = 0.0
+//        }) { (_) in
+//            self.blurEffectView.removeFromSuperview()
+//        }
+//    }
+    
+    
+//    internal func showAlert(withTitle title: String, andMessage message: String) {
+//        alert(title: title, message: message, completion: {})
+//        let cancelAction = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
+//        alert.addAction(cancelAction)
+//        self.present(alert, animated: true, completion: nil)
+//    }
 
+    internal func showAlert(withTitle title: String, andMessage message: String, andOKButtonHandler handler: ((UIAlertAction) -> Void)?) {
+        alert(title: title, message: message, completion: {})
+        let cancelAction = UIAlertAction(title: "Tamam", style: .cancel, handler: handler)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

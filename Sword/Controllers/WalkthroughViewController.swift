@@ -21,17 +21,15 @@ class WalkthroughViewController: CustomViewController, BWWalkthroughViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Settings for firebase firestore database
+        db = Firestore.firestore()
+        
         // Play splash screen sound.
         playSound(withName: "splash")
-        
-        // Status bar color turns white
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-        db = Firestore.firestore()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        // Do not remove this function
     }
 
     override func didReceiveMemoryWarning() {

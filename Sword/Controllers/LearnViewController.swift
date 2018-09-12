@@ -48,7 +48,12 @@ class LearnViewController: CustomViewController {
     private var progress: CGFloat = 0
     
     // Learn words order.
-    private var learnWordOrder = [[String : String]]()
+    private var questionOrders = [QuestionOrder]()
+    
+    // Questions
+    private var questions = [AnyObject]()
+    
+    private var isKolodaSwipeEnable = false
     
     // Current question index
     private var currentQuestionIndex: Int {
@@ -77,24 +82,15 @@ class LearnViewController: CustomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupQuestions()
+        setupLearnWords()
         
-        // Get learn words order from plist file and set a variable.
-        SwiftyPlistManager.shared.getValue(for: "LearnWords", fromPlistWithName: "LearnWordsOrder-Info") { (data, error) in
-            if let err = error {
-                print("Error: \(err.localizedDescription)")
-            } else {
-                if let d = data as? [[String : String]] {
-                    learnWordOrder = d
-                }
-                
-            }
-        }
+        getLearnWordsOrderFromPlistFile()
+        
+        setupQuestions()
         
         // Koloda view delegate and datasource
         kolodaView.delegate = self
         kolodaView.dataSource = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,70 +98,103 @@ class LearnViewController: CustomViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func getLearnWordsOrderFromPlistFile() {
+        // Get learn words order from plist file and set a variable.
+        SwiftyPlistManager.shared.getValue(for: "LearnWords", fromPlistWithName: "LearnWordsOrder-Info") { (data, error) in
+            if let err = error {
+                print("Error: \(err.localizedDescription)")
+            } else {
+                if let orders = data as? [[String : String]] {
+                    for questionOrder in orders {
+                        let tempQuestionOrder = QuestionOrder()
+                        
+                        tempQuestionOrder.setupQuestionOrder(withDictionary: questionOrder)
+                        
+                        questionOrders.append(tempQuestionOrder)
+                    }
+                }
+                
+            }
+        }
+    }
+    
     private func setup(_ view: UIView, withAlpha alpha: CGFloat, andHiddenState state: Bool) {
         view.alpha = alpha
         view.isHidden = state
     }
     
+    private func setupLearnWords() {
+        // Setup learn words
+        for (index, word) in words!.enumerated() {
+            var learnWord = LearnWord()
+            
+            let questions = learnWord.setupQuestions(withWords: word)
+            
+            let multipleSelections = learnWord.setupMultipleSelections(withQuestions: questions, andWords: words!)
+            
+            let writings = learnWord.setupWritings(withQuestions: questions)
+            
+            learnWord = LearnWord(multipleSelections: multipleSelections, writings: writings)
+            
+            learnWords.insert(learnWord, at: index)
+        }
+    }
+    
     private func setupQuestions() {
-        // Setup Questions
-        if let words = self.words {
-            while learnWords.count < words.count {
-                
-                var learnWord = LearnWord()
-                
-                let questions = learnWord.setupQuestions(withWords: words)
-                
-                let multipleSelections = learnWord.setupMultipleSelections(withQuestions: questions, andWords: words)
-                
-                let writings = learnWord.setupWritings(withQuestions: questions)
-                
-                learnWord = LearnWord(multipleSelections: multipleSelections, writings: writings)
-                
-                learnWords.insert(learnWord, at: learnWords.count)
-            }
+        for (index, order) in questionOrders.enumerated() {
+            questions.append(learnWords[index % 5].getQuestion(withAnswerType: order.getAnswerType(), withLanguageType: order.getLanguageType(), andQuestionType: order.getQuestionType()))
         }
     }
     
     private func updateView() {
         
-        switch learnWordOrder[currentQuestionIndex]["AnswerType"] {
-        case "MultipleSelection":
-            
-            self.view.endEditing(true)
-            
-            turnDefaultButtonsAppearence()
-            
-            for (index, answerButton) in answerButtons.enumerated() {
-                var answer = ""
+        if currentQuestionIndex < Int(questionNumber) {
+        
+            let currentQuestionOrder = questionOrders[currentQuestionIndex]
+        
+            switch currentQuestionOrder.getAnswerType() {
+            case .multipleSelection:
                 
-                if learnWordOrder[currentQuestionIndex]["QuestionType"] == "Reading" {
-                    if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
-                        answer = "Mother"
-                    } else {
-                        answer = "Foreign"
-                    }
-                } else {
-                    if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
-                        answer = "Foreign"
-                    } else {
-                        answer = "Mother"
+                self.view.endEditing(true)
+                
+                turnDefaultButtonsAppearence()
+                
+                for (index, answerButton) in answerButtons.enumerated() {
+                    if let currentQuestion = questions[currentQuestionIndex] as? MultipleSelection {
+                        answerButton.setTitle("\(currentQuestion.getAnswers()[index].getText(withType: currentQuestionOrder.getQuestionType()))", for: .normal)
                     }
                 }
                 
-                answerButton.setTitle("\(answer) - \(index + 1)", for: .normal)
+                changeButtonsUserInteractionStatus()
+                
+            case .writing:
+                
+                turnDefaultTextFieldAppearence()
+                
+                checkAnswerButton.isUserInteractionEnabled = true
             }
-        case "Writing":
-            turnDefaultTextFieldAppearence()
-            changeAnswerType()
-        default: print("Böyle bir seçenek yok!")
+        
         }
+        
+        changeAnswerType()
         
     }
     
     private func turnDefaultButtonsAppearence() {
         for answerButton in answerButtons {
             turnDefaultButtonAppearence(button: answerButton)
+        }
+    }
+    
+    private func change(button: UIButtonWithRoundedCornersAndBottomShadow, withBackgroundColor backgroundColor: UIColor, andBorderColor borderColor: CGColor) {
+        button.setTitleColor(UIColor.white, for: UIControlState.normal)
+        button.backgroundColor = backgroundColor
+        button.layer.borderColor = borderColor
+    }
+    
+    private func changeButtonsUserInteractionStatus() {
+        for answerButton in answerButtons {
+            answerButton.isUserInteractionEnabled = !answerButton.isUserInteractionEnabled
         }
     }
     
@@ -181,58 +210,55 @@ class LearnViewController: CustomViewController {
     }
 
     private func changeAnswerType() {
-        
-        if multipleSelectionView.isHidden {
-            multipleSelectionView.isHidden = false
-            UIView.animate(withDuration: 0.2) {
-                self.multipleSelectionView.alpha = 1.0
-                self.writingView.alpha = 0.0
+        if currentQuestionIndex < Int(questionNumber) {
+            switch questionOrders[currentQuestionIndex].getAnswerType() {
+            case .multipleSelection:
+                multipleSelectionView.isHidden = false
+                UIView.animate(withDuration: 0.2) {
+                    self.multipleSelectionView.alpha = 1.0
+                    self.writingView.alpha = 0.0
+                }
+                writingView.isHidden = true
+            case .writing:
+                writingView.isHidden = false
+                UIView.animate(withDuration: 0.2) {
+                    self.writingView.alpha = 1.0
+                    self.multipleSelectionView.alpha = 0.0
+                }
+                multipleSelectionView.isHidden = true
             }
-            writingView.isHidden = true
-        } else {
-            writingView.isHidden = false
-            UIView.animate(withDuration: 0.2) {
-                self.writingView.alpha = 1.0
-                self.multipleSelectionView.alpha = 0.0
-            }
-            multipleSelectionView.isHidden = true
         }
+    }
+    
+    private func updateProgressbar() {
+        progress = quizProgressBar.progress + 1 / questionNumber
+        quizProgressBar.animateTo(progress: progress)
     }
     
     @IBAction func answerButtonTouchUpInside(_ sender: UIButtonWithRoundedCornersAndBottomShadow) {
         
         print("Quiz question answered.")
         
-        var answer = ""
+        changeButtonsUserInteractionStatus()
         
-        if learnWordOrder[currentQuestionIndex]["QuestionType"] == "Reading" {
-            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
-                answer = "Mother"
+        if let multipleSelectionQuestion = questions[currentQuestionIndex] as? MultipleSelection {
+            let isAnswerRight = multipleSelectionQuestion.answerTheQuestion(answerIndex: sender.tag - 1)
+            
+            if isAnswerRight {
+                
+                // Change button appearance.
+                change(button: sender, withBackgroundColor: UIColor.customColors.green, andBorderColor: UIColor.customColors.borderGreen.cgColor)
+                
+                // Play sound "right".
+                playSound(withName: "right")
+                
+                // Update progress bar.
+                progress = quizProgressBar.progress + 1 / questionNumber
+                quizProgressBar.animateTo(progress: progress)
             } else {
-                answer = "Foreign"
+                change(button: sender, withBackgroundColor: UIColor.customColors.red, andBorderColor: UIColor.customColors.borderRed.cgColor)
+                playSound(withName: "wrong")
             }
-        } else {
-            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
-                answer = "Foreign"
-            } else {
-                answer = "Mother"
-            }
-        }
-        
-        let isAnswerRight = "\(answer) - \(currentQuestionIndex)" == "\(sender.titleLabel?.text ?? "Empty")"
-        
-        if isAnswerRight {
-            sender.setTitleColor(UIColor.white, for: UIControlState.normal)
-            sender.backgroundColor = UIColor.customColors.green
-            sender.layer.borderColor = UIColor.customColors.borderGreen.cgColor
-            playSound(withName: "right")
-            progress = quizProgressBar.progress + 1 / questionNumber
-            quizProgressBar.animateTo(progress: progress)
-        } else {
-            sender.setTitleColor(UIColor.white, for: UIControlState.normal)
-            sender.backgroundColor = UIColor.customColors.red
-            sender.layer.borderColor = UIColor.customColors.borderRed.cgColor
-            playSound(withName: "wrong")
         }
         
     }
@@ -242,42 +268,61 @@ class LearnViewController: CustomViewController {
         
         print("Writing question answered.")
         
-        var answer = ""
+        sender.isUserInteractionEnabled = false
         
-        if learnWordOrder[currentQuestionIndex]["QuestionType"] == "Reading" {
-            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
-                answer = "Mother"
+        if let currentQuestion = questions[currentQuestionIndex] as? Writing {
+            
+            let isAnswerRight = currentQuestion.answerTheQuestion(withText: writingAnswerTextField.text ?? "")
+            
+            if isAnswerRight {
+                writingAnswerTextField.textColor = UIColor.customColors.green
+                playSound(withName: "right")
+                progress = quizProgressBar.progress + 1 / questionNumber
+                quizProgressBar.animateTo(progress: progress)
             } else {
-                answer = "Foreign"
-            }
-        } else {
-            if learnWordOrder[currentQuestionIndex]["LanguageType"] == "Foreign" {
-                answer = "Foreign"
-            } else {
-                answer = "Mother"
+                writingAnswerTextField.textColor = UIColor.customColors.red
+                playSound(withName: "wrong")
             }
         }
-        
-        let isAnswerRight =  "\(answer) - \(currentQuestionIndex % 5)" == writingAnswerTextField.text
-        
-        if isAnswerRight {
-            writingAnswerTextField.textColor = UIColor.customColors.green
-            playSound(withName: "right")
-        } else {
-            writingAnswerTextField.textColor = UIColor.customColors.red
-            playSound(withName: "worng")
-        }
-        
     }
     
     @IBAction func thenContinueButtonTouchUpInside(sender: UIButton) {
-        performSegue(withIdentifier: "pickUpWordsViewSegue", sender: self)
+        
+        
+        
+        performSegue(withIdentifier: "unwindSegueToHead", sender: self)
     }
 
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    private func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         print("AUDIO PLAYER DID FINISH PLAYING.")
+        isKolodaSwipeEnable = true
         kolodaView.swipe(.left)
         updateView()
+    }
+    
+    private func textToSpeech(withQuestion question: Question) {
+        var language = ""
+        
+        switch question.getLanguage() {
+        case .foreign: language = "en-UK"
+        case .mother: language = "tr-TR"
+        }
+        
+        let utterance = AVSpeechUtterance(string: question.getText())
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
+        
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+    }
+    
+    private func getCurrentQuestionText() -> String {
+        if let multipleSelectionQuestion = questions[currentQuestionIndex] as? MultipleSelection {
+            return multipleSelectionQuestion.getQuestion().getText()
+        } else if let writingQuestion = questions[currentQuestionIndex] as? Writing {
+            return writingQuestion.getQuestion().getText()
+        } else {
+            return ""
+        }
     }
 
     /*
@@ -299,16 +344,25 @@ extension LearnViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         print("KARTLAR BİTTİ")
         
+        performSegue(withIdentifier: "learnResultSegue", sender: self)
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         print("\(index) INDEXED CARD SELECTED")
         
+        if let multipleSelectionQuestion = questions[index] as? MultipleSelection {
+            textToSpeech(withQuestion: multipleSelectionQuestion.getQuestion())
+        }
+
+        if let writingQuestion = questions[index] as? Writing {
+            textToSpeech(withQuestion: writingQuestion.getQuestion())
+        }
+        
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         print("\(index) INDEX CARD SWIPED")
-    
+        isKolodaSwipeEnable = false
     }
     
 }
@@ -316,9 +370,17 @@ extension LearnViewController: KolodaViewDelegate {
 // MARK: - KolodaViewDataSource -
 
 extension LearnViewController: KolodaViewDataSource {
+
+//    func koloda(_ koloda: KolodaView, shouldDragCardAt index: Int) -> Bool {
+//        return false
+//    }
+    
+    func koloda(_ koloda: KolodaView, shouldSwipeCardAt index: Int, in direction: SwipeResultDirection) -> Bool {
+        return isKolodaSwipeEnable
+    }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return learnWordOrder.count
+        return questionOrders.count
     }
     
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -334,15 +396,20 @@ extension LearnViewController: KolodaViewDataSource {
         let label = UILabel()
         label.numberOfLines = 0
         
-        switch learnWordOrder[index]["QuestionType"] {
-        case "Listening": label.addImage(imageName: "Sound", afterLabel: true)
-        case "Reading":
-            switch learnWordOrder[index]["LanguageType"] {
-            case "Foreign": label.text = "Foreing - \(index % 5)"
-            case "Mother": label.text = "Mother - \(index % 5)"
-            default: break
+        
+        
+        switch questionOrders[index].getQuestionType() {
+        case .reading:
+            if let currentQuestion = questions[index] as? MultipleSelection {
+                label.text = currentQuestion.getQuestion().getText()
             }
-        default: break
+
+            if let currentQuestion = questions[index] as? Writing {
+                label.text = currentQuestion.getQuestion().getText()
+            }
+            //label.text = getCurrentQuestionText()
+        case .listening:
+            label.addImage(imageName: "Sound", afterLabel: true)
         }
         
         label.backgroundColor = labelBGColor

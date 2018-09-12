@@ -22,10 +22,10 @@ class CustomMainViewController: CustomViewController {
         
         if device == .iPhoneX {
             // Eğer mobil cihaz iphone x modeli ise üstten 50 pixel boşluk bırak.
-            headerView?.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 50)
+            headerView?.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 60)
         } else {
             // Eğer mobil cihaz diğer iphone modelleriyse boşluk bırakmadan headerView'ı konumlandır.
-            headerView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: 50)
+            headerView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: 60)
         }
     }
 

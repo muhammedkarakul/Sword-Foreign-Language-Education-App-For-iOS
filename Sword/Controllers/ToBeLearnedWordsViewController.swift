@@ -69,6 +69,7 @@ class ToBeLearnedWordsViewController: CustomViewController, UITableViewDelegate,
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let vc = segue.destination as! LearnViewController
+        
         vc.words = toBeLearnedWords
         
      }

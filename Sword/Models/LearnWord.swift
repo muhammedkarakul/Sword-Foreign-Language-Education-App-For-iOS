@@ -22,39 +22,40 @@ class LearnWord {
         self.writings = writings
     }
     
-    public func setupQuestions(withWords words: [Word]) -> [Question] {
+    public func setupQuestions(withWords word: Word) -> [Question] {
         // Multiple selections
         
         var questions = [Question]()
         
         // Readings
         // Foreign Lang Multiple Selection Reading Question
-        questions.insert(Question(type: .reading, language: .foreign, answerType: .multipleSelection, word: words[0]), at: 0)
+        questions.insert(Question(type: .reading, language: .foreign, answerType: .multipleSelection, word: word), at: 0)
         
         // Mother Lang Multiple Selection Reading Question
-        questions.insert(Question(type: .reading, language: .mother, answerType: .multipleSelection, word: words[0]), at: 1)
+        questions.insert(Question(type: .reading, language: .mother, answerType: .multipleSelection, word: word), at: 1)
         
         // Listenings
         //Foreign Lang Multiple Selection Listening Question
-        questions.insert(Question(type: .listening, language: .foreign, answerType: .multipleSelection, word: words[0]), at: 2)
+        questions.insert(Question(type: .listening, language: .foreign, answerType: .multipleSelection, word: word), at: 2)
         
         // Mother Lang Multiple Selection Listening Question
-        questions.insert(Question(type: .listening, language: .mother, answerType: .multipleSelection, word: words[0]), at: 3)
+        questions.insert(Question(type: .listening, language: .mother, answerType: .multipleSelection, word: word), at: 3)
         // Writings
         
         // Readings
         // Foreign Lang Writing Reading Question
-        questions.insert(Question(type: .reading, language: .foreign, answerType: .writing, word: words[0]), at: 4)
+        questions.insert(Question(type: .reading, language: .foreign, answerType: .writing, word: word), at: 4)
         
         // Mother Lang Writing Reading Question
-        questions.insert(Question(type: .reading, language: .mother, answerType: .writing, word: words[0]), at: 5)
+        questions.insert(Question(type: .reading, language: .mother, answerType: .writing, word: word), at: 5)
         
         // Listenings
         // Foreign Lang Listening Writing Question
-        questions.insert(Question(type: .listening, language: .foreign, answerType: .writing, word: words[0]), at: 6)
+        questions.insert(Question(type: .listening, language: .foreign, answerType: .writing, word: word), at: 6)
         
         // Mother Lang Listening Writing Question
-        questions.insert(Question(type: .listening, language: .mother, answerType: .writing, word: words[0]), at: 7)
+        questions.insert(Question(type: .listening, language: .mother, answerType: .writing, word: word), at: 7)
+
         
         return questions
     }
@@ -85,16 +86,16 @@ class LearnWord {
         var writings = [Writing]()
         
         // Foreign Lang Reading Writing
-        writings.insert(Writing(question: questions[4]), at: 0)
+        writings.insert(Writing(question: questions[4], answer: Answer(word: questions[4].getWord(), language: questions[4].getLanguage())), at: 0)
         
         // Mother Lang Reading Writing
-        writings.insert(Writing(question: questions[5]), at: 1)
+        writings.insert(Writing(question: questions[5], answer: Answer(word: questions[5].getWord(), language: questions[5].getLanguage())), at: 1)
         
         // Foreign Lang Listening Writing
-        writings.insert(Writing(question: questions[6]), at: 2)
+        writings.insert(Writing(question: questions[6], answer: Answer(word: questions[6].getWord(), language: questions[6].getLanguage())), at: 2)
         
         // Mother Lang Listening Writing
-        writings.insert(Writing(question: questions[7]), at: 3)
+        writings.insert(Writing(question: questions[7], answer: Answer(word: questions[7].getWord(), language: questions[7].getLanguage())), at: 3)
         
         return writings
     }
@@ -156,9 +157,7 @@ class LearnWord {
             
             print("Doğru Cevap: \(writings[index].getQuestion().getRightAnswer())")
             
-            writings[index].answerTheQuestion(text: writingAnswer)
-            
-            print("Answer = \(writings[index].checkAnswer())")
+            print("Answer = \(writings[index].answerTheQuestion(withText: writingAnswer))")
             
         }
     }
@@ -194,4 +193,42 @@ class LearnWord {
         }
         
     }
+    
+    public func getQuestion(withAnswerType answerType: AnswerType, withLanguageType languageType: LanguageType, andQuestionType questionType: QuestionType) -> AnyObject {
+        
+        var question: AnyObject
+        
+        switch answerType {
+        case .multipleSelection:
+            switch languageType {
+            case .foreign:
+                switch questionType {
+                case .reading: question = getMultipleSelection(withIndex: 0)
+                case .listening: question = getMultipleSelection(withIndex: 2)
+                }
+            case .mother:
+                switch questionType {
+                case .reading: question = getMultipleSelection(withIndex: 1)
+                case .listening: question = getMultipleSelection(withIndex: 3)
+                }
+            }
+        case .writing:
+            switch languageType {
+            case .foreign:
+                switch questionType {
+                case .reading: question = getWriting(withIndex: 0)
+                case .listening: question = getWriting(withIndex: 2)
+                }
+            case .mother:
+                switch questionType {
+                case .reading: question = getWriting(withIndex: 1)
+                case .listening: question = getWriting(withIndex: 3)
+                }
+            }
+        }
+        
+        return question
+        
+    }
+
 }

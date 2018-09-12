@@ -17,32 +17,24 @@ class Writing {
         answer = Answer()
     }
     
-    init(question: Question) {
+    init(question: Question, answer: Answer) {
         self.question = question
-        self.answer = Answer()
+        self.answer = answer
     }
     
     public func getQuestion() -> Question {
         return question
     }
     
-    public func setAnswer(answer: Answer) {
-        self.answer = answer
-    }
-    
-    public func answerTheQuestion(text: String) {
-        answer.setText(text: text)
-    }
-    
-    public func checkAnswer() -> Bool {
-        let isAnswerCorrect = answer.getText(withType: question.getType()) == question.getRightAnswer()
+    public func answerTheQuestion(withText text: String) -> Bool {
+        let isAnswerCorrect = answer.getText(withType: question.getType()) == text
         if !isAnswerCorrect {
             question.increaseWrongAnswerCounter()
             question.checkWrongAnswerCounter()
         } else {
             question.setAnswerState(state: isAnswerCorrect)
         }
-        
+
         return isAnswerCorrect
     }
     

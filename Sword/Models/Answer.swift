@@ -48,4 +48,8 @@ class Answer {
         }
     }
     
+    public func setWord(word: Word) {
+        self.word = word
+    }
+    
 }

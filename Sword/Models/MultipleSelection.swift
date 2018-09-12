@@ -81,6 +81,7 @@ class MultipleSelection {
     
     public func answerTheQuestion(answerIndex: Int) -> Bool {
         let isAnswerCorrect = answers[answerIndex].getWord().getId() == question.getWord().getId()
+        
         if !isAnswerCorrect {
             question.increaseWrongAnswerCounter()
             question.checkWrongAnswerCounter()

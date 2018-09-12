@@ -12,6 +12,10 @@
 		570867222084EDCF00D4B8FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570867202084EDCF00D4B8FF /* LaunchScreen.storyboard */; };
 		5708672D2084EDCF00D4B8FF /* SwordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5708672C2084EDCF00D4B8FF /* SwordTests.swift */; };
 		570867382084EDCF00D4B8FF /* SwordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570867372084EDCF00D4B8FF /* SwordUITests.swift */; };
+		570EC37B21492D3B00889D49 /* FindDuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570EC37A21492D3B00889D49 /* FindDuelViewController.swift */; };
+		570EC37D21492D8900889D49 /* ArenaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570EC37C21492D8900889D49 /* ArenaViewController.swift */; };
+		570EC37F21492E3B00889D49 /* DuelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570EC37E21492E3B00889D49 /* DuelResultViewController.swift */; };
+		570EC38121492FAB00889D49 /* Duel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570EC38021492FAB00889D49 /* Duel.storyboard */; };
 		571944C420DF808200C3E56B /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571944C320DF808200C3E56B /* CustomViewController.swift */; };
 		571944C620DF82E200C3E56B /* CustomMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571944C520DF82E200C3E56B /* CustomMainViewController.swift */; };
 		5719B0D9208C9E4B00962F1B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5719B0D8208C9E4B00962F1B /* Reachability.swift */; };
@@ -25,6 +29,7 @@
 		5720954F20AD8B1D006C869D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720954E20AD8B1D006C869D /* MainViewController.swift */; };
 		5720955120AD8B2C006C869D /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720955020AD8B2C006C869D /* WalkthroughViewController.swift */; };
 		5720955320AD8B34006C869D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720955220AD8B34006C869D /* SignUpViewController.swift */; };
+		572A806D2142BA9700102D54 /* LearnResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A806C2142BA9700102D54 /* LearnResultViewController.swift */; };
 		5737FAFE20D2F5CA00209C9F /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */; };
 		574CC32420A31EDA003F0AA9 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */; };
 		574CC32820A32056003F0AA9 /* PickWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32720A32056003F0AA9 /* PickWordsViewController.swift */; };
@@ -49,6 +54,7 @@
 		57A0E81A210E6F3200C4C584 /* UILabel+addImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */; };
 		57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A32BC620AF09D200857A02 /* CustomOverlayView.swift */; };
 		57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */; };
+		57B38C692148565700AF3B95 /* UIViewController+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B38C682148565600AF3B95 /* UIViewController+BlurEffect.swift */; };
 		57B9B08320ADA06400535920 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B9B08220ADA06400535920 /* OverlayView.xib */; };
 		57BD20D1211B7E1700278E40 /* peering.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57BD20CB211B7E1700278E40 /* peering.mp3 */; };
 		57BD20D2211B7E1700278E40 /* wrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57BD20CC211B7E1700278E40 /* wrong.mp3 */; };
@@ -61,6 +67,8 @@
 		57C500D9209B00870037CD03 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C500D8209B00870037CD03 /* AlertHelper.swift */; };
 		57CC0426208BD68F002B1930 /* UIButtonWithRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC0425208BD68F002B1930 /* UIButtonWithRoundedCorners.swift */; };
 		57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */; };
+		57CED0BC21428D5900CF04FB /* QuestionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CED0BB21428D5900CF04FB /* QuestionOrder.swift */; };
+		57EFB8A921481F04007FD864 /* Learning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EFB8A821481F04007FD864 /* Learning.storyboard */; };
 		57F75600213AAD2A00F0011D /* LearnWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F755FF213AAD2A00F0011D /* LearnWord.swift */; };
 		57F75602213AAD6500F0011D /* Writing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F75601213AAD6500F0011D /* Writing.swift */; };
 		57F75604213AADB900F0011D /* Sequence+Shuffled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F75603213AADB900F0011D /* Sequence+Shuffled.swift */; };
@@ -105,6 +113,10 @@
 		570867332084EDCF00D4B8FF /* SwordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		570867372084EDCF00D4B8FF /* SwordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordUITests.swift; sourceTree = "<group>"; };
 		570867392084EDCF00D4B8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		570EC37A21492D3B00889D49 /* FindDuelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindDuelViewController.swift; path = Controllers/FindDuelViewController.swift; sourceTree = "<group>"; };
+		570EC37C21492D8900889D49 /* ArenaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArenaViewController.swift; path = Controllers/ArenaViewController.swift; sourceTree = "<group>"; };
+		570EC37E21492E3B00889D49 /* DuelResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuelResultViewController.swift; path = Controllers/DuelResultViewController.swift; sourceTree = "<group>"; };
+		570EC38021492FAB00889D49 /* Duel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Duel.storyboard; path = Views/Duel.storyboard; sourceTree = "<group>"; };
 		571944C320DF808200C3E56B /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomViewController.swift; path = "Custom Classes/CustomViewController.swift"; sourceTree = "<group>"; };
 		571944C520DF82E200C3E56B /* CustomMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomMainViewController.swift; path = "Custom Classes/CustomMainViewController.swift"; sourceTree = "<group>"; };
 		5719B0D8208C9E4B00962F1B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Helpers/Reachability.swift; sourceTree = "<group>"; };
@@ -118,6 +130,7 @@
 		5720954E20AD8B1D006C869D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
 		5720955020AD8B2C006C869D /* WalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalkthroughViewController.swift; path = Controllers/WalkthroughViewController.swift; sourceTree = "<group>"; };
 		5720955220AD8B34006C869D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = Controllers/SignUpViewController.swift; sourceTree = "<group>"; };
+		572A806C2142BA9700102D54 /* LearnResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnResultViewController.swift; path = Controllers/LearnResultViewController.swift; sourceTree = "<group>"; };
 		5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmObjects.swift; path = Models/RealmObjects.swift; sourceTree = "<group>"; };
 		574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBarViewController.swift; path = Controllers/CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		574CC32720A32056003F0AA9 /* PickWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PickWordsViewController.swift; path = Controllers/PickWordsViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +155,7 @@
 		57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UILabel+addImage.swift"; path = "Extensions/UILabel+addImage.swift"; sourceTree = "<group>"; };
 		57A32BC620AF09D200857A02 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = "Custom Classes/CustomOverlayView.swift"; sourceTree = "<group>"; };
 		57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = "Custom Classes/CustomKolodaView.swift"; sourceTree = "<group>"; };
+		57B38C682148565600AF3B95 /* UIViewController+BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+BlurEffect.swift"; path = "Extensions/UIViewController+BlurEffect.swift"; sourceTree = "<group>"; };
 		57B9B08220ADA06400535920 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OverlayView.xib; path = Views/OverlayView.xib; sourceTree = "<group>"; };
 		57BD20CB211B7E1700278E40 /* peering.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = peering.mp3; path = Sounds/peering.mp3; sourceTree = "<group>"; };
 		57BD20CC211B7E1700278E40 /* wrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wrong.mp3; path = Sounds/wrong.mp3; sourceTree = "<group>"; };
@@ -154,6 +168,8 @@
 		57C500D8209B00870037CD03 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertHelper.swift; path = Helpers/AlertHelper.swift; sourceTree = "<group>"; };
 		57CC0425208BD68F002B1930 /* UIButtonWithRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIButtonWithRoundedCorners.swift; path = "Custom Classes/UIButtonWithRoundedCorners.swift"; sourceTree = "<group>"; };
 		57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+Color.swift"; path = "Extensions/UIImageView+Color.swift"; sourceTree = "<group>"; };
+		57CED0BB21428D5900CF04FB /* QuestionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionOrder.swift; path = Models/QuestionOrder.swift; sourceTree = "<group>"; };
+		57EFB8A821481F04007FD864 /* Learning.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Learning.storyboard; path = Views/Learning.storyboard; sourceTree = "<group>"; };
 		57F755FF213AAD2A00F0011D /* LearnWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnWord.swift; path = Models/LearnWord.swift; sourceTree = "<group>"; };
 		57F75601213AAD6500F0011D /* Writing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Writing.swift; path = Models/Writing.swift; sourceTree = "<group>"; };
 		57F75603213AADB900F0011D /* Sequence+Shuffled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Sequence+Shuffled.swift"; path = "Extensions/Sequence+Shuffled.swift"; sourceTree = "<group>"; };
@@ -276,6 +292,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		570EC37921492D1400889D49 /* Duel */ = {
+			isa = PBXGroup;
+			children = (
+				574CC32920A32080003F0AA9 /* DuelViewController.swift */,
+				570EC37A21492D3B00889D49 /* FindDuelViewController.swift */,
+				570EC37C21492D8900889D49 /* ArenaViewController.swift */,
+			);
+			name = Duel;
+			sourceTree = "<group>";
+		};
 		5719B0D7208C9E3300962F1B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,9 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */,
-				574CC32720A32056003F0AA9 /* PickWordsViewController.swift */,
 				5720954E20AD8B1D006C869D /* MainViewController.swift */,
-				574CC32920A32080003F0AA9 /* DuelViewController.swift */,
 				574CC32B20A32095003F0AA9 /* MarketViewController.swift */,
 				574CC32D20A320CA003F0AA9 /* RankViewController.swift */,
 				574CC32F20A320E5003F0AA9 /* ProfileViewController.swift */,
@@ -353,7 +377,10 @@
 		57BD20DA211B818C00278E40 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				574CC32720A32056003F0AA9 /* PickWordsViewController.swift */,
 				57798C5221137E91009A2678 /* LearnViewController.swift */,
+				572A806C2142BA9700102D54 /* LearnResultViewController.swift */,
+				570EC37E21492E3B00889D49 /* DuelResultViewController.swift */,
 			);
 			name = Learn;
 			sourceTree = "<group>";
@@ -379,6 +406,7 @@
 				579388A5209E07590081B4D2 /* Date+toMillis.swift */,
 				578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */,
 				575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */,
+				57B38C682148565600AF3B95 /* UIViewController+BlurEffect.swift */,
 				57C486DA21056B1900FC8862 /* String+ArrayToString.swift */,
 				57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */,
 				57F75603213AADB900F0011D /* Sequence+Shuffled.swift */,
@@ -390,6 +418,7 @@
 		57CC042A208BDF04002B1930 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				570EC37921492D1400889D49 /* Duel */,
 				57BD20DA211B818C00278E40 /* Learn */,
 				574CC32620A32024003F0AA9 /* Main */,
 				574CC32520A32012003F0AA9 /* Login */,
@@ -402,6 +431,8 @@
 			children = (
 				57F75606213AB20500F0011D /* Login.storyboard */,
 				57F75605213AB20500F0011D /* Main.storyboard */,
+				570EC38021492FAB00889D49 /* Duel.storyboard */,
+				57EFB8A821481F04007FD864 /* Learning.storyboard */,
 				57F75607213AB20600F0011D /* Walkthrough.storyboard */,
 				570867202084EDCF00D4B8FF /* LaunchScreen.storyboard */,
 				57B9B08220ADA06400535920 /* OverlayView.xib */,
@@ -414,10 +445,11 @@
 			children = (
 				571A0A772129CA7A0030F306 /* Answer.swift */,
 				571A0A792129CA9B0030F306 /* Question.swift */,
-				571A0A7B2129E0900030F306 /* MultipleSelection.swift */,
 				57F755FF213AAD2A00F0011D /* LearnWord.swift */,
+				571A0A7B2129E0900030F306 /* MultipleSelection.swift */,
 				57F75601213AAD6500F0011D /* Writing.swift */,
 				57939D84213D45B300FEAD05 /* Quiz.swift */,
+				57CED0BB21428D5900CF04FB /* QuestionOrder.swift */,
 			);
 			name = "Learning Models";
 			sourceTree = "<group>";
@@ -545,6 +577,7 @@
 			files = (
 				57F7561B213AB2A100F0011D /* Info.plist in Resources */,
 				57B9B08320ADA06400535920 /* OverlayView.xib in Resources */,
+				570EC38121492FAB00889D49 /* Duel.storyboard in Resources */,
 				570867222084EDCF00D4B8FF /* LaunchScreen.storyboard in Resources */,
 				57F7561A213AB2A100F0011D /* GoogleService-Info.plist in Resources */,
 				57BD20D6211B7E1700278E40 /* splash.mp3 in Resources */,
@@ -553,6 +586,7 @@
 				57BD20D3211B7E1700278E40 /* win.mp3 in Resources */,
 				57F75608213AB20600F0011D /* Main.storyboard in Resources */,
 				57F75609213AB20600F0011D /* Login.storyboard in Resources */,
+				57EFB8A921481F04007FD864 /* Learning.storyboard in Resources */,
 				57BD20D5211B7E1700278E40 /* right.mp3 in Resources */,
 				57F7560A213AB20600F0011D /* Walkthrough.storyboard in Resources */,
 				5708671F2084EDCF00D4B8FF /* Assets.xcassets in Resources */,
@@ -698,8 +732,10 @@
 				57F75619213AB2A100F0011D /* AppDelegate.swift in Sources */,
 				579388A0209DD4790081B4D2 /* User.swift in Sources */,
 				574CC33220A324FE003F0AA9 /* LevelViewController.swift in Sources */,
+				570EC37B21492D3B00889D49 /* FindDuelViewController.swift in Sources */,
 				57C486DB21056B1900FC8862 /* String+ArrayToString.swift in Sources */,
 				57798C5121132E52009A2678 /* ToBeLearnedWordsViewController.swift in Sources */,
+				570EC37D21492D8900889D49 /* ArenaViewController.swift in Sources */,
 				57C500D9209B00870037CD03 /* AlertHelper.swift in Sources */,
 				574CC33020A320E5003F0AA9 /* ProfileViewController.swift in Sources */,
 				571A0A7C2129E0900030F306 /* MultipleSelection.swift in Sources */,
@@ -710,6 +746,8 @@
 				575EDA9920E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift in Sources */,
 				5719B0D9208C9E4B00962F1B /* Reachability.swift in Sources */,
 				57CC0426208BD68F002B1930 /* UIButtonWithRoundedCorners.swift in Sources */,
+				570EC37F21492E3B00889D49 /* DuelResultViewController.swift in Sources */,
+				57CED0BC21428D5900CF04FB /* QuestionOrder.swift in Sources */,
 				574CC33620A33005003F0AA9 /* CustomView.swift in Sources */,
 				57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */,
 				57F7561C213AB2A100F0011D /* Sword.xcdatamodeld in Sources */,
@@ -731,11 +769,13 @@
 				5720955320AD8B34006C869D /* SignUpViewController.swift in Sources */,
 				574CC32A20A32080003F0AA9 /* DuelViewController.swift in Sources */,
 				571944C420DF808200C3E56B /* CustomViewController.swift in Sources */,
+				57B38C692148565700AF3B95 /* UIViewController+BlurEffect.swift in Sources */,
 				5719B0DF208CCE4B00962F1B /* LoginWithFaceBookViewController.swift in Sources */,
 				57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */,
 				57F75600213AAD2A00F0011D /* LearnWord.swift in Sources */,
 				574CC32C20A32095003F0AA9 /* MarketViewController.swift in Sources */,
 				57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */,
+				572A806D2142BA9700102D54 /* LearnResultViewController.swift in Sources */,
 				57798C5321137E91009A2678 /* LearnViewController.swift in Sources */,
 				571A0A782129CA7A0030F306 /* Answer.swift in Sources */,
 				578CFB5F20CC2DC50051F56C /* Date+TimeStampToDate.swift in Sources */,
@@ -910,7 +950,10 @@
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordTeam.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -928,7 +971,10 @@
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordTeam.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -945,7 +991,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -962,7 +1012,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -978,7 +1032,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -994,7 +1052,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

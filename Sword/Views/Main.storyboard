@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +13,7 @@
         <!--Öğren-->
         <scene sceneID="lmN-Dn-cDI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2t-qg-Yc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="egI-nI-zsC" customClass="PickWordsViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ooS-nO-B9h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -307,7 +307,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hs9-ax-Mmo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Öğren" image="light-bulb" id="qRU-i6-phs"/>
+                    <tabBarItem key="tabBarItem" title="Öğren" image="tabBarItem:qRU-i6-phs:image" id="qRU-i6-phs"/>
                     <connections>
                         <outlet property="kolodaView" destination="yhZ-Sf-Y7Z" id="ibJ-Rx-KvC"/>
                         <outlet property="learnContainerView" destination="erT-fD-Nuv" id="y0a-7I-l74"/>
@@ -319,94 +319,12 @@
                         <outlet property="titleMessageLabel" destination="vcs-Vf-xHa" id="uIQ-pD-hiL"/>
                         <outlet property="wordCounterLabel" destination="ziT-Ba-EUC" id="6sE-ne-jII"/>
                         <outlet property="wordProgressView" destination="Ppi-QE-Y6z" id="Nga-Pr-dKc"/>
-                        <segue destination="Tr4-Vp-Rvc" kind="presentation" identifier="levelAndTopicView" id="UDE-2A-MZx"/>
-                        <segue destination="Aco-M5-ffE" kind="show" identifier="toBeLearnedWords" id="EZx-1N-VaX"/>
+                        <segue destination="Y5V-dA-rIu" kind="presentation" identifier="levelAndTopicView" id="UDE-2A-MZx"/>
+                        <segue destination="KNV-nm-INf" kind="show" identifier="toBeLearnedWords" id="EZx-1N-VaX"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p2t-qg-Yc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-492" y="2641.5292353823093"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="eX2-0x-lll">
-            <objects>
-                <viewController id="CPE-YY-LFx" customClass="TopicsViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tba-CT-tDv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hangi konularda kelime öğrenmek  istersin?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="At9-ca-vdL">
-                                <rect key="frame" x="0.0" y="50" width="375" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="5Wi-sZ-y1T"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Po3-rt-Hab">
-                                <rect key="frame" x="16" y="154" width="343" height="359"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="359" id="GlF-sx-6Zu"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="kc4-oW-IVA">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kc4-oW-IVA" id="Y8Y-Qg-fL3">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="CPE-YY-LFx" id="qRh-6t-Ew2"/>
-                                    <outlet property="delegate" destination="CPE-YY-LFx" id="PJ2-Gl-LOL"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-uE-SeA" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                <rect key="frame" x="112.5" y="577" width="150" height="50"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="C0B-gQ-jEN"/>
-                                    <constraint firstAttribute="width" constant="150" id="ayl-vr-B6o"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Devam Et">
-                                    <color key="titleColor" red="0.55294117649999996" green="0.75686274509999996" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextTapped:" destination="CPE-YY-LFx" eventType="touchUpInside" id="8dM-sI-5oN"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.55294117649999996" green="0.75686274509999996" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="w7H-8N-Jf5" firstAttribute="bottom" secondItem="aOx-uE-SeA" secondAttribute="bottom" constant="40" id="3hQ-Uo-CTz"/>
-                            <constraint firstItem="At9-ca-vdL" firstAttribute="leading" secondItem="w7H-8N-Jf5" secondAttribute="leading" id="7Xe-gx-Wpf"/>
-                            <constraint firstItem="aOx-uE-SeA" firstAttribute="centerX" secondItem="tba-CT-tDv" secondAttribute="centerX" id="KVO-ek-LIg"/>
-                            <constraint firstItem="Po3-rt-Hab" firstAttribute="leading" secondItem="w7H-8N-Jf5" secondAttribute="leading" constant="16" id="Km7-ym-AWI"/>
-                            <constraint firstItem="w7H-8N-Jf5" firstAttribute="trailing" secondItem="Po3-rt-Hab" secondAttribute="trailing" constant="16" id="QZ9-Iw-EtR"/>
-                            <constraint firstItem="w7H-8N-Jf5" firstAttribute="trailing" secondItem="At9-ca-vdL" secondAttribute="trailing" id="Rdg-T5-ZOz"/>
-                            <constraint firstItem="Po3-rt-Hab" firstAttribute="centerY" secondItem="tba-CT-tDv" secondAttribute="centerY" id="XoW-3y-ABR"/>
-                            <constraint firstItem="At9-ca-vdL" firstAttribute="centerX" secondItem="tba-CT-tDv" secondAttribute="centerX" id="ffH-iI-me9"/>
-                            <constraint firstItem="At9-ca-vdL" firstAttribute="top" secondItem="w7H-8N-Jf5" secondAttribute="top" constant="30" id="odY-rJ-VMb"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="w7H-8N-Jf5"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="LAn-t9-EKk"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="containerTableView" destination="Po3-rt-Hab" id="j15-zb-2Bx"/>
-                        <outlet property="submitButton" destination="aOx-uE-SeA" id="J4B-HP-O6U"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FDS-Fl-4Za" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="289" y="4507"/>
+            <point key="canvasLocation" x="-1449" y="2642"/>
         </scene>
         <!--Sıralama-->
         <scene sceneID="ArA-3w-HHc">
@@ -459,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y95-Q7-5hm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232.80000000000001" y="2641.5292353823093"/>
+            <point key="canvasLocation" x="-92" y="2642"/>
         </scene>
         <!--Market-->
         <scene sceneID="rO8-zz-MR9">
@@ -537,7 +455,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syc-H5-E19" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984.79999999999995" y="2641.5292353823093"/>
+            <point key="canvasLocation" x="985" y="2642"/>
         </scene>
         <!--Düello-->
         <scene sceneID="AEQ-EH-u1T">
@@ -589,10 +507,13 @@
                         <viewLayoutGuide key="safeArea" id="Hw6-uv-Uzg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Düello" image="ic_duel" id="yCx-0Q-rFU"/>
+                    <connections>
+                        <segue destination="Bcd-az-QPC" kind="show" identifier="findDuelSegue" id="KiR-H1-SB8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gm-Kh-khA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="2641.5292353823093"/>
+            <point key="canvasLocation" x="2113" y="2642"/>
         </scene>
         <!--Profilim-->
         <scene sceneID="6Bk-bq-52Y">
@@ -753,7 +674,7 @@ Kazanılan Düello</string>
                             <rect key="frame" x="44" y="77" width="240" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qt1-5Q-idl">
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qt1-5Q-idl">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -812,7 +733,7 @@ Kazanılan Düello</string>
                     <viewLayoutGuide key="safeArea" id="Bdc-aS-Kew"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2492" y="2641.5292353823093"/>
+            <point key="canvasLocation" x="3177" y="2642"/>
         </scene>
         <!--Login-->
         <scene sceneID="mmz-lT-KtZ">
@@ -820,7 +741,7 @@ Kazanılan Düello</string>
                 <viewControllerPlaceholder storyboardName="Login" id="uBg-D6-MiV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSa-Ma-NNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3290" y="2641"/>
+            <point key="canvasLocation" x="4217" y="2641"/>
         </scene>
         <!--Custom Tab Bar View Controller-->
         <scene sceneID="is6-tb-bnd">
@@ -844,476 +765,29 @@ Kazanılan Düello</string>
             </objects>
             <point key="canvasLocation" x="985" y="1781"/>
         </scene>
-        <!--Learn View Controller-->
-        <scene sceneID="FAW-z4-F22">
+        <!--UIViewController-Tr4-Vp-Rvc-->
+        <scene sceneID="n4C-Eb-Nb0">
             <objects>
-                <viewController id="krV-ze-ur3" customClass="LearnViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="m1K-xR-4fh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7m-7I-1Sa" customClass="GTProgressBar" customModule="GTProgressBar">
-                                <rect key="frame" x="62" y="50" width="250" height="10"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="noM-aR-Pdc"/>
-                                    <constraint firstAttribute="height" constant="10" id="uLz-zT-apI"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barBorderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
-                                        <color key="value" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="barBorderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="displayLabel" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="barFillInset">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6BF-qX-GED" customClass="CustomKolodaView" customModule="Sword">
-                                <rect key="frame" x="37" y="68" width="300" height="200"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="SHU-bL-wEa"/>
-                                    <constraint firstAttribute="height" constant="200" id="e6l-10-V2X"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGX-a6-akl" userLabel="Writing">
-                                <rect key="frame" x="37" y="297" width="300" height="312"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karşılığını Yaz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-zl-gIE">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="9QS-0n-7ia"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6E-WV-D8u">
-                                        <rect key="frame" x="8" y="26" width="284" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p3-Y4-fRM" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="88" y="64" width="125" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="GRo-Ay-cM6"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Tamam">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="answerWritingButtonTouchUpInside:" destination="krV-ze-ur3" eventType="touchUpInside" id="grK-tp-IDN"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="l6E-WV-D8u" secondAttribute="trailing" constant="8" id="8jn-RJ-eWZ"/>
-                                    <constraint firstItem="9p3-Y4-fRM" firstAttribute="top" secondItem="l6E-WV-D8u" secondAttribute="bottom" constant="8" id="IWe-Uy-OXX"/>
-                                    <constraint firstItem="xAo-zl-gIE" firstAttribute="leading" secondItem="IGX-a6-akl" secondAttribute="leading" id="NO6-Xa-T3d"/>
-                                    <constraint firstAttribute="trailing" secondItem="xAo-zl-gIE" secondAttribute="trailing" id="T0x-R9-3TC"/>
-                                    <constraint firstItem="xAo-zl-gIE" firstAttribute="top" secondItem="IGX-a6-akl" secondAttribute="top" id="Wep-41-x1o"/>
-                                    <constraint firstItem="l6E-WV-D8u" firstAttribute="top" secondItem="xAo-zl-gIE" secondAttribute="bottom" constant="8" id="bia-16-RVR"/>
-                                    <constraint firstAttribute="trailing" secondItem="9p3-Y4-fRM" secondAttribute="trailing" constant="87" id="glr-XF-TgS"/>
-                                    <constraint firstItem="l6E-WV-D8u" firstAttribute="leading" secondItem="IGX-a6-akl" secondAttribute="leading" constant="8" id="iW0-2d-3BS"/>
-                                    <constraint firstItem="9p3-Y4-fRM" firstAttribute="leading" secondItem="IGX-a6-akl" secondAttribute="leading" constant="88" id="poj-xN-JiR"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIH-6x-Vy0">
-                                <rect key="frame" x="37" y="617" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="DGf-ji-s3U"/>
-                                </constraints>
-                                <state key="normal" title="Sonra Devam Et">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="thenContinueButtonTouchUpInsideSender:" destination="krV-ze-ur3" eventType="touchUpInside" id="neC-lf-aYS"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dId-dX-cnJ" userLabel="Multiple Selection">
-                                <rect key="frame" x="37" y="297" width="300" height="312"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gH-PF-I5M" userLabel="Multiple Selection First Answer Button" customClass="UIButtonWithRoundedCornersAndBottomShadow" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="37" width="300" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="bqm-OB-b8H"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Cevap 1">
-                                            <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="answerButtonTouchUpInside:" destination="krV-ze-ur3" eventType="touchUpInside" id="hVm-Xt-I8K"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTc-PB-5R5" userLabel="Multiple Selection Second Answer Button" customClass="UIButtonWithRoundedCornersAndBottomShadow" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="108" width="300" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="T5F-Ry-NKg"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Cevap 2">
-                                            <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="answerButtonTouchUpInside:" destination="krV-ze-ur3" eventType="touchUpInside" id="1ZN-eC-WzG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihV-Tu-UbG" userLabel="Multiple Selection Thirth Answer Button" customClass="UIButtonWithRoundedCornersAndBottomShadow" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="179" width="300" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="GJH-ZH-l6W"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Cevap 3">
-                                            <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="answerButtonTouchUpInside:" destination="krV-ze-ur3" eventType="touchUpInside" id="ngA-3h-L62"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzE-i8-oB4" userLabel="Multiple Selection Fourth Answer Button" customClass="UIButtonWithRoundedCornersAndBottomShadow" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="250" width="300" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Cevap 4">
-                                            <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="answerButtonTouchUpInside:" destination="krV-ze-ur3" eventType="touchUpInside" id="41x-29-TV7"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doğru Şıkkı Seç" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc6-cz-96g" userLabel="Multiple Selection View Header Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="jEo-Xa-wEn"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dTc-PB-5R5" secondAttribute="trailing" id="7om-B6-hDh"/>
-                                    <constraint firstItem="PzE-i8-oB4" firstAttribute="top" secondItem="ihV-Tu-UbG" secondAttribute="bottom" constant="21" id="BXt-f2-4Y2"/>
-                                    <constraint firstItem="5gH-PF-I5M" firstAttribute="leading" secondItem="dId-dX-cnJ" secondAttribute="leading" id="GvH-S8-0KK"/>
-                                    <constraint firstItem="dTc-PB-5R5" firstAttribute="top" secondItem="5gH-PF-I5M" secondAttribute="bottom" constant="21" id="OJf-YW-Eev"/>
-                                    <constraint firstAttribute="trailing" secondItem="hc6-cz-96g" secondAttribute="trailing" id="QoU-Wg-18a"/>
-                                    <constraint firstItem="dTc-PB-5R5" firstAttribute="leading" secondItem="dId-dX-cnJ" secondAttribute="leading" id="SEV-aF-6SG"/>
-                                    <constraint firstItem="ihV-Tu-UbG" firstAttribute="leading" secondItem="dId-dX-cnJ" secondAttribute="leading" id="UNe-Xu-jl3"/>
-                                    <constraint firstAttribute="trailing" secondItem="5gH-PF-I5M" secondAttribute="trailing" id="Xbp-C0-PTc"/>
-                                    <constraint firstItem="PzE-i8-oB4" firstAttribute="leading" secondItem="dId-dX-cnJ" secondAttribute="leading" id="Z4H-RC-5jd"/>
-                                    <constraint firstItem="ihV-Tu-UbG" firstAttribute="top" secondItem="dTc-PB-5R5" secondAttribute="bottom" constant="21" id="aQ9-MC-6Rm"/>
-                                    <constraint firstAttribute="bottom" secondItem="PzE-i8-oB4" secondAttribute="bottom" constant="12" id="du1-QN-hal"/>
-                                    <constraint firstItem="hc6-cz-96g" firstAttribute="leading" secondItem="dId-dX-cnJ" secondAttribute="leading" id="hse-bU-pEb"/>
-                                    <constraint firstItem="hc6-cz-96g" firstAttribute="top" secondItem="dId-dX-cnJ" secondAttribute="top" id="muj-vp-MzL"/>
-                                    <constraint firstItem="5gH-PF-I5M" firstAttribute="top" secondItem="hc6-cz-96g" secondAttribute="bottom" constant="19" id="qqg-Xf-y5F"/>
-                                    <constraint firstAttribute="trailing" secondItem="PzE-i8-oB4" secondAttribute="trailing" id="rVm-WQ-HeW"/>
-                                    <constraint firstAttribute="trailing" secondItem="ihV-Tu-UbG" secondAttribute="trailing" id="x0P-R0-Nqe"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="opY-IQ-jA6" firstAttribute="trailing" secondItem="dId-dX-cnJ" secondAttribute="trailing" constant="38" id="B65-wI-SUN"/>
-                            <constraint firstItem="opY-IQ-jA6" firstAttribute="bottom" secondItem="wIH-6x-Vy0" secondAttribute="bottom" constant="20" id="DJx-rX-DFk"/>
-                            <constraint firstItem="u7m-7I-1Sa" firstAttribute="top" secondItem="opY-IQ-jA6" secondAttribute="top" constant="30" id="ESe-kh-q2F"/>
-                            <constraint firstItem="wIH-6x-Vy0" firstAttribute="leading" secondItem="opY-IQ-jA6" secondAttribute="leading" constant="37" id="KYa-p0-aid"/>
-                            <constraint firstItem="6BF-qX-GED" firstAttribute="centerX" secondItem="m1K-xR-4fh" secondAttribute="centerX" id="S0k-5Y-hoh"/>
-                            <constraint firstItem="IGX-a6-akl" firstAttribute="leading" secondItem="opY-IQ-jA6" secondAttribute="leading" constant="37" id="Wkg-hu-gD7"/>
-                            <constraint firstItem="IGX-a6-akl" firstAttribute="top" secondItem="6BF-qX-GED" secondAttribute="bottom" constant="29" id="ZQM-wE-SSU"/>
-                            <constraint firstItem="wIH-6x-Vy0" firstAttribute="top" secondItem="dId-dX-cnJ" secondAttribute="bottom" constant="8" id="fqX-gw-Dnw"/>
-                            <constraint firstItem="opY-IQ-jA6" firstAttribute="trailing" secondItem="IGX-a6-akl" secondAttribute="trailing" constant="38" id="gAa-Em-gfY"/>
-                            <constraint firstItem="u7m-7I-1Sa" firstAttribute="centerX" secondItem="m1K-xR-4fh" secondAttribute="centerX" id="gSM-zd-RKq"/>
-                            <constraint firstItem="dId-dX-cnJ" firstAttribute="leading" secondItem="opY-IQ-jA6" secondAttribute="leading" constant="37" id="grM-6a-Khn"/>
-                            <constraint firstItem="opY-IQ-jA6" firstAttribute="trailing" secondItem="wIH-6x-Vy0" secondAttribute="trailing" constant="38" id="hFx-Xj-qIK"/>
-                            <constraint firstItem="wIH-6x-Vy0" firstAttribute="top" secondItem="IGX-a6-akl" secondAttribute="bottom" constant="8" id="mpa-z6-mCj"/>
-                            <constraint firstItem="6BF-qX-GED" firstAttribute="top" secondItem="u7m-7I-1Sa" secondAttribute="bottom" constant="8" id="t3R-dk-mKS"/>
-                            <constraint firstItem="dId-dX-cnJ" firstAttribute="top" secondItem="6BF-qX-GED" secondAttribute="bottom" constant="29" id="vi4-f0-0JU"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="opY-IQ-jA6"/>
-                    </view>
-                    <connections>
-                        <outlet property="checkAnswerButton" destination="9p3-Y4-fRM" id="Z7d-Ns-jN3"/>
-                        <outlet property="kolodaView" destination="6BF-qX-GED" id="1uc-OG-Wxs"/>
-                        <outlet property="multipleSelectionFirstButton" destination="5gH-PF-I5M" id="FUK-2v-rRa"/>
-                        <outlet property="multipleSelectionFourthButton" destination="PzE-i8-oB4" id="wTS-4a-mcb"/>
-                        <outlet property="multipleSelectionSecondButton" destination="dTc-PB-5R5" id="ocK-83-JxV"/>
-                        <outlet property="multipleSelectionThirdButton" destination="ihV-Tu-UbG" id="mwJ-GT-OMj"/>
-                        <outlet property="multipleSelectionView" destination="dId-dX-cnJ" id="fzA-M9-Nhu"/>
-                        <outlet property="multipleSelectionViewHeaderLabel" destination="hc6-cz-96g" id="KO1-Dm-YdG"/>
-                        <outlet property="quizProgressBar" destination="u7m-7I-1Sa" id="uYp-vB-Atz"/>
-                        <outlet property="writingAnswerTextField" destination="l6E-WV-D8u" id="QMC-wX-WyV"/>
-                        <outlet property="writingView" destination="IGX-a6-akl" id="XP6-EU-xFu"/>
-                        <outlet property="writingViewHeaderLabel" destination="xAo-zl-gIE" id="jEg-ih-Tl4"/>
-                        <segue destination="xSR-7J-dvf" kind="show" identifier="pickUpWordsViewSegue" id="CTK-Sn-46B"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yJu-b4-zBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" id="OxA-nW-Xx2">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="351"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </containerView>
+                <viewControllerPlaceholder storyboardName="Learning" referencedIdentifier="UIViewController-Tr4-Vp-Rvc" id="Y5V-dA-rIu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Emc-G7-rUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479.2" y="4188.7556221889063"/>
+            <point key="canvasLocation" x="-1069" y="3106"/>
         </scene>
-        <!--To Be Learned Words View Controller-->
-        <scene sceneID="OEE-Eg-X0O">
+        <!--UIViewController-Aco-M5-ffE-->
+        <scene sceneID="l25-EG-GLe">
             <objects>
-                <viewController id="Aco-M5-ffE" customClass="ToBeLearnedWordsViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="r7y-99-3m2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTK-pG-JUq">
-                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="raJ-VV-xOd"/>
-                                </constraints>
-                                <string key="text">
-Öğrenilecek Kelimeler</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y2q-qj-1Jy">
-                                <rect key="frame" x="0.0" y="78" width="375" height="511"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="100" id="CGo-4e-SZX" customClass="ToBeLearnedWordsTableViewCell" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CGo-4e-SZX" id="dDO-Oj-ipj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-Fa-1a0">
-                                                    <rect key="frame" x="15" y="11" width="345" height="78"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Kelime İng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRZ-88-vBV">
-                                                            <rect key="frame" x="8" y="8" width="329" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="33" id="XKp-Hb-ykV"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Kelime Tr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qag-SO-INO">
-                                                            <rect key="frame" x="8" y="49" width="329" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="Qag-SO-INO" firstAttribute="leading" secondItem="TPn-Fa-1a0" secondAttribute="leading" constant="8" id="1vK-Yz-sZf"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Qag-SO-INO" secondAttribute="trailing" constant="8" id="Uz2-YW-Dbj"/>
-                                                        <constraint firstItem="Qag-SO-INO" firstAttribute="top" secondItem="nRZ-88-vBV" secondAttribute="bottom" constant="8" id="e58-y2-E5f"/>
-                                                        <constraint firstItem="nRZ-88-vBV" firstAttribute="top" secondItem="TPn-Fa-1a0" secondAttribute="top" constant="8" id="enf-q4-B5U"/>
-                                                        <constraint firstAttribute="trailing" secondItem="nRZ-88-vBV" secondAttribute="trailing" constant="8" id="pqp-BK-ohL"/>
-                                                        <constraint firstItem="nRZ-88-vBV" firstAttribute="leading" secondItem="TPn-Fa-1a0" secondAttribute="leading" constant="8" id="uOP-v1-Gav"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Qag-SO-INO" secondAttribute="bottom" constant="8" id="xWj-Hq-kcC"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="TPn-Fa-1a0" firstAttribute="bottom" secondItem="dDO-Oj-ipj" secondAttribute="bottomMargin" id="GGG-61-7LE"/>
-                                                <constraint firstItem="TPn-Fa-1a0" firstAttribute="trailing" secondItem="dDO-Oj-ipj" secondAttribute="trailingMargin" id="bV7-zu-wPb"/>
-                                                <constraint firstItem="TPn-Fa-1a0" firstAttribute="leading" secondItem="dDO-Oj-ipj" secondAttribute="leadingMargin" id="eQb-wR-tR9"/>
-                                                <constraint firstItem="TPn-Fa-1a0" firstAttribute="top" secondItem="dDO-Oj-ipj" secondAttribute="topMargin" id="gBr-eU-8ga"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="containerView" destination="TPn-Fa-1a0" id="VuY-iw-r5Z"/>
-                                            <outlet property="foreignLangWordLabel" destination="nRZ-88-vBV" id="Ni1-iR-1gd"/>
-                                            <outlet property="motherLangWordLabel" destination="Qag-SO-INO" id="pzc-jS-iHJ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Aco-M5-ffE" id="Puq-yH-5Se"/>
-                                    <outlet property="delegate" destination="Aco-M5-ffE" id="oUU-xl-kdB"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jh-tr-iac" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                <rect key="frame" x="112" y="597" width="150" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="d5u-1x-wcd"/>
-                                    <constraint firstAttribute="width" constant="150" id="eMg-S1-Rg4"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Tamam">
-                                    <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="goToLearnButtonTouchUpInside:" destination="Aco-M5-ffE" eventType="touchUpInside" id="1gh-pb-y63"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="5jh-tr-iac" firstAttribute="top" secondItem="y2q-qj-1Jy" secondAttribute="bottom" constant="8" id="6Sn-87-P0f"/>
-                            <constraint firstItem="zTK-pG-JUq" firstAttribute="trailing" secondItem="9Ho-Mm-7Ek" secondAttribute="trailing" id="HAW-nL-Z14"/>
-                            <constraint firstItem="y2q-qj-1Jy" firstAttribute="top" secondItem="zTK-pG-JUq" secondAttribute="bottom" constant="8" id="Rtt-b1-MNU"/>
-                            <constraint firstItem="9Ho-Mm-7Ek" firstAttribute="bottom" secondItem="5jh-tr-iac" secondAttribute="bottom" constant="20" id="U7b-Wt-4c4"/>
-                            <constraint firstItem="zTK-pG-JUq" firstAttribute="top" secondItem="9Ho-Mm-7Ek" secondAttribute="top" id="WTw-BN-xCR"/>
-                            <constraint firstItem="zTK-pG-JUq" firstAttribute="leading" secondItem="9Ho-Mm-7Ek" secondAttribute="leading" id="dGf-YX-RN5"/>
-                            <constraint firstItem="y2q-qj-1Jy" firstAttribute="trailing" secondItem="9Ho-Mm-7Ek" secondAttribute="trailing" id="fki-Z9-xtS"/>
-                            <constraint firstItem="y2q-qj-1Jy" firstAttribute="leading" secondItem="9Ho-Mm-7Ek" secondAttribute="leading" id="lUN-7x-0gz"/>
-                            <constraint firstItem="5jh-tr-iac" firstAttribute="centerX" secondItem="r7y-99-3m2" secondAttribute="centerX" id="lce-bA-FoG"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="9Ho-Mm-7Ek"/>
-                    </view>
-                    <connections>
-                        <segue destination="krV-ze-ur3" kind="show" identifier="learnScreenSegue" id="HAA-nQ-hyu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OBC-fu-ai4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Learning" referencedIdentifier="UIViewController-Aco-M5-ffE" id="KNV-nm-INf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbr-th-RSF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479.2" y="3409.745127436282"/>
+            <point key="canvasLocation" x="-1830" y="3106"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="9d9-4O-MH2">
+        <!--Duel-->
+        <scene sceneID="4E8-5b-Iuf">
             <objects>
-                <viewController id="Tr4-Vp-Rvc" sceneMemberID="viewController">
-                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="RCN-WZ-hHr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <connections>
-                            <segue destination="0E7-lH-dGM" kind="embed" id="Xiz-S4-941"/>
-                        </connections>
-                    </containerView>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ImZ-WN-ebT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Duel" id="Bcd-az-QPC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="33e-yA-m98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-495" y="3410"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="0Nf-uf-cQT">
-            <objects>
-                <tabBarController id="0E7-lH-dGM" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="whB-6e-ig1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="mZa-Ak-qh0" kind="relationship" relationship="viewControllers" id="LRQ-tI-zwn"/>
-                        <segue destination="CPE-YY-LFx" kind="relationship" relationship="viewControllers" id="OGW-xh-O9x"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mwc-fI-5L7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-492" y="4189"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="c40-XR-ibc">
-            <objects>
-                <viewController id="mZa-Ak-qh0" customClass="LevelViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tJD-5r-HwQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAk-RU-rnV">
-                                <rect key="frame" x="0.0" y="50" width="375" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0k3-FG-Khf"/>
-                                </constraints>
-                                <string key="text">Merhaba kullanıcı 
-İngilizcede hangi seviyedesin?</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DcH-Nu-sZg">
-                                <rect key="frame" x="16" y="154" width="343" height="359"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="359" id="OyH-vt-rgO"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wrg-jH-nUB">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wrg-jH-nUB" id="aX1-LG-sJG">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="mZa-Ak-qh0" id="oDf-Oj-Dgw"/>
-                                    <outlet property="delegate" destination="mZa-Ak-qh0" id="jlc-aF-rI4"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byc-90-8DJ" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                <rect key="frame" x="112.5" y="577" width="150" height="50"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="8ST-IS-tex"/>
-                                    <constraint firstAttribute="height" constant="50" id="iUy-KQ-myI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Devam Et">
-                                    <color key="titleColor" red="0.91764705879999997" green="0.40000000000000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextTapped:" destination="mZa-Ak-qh0" eventType="touchUpInside" id="s5Y-lS-llk"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.8980392157" green="0.30588235289999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="JAk-RU-rnV" firstAttribute="leading" secondItem="QON-wb-DAn" secondAttribute="leading" id="0Av-jU-Gdy"/>
-                            <constraint firstItem="QON-wb-DAn" firstAttribute="trailing" secondItem="JAk-RU-rnV" secondAttribute="trailing" id="0j6-YC-Dex"/>
-                            <constraint firstItem="JAk-RU-rnV" firstAttribute="top" secondItem="QON-wb-DAn" secondAttribute="top" constant="30" id="3Va-Sq-zed"/>
-                            <constraint firstItem="QON-wb-DAn" firstAttribute="bottom" secondItem="Byc-90-8DJ" secondAttribute="bottom" constant="40" id="BF6-qT-R98"/>
-                            <constraint firstItem="Byc-90-8DJ" firstAttribute="centerX" secondItem="tJD-5r-HwQ" secondAttribute="centerX" id="Ujg-y1-g8p"/>
-                            <constraint firstItem="JAk-RU-rnV" firstAttribute="centerX" secondItem="tJD-5r-HwQ" secondAttribute="centerX" id="YPP-ks-PEu"/>
-                            <constraint firstItem="DcH-Nu-sZg" firstAttribute="leading" secondItem="QON-wb-DAn" secondAttribute="leading" constant="16" id="amZ-sw-3Mu"/>
-                            <constraint firstItem="DcH-Nu-sZg" firstAttribute="centerY" secondItem="tJD-5r-HwQ" secondAttribute="centerY" id="myt-wC-dJW"/>
-                            <constraint firstItem="QON-wb-DAn" firstAttribute="trailing" secondItem="DcH-Nu-sZg" secondAttribute="trailing" constant="16" id="yls-Qb-bu6"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="QON-wb-DAn"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="umS-C9-yLy"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="contentTableView" destination="DcH-Nu-sZg" id="w0r-bZ-Fz1"/>
-                        <outlet property="submitButton" destination="Byc-90-8DJ" id="41w-BE-TEv"/>
-                        <outlet property="titleLabel" destination="JAk-RU-rnV" id="9sX-lx-cTR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p13-OF-chP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="289" y="3807"/>
+            <point key="canvasLocation" x="2112" y="3073"/>
         </scene>
     </scenes>
     <resources>
@@ -1322,9 +796,195 @@ Kazanılan Düello</string>
         <image name="crown" width="32" height="25"/>
         <image name="defaultProfilePhoto" width="100" height="100"/>
         <image name="ic_duel" width="21" height="21"/>
-        <image name="light-bulb" width="29" height="30"/>
         <image name="man-user" width="20" height="26"/>
         <image name="swordBetaIcon" width="163" height="166"/>
+        <image name="tabBarItem:qRU-i6-phs:image" width="29" height="30">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
+ExQZHh8jJCsuMTtDR0tPUlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdz
+Vk5TUmVwc1dOU0NvbG9ygAKAERIgwAAAgAOAC1h7MjksIDMwfdIVChYYWk5TLm9iamVjdHOhF4AEgArS
+FQoaHaIbHIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPERZOTU0AKgAADaAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDw8PODg4OAl
+JSUlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABeXl5e/////0REREQA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF1dXV3/////Q0NDQwAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX19fX/////9EREREAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACb
+m5ubpqampg0NDQ0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApKSkpmpqamhoaGhoAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAWFhYWtbW1tYGBgYEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI2NjY3/
+////r6+vrxEREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAGhoaGsXFxcX/////cXFxcQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwMDA5CQkJD/
+////paWlpQICAgIAAAAAAAAAAAAAAAAAAAAABwcHBwoKCgoHBwcHAAAAAAAAAAAAAAAAAAAAAAgICAi/
+v7+//////3h4eHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAYGBgYF9
+fX19AQEBAQAAAAADAwMDUFBQUJ2dnZ3R0dHR4eHh4c7Ozs6WlpaWRUVFRQEBAQEAAAAACAgICJGRkZFx
+cXFxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAKCgoKL29vb3///////////7+/v74+Pj4///////////+/v7+qqqqqhgYGBgAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUlJSXZ
+2dnZ/////+Li4uJ6enp6NTU1NSYmJibV1dXV////////////////xMTExBUVFRUAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBQUFt7e3t//////A
+wMDAHBwcHAAAAAAmJiYmWlpaWuPj4+P/////////////////////mpqamgEBAQEAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAElJSUn+/v7+5ubm5iAgICAS
+EhISp6enp/n5+fn////////////////////////////////39/f3MTExMQAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmZmf////+JiYmJAAAAAKenp6f/
+//////////////////////////////////////////////97e3t7AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAG5ubm6YmJiYlpaWlpiYmJhUVFRUAAAAAAAAAADDw8PD/////z09PT0WFhYW8/Pz8///////
+/////////////////////////////////////////6WlpaUAAAAAAgICAmNjY2OZmZmZl5eXl5aWlpZV
+VVVVyMjIyO3t7e3s7Ozs7e3t7ZeXl5cAAAAAAAAAAM7Ozs7/////WVlZWVVVVVX8/Pz8////////////
+////////////////////////////////////sbGxsQAAAAAEBAQEra2tre3t7e3s7Ozs6+vr656enp4J
+CQkJHR0dHRwcHBwdHR0dCAgICAAAAAAAAAAAsbGxsf/////z8/Pz8fHx8f//////////////////////
+//////////////////////////////+SkpKSAAAAAAAAAAAMDAwMHR0dHRwcHBwcHBwcBQUFBQAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvb29v////////////////////////////////////////////
+/////////////////////////1NTU1MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAB8fHx/k5OTk////////////////////////////////////////////
+///////////////T09PTEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAGFhYWH9/f39////////////////////////////////////////////
+////9/f390dHR0cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAIuLi4v///////////////////////////////////////////z8/Pxw
+cHBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAKCgoKCkpKSkAAAAACgoKCsvLy8v/////////////////////////////////////sLCwsAAAAAAB
+AQEBMjIyMh4eHh4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADo6Ojro
+6OjowMDAwAUFBQUAAAAAX19fX/7+/v7///////////////////////////v7+/tEREREAAAAAA8PDw/Z
+2dnZ2dnZ2SgoKCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCQkJC6+vr6+3t7e1G
+RkZGAAAAAAAAAAAhISEh9vb29v//////////////////////////5+fn5wwMDAwAAAAAAQEBAVpaWlr6
++vr639/f3y8vLy8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDAwMDt7e3tQkJCQgAAAAAA
+AAAAAAAAAAEBAQFycnJywMDAwMbGxsbFxcXFxsbGxry8vLxeXl5eAAAAAAAAAAAAAAAAAAAAAFdXV1f5
++fn5oKCgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDAwMC4uLi4AAAAAAAAAAAAAAAAA
+AAAAAAAAAA0NDQ0iIiIiIyMjIyMjIyMjIyMjISEhIQkJCQkAAAAAAAAAAAAAAAAAAAAAAAAAADY2NjYn
+JycnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF
+BQUFy8vLy/n5+fn5+fn5+fn5+fn5+fn5+fn5r6+vrwICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcHBwfo
+6Ojo///////////////////////////KysrKAwMDAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAWpqamrx
+8fHx////////////////7Ozs7FRUVFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIj/
+//////////////9vb29vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBQUFGlpaWl0
+dHR0YWFhYQwMDAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+EAEAAAMAAAABAB0AAAEBAAMAAAABAB4AAAECAAMAAAAEAAAOZgEDAAMAAAABAAEAAAEGAAMAAAABAAIA
+AAEKAAMAAAABAAEAAAERAAQAAAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABAB4A
+AAEXAAQAAAABAAANmAEcAAMAAAABAAEAAAEoAAMAAAABAAIAAAFSAAMAAAABAAEAAAFTAAMAAAAEAAAO
+bodzAAcAAAfYAAAOdgAAAAAACAAIAAgACAABAAEAAQABAAAH2GFwcGwCIAAAbW50clJHQiBYWVogB9kA
+AgAZAAsAGgALYWNzcEFQUEwAAAAAYXBwbAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZGVzYwAAAQgAAABvZHNj
+bQAAAXgAAAWcY3BydAAABxQAAAA4d3RwdAAAB0wAAAAUclhZWgAAB2AAAAAUZ1hZWgAAB3QAAAAUYlhZ
+WgAAB4gAAAAUclRSQwAAB5wAAAAOY2hhZAAAB6wAAAAsYlRSQwAAB5wAAAAOZ1RSQwAAB5wAAAAOZGVz
+YwAAAAAAAAAUR2VuZXJpYyBSR0IgUHJvZmlsZQAAAAAAAAAAAAAAFEdlbmVyaWMgUkdCIFByb2ZpbGUA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1sdWMAAAAAAAAA
+HwAAAAxza1NLAAAAKAAAAYRkYURLAAAALgAAAaxjYUVTAAAAJAAAAdp2aVZOAAAAJAAAAf5wdEJSAAAA
+JgAAAiJ1a1VBAAAAKgAAAkhmckZVAAAAKAAAAnJodUhVAAAAKAAAApp6aFRXAAAAFgAAAsJuYk5PAAAA
+JgAAAthjc0NaAAAAIgAAAv5oZUlMAAAAHgAAAyBpdElUAAAAKAAAAz5yb1JPAAAAJAAAA2ZkZURFAAAA
+LAAAA4prb0tSAAAAFgAAA7ZzdlNFAAAAJgAAAth6aENOAAAAFgAAA8xqYUpQAAAAGgAAA+JlbEdSAAAA
+IgAAA/xwdFBPAAAAJgAABB5ubE5MAAAAKAAABERlc0VTAAAAJgAABB50aFRIAAAAJAAABGx0clRSAAAA
+IgAABJBmaUZJAAAAKAAABLJockhSAAAAKAAABNpwbFBMAAAALAAABQJydVJVAAAAIgAABS5hckVHAAAA
+JgAABVBlblVTAAAAJgAABXYAVgFhAGUAbwBiAGUAYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYAaQBsAEcA
+ZQBuAGUAcgBlAGwAIABSAEcAQgAtAGIAZQBzAGsAcgBpAHYAZQBsAHMAZQBQAGUAcgBmAGkAbAAgAFIA
+RwBCACAAZwBlAG4A6AByAGkAYwBDHqUAdQAgAGgA7ABuAGgAIABSAEcAQgAgAEMAaAB1AG4AZwBQAGUA
+cgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkAYwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4E
+RAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAAZwDpAG4A6QByAGkAcQB1AGUAIABSAFYAQgDBAGwA
+dABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8AZgBpAGyQGnUoACAAUgBHAEIAIIJyX2ljz4/wAEcA
+ZQBuAGUAcgBpAHMAawAgAFIARwBCAC0AcAByAG8AZgBpAGwATwBiAGUAYwBuAP0AIABSAEcAQgAgAHAA
+cgBvAGYAaQBsBeQF6AXVBeQF2QXcACAAUgBHAEIAIAXbBdwF3AXZAFAAcgBvAGYAaQBsAG8AIABSAEcA
+QgAgAGcAZQBuAGUAcgBpAGMAbwBQAHIAbwBmAGkAbAAgAFIARwBCACAAZwBlAG4AZQByAGkAYwBBAGwA
+bABnAGUAbQBlAGkAbgBlAHMAIABSAEcAQgAtAFAAcgBvAGYAaQBsx3y8GAAgAFIARwBCACDVBLhc0wzH
+fGZukBoAIABSAEcAQgAgY8+P8GWHTvZOAIIsACAAUgBHAEIAIDDXMO0w1TChMKQw6wOTA7UDvQO5A7oD
+zAAgA8ADwQO/A8YDrwO7ACAAUgBHAEIAUABlAHIAZgBpAGwAIABSAEcAQgAgAGcAZQBuAOkAcgBpAGMA
+bwBBAGwAZwBlAG0AZQBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBlAGwOQg4bDiMORA4fDiUOTAAgAFIA
+RwBCACAOFw4xDkgOJw5EDhsARwBlAG4AZQBsACAAUgBHAEIAIABQAHIAbwBmAGkAbABpAFkAbABlAGkA
+bgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwAaQBHAGUAbgBlAHIAaQENAGsAaQAgAFIARwBCACAA
+cAByAG8AZgBpAGwAVQBuAGkAdwBlAHIAcwBhAGwAbgB5ACAAcAByAG8AZgBpAGwAIABSAEcAQgQeBDEE
+SQQ4BDkAIAQ/BEAEPgREBDgEOwRMACAAUgBHAEIGRQZEBkEAIAYqBjkGMQZKBkEAIABSAEcAQgAgBicG
+RAY5BicGRQBHAGUAbgBlAHIAaQBjACAAUgBHAEIAIABQAHIAbwBmAGkAbABldGV4dAAAAABDb3B5cmln
+aHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLgBYWVogAAAAAAAA81IAAQAAAAEW
+z1hZWiAAAAAAAAB0TQAAPe4AAAPQWFlaIAAAAAAAAFp1AACscwAAFzRYWVogAAAAAAAAKBoAABWfAAC4
+NmN1cnYAAAAAAAAAAQHNAABzZjMyAAAAAAABDEIAAAXe///zJgAAB5IAAP2R///7ov///aMAAAPcAADA
+bNIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU0JpdG1hcEltYWdlUmVwoycpKlpOU0ltYWdlUmVw
+WE5TT2JqZWN00iUmLC1XTlNBcnJheaIsKtIlJi8wXk5TTXV0YWJsZUFycmF5oy8sKtUyMzQ1CjY3ODk6
+V05TV2hpdGVcTlNDb21wb25lbnRzXE5TQ29sb3JTcGFjZV8QEk5TQ3VzdG9tQ29sb3JTcGFjZUQwIDAA
+QzAgMBADgAyAENQ8PT4KP0BBQlROU0lEVU5TSUNDV05TTW9kZWwQCYANEACAD9JECkVGV05TLmRhdGFP
+ERFoAAARaGFwcGwCAAAAbW50ckdSQVlYWVogB9wACAAXAA8ALgAPYWNzcEFQUEwAAAAAbm9uZQAAAAAA
+AAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAFZGVzYwAAAMAAAAB5ZHNjbQAAATwAAAfoY3BydAAACSQAAAAjd3RwdAAACUgA
+AAAUa1RSQwAACVwAAAgMZGVzYwAAAAAAAAAfR2VuZXJpYyBHcmF5IEdhbW1hIDIuMiBQcm9maWxlAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAG1sdWMAAAAAAAAAHwAAAAxza1NLAAAALgAAAYRkYURLAAAAOAAAAbJj
+YUVTAAAAOAAAAep2aVZOAAAAQAAAAiJwdEJSAAAASgAAAmJ1a1VBAAAALAAAAqxmckZVAAAAPgAAAtho
+dUhVAAAANAAAAxZ6aFRXAAAAHgAAA0puYk5PAAAAOgAAA2hjc0NaAAAAKAAAA6JoZUlMAAAAJAAAA8pp
+dElUAAAATgAAA+5yb1JPAAAAKgAABDxkZURFAAAATgAABGZrb0tSAAAAIgAABLRzdlNFAAAAOAAAAbJ6
+aENOAAAAHgAABNZqYUpQAAAAJgAABPRlbEdSAAAAKgAABRpwdFBPAAAAUgAABURubE5MAAAAQAAABZZl
+c0VTAAAATAAABdZ0aFRIAAAAMgAABiJ0clRSAAAAJAAABlRmaUZJAAAARgAABnhockhSAAAAPgAABr5w
+bFBMAAAASgAABvxydVJVAAAAOgAAB0ZlblVTAAAAPAAAB4BhckVHAAAALAAAB7wAVgFhAGUAbwBiAGUA
+YwBuAOEAIABzAGkAdgDhACAAZwBhAG0AYQAgADIALAAyAEcAZQBuAGUAcgBpAHMAawAgAGcAcgDlACAA
+MgAsADIAIABnAGEAbQBtAGEAcAByAG8AZgBpAGwARwBhAG0AbQBhACAAZABlACAAZwByAGkAcwBvAHMA
+IABnAGUAbgDoAHIAaQBjAGEAIAAyAC4AMgBDHqUAdQAgAGgA7ABuAGgAIABNAOAAdQAgAHgA4QBtACAA
+QwBoAHUAbgBnACAARwBhAG0AbQBhACAAMgAuADIAUABlAHIAZgBpAGwAIABHAGUAbgDpAHIAaQBjAG8A
+IABkAGEAIABHAGEAbQBhACAAZABlACAAQwBpAG4AegBhAHMAIAAyACwAMgQXBDAEMwQwBDsETAQ9BDAA
+IABHAHIAYQB5AC0EMwQwBDwEMAAgADIALgAyAFAAcgBvAGYAaQBsACAAZwDpAG4A6QByAGkAcQB1AGUA
+IABnAHIAaQBzACAAZwBhAG0AbQBhACAAMgAsADIAwQBsAHQAYQBsAOEAbgBvAHMAIABzAHoA/AByAGsA
+ZQAgAGcAYQBtAG0AYQAgADIALgAykBp1KHBwlo5RSV6mACAAMgAuADIAIIJyX2ljz4/wAEcAZQBuAGUA
+cgBpAHMAawAgAGcAcgDlACAAZwBhAG0AbQBhACAAMgAsADIALQBwAHIAbwBmAGkAbABPAGIAZQBjAG4A
+4QAgAWEAZQBkAOEAIABnAGEAbQBhACAAMgAuADIF0gXQBd4F1AAgBdAF5AXVBegAIAXbBdwF3AXZACAA
+MgAuADIAUAByAG8AZgBpAGwAbwAgAGcAcgBpAGcAaQBvACAAZwBlAG4AZQByAGkAYwBvACAAZABlAGwA
+bABhACAAZwBhAG0AbQBhACAAMgAsADIARwBhAG0AYQAgAGcAcgBpACAAZwBlAG4AZQByAGkAYwEDACAA
+MgAsADIAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAARwByAGEAdQBzAHQAdQBmAGUAbgAtAFAAcgBvAGYA
+aQBsACAARwBhAG0AbQBhACAAMgAsADLHfLwYACDWjMDJACCsELnIACAAMgAuADIAINUEuFzTDMd8Zm6Q
+GnBwXqZ8+2VwACAAMgAuADIAIGPPj/Blh072TgCCLDCwMOwwpDCsMPMw3gAgADIALgAyACAw1zDtMNUw
+oTCkMOsDkwO1A70DuQO6A8wAIAOTA7oDwQO5ACADkwOsA7wDvAOxACAAMgAuADIAUABlAHIAZgBpAGwA
+IABnAGUAbgDpAHIAaQBjAG8AIABkAGUAIABjAGkAbgB6AGUAbgB0AG8AcwAgAGQAYQAgAEcAYQBtAG0A
+YQAgADIALAAyAEEAbABnAGUAbQBlAGUAbgAgAGcAcgBpAGoAcwAgAGcAYQBtAG0AYQAgADIALAAyAC0A
+cAByAG8AZgBpAGUAbABQAGUAcgBmAGkAbAAgAGcAZQBuAOkAcgBpAGMAbwAgAGQAZQAgAGcAYQBtAG0A
+YQAgAGQAZQAgAGcAcgBpAHMAZQBzACAAMgAsADIOIw4xDgcOKg41DkEOAQ4hDiEOMg5ADgEOIw4iDkwO
+Fw4xDkgOJw5EDhsAIAAyAC4AMgBHAGUAbgBlAGwAIABHAHIAaQAgAEcAYQBtAGEAIAAyACwAMgBZAGwA
+ZQBpAG4AZQBuACAAaABhAHIAbQBhAGEAbgAgAGcAYQBtAG0AYQAgADIALAAyACAALQBwAHIAbwBmAGkA
+aQBsAGkARwBlAG4AZQByAGkBDQBrAGkAIABHAHIAYQB5ACAARwBhAG0AbQBhACAAMgAuADIAIABwAHIA
+bwBmAGkAbABVAG4AaQB3AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAHMAegBhAHIAbwFbAGMA
+aQAgAGcAYQBtAG0AYQAgADIALAAyBB4EMQRJBDAETwAgBEEENQRABDAETwAgBDMEMAQ8BDwEMAAgADIA
+LAAyAC0EPwRABD4ERAQ4BDsETABHAGUAbgBlAHIAaQBjACAARwByAGEAeQAgAEcAYQBtAG0AYQAgADIA
+LgAyACAAUAByAG8AZgBpAGwAZQY6BicGRQYnACAAMgAuADIAIAZEBkgGRgAgBjEGRQYnBi8GSgAgBjkG
+JwZFdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUgSW5jLiwgMjAxMgAAWFlaIAAAAAAAAPNRAAEAAAABFsxj
+dXJ2AAAAAAAABAAAAAAFAAoADwAUABkAHgAjACgALQAyADcAOwBAAEUASgBPAFQAWQBeAGMAaABtAHIA
+dwB8AIEAhgCLAJAAlQCaAJ8ApACpAK4AsgC3ALwAwQDGAMsA0ADVANsA4ADlAOsA8AD2APsBAQEHAQ0B
+EwEZAR8BJQErATIBOAE+AUUBTAFSAVkBYAFnAW4BdQF8AYMBiwGSAZoBoQGpAbEBuQHBAckB0QHZAeEB
+6QHyAfoCAwIMAhQCHQImAi8COAJBAksCVAJdAmcCcQJ6AoQCjgKYAqICrAK2AsECywLVAuAC6wL1AwAD
+CwMWAyEDLQM4A0MDTwNaA2YDcgN+A4oDlgOiA64DugPHA9MD4APsA/kEBgQTBCAELQQ7BEgEVQRjBHEE
+fgSMBJoEqAS2BMQE0wThBPAE/gUNBRwFKwU6BUkFWAVnBXcFhgWWBaYFtQXFBdUF5QX2BgYGFgYnBjcG
+SAZZBmoGewaMBp0GrwbABtEG4wb1BwcHGQcrBz0HTwdhB3QHhgeZB6wHvwfSB+UH+AgLCB8IMghGCFoI
+bgiCCJYIqgi+CNII5wj7CRAJJQk6CU8JZAl5CY8JpAm6Cc8J5Qn7ChEKJwo9ClQKagqBCpgKrgrFCtwK
+8wsLCyILOQtRC2kLgAuYC7ALyAvhC/kMEgwqDEMMXAx1DI4MpwzADNkM8w0NDSYNQA1aDXQNjg2pDcMN
+3g34DhMOLg5JDmQOfw6bDrYO0g7uDwkPJQ9BD14Peg+WD7MPzw/sEAkQJhBDEGEQfhCbELkQ1xD1ERMR
+MRFPEW0RjBGqEckR6BIHEiYSRRJkEoQSoxLDEuMTAxMjE0MTYxODE6QTxRPlFAYUJxRJFGoUixStFM4U
+8BUSFTQVVhV4FZsVvRXgFgMWJhZJFmwWjxayFtYW+hcdF0EXZReJF64X0hf3GBsYQBhlGIoYrxjVGPoZ
+IBlFGWsZkRm3Gd0aBBoqGlEadxqeGsUa7BsUGzsbYxuKG7Ib2hwCHCocUhx7HKMczBz1HR4dRx1wHZkd
+wx3sHhYeQB5qHpQevh7pHxMfPh9pH5Qfvx/qIBUgQSBsIJggxCDwIRwhSCF1IaEhziH7IiciVSKCIq8i
+3SMKIzgjZiOUI8Ij8CQfJE0kfCSrJNolCSU4JWgllyXHJfcmJyZXJocmtyboJxgnSSd6J6sn3CgNKD8o
+cSiiKNQpBik4KWspnSnQKgIqNSpoKpsqzysCKzYraSudK9EsBSw5LG4soizXLQwtQS12Last4S4WLkwu
+gi63Lu4vJC9aL5Evxy/+MDUwbDCkMNsxEjFKMYIxujHyMioyYzKbMtQzDTNGM38zuDPxNCs0ZTSeNNg1
+EzVNNYc1wjX9Njc2cjauNuk3JDdgN5w31zgUOFA4jDjIOQU5Qjl/Obw5+To2OnQ6sjrvOy07azuqO+g8
+JzxlPKQ84z0iPWE9oT3gPiA+YD6gPuA/IT9hP6I/4kAjQGRApkDnQSlBakGsQe5CMEJyQrVC90M6Q31D
+wEQDREdEikTORRJFVUWaRd5GIkZnRqtG8Ec1R3tHwEgFSEtIkUjXSR1JY0mpSfBKN0p9SsRLDEtTS5pL
+4kwqTHJMuk0CTUpNk03cTiVObk63TwBPSU+TT91QJ1BxULtRBlFQUZtR5lIxUnxSx1MTU19TqlP2VEJU
+j1TbVShVdVXCVg9WXFapVvdXRFeSV+BYL1h9WMtZGllpWbhaB1pWWqZa9VtFW5Vb5Vw1XIZc1l0nXXhd
+yV4aXmxevV8PX2Ffs2AFYFdgqmD8YU9homH1YklinGLwY0Njl2PrZEBklGTpZT1lkmXnZj1mkmboZz1n
+k2fpaD9olmjsaUNpmmnxakhqn2r3a09rp2v/bFdsr20IbWBtuW4SbmtuxG8eb3hv0XArcIZw4HE6cZVx
+8HJLcqZzAXNdc7h0FHRwdMx1KHWFdeF2Pnabdvh3VnezeBF4bnjMeSp5iXnnekZ6pXsEe2N7wnwhfIF8
+4X1BfaF+AX5ifsJ/I3+Ef+WAR4CogQqBa4HNgjCCkoL0g1eDuoQdhICE44VHhauGDoZyhteHO4efiASI
+aYjOiTOJmYn+imSKyoswi5aL/IxjjMqNMY2Yjf+OZo7OjzaPnpAGkG6Q1pE/kaiSEZJ6kuOTTZO2lCCU
+ipT0lV+VyZY0lp+XCpd1l+CYTJi4mSSZkJn8mmia1ZtCm6+cHJyJnPedZJ3SnkCerp8dn4uf+qBpoNih
+R6G2oiailqMGo3aj5qRWpMelOKWpphqmi6b9p26n4KhSqMSpN6mpqhyqj6sCq3Wr6axcrNCtRK24ri2u
+oa8Wr4uwALB1sOqxYLHWskuywrM4s660JbSctRO1irYBtnm28Ldot+C4WbjRuUq5wro7urW7LrunvCG8
+m70VvY++Cr6Evv+/er/1wHDA7MFnwePCX8Lbw1jD1MRRxM7FS8XIxkbGw8dBx7/IPci8yTrJuco4yrfL
+Nsu2zDXMtc01zbXONs62zzfPuNA50LrRPNG+0j/SwdNE08bUSdTL1U7V0dZV1tjXXNfg2GTY6Nls2fHa
+dtr724DcBdyK3RDdlt4c3qLfKd+v4DbgveFE4cziU+Lb42Pj6+Rz5PzlhOYN5pbnH+ep6DLovOlG6dDq
+W+rl63Dr++yG7RHtnO4o7rTvQO/M8Fjw5fFy8f/yjPMZ86f0NPTC9VD13vZt9vv3ivgZ+Kj5OPnH+lf6
+5/t3/Af8mP0p/br+S/7c/23//4AO0iUmSEldTlNNdXRhYmxlRGF0YaNISipWTlNEYXRh0iUmTE1cTlND
+b2xvclNwYWNlok4qXE5TQ29sb3JTcGFjZdIlJlBRV05TQ29sb3KiUCrSJSZTVFdOU0ltYWdlolMqXxAP
+TlNLZXllZEFyY2hpdmVy0VdYVHJvb3SAAQAIABEAGgAjAC0AMgA3AEwAUgBdAGQAawB4AH8AhwCJAIsA
+kACSAJQAnQCiAK0ArwCxALMAuAC7AL0AvwDBAMMAyADfAOEA4xc1FzoXRRdOF2EXZRdwF3kXfheGF4kX
+jhedF6EXrBe0F8EXzhfjF+gX7BfuF/AX8hf7GAAYBhgOGBAYEhgUGBYYGxgjKY8pkSmWKaQpqCmvKbQp
+wSnEKdEp1ineKeEp5inuKfEqAyoGKgsAAAAAAAACAQAAAAAAAABZAAAAAAAAAAAAAAAAAAAqDQ
+</mutableData>
+        </image>
         <image name="workingOn" width="297" height="186"/>
     </resources>
 </document>

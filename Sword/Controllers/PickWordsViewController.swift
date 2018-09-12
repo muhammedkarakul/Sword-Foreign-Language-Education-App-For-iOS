@@ -35,28 +35,14 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     private var knownWords = [Word]()
     public var wordsIdArray = [String?]()
     private var numberOfCards: Int = 0
-    private var currentCardIndex = 0
-    private var isLevelAndTopicsNotSelected = false
-    private var isToBeLearnedWordsSelected = false
+    private var currentCardIndex: Int = 0
+    private var isLevelAndTopicsNotSelected: Bool = false
+    private var isToBeLearnedWordsSelected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        learnContainerView.alpha = 0.0
-        selectWordContainerView.alpha = 0.0
-        letsLearnContainerView.alpha = 0.0
-        
-        learnContainerView.isHidden = true
-        selectWordContainerView.isHidden = true
-        letsLearnContainerView.isHidden = true
-        
-        words = [Word]()
-        topics = [Topic]()
-        wordsIdArray = [String]()
-        currentCardIndex = 0
-        numberOfCards = 0
-        toBeLearnedWords = [Word]()
-        knownWords = [Word]()
+        setupView()
         
         getLevelsDataFromFirebaseAndWriteToRealm()
         
@@ -72,6 +58,43 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         isLevelAndTopicSelected()
         
         updateView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        //resetProperties()
+    }
+    
+    private func resetProperties() {
+        kolodaView.resetCurrentCardIndex()
+        words = [Word]()
+        topics = [Topic]()
+        wordsIdArray = [String]()
+        currentCardIndex = 0
+        numberOfCards = 0
+        toBeLearnedWords = [Word]()
+        knownWords = [Word]()
+        isLevelAndTopicsNotSelected = false
+        isToBeLearnedWordsSelected = false
+    }
+    
+    private func setupView() {
+        learnContainerView.alpha = 0.0
+        selectWordContainerView.alpha = 0.0
+        letsLearnContainerView.alpha = 0.0
+        
+        learnContainerView.isHidden = true
+        selectWordContainerView.isHidden = true
+        letsLearnContainerView.isHidden = true
+    }
+    
+    private func updateView() {
+        let numberOfCardsToBeSelected = 10
+        numberOfCards = self.words.count
+        wordCounterLabel.text = "\(currentCardIndex)/\(numberOfCardsToBeSelected)"
+        wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCardsToBeSelected)
+        kolodaView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,7 +147,9 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     @IBAction func changeLevelAndTopicButtonTouchUpInside(_ sender: UIButton) {
-        isToBeLearnedWordsSelected = false
+        
+        resetProperties()
+        
         performSegue(withIdentifier: "levelAndTopicView", sender: self)
     }
     
@@ -403,7 +428,17 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ToBeLearnedWordsViewController {
-            vc.toBeLearnedWords = toBeLearnedWords
+            
+            
+            var firstFiveWords = [Word]()
+            
+            for (index, toBeLearnedWord) in toBeLearnedWords.enumerated() {
+                if index < 5 {
+                    firstFiveWords.append(toBeLearnedWord)
+                }
+            }
+            
+            vc.toBeLearnedWords = firstFiveWords
         }
     }
     
@@ -482,6 +517,7 @@ extension PickWordsViewController: KolodaViewDelegate {
                     knownWords.append(word)
                 }
             }
+            
             letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
             selectedWordsTableView.reloadData()
             
@@ -547,14 +583,6 @@ extension PickWordsViewController: KolodaViewDelegate {
         
         
         updateView()
-    }
-    
-    func updateView() {
-        let numberOfCardsToBeSelected = 10
-        numberOfCards = self.words.count
-        wordCounterLabel.text = "\(currentCardIndex)/\(numberOfCardsToBeSelected)"
-        wordProgressView.progress = (Float(currentCardIndex))/Float(numberOfCardsToBeSelected)
-        kolodaView.reloadData()
     }
     
 }

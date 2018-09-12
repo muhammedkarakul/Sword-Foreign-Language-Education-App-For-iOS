@@ -8,12 +8,15 @@
 
 import UIKit
 import FirebaseAuth
+import Charts
 
 class ProfileViewController: CustomMainViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Properties
     @IBOutlet var pickProfilePicturePopUpView: UIView!
     @IBOutlet var profilePicturesCollectionView: UICollectionView!
+    @IBOutlet var chartView: PieChartView!
+    
     let profilePictures: [String] = ["defaultProfilePhoto-0", "defaultProfilePhoto-1",  "defaultProfilePhoto-2", "defaultProfilePhoto-3", "defaultProfilePhoto-4", "defaultProfilePhoto-5", "defaultProfilePhoto-6", "defaultProfilePhoto-7", "defaultProfilePhoto-8", "defaultProfilePhoto-9", "defaultProfilePhoto-10", "defaultProfilePhoto-11", "defaultProfilePhoto-12", "defaultProfilePhoto-13", "defaultProfilePhoto-14", "defaultProfilePhoto-15", "defaultProfilePhoto-16", "defaultProfilePhoto-19", "defaultProfilePhoto-20", "defaultProfilePhoto-21", "defaultProfilePhoto-22", "defaultProfilePhoto-23", "defaultProfilePhoto-24", "defaultProfilePhoto-25", "defaultProfilePhoto-26", "defaultProfilePhoto-27", "defaultProfilePhoto-28", "defaultProfilePhoto-29", "defaultProfilePhoto-30", "defaultProfilePhoto-31", "defaultProfilePhoto-32", "defaultProfilePhoto-33", "defaultProfilePhoto-34", ]
     
 
@@ -26,6 +29,8 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         // Profile picture collection view delegate and datasource
         profilePicturesCollectionView.delegate = self
         profilePicturesCollectionView.dataSource = self
+        
+        // Setup pie chart
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,18 +42,18 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     
     @IBAction func cancelProfilePictureSelection(_ sender: UIButton) {
         pickProfilePicturePopUpView.removeFromSuperview()
+        hideBlurView()
     }
     
     @IBAction func pickProfilePicture(_ sender: UIButton) {
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurEffectView)
+        showBlurView { (_) in
+            self.view.addSubview(self.pickProfilePicturePopUpView)
+            
+            self.pickProfilePicturePopUpView.center = self.view.center
+        }
         
-        self.view.addSubview(pickProfilePicturePopUpView)
-        pickProfilePicturePopUpView.center = self.view.center
+        
     }
     
     @IBAction func logOutButtonTouchUpInside(_ sender: UIButton) {

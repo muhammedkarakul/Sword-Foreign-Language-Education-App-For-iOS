@@ -59,6 +59,10 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
     @IBAction func signInTouchUpInside () {
         // Sign in operations.
         
+        // Show blur effect.
+        showBlurView(withBlurEffectStyle: .dark)
+        
+        // Start activity indicator and disable user interaction with view.
         startActivityIndicator()
         
         if let email = emailTextField.text, let password = passwordTextField.text {
@@ -66,12 +70,19 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
                 if let u = user {
                     
                     self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(u.user.uid)
+                    
                     print("SIGN IN: SUCCESS")
                     
                 } else {
                     print("SIGN IN: FAIL")
                     // Error: Check error and show message
                     ProgressHUD.showError(error?.localizedDescription)
+                    
+                    // Stop activity indicator and enable user interaction with view.
+                    self.stopActivityIndicator()
+                    
+                    // Hide blur effect.
+                    self.hideBlurView()
                 }
             }
         }
@@ -91,6 +102,13 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
             let userRef = db.collection("User").document(id)
             
             userRef.getDocument { (user, error) in
+                
+                // Stop activity indicator and enable user interaction with view.
+                self.stopActivityIndicator()
+                
+                // Hide blur effect.
+                self.hideBlurView()
+                
                 if let u = user, user!.exists {
                     let dataDescription = u.data().map(String.init(describing: )) ?? "nil"
                     print("Document data: \(dataDescription)")
@@ -144,8 +162,6 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
         realmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
         
         realmUser.writeToRealm()
-        
-        self.stopActivityIndicator()
         
         print("USER WROTE TO REALM SUCCESSFULLY")
     }
