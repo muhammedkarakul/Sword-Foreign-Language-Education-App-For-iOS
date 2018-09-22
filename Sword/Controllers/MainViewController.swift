@@ -86,7 +86,7 @@ class MainViewController: CustomViewController {
     
     @IBAction func loginWithUserName(_ sender: UIButtonWithRoundedCorners) {
         // Status bar color turns default(black)
-        UIApplication.shared.statusBarStyle = .default
+        //UIApplication.shared.statusBarStyle = .default
         
         // Go to login with user name view
         performSegue(withIdentifier: "segueLoginWithUserName", sender: self)
@@ -94,7 +94,7 @@ class MainViewController: CustomViewController {
     
     @IBAction func loginWithFaceBook(_ sender: UIButtonWithRoundedCorners) {
         // Status bar color turns default(black)
-        UIApplication.shared.statusBarStyle = .default
+        //UIApplication.shared.statusBarStyle = .default
         
         // Go to login with face book view
         performSegue(withIdentifier: "segueLoginWithFaceBook", sender: self)
@@ -102,7 +102,7 @@ class MainViewController: CustomViewController {
     
     @IBAction func signUp(_ sender: UIButton) {
         // Status bar color turns default(black)
-        UIApplication.shared.statusBarStyle = .default
+        //UIApplication.shared.statusBarStyle = .default
         
         // Go to sign up view
         performSegue(withIdentifier: "segueSignUp", sender: self)

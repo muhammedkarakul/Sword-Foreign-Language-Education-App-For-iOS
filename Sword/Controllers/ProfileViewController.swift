@@ -13,11 +13,51 @@ import Charts
 class ProfileViewController: CustomMainViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Properties
+    
+    @IBOutlet var userImageView: UIImageView!
     @IBOutlet var pickProfilePicturePopUpView: UIView!
     @IBOutlet var profilePicturesCollectionView: UICollectionView!
     @IBOutlet var chartView: PieChartView!
     
-    let profilePictures: [String] = ["defaultProfilePhoto-0", "defaultProfilePhoto-1",  "defaultProfilePhoto-2", "defaultProfilePhoto-3", "defaultProfilePhoto-4", "defaultProfilePhoto-5", "defaultProfilePhoto-6", "defaultProfilePhoto-7", "defaultProfilePhoto-8", "defaultProfilePhoto-9", "defaultProfilePhoto-10", "defaultProfilePhoto-11", "defaultProfilePhoto-12", "defaultProfilePhoto-13", "defaultProfilePhoto-14", "defaultProfilePhoto-15", "defaultProfilePhoto-16", "defaultProfilePhoto-19", "defaultProfilePhoto-20", "defaultProfilePhoto-21", "defaultProfilePhoto-22", "defaultProfilePhoto-23", "defaultProfilePhoto-24", "defaultProfilePhoto-25", "defaultProfilePhoto-26", "defaultProfilePhoto-27", "defaultProfilePhoto-28", "defaultProfilePhoto-29", "defaultProfilePhoto-30", "defaultProfilePhoto-31", "defaultProfilePhoto-32", "defaultProfilePhoto-33", "defaultProfilePhoto-34", ]
+    private let userDefaults = UserDefaults.standard
+    
+    private var selectedIndexPathRow: Int?
+    
+    private let profilePictures: [String] =
+        [
+        "defaultProfilePhoto-1",
+        "defaultProfilePhoto-2",
+        "defaultProfilePhoto-3",
+        "defaultProfilePhoto-4",
+        "defaultProfilePhoto-5",
+        "defaultProfilePhoto-6",
+        "defaultProfilePhoto-7",
+        "defaultProfilePhoto-8",
+        "defaultProfilePhoto-9",
+        "defaultProfilePhoto-10",
+        "defaultProfilePhoto-11",
+        "defaultProfilePhoto-12",
+        "defaultProfilePhoto-13",
+        "defaultProfilePhoto-14",
+        "defaultProfilePhoto-15",
+        "defaultProfilePhoto-16",
+        "defaultProfilePhoto-17",
+        "defaultProfilePhoto-20",
+        "defaultProfilePhoto-21",
+        "defaultProfilePhoto-22",
+        "defaultProfilePhoto-23",
+        "defaultProfilePhoto-24",
+        "defaultProfilePhoto-25",
+        "defaultProfilePhoto-26",
+        "defaultProfilePhoto-27",
+        "defaultProfilePhoto-28",
+        "defaultProfilePhoto-29",
+        "defaultProfilePhoto-30",
+        "defaultProfilePhoto-31",
+        "defaultProfilePhoto-32",
+        "defaultProfilePhoto-33",
+        "defaultProfilePhoto-34",
+        ]
     
 
     override func viewDidLoad() {
@@ -30,6 +70,9 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         profilePicturesCollectionView.delegate = self
         profilePicturesCollectionView.dataSource = self
         
+        // Setup view
+        userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
+        
         // Setup pie chart
     }
 
@@ -41,6 +84,12 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     // MARK: - Actions
     
     @IBAction func cancelProfilePictureSelection(_ sender: UIButton) {
+        pickProfilePicturePopUpView.removeFromSuperview()
+        hideBlurView()
+    }
+    
+    @IBAction func okProfilePictureSelection(_ sender: UIButton) {
+        userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-0")
         pickProfilePicturePopUpView.removeFromSuperview()
         hideBlurView()
     }
@@ -85,9 +134,34 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         
         cell.imageView.image = UIImage(named: profilePictures[indexPath.row])
         
+        
+        if selectedIndexPathRow != nil && indexPath.row == selectedIndexPathRow {
+            cell.layer.backgroundColor = UIColor.customColors.swordBlue.cgColor
+        } else {
+            cell.layer.backgroundColor = UIColor.clear.cgColor;
+        }
+        
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+
+        cell?.backgroundColor = UIColor.customColors.swordBlue
+
+        userDefaults.set(profilePictures[indexPath.row], forKey: "ProfilePicture")
+        
+        selectedIndexPathRow = indexPath.row
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        
+        cell?.backgroundColor = UIColor.clear
+        
+        selectedIndexPathRow = nil
+    }
     
     /*
     // MARK: - Navigation

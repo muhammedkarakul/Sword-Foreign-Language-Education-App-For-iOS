@@ -21,7 +21,7 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         super.viewDidLoad()
 
         // Status bar color turns white
-        UIApplication.shared.statusBarStyle = .lightContent
+        //UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewDidAppear(_ animated: Bool) {

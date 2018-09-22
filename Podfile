@@ -6,17 +6,18 @@ target 'Sword' do
   use_frameworks!
 
   # Pods for Sword
-  pod "BWWalkthrough"
+  pod "BWWalkthrough", :inhibit_warnings => true
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
-  pod 'ProgressHUD'
-  pod "Koloda"
+  pod 'Firebase/Functions'
+  pod 'ProgressHUD', :inhibit_warnings => true
+  pod "Koloda", :inhibit_warnings => true
   pod 'RealmSwift'
   pod 'DeviceKit', '~> 1.3'
   pod "GTProgressBar"
-  pod 'Charts'
+  pod 'Charts', :inhibit_warnings => true
   pod 'SwiftyPlistManager'
   
   target 'SwordTests' do

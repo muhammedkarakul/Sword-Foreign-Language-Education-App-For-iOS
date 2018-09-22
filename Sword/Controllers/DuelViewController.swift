@@ -9,7 +9,12 @@
 import UIKit
 
 class DuelViewController: CustomMainViewController {
-
+    
+    // MARK: - Properties
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var findDuelButton: UIButtonWithRoundedCorners!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +24,16 @@ class DuelViewController: CustomMainViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Actions
+    
+    /**
+     * When touch button, go to find duel view.
+     */
+    
+    @IBAction func findDuel(_ sender: UIButtonWithRoundedCorners) {
+        performSegue(withIdentifier: "findDuelSegue", sender: self)
     }
     
 
