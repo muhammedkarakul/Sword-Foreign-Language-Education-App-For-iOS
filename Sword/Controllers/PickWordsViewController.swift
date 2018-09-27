@@ -103,7 +103,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     private func isLevelAndTopicSelected() {
-        let currentUser = getCurrentUserFromRealm()
+        let currentUser = Utilities.getCurrentUserFromRealm()
         let level = currentUser.getLevel()
         let topics = currentUser.getTopics()
         
@@ -268,7 +268,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     // MARK: - Get From Realm -
     
     private func getSelectedTopicsWordsFromRealm() {
-        let currentUser = getCurrentUserFromRealm()
+        let currentUser = Utilities.getCurrentUserFromRealm()
         
         if let topicIds = currentUser.getTopics() {
             for topicId in topicIds {
@@ -324,40 +324,6 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         }
         
         return topic
-    }
-    
-    
-    private func getCurrentUserFromRealm() -> User {
-        let realmUsers = uiRealm.objects(RealmUser.self)
-        var users = [User]()
-        let userDefaults = UserDefaults.standard
-        var currentUser = User()
-        
-        for realmUser in realmUsers {
-            var tempUser = User()
-            tempUser = User(
-                id: realmUser.id,
-                name: realmUser.name,
-                email: realmUser.email,
-                diamond: realmUser.diamond.value,
-                createdDate: realmUser.createdDate,
-                hearth: realmUser.hearth.value,
-                profilePhotoURL: realmUser.profilePhotoURL,
-                score: realmUser.score.value,
-                level: realmUser.level,
-                topics: realmUser.topic?.components(separatedBy: ",")
-            )
-            
-            users.append(tempUser)
-        }
-        
-        for user in users {
-            if user.getId() == userDefaults.string(forKey: "uid") {
-                currentUser = user
-            }
-        }
-        
-        return currentUser
     }
     
     // MARK: - Add To Realm -

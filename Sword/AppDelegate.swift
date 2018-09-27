@@ -18,13 +18,14 @@ var uiRealm = try! Realm()
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-//    var words = [Word]()
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Default status bar style
-        //UIApplication.shared.statusBarStyle = .default
+        //UIApplication.shared.statusBarStyle = .lightContent
+        
+        // Show status bar
+        //UIApplication.shared.isStatusBarHidden = false
         
         // Network reachability
         do {
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Start swifty plist manager
-        SwiftyPlistManager.shared.start(plistNames: ["LearnWordsOrder-Info"], logging: true)
+        SwiftyPlistManager.shared.start(plistNames: ["LearnWordsOrder-Info", "DefaultProfilePictures"], logging: true)
         
         return true
     }

@@ -49,6 +49,19 @@ class RealmUser: Object {
             uiRealm.add(self, update: true)
         }
     }
+    
+    func getDataFromUser(user: User) {
+       id = user.getId()
+       name = user.getName()
+       email = user.getEmail()
+       diamond.value = user.getDiamond()
+       createdDate = user.getCreatedDate()
+       hearth.value = user.getHearth()
+       profilePhotoURL = user.getProfilePhotoURL()
+       score.value = user.getScore()
+       level = user.getLevel()
+       topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+    }
 }
 
 class RealmLevel: Object {

@@ -11,13 +11,13 @@ import UIKit
 extension UIViewController {
     
     func alert(title: String, message: String, completion: @escaping () -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         self.present(alertController, animated: true, completion: completion)
     }
     
     func alertWithOkButton(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okeyAction = UIAlertAction(title: "Tamam", style: UIAlertActionStyle.default, handler: nil)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okeyAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(okeyAction)
         self.present(alertController, animated: true, completion: nil)
     }

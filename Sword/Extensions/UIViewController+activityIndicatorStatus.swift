@@ -13,7 +13,7 @@ extension UIViewController {
     var activityIndicatorTag: Int { return 999 }
     
     func startActivityIndicator(
-        style: UIActivityIndicatorViewStyle = .whiteLarge,
+        style: UIActivityIndicatorView.Style = .whiteLarge,
         location: CGPoint? = nil
         ) {
         
@@ -22,7 +22,7 @@ extension UIViewController {
         let loc = location ?? self.view.center
         
         DispatchQueue.main.async{
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: style)
+            let activityIndicator = UIActivityIndicatorView(style: style)
             activityIndicator.tag = self.activityIndicatorTag
             activityIndicator.center = loc
             activityIndicator.hidesWhenStopped = true

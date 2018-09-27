@@ -19,7 +19,7 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Status bar color turns white
         //UIApplication.shared.statusBarStyle = .lightContent
     }
@@ -36,7 +36,11 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         updateUserInterface()
     }
     
-    func updateUserInterface() {
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
+    }
+    
+    private func updateUserInterface() {
         guard let status = Network.reachability?.status else { return }
         switch status {
         case .unreachable:
@@ -57,17 +61,13 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         print("Wifi:", Network.reachability?.isReachableViaWiFi ?? "nil")
     }
     
-    @objc func statusManager(_ notification: Notification) {
-        updateUserInterface()
-    }
-    
     func networkAlert() {
-        let alert = UIAlertController(title: "Bağlantı Sorunu Oluştu", message: "İnternet bağlantınızda bir sorun olduğunu farkettik lütfen bağlantı durumunuzu kontrol ediniz.", preferredStyle: UIAlertControllerStyle.alert)
-        let cancelAction = UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel) { _ in
+        let alert = UIAlertController(title: "Bağlantı Sorunu Oluştu", message: "İnternet bağlantınızda bir sorun olduğunu farkettik lütfen bağlantı durumunuzu kontrol ediniz.", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel) { _ in
             alert.dismiss(animated: true, completion: nil)
         }
-        let settingsAction = UIAlertAction(title: "Ayarlara Git", style: UIAlertActionStyle.default) { _ in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+        let settingsAction = UIAlertAction(title: "Ayarlara Git", style: UIAlertAction.Style.default) { _ in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
             
@@ -91,7 +91,7 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         guard let url = Bundle.main.url(forResource: name, withExtension: "mp3") else { return }
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: AVAudioSession.Mode.default)
             try AVAudioSession.sharedInstance().setActive(true)
 
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
@@ -107,35 +107,6 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
             print("Error: \(error.localizedDescription)")
         }
     }
-    
-//    internal func showBlurEffect( completion: ((Bool) -> Void)?) {
-//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-//        blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = self.view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        blurEffectView.alpha = 0.0
-//        self.view.addSubview(blurEffectView)
-//
-//        UIView.animate(withDuration: 0.2, animations: {
-//            self.blurEffectView.alpha = 1.0
-//        }, completion: completion)
-//    }
-//
-//    internal func hideBlurEffect() {
-//        UIView.animate(withDuration: 0.2, animations: {
-//            self.blurEffectView.alpha = 0.0
-//        }) { (_) in
-//            self.blurEffectView.removeFromSuperview()
-//        }
-//    }
-    
-    
-//    internal func showAlert(withTitle title: String, andMessage message: String) {
-//        alert(title: title, message: message, completion: {})
-//        let cancelAction = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
-//        alert.addAction(cancelAction)
-//        self.present(alert, animated: true, completion: nil)
-//    }
 
     internal func showAlert(withTitle title: String, andMessage message: String, andOKButtonHandler handler: ((UIAlertAction) -> Void)?) {
         alert(title: title, message: message, completion: {})
@@ -143,15 +114,10 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+}
 
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

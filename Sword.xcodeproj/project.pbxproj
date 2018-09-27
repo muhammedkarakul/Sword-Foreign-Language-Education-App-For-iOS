@@ -16,6 +16,8 @@
 		570EC37D21492D8900889D49 /* ArenaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570EC37C21492D8900889D49 /* ArenaViewController.swift */; };
 		570EC37F21492E3B00889D49 /* DuelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570EC37E21492E3B00889D49 /* DuelResultViewController.swift */; };
 		570EC38121492FAB00889D49 /* Duel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570EC38021492FAB00889D49 /* Duel.storyboard */; };
+		57144CF32157B48F00E271F5 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57144CF22157B48F00E271F5 /* Utilities.swift */; };
+		57144CF52157B9DB00E271F5 /* DefaultProfilePictures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57144CF42157B9DB00E271F5 /* DefaultProfilePictures.plist */; };
 		571944C420DF808200C3E56B /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571944C320DF808200C3E56B /* CustomViewController.swift */; };
 		571944C620DF82E200C3E56B /* CustomMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571944C520DF82E200C3E56B /* CustomMainViewController.swift */; };
 		5719B0D9208C9E4B00962F1B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5719B0D8208C9E4B00962F1B /* Reachability.swift */; };
@@ -78,6 +80,9 @@
 		57F75619213AB2A100F0011D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F75614213AB2A100F0011D /* AppDelegate.swift */; };
 		57F7561A213AB2A100F0011D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57F75615213AB2A100F0011D /* GoogleService-Info.plist */; };
 		57F7561C213AB2A100F0011D /* Sword.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57F75617213AB2A100F0011D /* Sword.xcdatamodeld */; };
+		57FB9F592157CA5E00F7418E /* WordLevelParameters-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB9F582157CA5E00F7418E /* WordLevelParameters-Info.plist */; };
+		57FB9F5B2157CF2700F7418E /* Levels-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB9F5A2157CF2700F7418E /* Levels-Info.plist */; };
+		57FB9F5D2157D23B00F7418E /* Stone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB9F5C2157D23B00F7418E /* Stone.swift */; };
 		95DD60BAE9C8246535652FB7 /* Pods_SwordUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFD10D4BA1ECB1DB43E235D /* Pods_SwordUITests.framework */; };
 		C3B2791C85AB8151F65954B7 /* Pods_SwordTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE95F7548F3C4EA8A07A025 /* Pods_SwordTests.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +121,8 @@
 		570EC37C21492D8900889D49 /* ArenaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArenaViewController.swift; path = Controllers/ArenaViewController.swift; sourceTree = "<group>"; };
 		570EC37E21492E3B00889D49 /* DuelResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuelResultViewController.swift; path = Controllers/DuelResultViewController.swift; sourceTree = "<group>"; };
 		570EC38021492FAB00889D49 /* Duel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Duel.storyboard; path = Views/Duel.storyboard; sourceTree = "<group>"; };
+		57144CF22157B48F00E271F5 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Utilities/Utilities.swift; sourceTree = "<group>"; };
+		57144CF42157B9DB00E271F5 /* DefaultProfilePictures.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DefaultProfilePictures.plist; path = "Plist Files/DefaultProfilePictures.plist"; sourceTree = "<group>"; };
 		571944C320DF808200C3E56B /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomViewController.swift; path = "Custom Classes/CustomViewController.swift"; sourceTree = "<group>"; };
 		571944C520DF82E200C3E56B /* CustomMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomMainViewController.swift; path = "Custom Classes/CustomMainViewController.swift"; sourceTree = "<group>"; };
 		5719B0D8208C9E4B00962F1B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Helpers/Reachability.swift; sourceTree = "<group>"; };
@@ -179,6 +186,9 @@
 		57F75615213AB2A100F0011D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57F75616213AB2A100F0011D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57F75618213AB2A100F0011D /* Sword.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sword.xcdatamodel; sourceTree = "<group>"; };
+		57FB9F582157CA5E00F7418E /* WordLevelParameters-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "WordLevelParameters-Info.plist"; path = "Plist Files/WordLevelParameters-Info.plist"; sourceTree = "<group>"; };
+		57FB9F5A2157CF2700F7418E /* Levels-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Levels-Info.plist"; path = "Plist Files/Levels-Info.plist"; sourceTree = "<group>"; };
+		57FB9F5C2157D23B00F7418E /* Stone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stone.swift; path = Models/Stone.swift; sourceTree = "<group>"; };
 		B07DFF07EEDD8B6FB3D9D89E /* Pods-SwordTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwordTests/Pods-SwordTests.release.xcconfig"; sourceTree = "<group>"; };
 		BBE6497E0A71DB850291477E /* Pods-SwordTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwordTests/Pods-SwordTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C4D7A8D878A84FE9577968EF /* Pods-Sword.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sword.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sword/Pods-Sword.release.xcconfig"; sourceTree = "<group>"; };
@@ -250,6 +260,7 @@
 		570867132084EDCE00D4B8FF /* Sword */ = {
 			isa = PBXGroup;
 			children = (
+				57144CF12157B47500E271F5 /* Utilities */,
 				5793889E209DD4650081B4D2 /* Models */,
 				5719B0D7208C9E3300962F1B /* Helpers */,
 				57CC042D208BDF52002B1930 /* Views */,
@@ -301,6 +312,14 @@
 			name = Duel;
 			sourceTree = "<group>";
 		};
+		57144CF12157B47500E271F5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				57144CF22157B48F00E271F5 /* Utilities.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		5719B0D7208C9E3300962F1B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +335,9 @@
 				57F75615213AB2A100F0011D /* GoogleService-Info.plist */,
 				57F75616213AB2A100F0011D /* Info.plist */,
 				57206459213EC92A00BBEB73 /* LearnWordsOrder-Info.plist */,
+				57144CF42157B9DB00E271F5 /* DefaultProfilePictures.plist */,
+				57FB9F582157CA5E00F7418E /* WordLevelParameters-Info.plist */,
+				57FB9F5A2157CF2700F7418E /* Levels-Info.plist */,
 			);
 			name = "Plist Files";
 			sourceTree = "<group>";
@@ -357,6 +379,7 @@
 				5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */,
 				577761C520F246C40008C849 /* Level.swift */,
 				577761C720F29D2A0008C849 /* Topic.swift */,
+				57FB9F5C2157D23B00F7418E /* Stone.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -546,13 +569,16 @@
 				TargetAttributes = {
 					570867102084EDCE00D4B8FF = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 					570867272084EDCF00D4B8FF = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						TestTargetID = 570867102084EDCE00D4B8FF;
 					};
 					570867322084EDCF00D4B8FF = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						TestTargetID = 570867102084EDCE00D4B8FF;
 					};
 				};
@@ -586,9 +612,11 @@
 				570EC38121492FAB00889D49 /* Duel.storyboard in Resources */,
 				570867222084EDCF00D4B8FF /* LaunchScreen.storyboard in Resources */,
 				57F7561A213AB2A100F0011D /* GoogleService-Info.plist in Resources */,
+				57FB9F5B2157CF2700F7418E /* Levels-Info.plist in Resources */,
 				57BD20D6211B7E1700278E40 /* splash.mp3 in Resources */,
 				57BD20D1211B7E1700278E40 /* peering.mp3 in Resources */,
 				57BD20D2211B7E1700278E40 /* wrong.mp3 in Resources */,
+				57FB9F592157CA5E00F7418E /* WordLevelParameters-Info.plist in Resources */,
 				57BD20D3211B7E1700278E40 /* win.mp3 in Resources */,
 				57F75608213AB20600F0011D /* Main.storyboard in Resources */,
 				57F75609213AB20600F0011D /* Login.storyboard in Resources */,
@@ -598,6 +626,7 @@
 				5708671F2084EDCF00D4B8FF /* Assets.xcassets in Resources */,
 				57BD20D4211B7E1700278E40 /* lose.mp3 in Resources */,
 				5720645A213EC92A00BBEB73 /* LearnWordsOrder-Info.plist in Resources */,
+				57144CF52157B9DB00E271F5 /* DefaultProfilePictures.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +767,7 @@
 				57F75619213AB2A100F0011D /* AppDelegate.swift in Sources */,
 				579388A0209DD4790081B4D2 /* User.swift in Sources */,
 				574CC33220A324FE003F0AA9 /* LevelViewController.swift in Sources */,
+				57FB9F5D2157D23B00F7418E /* Stone.swift in Sources */,
 				570EC37B21492D3B00889D49 /* FindDuelViewController.swift in Sources */,
 				57C486DB21056B1900FC8862 /* String+ArrayToString.swift in Sources */,
 				57798C5121132E52009A2678 /* ToBeLearnedWordsViewController.swift in Sources */,
@@ -750,6 +780,7 @@
 				579388A6209E07590081B4D2 /* Date+toMillis.swift in Sources */,
 				5797EB6B213C236C002E6761 /* UIButtonWithRounderdCornersAndBottomShadow.swift in Sources */,
 				575EDA9920E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift in Sources */,
+				57144CF32157B48F00E271F5 /* Utilities.swift in Sources */,
 				5719B0D9208C9E4B00962F1B /* Reachability.swift in Sources */,
 				57CC0426208BD68F002B1930 /* UIButtonWithRoundedCorners.swift in Sources */,
 				570EC37F21492E3B00889D49 /* DuelResultViewController.swift in Sources */,
@@ -952,15 +983,20 @@
 			baseConfigurationReference = 052A693EFB448F288F0E5A15 /* Pods-Sword.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordTeam.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -970,15 +1006,20 @@
 			baseConfigurationReference = C4D7A8D878A84FE9577968EF /* Pods-Sword.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordTeam.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -990,11 +1031,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sword.app/Sword";
 			};
@@ -1007,11 +1053,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sword.app/Sword";
 			};
@@ -1023,11 +1074,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Sword;
 			};
@@ -1039,11 +1095,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Sword;
 			};

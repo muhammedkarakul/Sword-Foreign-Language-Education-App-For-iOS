@@ -49,7 +49,7 @@ class CustomView: UIView {
         imageView.frame.origin.y = 2 // sets imageview's y coordinate
         imageView.frame.size.width = self.frame.size.height / 1.5 // sets imageview's width
         imageView.frame.size.height = self.frame.size.height / 1.5 // sets imageview's height
-        imageView.contentMode = UIViewContentMode.scaleAspectFit // sets imageview's content mode = aspect fit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit // sets imageview's content mode = aspect fit
         imageView.image = UIImage.init(named: "avatar") // sets imageview's image with name
         
         // Round edges of the imageview

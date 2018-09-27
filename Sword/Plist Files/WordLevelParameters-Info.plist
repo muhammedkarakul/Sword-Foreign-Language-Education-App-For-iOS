@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WordLevels</key>
+	<dict>
+		<key>Advanced</key>
+		<dict>
+			<key>name</key>
+			<string>advanced</string>
+			<key>point</key>
+			<integer>21</integer>
+		</dict>
+		<key>Upper Intermadiate</key>
+		<dict>
+			<key>point</key>
+			<integer>18</integer>
+			<key>name</key>
+			<string>upperIntermediate</string>
+		</dict>
+		<key>Intermediate</key>
+		<dict>
+			<key>point</key>
+			<integer>15</integer>
+			<key>name</key>
+			<string>intermediate</string>
+		</dict>
+		<key>Pre İntermediate</key>
+		<dict>
+			<key>point</key>
+			<integer>12</integer>
+			<key>name</key>
+			<string>preIntermediate</string>
+		</dict>
+		<key>Elementary</key>
+		<dict>
+			<key>point</key>
+			<integer>9</integer>
+			<key>name</key>
+			<string>elementary</string>
+		</dict>
+		<key>Beginner</key>
+		<dict>
+			<key>point</key>
+			<integer>6</integer>
+			<key>name</key>
+			<string>beginner</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

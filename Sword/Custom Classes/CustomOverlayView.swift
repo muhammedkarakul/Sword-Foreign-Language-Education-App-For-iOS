@@ -10,7 +10,8 @@ import UIKit
 
 class CustomOverlayView: UIView {
     
-    var user = User()
+    private var user = User()
+    private var userDefaults = UserDefaults.standard
     
     @IBOutlet var userProfilePhotoImageView: UIImageView!
     @IBOutlet var userNameLabel: UILabel!
@@ -27,9 +28,9 @@ class CustomOverlayView: UIView {
         userProfilePhotoImageView.layer.borderColor = UIColor.white.cgColor
         userProfilePhotoImageView.layer.cornerRadius = userProfilePhotoImageView.frame.height/2
         userProfilePhotoImageView.clipsToBounds = true
+        userProfilePhotoImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
         
-        
-        user = getCurrentUserFromRealm()
+        user = Utilities.getCurrentUserFromRealm()
         
         // Kullanıcı bilgileri navigation bara yazdırılıyor.
         userNameLabel.text = user.getName()
@@ -38,37 +39,18 @@ class CustomOverlayView: UIView {
         coinLabel.text = String(user.getDiamond() ?? 0)
     }
     
-    private func getCurrentUserFromRealm() -> User {
-        let realmUsers = uiRealm.objects(RealmUser.self)
-        var users = [User]()
-        let userDefaults = UserDefaults.standard
-        var currentUser = User()
+    /**
+     * Updates view with last user data.
+     */
+     internal func update() {
         
-        for realmUser in realmUsers {
-            var tempUser = User()
-            tempUser = User(
-                id: realmUser.id,
-                name: realmUser.name,
-                email: realmUser.email,
-                diamond: realmUser.diamond.value,
-                createdDate: realmUser.createdDate,
-                hearth: realmUser.hearth.value,
-                profilePhotoURL: realmUser.profilePhotoURL,
-                score: realmUser.score.value,
-                level: realmUser.level,
-                topics: realmUser.topic?.components(separatedBy: ",")
-            )
-            
-            users.append(tempUser)
-        }
+        userProfilePhotoImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
         
-        for user in users {
-            if user.getId() == userDefaults.string(forKey: "uid") {
-                currentUser = user
-            }
-        }
-        
-        return currentUser
+        // Kullanıcı bilgileri navigation bara yazdırılıyor.
+        userNameLabel.text = user.getName()
+        userExperienceLabel.text = "\(user.getScore() ?? 0)/1000"
+        healthLabel.text = String(user.getHearth() ?? 0)
+        coinLabel.text = String(user.getDiamond() ?? 0)
     }
     
 }

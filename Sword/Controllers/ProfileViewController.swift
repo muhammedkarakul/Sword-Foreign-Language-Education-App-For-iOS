@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Charts
+import SwiftyPlistManager
 
 class ProfileViewController: CustomMainViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -23,41 +24,9 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     
     private var selectedIndexPathRow: Int?
     
-    private let profilePictures: [String] =
-        [
-        "defaultProfilePhoto-1",
-        "defaultProfilePhoto-2",
-        "defaultProfilePhoto-3",
-        "defaultProfilePhoto-4",
-        "defaultProfilePhoto-5",
-        "defaultProfilePhoto-6",
-        "defaultProfilePhoto-7",
-        "defaultProfilePhoto-8",
-        "defaultProfilePhoto-9",
-        "defaultProfilePhoto-10",
-        "defaultProfilePhoto-11",
-        "defaultProfilePhoto-12",
-        "defaultProfilePhoto-13",
-        "defaultProfilePhoto-14",
-        "defaultProfilePhoto-15",
-        "defaultProfilePhoto-16",
-        "defaultProfilePhoto-17",
-        "defaultProfilePhoto-20",
-        "defaultProfilePhoto-21",
-        "defaultProfilePhoto-22",
-        "defaultProfilePhoto-23",
-        "defaultProfilePhoto-24",
-        "defaultProfilePhoto-25",
-        "defaultProfilePhoto-26",
-        "defaultProfilePhoto-27",
-        "defaultProfilePhoto-28",
-        "defaultProfilePhoto-29",
-        "defaultProfilePhoto-30",
-        "defaultProfilePhoto-31",
-        "defaultProfilePhoto-32",
-        "defaultProfilePhoto-33",
-        "defaultProfilePhoto-34",
-        ]
+    private var profilePictures = [String]()
+    
+    private var user = User()
     
 
     override func viewDidLoad() {
@@ -70,8 +39,14 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         profilePicturesCollectionView.delegate = self
         profilePicturesCollectionView.dataSource = self
         
+        // Get default profile pictures form plist file
+        getProfilePicturesFromPlistFile()
+        
         // Setup view
         userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
+        
+        // Get current user data from Realm
+        user = Utilities.getCurrentUserFromRealm()
         
         // Setup pie chart
     }
@@ -89,8 +64,24 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     }
     
     @IBAction func okProfilePictureSelection(_ sender: UIButton) {
-        userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-0")
+        
+        if let selectedProfilePicture = userDefaults.string(forKey: "ProfilePicture") {
+            
+            user.setProfilePhotoURL(profilePhotoURL: selectedProfilePicture)
+            
+            let realmUser = RealmUser()
+            
+            realmUser.getDataFromUser(user: user)
+            
+            realmUser.writeToRealm()
+            
+            userImageView.image = UIImage(named: selectedProfilePicture)
+            
+            headerView.update()
+        }
+        
         pickProfilePicturePopUpView.removeFromSuperview()
+        
         hideBlurView()
     }
     
@@ -107,13 +98,13 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     
     @IBAction func logOutButtonTouchUpInside(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "Uyarı", message: "Çıkış yapmak istediğinize emin misiniz?", preferredStyle: UIAlertControllerStyle.alert)
-        let yesAlertAction = UIAlertAction(title: "Evet", style: UIAlertActionStyle.cancel) { _ in
+        let alert = UIAlertController(title: "Uyarı", message: "Çıkış yapmak istediğinize emin misiniz?", preferredStyle: UIAlertController.Style.alert)
+        let yesAlertAction = UIAlertAction(title: "Evet", style: UIAlertAction.Style.cancel) { _ in
             guard (try? Auth.auth().signOut()) != nil else { return }
             self.performSegue(withIdentifier: "LoginViewController", sender: nil)
         }
         
-        let noAlertAction = UIAlertAction(title: "Hayır", style: UIAlertActionStyle.default, handler: nil)
+        let noAlertAction = UIAlertAction(title: "Hayır", style: UIAlertAction.Style.default, handler: nil)
         
         alert.addAction(yesAlertAction)
         
@@ -122,6 +113,19 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         present(alert, animated: true, completion: nil)
         
     }
+    
+    private func getProfilePicturesFromPlistFile() {
+        SwiftyPlistManager.shared.getValue(for: "DefaultProfilePhotos", fromPlistWithName: "DefaultProfilePictures") { (data, error) in
+            if let err = error {
+                print("Error: \(err)")
+            } else {
+                if let defaultProfilePictures = data as? [String] {
+                    self.profilePictures = defaultProfilePictures
+                }
+            }
+        }
+    }
+    
     
     // MARK: - ProfilePicturesCollectionView Datasource And Delegate
     
@@ -162,16 +166,6 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         
         selectedIndexPathRow = nil
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

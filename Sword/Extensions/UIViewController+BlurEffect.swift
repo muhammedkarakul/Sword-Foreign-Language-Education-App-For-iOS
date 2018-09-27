@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     var blurEffectTag: Int { return 888 }
     
-    func showBlurView(withBlurEffectStyle style: UIBlurEffectStyle = .light , andCompletion completion: ((Bool) -> Void)? = nil) {
+    func showBlurView(withBlurEffectStyle style: UIBlurEffect.Style = .light , andCompletion completion: ((Bool) -> Void)? = nil) {
         
         DispatchQueue.main.async{
             let blurEffect = UIBlurEffect(style: style)

@@ -378,50 +378,66 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4D-4L-W0g" customClass="KolodaView">
-                                <rect key="frame" x="37" y="88" width="300" height="200"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="37" y="96" width="301" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Rm1-Xr-vxf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FDz-uq-aNV">
-                                <rect key="frame" x="37" y="296" width="300" height="313"/>
+                                <rect key="frame" x="37" y="349" width="300" height="260"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="q8t-lu-fij">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="313"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="q8t-lu-fij">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfD-cH-Xvv">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="3j5-84-dcS"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6e-KG-LNd">
-                                                <rect key="frame" x="0.0" y="87.5" width="300" height="50"/>
+                                                <rect key="frame" x="0.0" y="70" width="300" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="s7q-Ma-weJ"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzr-Z0-HKE">
-                                                <rect key="frame" x="0.0" y="175.5" width="300" height="50"/>
+                                                <rect key="frame" x="0.0" y="140" width="300" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="uoU-Po-bJu"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omj-kT-FGb">
-                                                <rect key="frame" x="0.0" y="263" width="300" height="50"/>
+                                                <rect key="frame" x="0.0" y="210" width="300" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="tGd-k4-KOA"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="q8t-lu-fij" firstAttribute="width" secondItem="FDz-uq-aNV" secondAttribute="width" id="PX4-LX-ddt"/>
                                     <constraint firstItem="q8t-lu-fij" firstAttribute="centerX" secondItem="FDz-uq-aNV" secondAttribute="centerX" id="X6k-Tz-K6t"/>
@@ -459,20 +475,19 @@
                         <color key="backgroundColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="rPQ-KN-cRz" firstAttribute="leading" secondItem="2OY-yZ-dYI" secondAttribute="leading" id="1F3-JL-dfS"/>
+                            <constraint firstItem="2OY-yZ-dYI" firstAttribute="trailing" secondItem="b4D-4L-W0g" secondAttribute="trailing" constant="37" id="Cph-BP-mn0"/>
                             <constraint firstItem="rPQ-KN-cRz" firstAttribute="width" secondItem="zrW-IJ-RoW" secondAttribute="width" id="F8x-zc-Uw5"/>
                             <constraint firstItem="bLY-iy-zr6" firstAttribute="top" secondItem="2OY-yZ-dYI" secondAttribute="top" id="Hhx-Np-6of"/>
                             <constraint firstItem="2OY-yZ-dYI" firstAttribute="bottom" secondItem="rPQ-KN-cRz" secondAttribute="bottom" id="Ndp-6Q-6rA"/>
                             <constraint firstItem="bLY-iy-zr6" firstAttribute="trailing" secondItem="2OY-yZ-dYI" secondAttribute="trailing" id="TLI-5J-u6T"/>
-                            <constraint firstItem="2OY-yZ-dYI" firstAttribute="trailing" secondItem="b4D-4L-W0g" secondAttribute="trailing" constant="38" id="U10-E7-nxS"/>
+                            <constraint firstItem="b4D-4L-W0g" firstAttribute="leading" secondItem="2OY-yZ-dYI" secondAttribute="leading" constant="37" id="VJm-rq-pwQ"/>
                             <constraint firstItem="rPQ-KN-cRz" firstAttribute="top" secondItem="FDz-uq-aNV" secondAttribute="bottom" constant="8" id="Yey-fa-cm4"/>
-                            <constraint firstItem="b4D-4L-W0g" firstAttribute="centerX" secondItem="zrW-IJ-RoW" secondAttribute="centerX" id="bi3-GM-W7s"/>
-                            <constraint firstItem="b4D-4L-W0g" firstAttribute="top" secondItem="bLY-iy-zr6" secondAttribute="bottom" constant="8" id="e6m-DL-ZOE"/>
-                            <constraint firstItem="b4D-4L-W0g" firstAttribute="leading" secondItem="2OY-yZ-dYI" secondAttribute="leading" constant="37" id="gfj-5S-0wT"/>
+                            <constraint firstItem="b4D-4L-W0g" firstAttribute="top" secondItem="bLY-iy-zr6" secondAttribute="bottom" constant="16" id="e6m-DL-ZOE"/>
                             <constraint firstItem="FDz-uq-aNV" firstAttribute="leading" secondItem="2OY-yZ-dYI" secondAttribute="leading" constant="37" id="kH3-LB-EAi"/>
                             <constraint firstItem="bLY-iy-zr6" firstAttribute="leading" secondItem="2OY-yZ-dYI" secondAttribute="leading" id="nFG-30-t7L"/>
                             <constraint firstItem="rPQ-KN-cRz" firstAttribute="trailing" secondItem="2OY-yZ-dYI" secondAttribute="trailing" id="pC3-ng-bts"/>
                             <constraint firstItem="2OY-yZ-dYI" firstAttribute="trailing" secondItem="FDz-uq-aNV" secondAttribute="trailing" constant="38" id="pHS-F9-dMZ"/>
-                            <constraint firstItem="FDz-uq-aNV" firstAttribute="top" secondItem="b4D-4L-W0g" secondAttribute="bottom" constant="8" id="ylY-t3-CIi"/>
+                            <constraint firstItem="FDz-uq-aNV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b4D-4L-W0g" secondAttribute="bottom" constant="8" id="ylY-t3-CIi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2OY-yZ-dYI"/>
                     </view>

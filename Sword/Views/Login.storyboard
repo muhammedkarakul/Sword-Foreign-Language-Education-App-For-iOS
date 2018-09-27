@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y9k-J7-jqB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y9k-J7-jqB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swordBetaIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vud-JM-lxO">
-                                <rect key="frame" x="67" y="213" width="240" height="240"/>
+                                <rect key="frame" x="67.5" y="213.5" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="QP0-dD-aCa"/>
                                     <constraint firstAttribute="width" constant="240" id="zFv-uA-N1M"/>
@@ -37,8 +37,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="iconImageView" destination="vud-JM-lxO" id="0Ad-1T-2Dh"/>
-                        <segue destination="itg-qP-DPb" kind="show" identifier="LoginViewSegue" id="Rcz-PC-c3c"/>
-                        <segue destination="gf9-eU-cfY" kind="show" identifier="MainViewSegue" id="jXx-aM-thw"/>
+                        <segue destination="itg-qP-DPb" kind="show" identifier="LoginViewSegue" animates="NO" id="Rcz-PC-c3c"/>
+                        <segue destination="gf9-eU-cfY" kind="show" identifier="MainViewSegue" animates="NO" id="jXx-aM-thw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P0X-2b-8Zp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swordBetaIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gnS-wC-tFe">
-                                <rect key="frame" x="137" y="100" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="100" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="sdS-b8-bVS"/>
                                     <constraint firstAttribute="width" constant="100" id="t5t-eY-Kfq"/>
@@ -70,7 +70,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="373-zm-C2I" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                <rect key="frame" x="62" y="338" width="250" height="50"/>
+                                <rect key="frame" x="62.5" y="338" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ulq-GW-HnQ"/>
                                     <constraint firstAttribute="width" constant="250" id="xkK-iu-Nmj"/>
@@ -86,7 +86,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-he-m0a" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                <rect key="frame" x="62" y="415" width="250" height="50"/>
+                                <rect key="frame" x="62.5" y="415" width="250" height="50"/>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Mqz-C1-LvM"/>

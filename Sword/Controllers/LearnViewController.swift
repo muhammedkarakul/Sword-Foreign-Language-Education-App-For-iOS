@@ -187,7 +187,7 @@ class LearnViewController: CustomViewController {
     }
     
     private func change(button: UIButtonWithRoundedCornersAndBottomShadow, withBackgroundColor backgroundColor: UIColor, andBorderColor borderColor: CGColor) {
-        button.setTitleColor(UIColor.white, for: UIControlState.normal)
+        button.setTitleColor(UIColor.white, for: UIControl.State.normal)
         button.backgroundColor = backgroundColor
         button.layer.borderColor = borderColor
     }
@@ -204,7 +204,7 @@ class LearnViewController: CustomViewController {
     }
     
     private func turnDefaultButtonAppearence(button: UIButtonWithRoundedCornersAndBottomShadow) {
-        button.setTitleColor(UIColor.customColors.swordBlue, for: UIControlState.normal)
+        button.setTitleColor(UIColor.customColors.swordBlue, for: UIControl.State.normal)
         button.backgroundColor = UIColor.white
         button.layer.borderColor = UIColor.white.cgColor
     }
