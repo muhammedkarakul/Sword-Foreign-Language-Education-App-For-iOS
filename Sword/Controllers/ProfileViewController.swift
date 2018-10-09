@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseAuth
-import Charts
+import FirebaseStorage
 import SwiftyPlistManager
 
 class ProfileViewController: CustomMainViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -18,20 +18,27 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var pickProfilePicturePopUpView: UIView!
     @IBOutlet var profilePicturesCollectionView: UICollectionView!
-    @IBOutlet var chartView: PieChartView!
     
     private let userDefaults = UserDefaults.standard
     
     private var selectedIndexPathRow: Int?
     
     private var profilePictures = [String]()
+    //private var defaultProfilePictures = [Image]()
     
+    // Current user
     private var user = User()
     
+    // Firebase storage referance
+    private let storageRef = Storage.storage().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //let imageRef = storageRef.child("Avatars")
+        
+        //let spaceRef = imageRef.child("Group 9736.png")
+        
         // Pop up view with rounded corners.
         pickProfilePicturePopUpView.layer.cornerRadius = 10
         
@@ -43,12 +50,14 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         getProfilePicturesFromPlistFile()
         
         // Setup view
+        //userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
+        
         userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
         
         // Get current user data from Realm
         user = Utilities.getCurrentUserFromRealm()
         
-        // Setup pie chart
+        // TODO: - Setup pie chart
     }
 
     override func didReceiveMemoryWarning() {

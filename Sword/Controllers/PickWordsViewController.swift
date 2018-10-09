@@ -80,6 +80,21 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     private func setupView() {
+        
+        self.view.addSubview(learnContainerView)
+        self.view.addSubview(selectWordContainerView)
+        self.view.addSubview(letsLearnContainerView)
+        
+        //learnContainerView.center = self.view.center
+        //selectWordContainerView.center = self.view.center
+        //letsLearnContainerView.center = self.view.center
+        
+        learnContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
+        
+        selectWordContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
+        
+        letsLearnContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
+        
         learnContainerView.alpha = 0.0
         selectWordContainerView.alpha = 0.0
         letsLearnContainerView.alpha = 0.0
@@ -147,9 +162,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     @IBAction func changeLevelAndTopicButtonTouchUpInside(_ sender: UIButton) {
-        
         resetProperties()
-        
         performSegue(withIdentifier: "levelAndTopicView", sender: self)
     }
     
@@ -484,16 +497,17 @@ extension PickWordsViewController: KolodaViewDelegate {
                 }
             }
             
-            letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
-            selectedWordsTableView.reloadData()
-            
-            isToBeLearnedWordsSelected = true
-            
-            //selectWordContainerView.isHidden = true
-            //learnContainerView.isHidden = true
-            //letsLearnContainerView.isHidden = false
-            changeView(currentView: CurrentView.letsLearnView)
-            //print("10 kelime sınırına ulaşılamadı. Seçilen kelimelerle devam etmek ister misin?")
+            if toBeLearnedWords.count < 10 {
+                alertWithAction(title: "Bir Hata Oluştu", message: "10 adet kelime seçimi yapmanız gerekiyor.") { (_) in
+                    self.resetProperties()
+                    self.performSegue(withIdentifier: "levelAndTopicView", sender: self)
+                }
+            } else {
+                letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
+                selectedWordsTableView.reloadData()
+                isToBeLearnedWordsSelected = true
+                changeView(currentView: CurrentView.letsLearnView)
+            }
         }
     }
     
@@ -534,21 +548,25 @@ extension PickWordsViewController: KolodaViewDelegate {
                     knownWords.append(word)
                 }
             }
-            letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
-            selectedWordsTableView.reloadData()
             
-            isToBeLearnedWordsSelected = true
-            
-            //selectWordContainerView.isHidden = true
-            //learnContainerView.isHidden = true
-            //letsLearnContainerView.isHidden = false
-            changeView(currentView: CurrentView.letsLearnView)
-            
-            //print("10 kelimeyi başarıyla seçtin. Hadi artık öğrenmeye başlayalım.")
+            if toBeLearnedWords.count < 10 {
+
+                alertWithAction(title: "Bir Hata Oluştu", message: "10 adet kelime seçimi yapmanız gerekiyor.") { (_) in
+                    self.resetProperties()
+                    self.performSegue(withIdentifier: "levelAndTopicView", sender: self)
+                }
+                
+            } else {
+                letsLearnViewHeaderLabel.text = "Bu günlük \(toBeLearnedWords.count) kelimen hazır."
+                selectedWordsTableView.reloadData()
+                isToBeLearnedWordsSelected = true
+                changeView(currentView: CurrentView.letsLearnView)
+            }
+        
         }
         
-        
         updateView()
+        
     }
     
 }

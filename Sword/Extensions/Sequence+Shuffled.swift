@@ -8,16 +8,6 @@
 
 import Foundation
 
-//
-//  Array+Shuffled.swift
-//  SwordLearnAlgorithm
-//
-//  Created by Muhammed Karakul on 23.08.2018.
-//  Copyright © 2018 Muhammed Karakul. All rights reserved.
-//
-
-import Foundation
-
 extension MutableCollection {
     /// Shuffles the contents of this collection.
     mutating func shuffle() {

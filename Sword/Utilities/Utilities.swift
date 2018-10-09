@@ -9,6 +9,7 @@
 import Foundation
 
 class Utilities {
+    
     public static func getCurrentUserFromRealm() -> User {
         let realmUsers = uiRealm.objects(RealmUser.self)
         var users = [User]()
@@ -41,4 +42,5 @@ class Utilities {
         
         return currentUser
     }
+    
 }

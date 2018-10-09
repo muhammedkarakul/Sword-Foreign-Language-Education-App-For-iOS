@@ -41,7 +41,6 @@
 		574CC33020A320E5003F0AA9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32F20A320E5003F0AA9 /* ProfileViewController.swift */; };
 		574CC33220A324FE003F0AA9 /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33120A324FE003F0AA9 /* LevelViewController.swift */; };
 		574CC33420A32723003F0AA9 /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33320A32723003F0AA9 /* TopicsViewController.swift */; };
-		574CC33620A33005003F0AA9 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC33520A33005003F0AA9 /* CustomView.swift */; };
 		575EDA9920E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */; };
 		577761C620F246C40008C849 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577761C520F246C40008C849 /* Level.swift */; };
 		577761C820F29D2A0008C849 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577761C720F29D2A0008C849 /* Topic.swift */; };
@@ -52,7 +51,10 @@
 		579388A0209DD4790081B4D2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5793889F209DD4790081B4D2 /* User.swift */; };
 		579388A6209E07590081B4D2 /* Date+toMillis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579388A5209E07590081B4D2 /* Date+toMillis.swift */; };
 		57939D85213D45B300FEAD05 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57939D84213D45B300FEAD05 /* Quiz.swift */; };
-		5797EB6B213C236C002E6761 /* UIButtonWithRounderdCornersAndBottomShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797EB6A213C236C002E6761 /* UIButtonWithRounderdCornersAndBottomShadow.swift */; };
+		5796C024216A9D8A00CB3CD9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796C023216A9D8A00CB3CD9 /* CustomButton.swift */; };
+		5796C026216AA44B00CB3CD9 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796C025216AA44B00CB3CD9 /* CustomView.swift */; };
+		5797EB6B213C236C002E6761 /* MultipleSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797EB6A213C236C002E6761 /* MultipleSelectionButton.swift */; };
+		579C80FF216B364900D4F146 /* GTProgressBar+update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579C80FE216B364900D4F146 /* GTProgressBar+update.swift */; };
 		57A0E81A210E6F3200C4C584 /* UILabel+addImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */; };
 		57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A32BC620AF09D200857A02 /* CustomOverlayView.swift */; };
 		57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */; };
@@ -65,10 +67,14 @@
 		57BD20D5211B7E1700278E40 /* right.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57BD20CF211B7E1700278E40 /* right.mp3 */; };
 		57BD20D6211B7E1700278E40 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57BD20D0211B7E1700278E40 /* splash.mp3 */; };
 		57C486DB21056B1900FC8862 /* String+ArrayToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C486DA21056B1900FC8862 /* String+ArrayToString.swift */; };
+		57C49AF9216C0F77006957F1 /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 57C49AF8216C0F77006957F1 /* Font */; };
+		57C49AFB216C1D30006957F1 /* WritingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C49AFA216C1D30006957F1 /* WritingTextField.swift */; };
+		57C49AFD216C1DE2006957F1 /* UIColor+customColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C49AFC216C1DE2006957F1 /* UIColor+customColors.swift */; };
 		57C500D7209A721C0037CD03 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C500D6209A721C0037CD03 /* ForgotPasswordViewController.swift */; };
 		57C500D9209B00870037CD03 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C500D8209B00870037CD03 /* AlertHelper.swift */; };
 		57CC0426208BD68F002B1930 /* UIButtonWithRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC0425208BD68F002B1930 /* UIButtonWithRoundedCorners.swift */; };
 		57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */; };
+		57CEA7EA216388770011CDB3 /* UIViewController+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEA7E9216388770011CDB3 /* UIViewController+FirebaseStorage.swift */; };
 		57CED0BC21428D5900CF04FB /* QuestionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CED0BB21428D5900CF04FB /* QuestionOrder.swift */; };
 		57EFB8A921481F04007FD864 /* Learning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EFB8A821481F04007FD864 /* Learning.storyboard */; };
 		57F75600213AAD2A00F0011D /* LearnWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F755FF213AAD2A00F0011D /* LearnWord.swift */; };
@@ -146,7 +152,6 @@
 		574CC32F20A320E5003F0AA9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controllers/ProfileViewController.swift; sourceTree = "<group>"; };
 		574CC33120A324FE003F0AA9 /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LevelViewController.swift; path = Controllers/LevelViewController.swift; sourceTree = "<group>"; };
 		574CC33320A32723003F0AA9 /* TopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopicsViewController.swift; path = Controllers/TopicsViewController.swift; sourceTree = "<group>"; };
-		574CC33520A33005003F0AA9 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = "Custom Classes/CustomView.swift"; sourceTree = "<group>"; };
 		575EDA9820E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+activityIndicatorStatus.swift"; path = "Extensions/UIViewController+activityIndicatorStatus.swift"; sourceTree = "<group>"; };
 		577761C520F246C40008C849 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Level.swift; path = Models/Level.swift; sourceTree = "<group>"; };
 		577761C720F29D2A0008C849 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Topic.swift; path = Models/Topic.swift; sourceTree = "<group>"; };
@@ -157,7 +162,10 @@
 		5793889F209DD4790081B4D2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		579388A5209E07590081B4D2 /* Date+toMillis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+toMillis.swift"; path = "Extensions/Date+toMillis.swift"; sourceTree = "<group>"; };
 		57939D84213D45B300FEAD05 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Quiz.swift; path = Models/Quiz.swift; sourceTree = "<group>"; };
-		5797EB6A213C236C002E6761 /* UIButtonWithRounderdCornersAndBottomShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIButtonWithRounderdCornersAndBottomShadow.swift; path = "Custom Classes/UIButtonWithRounderdCornersAndBottomShadow.swift"; sourceTree = "<group>"; };
+		5796C023216A9D8A00CB3CD9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = "Custom Classes/CustomButton.swift"; sourceTree = "<group>"; };
+		5796C025216AA44B00CB3CD9 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = "Custom Classes/CustomView.swift"; sourceTree = "<group>"; };
+		5797EB6A213C236C002E6761 /* MultipleSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultipleSelectionButton.swift; path = "Custom Classes/MultipleSelectionButton.swift"; sourceTree = "<group>"; };
+		579C80FE216B364900D4F146 /* GTProgressBar+update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GTProgressBar+update.swift"; path = "Extensions/GTProgressBar+update.swift"; sourceTree = "<group>"; };
 		57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UILabel+addImage.swift"; path = "Extensions/UILabel+addImage.swift"; sourceTree = "<group>"; };
 		57A32BC620AF09D200857A02 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = "Custom Classes/CustomOverlayView.swift"; sourceTree = "<group>"; };
 		57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = "Custom Classes/CustomKolodaView.swift"; sourceTree = "<group>"; };
@@ -170,10 +178,14 @@
 		57BD20CF211B7E1700278E40 /* right.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = right.mp3; path = Sounds/right.mp3; sourceTree = "<group>"; };
 		57BD20D0211B7E1700278E40 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = splash.mp3; path = Sounds/splash.mp3; sourceTree = "<group>"; };
 		57C486DA21056B1900FC8862 /* String+ArrayToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+ArrayToString.swift"; path = "Extensions/String+ArrayToString.swift"; sourceTree = "<group>"; };
+		57C49AF8216C0F77006957F1 /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Font; sourceTree = "<group>"; };
+		57C49AFA216C1D30006957F1 /* WritingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WritingTextField.swift; path = "Custom Classes/WritingTextField.swift"; sourceTree = "<group>"; };
+		57C49AFC216C1DE2006957F1 /* UIColor+customColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+customColors.swift"; path = "Extensions/UIColor+customColors.swift"; sourceTree = "<group>"; };
 		57C500D6209A721C0037CD03 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = Controllers/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		57C500D8209B00870037CD03 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertHelper.swift; path = Helpers/AlertHelper.swift; sourceTree = "<group>"; };
 		57CC0425208BD68F002B1930 /* UIButtonWithRoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIButtonWithRoundedCorners.swift; path = "Custom Classes/UIButtonWithRoundedCorners.swift"; sourceTree = "<group>"; };
 		57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+Color.swift"; path = "Extensions/UIImageView+Color.swift"; sourceTree = "<group>"; };
+		57CEA7E9216388770011CDB3 /* UIViewController+FirebaseStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+FirebaseStorage.swift"; path = "Extensions/UIViewController+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		57CED0BB21428D5900CF04FB /* QuestionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionOrder.swift; path = Models/QuestionOrder.swift; sourceTree = "<group>"; };
 		57EFB8A821481F04007FD864 /* Learning.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Learning.storyboard; path = Views/Learning.storyboard; sourceTree = "<group>"; };
 		57F755FF213AAD2A00F0011D /* LearnWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnWord.swift; path = Models/LearnWord.swift; sourceTree = "<group>"; };
@@ -293,6 +305,7 @@
 		570867452084EDE400D4B8FF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				57C49AF8216C0F77006957F1 /* Font */,
 				5720645B213EC9BE00BBEB73 /* Plist Files */,
 				57F75614213AB2A100F0011D /* AppDelegate.swift */,
 				57F75617213AB2A100F0011D /* Sword.xcdatamodeld */,
@@ -308,6 +321,7 @@
 				574CC32920A32080003F0AA9 /* DuelViewController.swift */,
 				570EC37A21492D3B00889D49 /* FindDuelViewController.swift */,
 				570EC37C21492D8900889D49 /* ArenaViewController.swift */,
+				570EC37E21492E3B00889D49 /* DuelResultViewController.swift */,
 			);
 			name = Duel;
 			sourceTree = "<group>";
@@ -357,6 +371,7 @@
 		574CC32620A32024003F0AA9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				574CC32720A32056003F0AA9 /* PickWordsViewController.swift */,
 				574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */,
 				5720954E20AD8B1D006C869D /* MainViewController.swift */,
 				574CC32B20A32095003F0AA9 /* MarketViewController.swift */,
@@ -400,10 +415,8 @@
 		57BD20DA211B818C00278E40 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
-				574CC32720A32056003F0AA9 /* PickWordsViewController.swift */,
 				57798C5221137E91009A2678 /* LearnViewController.swift */,
 				572A806C2142BA9700102D54 /* LearnResultViewController.swift */,
-				570EC37E21492E3B00889D49 /* DuelResultViewController.swift */,
 			);
 			name = Learn;
 			sourceTree = "<group>";
@@ -411,13 +424,15 @@
 		57CC0424208BD63F002B1930 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5796C025216AA44B00CB3CD9 /* CustomView.swift */,
 				57CC0425208BD68F002B1930 /* UIButtonWithRoundedCorners.swift */,
-				574CC33520A33005003F0AA9 /* CustomView.swift */,
 				57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */,
 				57A32BC620AF09D200857A02 /* CustomOverlayView.swift */,
 				571944C320DF808200C3E56B /* CustomViewController.swift */,
 				571944C520DF82E200C3E56B /* CustomMainViewController.swift */,
-				5797EB6A213C236C002E6761 /* UIButtonWithRounderdCornersAndBottomShadow.swift */,
+				5797EB6A213C236C002E6761 /* MultipleSelectionButton.swift */,
+				5796C023216A9D8A00CB3CD9 /* CustomButton.swift */,
+				57C49AFA216C1D30006957F1 /* WritingTextField.swift */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
@@ -425,6 +440,7 @@
 		57CC0427208BD955002B1930 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				57CEA7E9216388770011CDB3 /* UIViewController+FirebaseStorage.swift */,
 				57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */,
 				579388A5209E07590081B4D2 /* Date+toMillis.swift */,
 				578CFB5E20CC2DC50051F56C /* Date+TimeStampToDate.swift */,
@@ -434,6 +450,8 @@
 				57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */,
 				57F75603213AADB900F0011D /* Sequence+Shuffled.swift */,
 				57206457213EB1F700BBEB73 /* AVAudioPlayer+playSoundWithName.swift */,
+				579C80FE216B364900D4F146 /* GTProgressBar+update.swift */,
+				57C49AFC216C1DE2006957F1 /* UIColor+customColors.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -623,6 +641,7 @@
 				57EFB8A921481F04007FD864 /* Learning.storyboard in Resources */,
 				57BD20D5211B7E1700278E40 /* right.mp3 in Resources */,
 				57F7560A213AB20600F0011D /* Walkthrough.storyboard in Resources */,
+				57C49AF9216C0F77006957F1 /* Font in Resources */,
 				5708671F2084EDCF00D4B8FF /* Assets.xcassets in Resources */,
 				57BD20D4211B7E1700278E40 /* lose.mp3 in Resources */,
 				5720645A213EC92A00BBEB73 /* LearnWordsOrder-Info.plist in Resources */,
@@ -692,11 +711,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Sword/Pods-Sword-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BWWalkthrough/BWWalkthrough.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GTProgressBar/GTProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -704,6 +723,7 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
@@ -715,11 +735,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BWWalkthrough.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -727,6 +747,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
@@ -768,6 +789,7 @@
 				579388A0209DD4790081B4D2 /* User.swift in Sources */,
 				574CC33220A324FE003F0AA9 /* LevelViewController.swift in Sources */,
 				57FB9F5D2157D23B00F7418E /* Stone.swift in Sources */,
+				5796C024216A9D8A00CB3CD9 /* CustomButton.swift in Sources */,
 				570EC37B21492D3B00889D49 /* FindDuelViewController.swift in Sources */,
 				57C486DB21056B1900FC8862 /* String+ArrayToString.swift in Sources */,
 				57798C5121132E52009A2678 /* ToBeLearnedWordsViewController.swift in Sources */,
@@ -777,18 +799,20 @@
 				571A0A7C2129E0900030F306 /* MultipleSelection.swift in Sources */,
 				574CC33420A32723003F0AA9 /* TopicsViewController.swift in Sources */,
 				57206458213EB1F700BBEB73 /* AVAudioPlayer+playSoundWithName.swift in Sources */,
+				57CEA7EA216388770011CDB3 /* UIViewController+FirebaseStorage.swift in Sources */,
 				579388A6209E07590081B4D2 /* Date+toMillis.swift in Sources */,
-				5797EB6B213C236C002E6761 /* UIButtonWithRounderdCornersAndBottomShadow.swift in Sources */,
+				5797EB6B213C236C002E6761 /* MultipleSelectionButton.swift in Sources */,
+				5796C026216AA44B00CB3CD9 /* CustomView.swift in Sources */,
 				575EDA9920E92ABB00CA4D06 /* UIViewController+activityIndicatorStatus.swift in Sources */,
 				57144CF32157B48F00E271F5 /* Utilities.swift in Sources */,
 				5719B0D9208C9E4B00962F1B /* Reachability.swift in Sources */,
 				57CC0426208BD68F002B1930 /* UIButtonWithRoundedCorners.swift in Sources */,
 				570EC37F21492E3B00889D49 /* DuelResultViewController.swift in Sources */,
 				57CED0BC21428D5900CF04FB /* QuestionOrder.swift in Sources */,
-				574CC33620A33005003F0AA9 /* CustomView.swift in Sources */,
 				57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */,
 				57F7561C213AB2A100F0011D /* Sword.xcdatamodeld in Sources */,
 				5720955120AD8B2C006C869D /* WalkthroughViewController.swift in Sources */,
+				579C80FF216B364900D4F146 /* GTProgressBar+update.swift in Sources */,
 				574CC32820A32056003F0AA9 /* PickWordsViewController.swift in Sources */,
 				577761C820F29D2A0008C849 /* Topic.swift in Sources */,
 				574CC32E20A320CA003F0AA9 /* RankViewController.swift in Sources */,
@@ -809,6 +833,7 @@
 				57B38C692148565700AF3B95 /* UIViewController+BlurEffect.swift in Sources */,
 				5719B0DF208CCE4B00962F1B /* LoginWithFaceBookViewController.swift in Sources */,
 				57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */,
+				57C49AFD216C1DE2006957F1 /* UIColor+customColors.swift in Sources */,
 				57F75600213AAD2A00F0011D /* LearnWord.swift in Sources */,
 				574CC32C20A32095003F0AA9 /* MarketViewController.swift in Sources */,
 				57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */,
@@ -817,6 +842,7 @@
 				571A0A782129CA7A0030F306 /* Answer.swift in Sources */,
 				578CFB5F20CC2DC50051F56C /* Date+TimeStampToDate.swift in Sources */,
 				57A0E81A210E6F3200C4C584 /* UILabel+addImage.swift in Sources */,
+				57C49AFB216C1D30006957F1 /* WritingTextField.swift in Sources */,
 				577761C620F246C40008C849 /* Level.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

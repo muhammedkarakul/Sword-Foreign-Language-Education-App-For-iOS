@@ -123,7 +123,6 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
         updateSubmitButtonAppearance()
         print("Removed Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
         selectedTopics.remove(at: indexPath.row)
-        
     }
     
     private func updateSubmitButtonAppearance() {

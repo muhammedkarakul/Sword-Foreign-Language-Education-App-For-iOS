@@ -30,6 +30,18 @@ class MultipleSelection {
         return answers
     }
     
+    public func getRightAnswerIndex() -> Int {
+        var rightAnswerIndex = 0
+        
+        for (key, answer) in answers.enumerated() {
+            if question.getRightAnswer() == answer.getText(withType: question.getType()) {
+                rightAnswerIndex = key
+            }
+        }
+        
+        return rightAnswerIndex
+    }
+    
     /**
      * This method create answers for quiz.
      * - parameter words: Source of answers.

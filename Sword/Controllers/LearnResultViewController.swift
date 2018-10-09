@@ -10,15 +10,14 @@ import UIKit
 
 class LearnResultViewController: UIViewController {
     
-    @IBOutlet var trophyButton: UIButtonWithRoundedCornersAndBottomShadow!
-    @IBOutlet var coinButton: UIButtonWithRoundedCornersAndBottomShadow!
-    @IBOutlet var qualityButton: UIButtonWithRoundedCornersAndBottomShadow!
+    @IBOutlet var trophyButton: CustomButton!
+    @IBOutlet var coinButton: CustomButton!
+    @IBOutlet var qualityButton: CustomButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

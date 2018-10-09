@@ -10,15 +10,17 @@ import UIKit
 
 extension UIViewController {
     
-    func alert(title: String, message: String, completion: @escaping () -> Void) {
+    func alert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        self.present(alertController, animated: true, completion: completion)
+        let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func alertWithOkButton(title: String, message: String) {
+    func alertWithAction(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        let okeyAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil)
-        alertController.addAction(okeyAction)
+        let okAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: handler)
+        alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
     

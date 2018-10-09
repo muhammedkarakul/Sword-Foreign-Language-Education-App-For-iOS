@@ -23,17 +23,18 @@ class LearnViewController: CustomViewController {
     @IBOutlet var writingViewHeaderLabel: UILabel!
     @IBOutlet var writingAnswerTextField: UITextField!
     @IBOutlet var checkAnswerButton: UIButtonWithRoundedCorners!
+    @IBOutlet var correctAnswerLabel: UILabel!
     
     // Multiple selection items.
     @IBOutlet var multipleSelectionView: UIView!
     @IBOutlet var multipleSelectionViewHeaderLabel: UILabel!
-    @IBOutlet var multipleSelectionFirstButton: UIButtonWithRoundedCornersAndBottomShadow!
-    @IBOutlet var multipleSelectionSecondButton: UIButtonWithRoundedCornersAndBottomShadow!
-    @IBOutlet var multipleSelectionThirdButton: UIButtonWithRoundedCornersAndBottomShadow!
-    @IBOutlet var multipleSelectionFourthButton: UIButtonWithRoundedCornersAndBottomShadow!
+    @IBOutlet var multipleSelectionFirstButton: MultipleSelectionButton!
+    @IBOutlet var multipleSelectionSecondButton: MultipleSelectionButton!
+    @IBOutlet var multipleSelectionThirdButton: MultipleSelectionButton!
+    @IBOutlet var multipleSelectionFourthButton: MultipleSelectionButton!
     
     // Answer buttons array.
-    private var answerButtons = [UIButtonWithRoundedCornersAndBottomShadow]()
+    private var answerButtons = [MultipleSelectionButton]()
     
     // Words to be learning.
     public var words: [Word]?
@@ -45,7 +46,15 @@ class LearnViewController: CustomViewController {
     private var questionNumber: CGFloat = 25
     
     // Current progress
-    private var progress: CGFloat = 0
+    private var progress: CGFloat {
+        set{
+            quizProgressBar.progress = quizProgressBar.progress + newValue / questionNumber
+            quizProgressBar.update()
+        }
+        get {
+            return quizProgressBar.progress
+        }
+    }
     
     // Learn words order.
     private var questionOrders = [QuestionOrder]()
@@ -61,6 +70,9 @@ class LearnViewController: CustomViewController {
             return kolodaView.currentCardIndex
         }
     }
+    
+    // Continue later button
+    @IBOutlet var continueLaterButton: UIButton!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -82,6 +94,8 @@ class LearnViewController: CustomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+        
         setupLearnWords()
         
         getLearnWordsOrderFromPlistFile()
@@ -96,6 +110,16 @@ class LearnViewController: CustomViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func setupView() {
+        
+        self.view.addSubview(multipleSelectionView)
+        self.view.addSubview(writingView)
+        
+        multipleSelectionView.frame = CGRect(x: 16, y: kolodaView.frame.origin.y + kolodaView.frame.size.height + 8, width: width - 32, height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16)
+        
+        writingView.frame = CGRect(x: 8, y: kolodaView.frame.origin.y + kolodaView.frame.size.height + 8, width: width - 16, height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16)
     }
     
     private func getLearnWordsOrderFromPlistFile() {
@@ -186,7 +210,7 @@ class LearnViewController: CustomViewController {
         }
     }
     
-    private func change(button: UIButtonWithRoundedCornersAndBottomShadow, withBackgroundColor backgroundColor: UIColor, andBorderColor borderColor: CGColor) {
+    private func change(button: MultipleSelectionButton, withBackgroundColor backgroundColor: UIColor, andBorderColor borderColor: CGColor) {
         button.setTitleColor(UIColor.white, for: UIControl.State.normal)
         button.backgroundColor = backgroundColor
         button.layer.borderColor = borderColor
@@ -203,7 +227,7 @@ class LearnViewController: CustomViewController {
         writingAnswerTextField.textColor = UIColor.black
     }
     
-    private func turnDefaultButtonAppearence(button: UIButtonWithRoundedCornersAndBottomShadow) {
+    private func turnDefaultButtonAppearence(button: MultipleSelectionButton) {
         button.setTitleColor(UIColor.customColors.swordBlue, for: UIControl.State.normal)
         button.backgroundColor = UIColor.white
         button.layer.borderColor = UIColor.white.cgColor
@@ -235,7 +259,16 @@ class LearnViewController: CustomViewController {
         quizProgressBar.animateTo(progress: progress)
     }
     
-    @IBAction func answerButtonTouchUpInside(_ sender: UIButtonWithRoundedCornersAndBottomShadow) {
+    private func playSound(withAnswerState state: Bool) {
+        if state {
+            playSound(withName: "right")
+        } else {
+            playSound(withName: "wrong")
+        }
+        
+    }
+    
+    @IBAction func answerButtonTouchUpInside(_ sender: MultipleSelectionButton) {
         
         print("Quiz question answered.")
         
@@ -244,25 +277,36 @@ class LearnViewController: CustomViewController {
         if let multipleSelectionQuestion = questions[currentQuestionIndex] as? MultipleSelection {
             let isAnswerRight = multipleSelectionQuestion.answerTheQuestion(answerIndex: sender.tag - 1)
             
+            // Change button appearance with "right" or "wrong" style.
+            sender.changeAppearance(withAnswerState: isAnswerRight)
+            
+            // Play "right" or "wrong" sound.
+            playSound(withAnswerState: isAnswerRight)
+            
             if isAnswerRight {
-                
-                // Change button appearance.
-                change(button: sender, withBackgroundColor: UIColor.customColors.green, andBorderColor: UIColor.customColors.borderGreen.cgColor)
-                
-                // Play sound "right".
-                playSound(withName: "right")
-                
-                // Update progress bar.
-                progress = quizProgressBar.progress + 1 / questionNumber
-                quizProgressBar.animateTo(progress: progress)
+                // Update progress bar with new value.
+                increaseProgress(withIncreaseValue: 1)
             } else {
-                change(button: sender, withBackgroundColor: UIColor.customColors.red, andBorderColor: UIColor.customColors.borderRed.cgColor)
-                playSound(withName: "wrong")
+                // Show right answer.
+                showRightAnswer(withQuestion: multipleSelectionQuestion)
+                
+                // Check wrong answered times of the question
+                if !multipleSelectionQuestion.isAnswered() {
+                    questionOrders.append(questionOrders[currentQuestionIndex])
+                } else {
+                    increaseProgress(withIncreaseValue: 1)
+                }
             }
         }
-        
     }
-
+    
+    private func showRightAnswer(withQuestion question: MultipleSelection) {
+        answerButtons[question.getRightAnswerIndex()].changeAppearance(withAnswerState: true)
+    }
+    
+    private func increaseProgress(withIncreaseValue value: CGFloat) {
+        progress = value
+    }
     
     @IBAction func answerWritingButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
         
@@ -274,23 +318,24 @@ class LearnViewController: CustomViewController {
             
             let isAnswerRight = currentQuestion.answerTheQuestion(withText: writingAnswerTextField.text ?? "")
             
+            // Play "right" or "wrong" sound.
+            playSound(withAnswerState: isAnswerRight)
+            
             if isAnswerRight {
                 writingAnswerTextField.textColor = UIColor.customColors.green
-                playSound(withName: "right")
                 progress = quizProgressBar.progress + 1 / questionNumber
                 quizProgressBar.animateTo(progress: progress)
             } else {
                 writingAnswerTextField.textColor = UIColor.customColors.red
-                playSound(withName: "wrong")
+                correctAnswerLabel.text = currentQuestion.getQuestion().getRightAnswer()
             }
         }
     }
     
-    @IBAction func thenContinueButtonTouchUpInside(sender: UIButton) {
-        
-        
-        
-        performSegue(withIdentifier: "unwindSegueToHead", sender: self)
+    @IBAction func continueLaterButtonTouchUpInside(sender: UIButton) {
+        alertWithAction(title: "Çıkmak istediğime emin misin?", message: "Eğitimin ortasında çıkarsan ilerlemen kayıt edilmeyecektir!") { (_) in
+            self.performSegue(withIdentifier: "unwindSegueToHead", sender: self)
+        }
     }
 
     private func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -427,14 +472,4 @@ extension LearnViewController: KolodaViewDataSource {
         return Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
     
-}
-
-extension UIColor {
-    struct customColors {
-        static let green = UIColor(red: 57/255, green: 202/255, blue: 116/255, alpha: 1.0)
-        static let red = UIColor(red: 229/255, green: 77/255, blue: 66/255, alpha: 1.0)
-        static let borderGreen = UIColor(red: 54/255, green: 184/255, blue: 132/255, alpha: 1.0)
-        static let borderRed = UIColor(red: 205/255, green: 83/255, blue: 79/255, alpha: 1.0)
-        static let swordBlue = UIColor(red: 58/255, green: 153/255, blue: 216/255, alpha: 1.0)
-    }
 }

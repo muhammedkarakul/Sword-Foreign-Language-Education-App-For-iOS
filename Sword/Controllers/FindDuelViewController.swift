@@ -12,6 +12,9 @@ class FindDuelViewController: UIViewController {
     
     // MARK: - Properties
     
+    // Current User
+    var user = User()
+    
     // User
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var userLevelLabel: UILabel!
@@ -27,6 +30,9 @@ class FindDuelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get current user.
+        user = Utilities.getCurrentUserFromRealm()
 
         // Setup view.
         setupView()
@@ -41,6 +47,17 @@ class FindDuelViewController: UIViewController {
     }
     
     private func setupView() {
+        if let userImageUrl = user.getProfilePhotoURL() {
+            userImageView.image = UIImage(named: userImageUrl)
+        }
+        
+        if let userLevel = user.getLevel() {
+            userLevelLabel.text = userLevel
+        }
+        
+        if let userName = user.getName() {
+            userNameLabel.text = userName
+        }
         
     }
 

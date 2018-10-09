@@ -22,6 +22,12 @@ class CustomOverlayView: UIView {
     @IBOutlet var coinImageView: UIImageView!
     @IBOutlet var coinLabel: UILabel!
     
+    public var height: CGFloat {
+        get {
+            return frame.size.height
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         userProfilePhotoImageView.layer.borderWidth = 2
         userProfilePhotoImageView.layer.masksToBounds = false
@@ -52,5 +58,4 @@ class CustomOverlayView: UIView {
         healthLabel.text = String(user.getHearth() ?? 0)
         coinLabel.text = String(user.getDiamond() ?? 0)
     }
-    
 }

@@ -11,6 +11,15 @@ import AVFoundation
 
 class CustomViewController: UIViewController, AVAudioPlayerDelegate {
     
+    
+    internal var width: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    internal var height: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
     private var player: AVAudioPlayer?
     
     //private var blurEffectView = UIVisualEffectView()
@@ -108,12 +117,12 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
 
-    internal func showAlert(withTitle title: String, andMessage message: String, andOKButtonHandler handler: ((UIAlertAction) -> Void)?) {
-        alert(title: title, message: message, completion: {})
-        let cancelAction = UIAlertAction(title: "Tamam", style: .cancel, handler: handler)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
-    }
+//    internal func showAlert(withTitle title: String, andMessage message: String, andOKButtonHandler handler: ((UIAlertAction) -> Void)?) {
+//        alert(title: title, message: message)
+//        let cancelAction = UIAlertAction(title: "Tamam", style: .cancel, handler: handler)
+//        alert.addAction(cancelAction)
+//        self.present(alert, animated: true, completion: nil)
+//    }
 
 }
 
