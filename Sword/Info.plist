@@ -2,21 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>black_italic.ttf</string>
-		<string>black.tff</string>
-		<string>bold_italic.tff</string>
-		<string>bold.tff</string>
-		<string>light_italic.tff</string>
-		<string>light.tff</string>
-		<string>medium_italic.tff</string>
-		<string>medium.tff</string>
-		<string>regular_italic.tff</string>
-		<string>regular.tff</string>
-		<string>ultra_italic.tff</string>
-		<string>ultra.tff</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -37,6 +22,21 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>black_italic.ttf</string>
+		<string>black.tff</string>
+		<string>bold_italic.tff</string>
+		<string>bold.tff</string>
+		<string>light_italic.tff</string>
+		<string>light.tff</string>
+		<string>medium_italic.tff</string>
+		<string>medium.tff</string>
+		<string>regular_italic.tff</string>
+		<string>regular.tff</string>
+		<string>ultra_italic.tff</string>
+		<string>ultra.tff</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

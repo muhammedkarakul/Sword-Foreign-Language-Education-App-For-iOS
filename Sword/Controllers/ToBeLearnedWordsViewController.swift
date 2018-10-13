@@ -11,6 +11,7 @@ import UIKit
 class ToBeLearnedWordsViewController: CustomViewController, UITableViewDelegate, UITableViewDataSource {
     
     public var toBeLearnedWords: [Word]?
+    public var voiceQuestionState = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,19 @@ class ToBeLearnedWordsViewController: CustomViewController, UITableViewDelegate,
     
     @IBAction func goToLearnButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
         
-        performSegue(withIdentifier: "learnScreenSegue", sender: self)
+        alertWithOkAndCancelAction(
+            title: "Uyarı!",
+            message: "Sesli soruları cevaplayabilir misin?",
+            okButtonTitle: "Evet",
+            cancelButtonTitle: "Hayır",
+            okButtonHandler: { (_) in
+                self.voiceQuestionState = true
+                self.performSegue(withIdentifier: "learnScreenSegue", sender: self)
+        },
+            cancelButtonHandler: { (_) in
+                self.voiceQuestionState = false
+                self.performSegue(withIdentifier: "learnScreenSegue", sender: self)
+        })
         
     }
     
@@ -71,7 +84,7 @@ class ToBeLearnedWordsViewController: CustomViewController, UITableViewDelegate,
         let vc = segue.destination as! LearnViewController
         
         vc.words = toBeLearnedWords
-        
+        vc.voiceQuestionState = self.voiceQuestionState
      }
     
     

@@ -15,7 +15,7 @@ extension UIColor {
         static let borderGreen = UIColor(red: 54/255, green: 184/255, blue: 132/255, alpha: 1.0)
         static let borderRed = UIColor(red: 205/255, green: 83/255, blue: 79/255, alpha: 1.0)
         static let swordBlue = UIColor(red: 58/255, green: 153/255, blue: 216/255, alpha: 1.0)
-        static let lightGreen = UIColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-        static let lightRed = UIColor(red: 255/255, green: 135/255, blue: 132/255, alpha: 1.0) // 255, 135, 132
+        static let lightGreen = UIColor(red: 135/255, green: 255/255, blue: 132/255, alpha: 1.0)
+        static let lightRed = UIColor(red: 255/255, green: 135/255, blue: 132/255, alpha: 1.0)
     }
 }

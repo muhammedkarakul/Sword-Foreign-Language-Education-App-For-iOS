@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+//import FirebaseFirestore
 
 class LevelViewController: CustomViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,7 +17,7 @@ class LevelViewController: CustomViewController, UITableViewDelegate, UITableVie
     @IBOutlet var submitButton: UIButtonWithRoundedCorners!
     
     // Firebase Firestore Referance
-    private let db = Firestore.firestore()
+    //private let db = Firestore.firestore()
     
     // Level data array.
     private var levels = [Level]()
@@ -35,7 +35,8 @@ class LevelViewController: CustomViewController, UITableViewDelegate, UITableVie
         
         isSubmitButtonHidden(true)
         
-        getLevelData()
+        //getLevelData()
+        getLevelDataFromRealm()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,66 +45,71 @@ class LevelViewController: CustomViewController, UITableViewDelegate, UITableVie
     }
     
     // MARK: - Functions
-    
-    private func getLevelData() {
-        
-        // Show activity indicator and disable user interaction with view.
-        startActivityIndicator()
-        
-        // Level data gets form database.
-        db.collection("Level").getDocuments { (snapshot, error) in
-            
-            // Stop activity indicator and hide, enable user interaction with view.
-            self.stopActivityIndicator()
-            
-            // Check error.
-            if let err = error {
-                // Error is not nil(fail).
-                print("Error: \(err)")
-            } else {
-                // Error is nil(success).
-                
-                for level in snapshot!.documents {
-                    
-                    var date = Date()
-                    let timestampOptional = level.get("createdDay") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
-                    }
-                    
-                    // Create temporary Level object to be add to levels array.
-                    let tempLevel = Level(
-                        id: level.documentID,
-                        createdDate: date,
-                        name: level.data()["name"] as? String,
-                        score: level.data()["score"] as? Int,
-                        topics: level.data()["topics"] as? [String]
-                    )
-                    
-                    // Add temporary Level object to levels array's end.
-                    self.levels.append(tempLevel)
-                    
-                }
-                
-                self.contentTableView.reloadData()
-            }
-        }
+
+    private func getLevelDataFromRealm() {
+        levels = Utilities.getLevelsFromRealm()
     }
+    
+    
+//    private func getLevelData() {
+//
+//        // Show activity indicator and disable user interaction with view.
+//        startActivityIndicator()
+//
+//        // Level data gets form database.
+//        db.collection("Level").getDocuments { (snapshot, error) in
+//
+//            // Stop activity indicator and hide, enable user interaction with view.
+//            self.stopActivityIndicator()
+//
+//            // Check error.
+//            if let err = error {
+//                // Error is not nil(fail).
+//                print("Error: \(err)")
+//            } else {
+//                // Error is nil(success).
+//
+//                for level in snapshot!.documents {
+//
+//                    var date = Date()
+//                    let timestampOptional = level.get("createdDay") as? Timestamp
+//                    if let timestamp = timestampOptional {
+//                        date = timestamp.dateValue()
+//                    }
+//
+//                    // Create temporary Level object to be add to levels array.
+//                    let tempLevel = Level(
+//                        id: level.documentID,
+//                        createdDate: date,
+//                        name: level.data()["name"] as? String,
+//                        score: level.data()["score"] as? Int,
+//                        topics: level.data()["topics"] as? [String]
+//                    )
+//
+//                    // Add temporary Level object to levels array's end.
+//                    self.levels.append(tempLevel)
+//
+//                }
+//
+//                self.contentTableView.reloadData()
+//            }
+//        }
+//    }
     
     // MARK: - Functions
     
-    private func addLevelToRealm(_ level: Level) {
-        let realmLevel = RealmLevel()
-        realmLevel.id = level.getId()
-        realmLevel.createdDate = level.getCreatedDate()
-        realmLevel.name = level.getName()
-        realmLevel.score.value = level.getScore()
-        realmLevel.topics = self.topicsArrayString
-        
-        realmLevel.writeToRealm()
-        
-        print("SUCCESS: Level item added to Realm.")
-    }
+//    private func addLevelToRealm(_ level: Level) {
+//        let realmLevel = RealmLevel()
+//        realmLevel.id = level.getId()
+//        realmLevel.createdDate = level.getCreatedDate()
+//        realmLevel.name = level.getName()
+//        realmLevel.score.value = level.getScore()
+//        realmLevel.topics = self.topicsArrayString
+//
+//        realmLevel.writeToRealm()
+//
+//        print("SUCCESS: Level item added to Realm.")
+//    }
     
     // MARK: - Actions
     

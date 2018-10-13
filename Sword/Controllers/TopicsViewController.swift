@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+//import FirebaseFirestore
 
 class TopicsViewController: CustomViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -16,8 +16,9 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
 
     private var topics = [Topic]()
     private var selectedTopics = [Topic]()
+    private var selectedTopicIndexes = [Int]()
     private var selectedCellCounter = 0
-    private var db = Firestore.firestore()
+    //private var db = Firestore.firestore()
     
     public var selectedLevel = Level()
     
@@ -28,9 +29,13 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
         containerTableView.delegate = self
         containerTableView.dataSource = self
 
+        //submitButton.isHidden = true
+        
         updateSubmitButtonAppearance()
 
-        getTopicDataWithId()
+        //getTopicDataWithId()
+        
+        getTopicsDataFromRealm()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,52 +45,75 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
     
     // MARK: - Functions
     
-    private func getTopicDataWithId() {
-        // Show activity indicator and disable user interaction with view.
-        startActivityIndicator()
+    private func getTopicsDataFromRealm() {
+        let tempTopics = Utilities.getTopicsFromRealm()
         
-        db.collection("Topic").getDocuments { (snapshot, error) in
-            // Stop and hide activity indicator and disable user interaction with view.
-            self.stopActivityIndicator()
-            
-            if let err = error {
-                print("Error: \(err)")
-            } else {
-                for topic in snapshot!.documents {
-                    
-                    var date = Date()
-                    let timestampOptional = topic.get("crearedDate") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
+        let topicIds = selectedLevel.getTopics()
+        
+        if let ids = topicIds {
+            for id in ids {
+                for tempTopic in tempTopics {
+                    if id == tempTopic.getId() {
+                        topics.append(tempTopic)
                     }
-                    
-                    let tempTopic = Topic(
-                        id: topic.documentID,
-                        createdDate: date,
-                        name: topic.data()["name"] as? String,
-                        words: topic.data()["words"] as? [String]
-                    )
-                    
-                    if let topics = self.selectedLevel.getTopics() {
-                        for id in topics {
-                            if tempTopic.getId() == id {
-                                self.topics.append(tempTopic)
-                            }
-                        }
-                    }
-                    
                 }
-                
-                self.containerTableView.reloadData()
             }
         }
+        
     }
+    
+//    private func getTopicDataWithId() {
+//        // Show activity indicator and disable user interaction with view.
+//        startActivityIndicator()
+//
+//        db.collection("Topic").getDocuments { (snapshot, error) in
+//            // Stop and hide activity indicator and disable user interaction with view.
+//            self.stopActivityIndicator()
+//
+//            if let err = error {
+//                print("Error: \(err)")
+//            } else {
+//                for topic in snapshot!.documents {
+//
+//                    var date = Date()
+//                    let timestampOptional = topic.get("crearedDate") as? Timestamp
+//                    if let timestamp = timestampOptional {
+//                        date = timestamp.dateValue()
+//                    }
+//
+//                    let tempTopic = Topic(
+//                        id: topic.documentID,
+//                        createdDate: date,
+//                        name: topic.data()["name"] as? String,
+//                        words: topic.data()["words"] as? [String]
+//                    )
+//
+//                    if let topics = self.selectedLevel.getTopics() {
+//                        for id in topics {
+//                            if tempTopic.getId() == id {
+//                                self.topics.append(tempTopic)
+//                            }
+//                        }
+//                    }
+//
+//                }
+//
+//                self.containerTableView.reloadData()
+//            }
+//        }
+//    }
     
     // MARK: - Actions
     
     @IBAction func nextTapped(_ sender: UIButton) {
         //getCurrentUserFromRealm().printUserData()
+        
+        for selectedTopicIndex in selectedTopicIndexes {
+            selectedTopics.append(topics[selectedTopicIndex])
+        }
+        
         updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: Utilities.getCurrentUserFromRealm())
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -109,20 +137,28 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 1.0)
-        selectedCellCounter = selectedCellCounter + 1
-        updateSubmitButtonAppearance()
-        selectedTopics.append(topics[indexPath.row])
-        print("Appended Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
         
+        selectedCellCounter += 1
+        
+        updateSubmitButtonAppearance()
+        
+        selectedTopicIndexes.append(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
-        selectedCellCounter = selectedCellCounter - 1
+        
+        selectedCellCounter -= 1
+        
         updateSubmitButtonAppearance()
-        print("Removed Topic: \(topics[indexPath.row].getName() ?? "no topic selected")")
-        selectedTopics.remove(at: indexPath.row)
+        
+        for (key, selectedTopicIndex) in selectedTopicIndexes.enumerated() {
+            if selectedTopicIndex == indexPath.row {
+                selectedTopicIndexes.remove(at: key)
+            }
+        }
+        
     }
     
     private func updateSubmitButtonAppearance() {

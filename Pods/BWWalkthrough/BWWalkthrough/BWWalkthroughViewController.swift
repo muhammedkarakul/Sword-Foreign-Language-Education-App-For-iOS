@@ -82,10 +82,9 @@ import UIKit
         }
     }
     
-    
     // MARK: - Private properties -
     
-    open let scrollview = UIScrollView()
+    public let scrollview = UIScrollView()
     private var controllers = [UIViewController]()
     private var lastViewConstraint: [NSLayoutConstraint]?
     
@@ -232,10 +231,8 @@ import UIKit
         // Hide/Show navigation buttons
         if currentPage == controllers.count - 1{
             nextButton?.isHidden = true
-            closeButton?.isHidden = false
         }else{
             nextButton?.isHidden = false
-            closeButton?.isHidden = true
         }
         
         if currentPage == 0{

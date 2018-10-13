@@ -58,6 +58,7 @@
 		57A0E81A210E6F3200C4C584 /* UILabel+addImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */; };
 		57A32BC720AF09D200857A02 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A32BC620AF09D200857A02 /* CustomOverlayView.swift */; };
 		57AFB47320ADD9BB00C5B02B /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */; };
+		57B1C0D82171EBD90082F393 /* LevelAndTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B1C0D72171EBD90082F393 /* LevelAndTopic.storyboard */; };
 		57B38C692148565700AF3B95 /* UIViewController+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B38C682148565600AF3B95 /* UIViewController+BlurEffect.swift */; };
 		57B9B08320ADA06400535920 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B9B08220ADA06400535920 /* OverlayView.xib */; };
 		57BD20D1211B7E1700278E40 /* peering.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57BD20CB211B7E1700278E40 /* peering.mp3 */; };
@@ -169,6 +170,7 @@
 		57A0E819210E6F3200C4C584 /* UILabel+addImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UILabel+addImage.swift"; path = "Extensions/UILabel+addImage.swift"; sourceTree = "<group>"; };
 		57A32BC620AF09D200857A02 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = "Custom Classes/CustomOverlayView.swift"; sourceTree = "<group>"; };
 		57AFB47220ADD9BB00C5B02B /* CustomKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = "Custom Classes/CustomKolodaView.swift"; sourceTree = "<group>"; };
+		57B1C0D72171EBD90082F393 /* LevelAndTopic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LevelAndTopic.storyboard; path = Views/LevelAndTopic.storyboard; sourceTree = "<group>"; };
 		57B38C682148565600AF3B95 /* UIViewController+BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+BlurEffect.swift"; path = "Extensions/UIViewController+BlurEffect.swift"; sourceTree = "<group>"; };
 		57B9B08220ADA06400535920 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OverlayView.xib; path = Views/OverlayView.xib; sourceTree = "<group>"; };
 		57BD20CB211B7E1700278E40 /* peering.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = peering.mp3; path = Sounds/peering.mp3; sourceTree = "<group>"; };
@@ -318,7 +320,6 @@
 		570EC37921492D1400889D49 /* Duel */ = {
 			isa = PBXGroup;
 			children = (
-				574CC32920A32080003F0AA9 /* DuelViewController.swift */,
 				570EC37A21492D3B00889D49 /* FindDuelViewController.swift */,
 				570EC37C21492D8900889D49 /* ArenaViewController.swift */,
 				570EC37E21492E3B00889D49 /* DuelResultViewController.swift */,
@@ -371,6 +372,7 @@
 		574CC32620A32024003F0AA9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				574CC32920A32080003F0AA9 /* DuelViewController.swift */,
 				574CC32720A32056003F0AA9 /* PickWordsViewController.swift */,
 				574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */,
 				5720954E20AD8B1D006C869D /* MainViewController.swift */,
@@ -379,7 +381,6 @@
 				574CC32F20A320E5003F0AA9 /* ProfileViewController.swift */,
 				574CC33120A324FE003F0AA9 /* LevelViewController.swift */,
 				574CC33320A32723003F0AA9 /* TopicsViewController.swift */,
-				57798C5021132E52009A2678 /* ToBeLearnedWordsViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -415,6 +416,7 @@
 		57BD20DA211B818C00278E40 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				57798C5021132E52009A2678 /* ToBeLearnedWordsViewController.swift */,
 				57798C5221137E91009A2678 /* LearnViewController.swift */,
 				572A806C2142BA9700102D54 /* LearnResultViewController.swift */,
 			);
@@ -474,6 +476,7 @@
 				57F75605213AB20500F0011D /* Main.storyboard */,
 				570EC38021492FAB00889D49 /* Duel.storyboard */,
 				57EFB8A821481F04007FD864 /* Learning.storyboard */,
+				57B1C0D72171EBD90082F393 /* LevelAndTopic.storyboard */,
 				57F75607213AB20600F0011D /* Walkthrough.storyboard */,
 				570867202084EDCF00D4B8FF /* LaunchScreen.storyboard */,
 				57B9B08220ADA06400535920 /* OverlayView.xib */,
@@ -639,6 +642,7 @@
 				57F75608213AB20600F0011D /* Main.storyboard in Resources */,
 				57F75609213AB20600F0011D /* Login.storyboard in Resources */,
 				57EFB8A921481F04007FD864 /* Learning.storyboard in Resources */,
+				57B1C0D82171EBD90082F393 /* LevelAndTopic.storyboard in Resources */,
 				57BD20D5211B7E1700278E40 /* right.mp3 in Resources */,
 				57F7560A213AB20600F0011D /* Walkthrough.storyboard in Resources */,
 				57C49AF9216C0F77006957F1 /* Font in Resources */,
@@ -1011,14 +1015,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P6RBQAP3JT;
+				DEVELOPMENT_TEAM = NP973XPAN9;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.swordTeam.Sword;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swordApp.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1034,14 +1038,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P6RBQAP3JT;
+				DEVELOPMENT_TEAM = NP973XPAN9;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.swordTeam.Sword;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swordApp.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

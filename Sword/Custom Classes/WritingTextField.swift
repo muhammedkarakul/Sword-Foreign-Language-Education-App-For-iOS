@@ -13,10 +13,8 @@ class WritingTextField: UITextField {
     func changeAppearance(withAnswerState state: Bool) {
         if state {
             textColor = UIColor.customColors.green
-            backgroundColor = UIColor.customColors.lightGreen
         } else {
             textColor = UIColor.customColors.red
-            backgroundColor = UIColor.customColors.lightRed
         }
     }
 

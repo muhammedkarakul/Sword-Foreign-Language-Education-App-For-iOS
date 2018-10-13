@@ -17,8 +17,7 @@ class Utilities {
         var currentUser = User()
         
         for realmUser in realmUsers {
-            var tempUser = User()
-            tempUser = User(
+            let tempUser = User(
                 id: realmUser.id,
                 name: realmUser.name,
                 email: realmUser.email,
@@ -30,7 +29,6 @@ class Utilities {
                 level: realmUser.level,
                 topics: realmUser.topic?.components(separatedBy: ",")
             )
-            
             users.append(tempUser)
         }
         
@@ -41,6 +39,43 @@ class Utilities {
         }
         
         return currentUser
+    }
+    
+    public static func getLevelsFromRealm() -> [Level] {
+        let realmLevels = uiRealm.objects(RealmLevel.self)
+        var levels = [Level]()
+        
+        for realmLevel in realmLevels {
+            let tempLevel = Level(
+                id: realmLevel.id,
+                createdDate: realmLevel.createdDate,
+                name: realmLevel.name,
+                score: realmLevel.score.value,
+                topics: realmLevel.topics?.components(separatedBy: ",")
+            )
+            
+            levels.append(tempLevel)
+        }
+        
+        return levels
+    }
+    
+    public static func getTopicsFromRealm() ->[Topic] {
+        let realmTopics = uiRealm.objects(RealmTopic.self)
+        var topics = [Topic]()
+        
+        for realmTopic in realmTopics {
+            let tempTopic = Topic(
+                id: realmTopic.id,
+                createdDate: realmTopic.createdDate,
+                name: realmTopic.name,
+                words: realmTopic.name?.components(separatedBy: ",")
+            )
+            
+            topics.append(tempTopic)
+        }
+        
+        return topics
     }
     
 }

@@ -21,7 +21,7 @@ class LearnViewController: CustomViewController {
     // Writing items.
     @IBOutlet var writingView: UIView!
     @IBOutlet var writingViewHeaderLabel: UILabel!
-    @IBOutlet var writingAnswerTextField: UITextField!
+    @IBOutlet var writingAnswerTextField: WritingTextField!
     @IBOutlet var checkAnswerButton: UIButtonWithRoundedCorners!
     @IBOutlet var correctAnswerLabel: UILabel!
     
@@ -33,6 +33,9 @@ class LearnViewController: CustomViewController {
     @IBOutlet var multipleSelectionThirdButton: MultipleSelectionButton!
     @IBOutlet var multipleSelectionFourthButton: MultipleSelectionButton!
     
+    // Continue later button
+    @IBOutlet var continueLaterButton: UIButton!
+    
     // Answer buttons array.
     private var answerButtons = [MultipleSelectionButton]()
     
@@ -43,12 +46,16 @@ class LearnViewController: CustomViewController {
     private var learnWords = [LearnWord]()
     
     // Total question number
-    private var questionNumber: CGFloat = 25
+    private var questionNumber: CGFloat {
+        get {
+            return CGFloat(questionOrders.count)
+        }
+    }
     
     // Current progress
     private var progress: CGFloat {
         set{
-            quizProgressBar.progress = quizProgressBar.progress + newValue / questionNumber
+            quizProgressBar.progress = quizProgressBar.progress + newValue / 25
             quizProgressBar.update()
         }
         get {
@@ -71,8 +78,7 @@ class LearnViewController: CustomViewController {
         }
     }
     
-    // Continue later button
-    @IBOutlet var continueLaterButton: UIButton!
+    public var voiceQuestionState: Bool?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -100,7 +106,12 @@ class LearnViewController: CustomViewController {
         
         getLearnWordsOrderFromPlistFile()
         
+        checkVoiceQuestionState()
+        
         setupQuestions()
+        
+        // If user can't answer voice question turn listening questions to reading type question
+        checkVoiceQuestionState()
         
         // Koloda view delegate and datasource
         kolodaView.delegate = self
@@ -170,6 +181,16 @@ class LearnViewController: CustomViewController {
         }
     }
     
+    private func checkVoiceQuestionState() {
+        if voiceQuestionState == false {
+            for questionOrder in questionOrders {
+                if questionOrder.getQuestionType() == .listening {
+                    questionOrder.setQuestionType(questionType: .reading)
+                }
+            }
+        }
+    }
+    
     private func updateView() {
         
         if currentQuestionIndex < Int(questionNumber) {
@@ -193,7 +214,7 @@ class LearnViewController: CustomViewController {
                 
             case .writing:
                 
-                turnDefaultTextFieldAppearence()
+                resetWritingAppearance()
                 
                 checkAnswerButton.isUserInteractionEnabled = true
             }
@@ -202,6 +223,13 @@ class LearnViewController: CustomViewController {
         
         changeAnswerType()
         
+    }
+    
+    private func resetWritingAppearance() {
+        writingAnswerTextField.text = ""
+        writingAnswerTextField.textColor = UIColor.black
+        
+        correctAnswerLabel.text = ""
     }
     
     private func turnDefaultButtonsAppearence() {
@@ -220,11 +248,6 @@ class LearnViewController: CustomViewController {
         for answerButton in answerButtons {
             answerButton.isUserInteractionEnabled = !answerButton.isUserInteractionEnabled
         }
-    }
-    
-    private func turnDefaultTextFieldAppearence() {
-        writingAnswerTextField.text = ""
-        writingAnswerTextField.textColor = UIColor.black
     }
     
     private func turnDefaultButtonAppearence(button: MultipleSelectionButton) {
@@ -274,8 +297,8 @@ class LearnViewController: CustomViewController {
         
         changeButtonsUserInteractionStatus()
         
-        if let multipleSelectionQuestion = questions[currentQuestionIndex] as? MultipleSelection {
-            let isAnswerRight = multipleSelectionQuestion.answerTheQuestion(answerIndex: sender.tag - 1)
+        if let currentQuestion = questions[currentQuestionIndex] as? MultipleSelection {
+            let isAnswerRight = currentQuestion.answerTheQuestion(answerIndex: sender.tag - 1)
             
             // Change button appearance with "right" or "wrong" style.
             sender.changeAppearance(withAnswerState: isAnswerRight)
@@ -288,11 +311,15 @@ class LearnViewController: CustomViewController {
                 increaseProgress(withIncreaseValue: 1)
             } else {
                 // Show right answer.
-                showRightAnswer(withQuestion: multipleSelectionQuestion)
+                showRightAnswer(withQuestion: currentQuestion)
                 
                 // Check wrong answered times of the question
-                if !multipleSelectionQuestion.isAnswered() {
+                if !currentQuestion.isAnswered() {
+                    
                     questionOrders.append(questionOrders[currentQuestionIndex])
+                    
+                    questions.append(currentQuestion)
+                    
                 } else {
                     increaseProgress(withIncreaseValue: 1)
                 }
@@ -318,24 +345,45 @@ class LearnViewController: CustomViewController {
             
             let isAnswerRight = currentQuestion.answerTheQuestion(withText: writingAnswerTextField.text ?? "")
             
+            // Change text field appearance with "right" or "wrong" style.
+            writingAnswerTextField.changeAppearance(withAnswerState: isAnswerRight)
+            
             // Play "right" or "wrong" sound.
             playSound(withAnswerState: isAnswerRight)
             
             if isAnswerRight {
-                writingAnswerTextField.textColor = UIColor.customColors.green
-                progress = quizProgressBar.progress + 1 / questionNumber
-                quizProgressBar.animateTo(progress: progress)
+                increaseProgress(withIncreaseValue: 1)
             } else {
-                writingAnswerTextField.textColor = UIColor.customColors.red
-                correctAnswerLabel.text = currentQuestion.getQuestion().getRightAnswer()
+                
+                // Check wrong answered times of the question
+                if !currentQuestion.isAnswered() {
+                    
+                    correctAnswerLabel.text = currentQuestion.getQuestion().getRightAnswer()
+                    
+                    questionOrders.append(questionOrders[currentQuestionIndex])
+                    
+                    questions.append(currentQuestion)
+                    
+                } else {
+                    increaseProgress(withIncreaseValue: 1)
+                }
             }
         }
     }
     
     @IBAction func continueLaterButtonTouchUpInside(sender: UIButton) {
-        alertWithAction(title: "Çıkmak istediğime emin misin?", message: "Eğitimin ortasında çıkarsan ilerlemen kayıt edilmeyecektir!") { (_) in
+        
+        alertWithOkAndCancelAction(
+            title: "Çıkmak istediğine emin misin?",
+            message: "Eğitim bitmeden çıkarsan puan kazanamazsın.",
+            okButtonTitle: "Tamam",
+            cancelButtonTitle: "Vazgeç",
+            okButtonHandler: { (_) in
+                
             self.performSegue(withIdentifier: "unwindSegueToHead", sender: self)
-        }
+                
+        })
+        
     }
 
     private func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -440,8 +488,6 @@ extension LearnViewController: KolodaViewDataSource {
         let labelBGColor = UIColor(displayP3Red: (213.0 + CGFloat(index))/255.0, green: (234.0 + CGFloat(index))/255.0, blue: (245.0 + CGFloat(index))/255.0, alpha: 1.0)
         let label = UILabel()
         label.numberOfLines = 0
-        
-        
         
         switch questionOrders[index].getQuestionType() {
         case .reading:

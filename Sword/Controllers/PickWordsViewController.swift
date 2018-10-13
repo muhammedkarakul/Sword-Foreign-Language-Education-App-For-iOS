@@ -60,12 +60,6 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         updateView()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        //resetProperties()
-    }
-    
     private func resetProperties() {
         kolodaView.resetCurrentCardIndex()
         words = [Word]()
@@ -84,10 +78,6 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         self.view.addSubview(learnContainerView)
         self.view.addSubview(selectWordContainerView)
         self.view.addSubview(letsLearnContainerView)
-        
-        //learnContainerView.center = self.view.center
-        //selectWordContainerView.center = self.view.center
-        //letsLearnContainerView.center = self.view.center
         
         learnContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
         
