@@ -12,7 +12,7 @@ import GTProgressBar
 import AVFoundation
 import SwiftyPlistManager
 
-class LearnViewController: CustomViewController {
+class LearnViewController: CustomViewController, UITextFieldDelegate {
     
     @IBOutlet var quizProgressBar: GTProgressBar!
     
@@ -22,7 +22,7 @@ class LearnViewController: CustomViewController {
     @IBOutlet var writingView: UIView!
     @IBOutlet var writingViewHeaderLabel: UILabel!
     @IBOutlet var writingAnswerTextField: WritingTextField!
-    @IBOutlet var checkAnswerButton: UIButtonWithRoundedCorners!
+    @IBOutlet var checkAnswerButton: CustomButton!
     @IBOutlet var correctAnswerLabel: UILabel!
     
     // Multiple selection items.
@@ -335,7 +335,7 @@ class LearnViewController: CustomViewController {
         progress = value
     }
     
-    @IBAction func answerWritingButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func answerWritingButtonTouchUpInside(_ sender: CustomButton) {
         
         print("Writing question answered.")
         
@@ -417,6 +417,11 @@ class LearnViewController: CustomViewController {
             return ""
         }
     }
+    
+    // MARK: - UITextfield Delegate
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//    }
 
     /*
     // MARK: - Navigation

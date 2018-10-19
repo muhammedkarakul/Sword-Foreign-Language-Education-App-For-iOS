@@ -130,12 +130,12 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         performSegue(withIdentifier: "levelAndTopicView", sender: self)
     }
     
-    @IBAction func learnButtonTapped(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func learnButtonTapped(_ sender: CustomButton) {
         print("LEARNBUTTONTAPPED")
         kolodaView.swipe(.left)
     }
     
-    @IBAction func knowButtonTapped(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func knowButtonTapped(_ sender: CustomButton) {
         print("KNOWBUTTONTAPPED")
         kolodaView.swipe(.right)
     }
@@ -156,7 +156,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         performSegue(withIdentifier: "levelAndTopicView", sender: self)
     }
     
-    @IBAction func letsLearnButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func letsLearnButtonTouchUpInside(_ sender: CustomButton) {
         performSegue(withIdentifier: "toBeLearnedWords", sender: self)
     }
     

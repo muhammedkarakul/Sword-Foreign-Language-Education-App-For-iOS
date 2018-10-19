@@ -12,7 +12,7 @@ class DuelViewController: CustomMainViewController {
     
     // MARK: - Properties
     @IBOutlet var iconImageView: UIImageView!
-    @IBOutlet var findDuelButton: UIButtonWithRoundedCorners!
+    @IBOutlet var findDuelButton: CustomButton!
     
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class DuelViewController: CustomMainViewController {
      * When touch button, go to find duel view.
      */
     
-    @IBAction func findDuel(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func findDuel(_ sender: CustomButton) {
         performSegue(withIdentifier: "findDuelSegue", sender: self)
     }
     

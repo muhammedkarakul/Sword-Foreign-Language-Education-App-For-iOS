@@ -65,6 +65,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="DGf-ji-s3U"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                 <state key="normal" title="Sonra Devam Et">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -106,10 +107,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yJu-b4-zBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vL9-YC-X83" userLabel="Exit" sceneMemberID="exit"/>
-                <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" id="OxA-nW-Xx2">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="351"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </containerView>
                 <view contentMode="scaleToFill" id="Pkq-ep-x1s">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="313"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -119,13 +116,14 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doğru Şıkkı Seç" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc6-cz-96g" userLabel="Multiple Selection View Header Label">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="46.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gH-PF-I5M" userLabel="Multiple Selection First Answer Button" customClass="MultipleSelectionButton" customModule="Sword" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="66.5" width="300" height="46.5"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Cevap 1">
                                         <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,6 +146,7 @@
                                 <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTc-PB-5R5" userLabel="Multiple Selection Second Answer Button" customClass="MultipleSelectionButton" customModule="Sword" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="133" width="300" height="47"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Cevap 2">
                                         <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,6 +169,7 @@
                                 <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihV-Tu-UbG" userLabel="Multiple Selection Thirth Answer Button" customClass="MultipleSelectionButton" customModule="Sword" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="200" width="300" height="46.5"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Cevap 3">
                                         <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -192,6 +192,7 @@
                                 <button opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzE-i8-oB4" userLabel="Multiple Selection Fourth Answer Button" customClass="MultipleSelectionButton" customModule="Sword" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="266.5" width="300" height="46.5"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Cevap 4">
                                         <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,20 +236,20 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="r8Y-kA-P1q"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWr-R6-f46" customClass="CustomView" customModule="Sword" customModuleProvider="target">
                                     <rect key="frame" x="16" y="75" width="268" height="50"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6E-WV-D8u" customClass="WritingTextField" customModule="Sword" customModuleProvider="target">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cevap" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6E-WV-D8u" customClass="WritingTextField" customModule="Sword" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="12" width="268" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="38" id="ibw-QO-IEv"/>
                                             </constraints>
                                             <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZw-w9-7WO">
@@ -256,7 +257,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="12" id="ATP-j5-edM"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="11"/>
                                             <color key="textColor" red="0.22352941176470587" green="0.792156862745098" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -283,16 +284,28 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p3-Y4-fRM" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9p3-Y4-fRM" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
                                     <rect key="frame" x="75" y="150" width="150" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="MZD-Tr-lQn"/>
                                         <constraint firstAttribute="width" constant="150" id="UXG-uB-i5K"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Tamam">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="25"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="answerWritingButtonTouchUpInside:" destination="krV-ze-ur3" eventType="touchUpInside" id="grK-tp-IDN"/>
                                     </connections>
@@ -328,17 +341,29 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="62o-WT-ddm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOG-0d-3UL" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOG-0d-3UL" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
                                 <rect key="frame" x="112.5" y="597" width="150" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="OGW-MX-d1G"/>
                                     <constraint firstAttribute="height" constant="50" id="ciq-6Z-daM"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Tamam">
                                     <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="completeLearning:" destination="5SO-tj-4mN" eventType="touchUpInside" id="UgT-JK-HFc"/>
                                 </connections>
@@ -362,7 +387,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="He5-rD-fpJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -406,7 +431,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="Omb-Zi-oQY"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -449,7 +474,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="GtL-nq-bKV"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -520,7 +545,7 @@
                                 </constraints>
                                 <string key="text">
 Öğrenilecek Kelimeler</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -543,14 +568,14 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="33" id="XKp-Hb-ykV"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                            <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Kelime Tr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qag-SO-INO">
                                                             <rect key="frame" x="8" y="49" width="329" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -586,17 +611,29 @@
                                     <outlet property="delegate" destination="Aco-M5-ffE" id="oUU-xl-kdB"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jh-tr-iac" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jh-tr-iac" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
                                 <rect key="frame" x="112.5" y="597" width="150" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="d5u-1x-wcd"/>
                                     <constraint firstAttribute="width" constant="150" id="eMg-S1-Rg4"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Tamam">
                                     <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="goToLearnButtonTouchUpInside:" destination="Aco-M5-ffE" eventType="touchUpInside" id="1gh-pb-y63"/>
                                 </connections>

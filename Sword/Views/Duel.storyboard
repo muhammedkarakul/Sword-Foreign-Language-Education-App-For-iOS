@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bold.ttf">
+            <string>MikadoBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Find Duel View Controller-->
         <scene sceneID="ChM-mG-8IK">
@@ -22,16 +27,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="l5w-uE-gkD">
-                                <rect key="frame" x="16" y="180.5" width="343" height="306.5"/>
+                                <rect key="frame" x="16" y="176.5" width="343" height="314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-cb-Tv7">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLb-FL-c4n">
-                                        <rect key="frame" x="0.0" y="88.5" width="343" height="150"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="343" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIR-MP-XeR" userLabel="opponent">
                                                 <rect key="frame" x="204.5" y="0.0" width="138.5" height="150"/>
@@ -67,7 +72,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="27" id="NpD-4k-UkT"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -128,7 +133,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="27" id="Fn0-ve-dHL"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -180,8 +185,8 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rakip Aranıyor..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3c-gK-gQJ">
-                                        <rect key="frame" x="0.0" y="288.5" width="343" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="293.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -208,11 +213,20 @@
                         <outlet property="userLevelLabel" destination="OGS-HY-vae" id="Cq0-a2-bnL"/>
                         <outlet property="userNameLabel" destination="m5N-vP-JWh" id="bYf-O9-RSv"/>
                         <segue destination="Trn-cj-EYY" kind="show" identifier="arenaSegue" id="eF3-ZF-UMJ"/>
+                        <segue destination="Hyr-4C-PiG" kind="show" identifier="mainViewSegue" id="2wf-6s-7nD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63k-zU-hQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1669.5999999999999" y="3448.4257871064469"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="77T-9B-tuk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="Hyr-4C-PiG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6zS-fj-tll" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1669" y="3932"/>
         </scene>
         <!--Arena View Controller-->
         <scene sceneID="NJ6-30-uE9">
@@ -243,7 +257,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="HYm-iF-Lqk"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -252,7 +266,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="sBO-ba-NEc"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="27"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -301,7 +315,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="DaR-RV-ARg"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -310,7 +324,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="5Au-fk-Qtg"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="27"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -345,8 +359,8 @@
                                         <rect key="frame" x="158" y="0.0" width="59" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjs-7P-DGq">
-                                                <rect key="frame" x="19" y="0.0" width="21" height="60"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="59" height="60"/>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -356,7 +370,7 @@
                                             <constraint firstItem="tjs-7P-DGq" firstAttribute="centerX" secondItem="Pcx-wV-by5" secondAttribute="centerX" id="25W-yv-v6d"/>
                                             <constraint firstAttribute="height" constant="60" id="2tH-xB-XS5"/>
                                             <constraint firstItem="tjs-7P-DGq" firstAttribute="height" secondItem="Pcx-wV-by5" secondAttribute="height" id="BSg-tt-YqC"/>
-                                            <constraint firstItem="tjs-7P-DGq" firstAttribute="width" relation="lessThanOrEqual" secondItem="Pcx-wV-by5" secondAttribute="width" id="NxU-8r-smh"/>
+                                            <constraint firstItem="tjs-7P-DGq" firstAttribute="width" secondItem="Pcx-wV-by5" secondAttribute="width" id="NxU-8r-smh"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="59" id="WBZ-4j-Rv2"/>
                                             <constraint firstItem="tjs-7P-DGq" firstAttribute="centerY" secondItem="Pcx-wV-by5" secondAttribute="centerY" id="cSX-Hz-mZ4"/>
                                         </constraints>
@@ -396,6 +410,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="3j5-84-dcS"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -418,6 +433,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="s7q-Ma-weJ"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -440,6 +456,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="uoU-Po-bJu"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -462,6 +479,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="tGd-k4-KOA"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button">
                                                     <color key="titleColor" red="0.2274509804" green="0.59999999999999998" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -494,7 +512,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZc-Vm-sp9">
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="12"/>
                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Yüzde 50" image="fiftyPercent">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -502,7 +520,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaB-G3-QNO">
                                         <rect key="frame" x="125" y="0.0" width="125" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="12"/>
                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Çift Cevap" image="doubleAnswer">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -510,7 +528,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efk-VU-Bmf">
                                         <rect key="frame" x="250" y="0.0" width="125" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="12"/>
                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Soruyu Geç" image="nextQuestion">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -604,24 +622,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="7K6-Fm-cBE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="sTc-gA-OZc">
-                                <rect key="frame" x="0.0" y="85" width="375" height="497"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sTc-gA-OZc">
+                                <rect key="frame" x="0.0" y="100" width="375" height="467"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nd-wE-Zgp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9W-Js-9qJ" userLabel="user">
-                                        <rect key="frame" x="0.0" y="68.5" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="63.5" width="375" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PV-Ia-WQC">
                                                 <rect key="frame" x="0.0" y="165" width="375" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27" id="Mty-BW-52N"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -631,7 +649,7 @@
                                                     <constraint firstAttribute="height" constant="130" id="sIb-2p-ZZp"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIN-GV-soU" userLabel="level">
+                                            <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="iIN-GV-soU" userLabel="level">
                                                 <rect key="frame" x="0.0" y="-8" width="375" height="27"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="67X-9r-2zj">
@@ -674,39 +692,97 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kazandın" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4B-U2-DyE">
-                                        <rect key="frame" x="0.0" y="298.5" width="375" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <rect key="frame" x="0.0" y="283.5" width="375" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abe-e1-hHm" customClass="UIButtonWithRoundedCornersAndBottomShadow" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="62.5" y="367" width="250" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCv-Yj-jmk" customClass="CustomView" customModule="Sword" customModuleProvider="target">
+                                        <rect key="frame" x="62.5" y="347" width="250" height="50"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="KyL-y7-hUd">
+                                                <rect key="frame" x="20" y="8" width="34" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="UyP-EA-J66"/>
+                                                    <constraint firstAttribute="width" constant="34" id="b11-vw-d5K"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 000 Puan Kazandın" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX7-lg-E3T">
+                                                <rect key="frame" x="62" y="15" width="168" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="sq3-hH-rF4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="250" id="9BN-W4-Uut"/>
-                                            <constraint firstAttribute="height" constant="50" id="dBg-If-jaA"/>
+                                            <constraint firstAttribute="trailing" secondItem="pX7-lg-E3T" secondAttribute="trailing" constant="20" id="8ef-mZ-WEg"/>
+                                            <constraint firstItem="pX7-lg-E3T" firstAttribute="leading" secondItem="KyL-y7-hUd" secondAttribute="trailing" constant="8" id="PLU-4M-6e9"/>
+                                            <constraint firstItem="KyL-y7-hUd" firstAttribute="top" secondItem="SCv-Yj-jmk" secondAttribute="top" constant="8" id="S2J-t1-hqU"/>
+                                            <constraint firstItem="pX7-lg-E3T" firstAttribute="top" secondItem="SCv-Yj-jmk" secondAttribute="top" constant="15" id="TUM-bz-FYk"/>
+                                            <constraint firstAttribute="bottom" secondItem="KyL-y7-hUd" secondAttribute="bottom" constant="8" id="bf1-xU-7Wk"/>
+                                            <constraint firstAttribute="height" constant="50" id="dMf-jv-3CL"/>
+                                            <constraint firstItem="KyL-y7-hUd" firstAttribute="leading" secondItem="SCv-Yj-jmk" secondAttribute="leading" constant="20" id="eVr-w6-ycG"/>
+                                            <constraint firstAttribute="bottom" secondItem="pX7-lg-E3T" secondAttribute="bottom" constant="14" id="pdz-71-rNN"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="-50" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="+225 Puan Kazandın" image="trophy">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s9-56-vSR" customClass="UIButtonWithRoundedCornersAndBottomShadow" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="62.5" y="447" width="250" height="50"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8AI-qf-uba" customClass="CustomView" customModule="Sword" customModuleProvider="target">
+                                        <rect key="frame" x="62.5" y="417" width="250" height="50"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="ByO-N5-6f3">
+                                                <rect key="frame" x="20" y="8" width="34" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="34" id="fd6-c8-E72"/>
+                                                    <constraint firstAttribute="height" constant="34" id="zg9-km-4Nk"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 000 Puan Kazandın" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXT-oN-CUG">
+                                                <rect key="frame" x="62" y="15" width="168" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="G8x-E8-cP0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Zgd-za-F6D"/>
-                                            <constraint firstAttribute="width" constant="250" id="c8K-JI-bAF"/>
+                                            <constraint firstAttribute="bottom" secondItem="ByO-N5-6f3" secondAttribute="bottom" constant="8" id="FZq-Ql-UFX"/>
+                                            <constraint firstItem="ByO-N5-6f3" firstAttribute="leading" secondItem="8AI-qf-uba" secondAttribute="leading" constant="20" id="GgQ-EO-8tB"/>
+                                            <constraint firstAttribute="bottom" secondItem="qXT-oN-CUG" secondAttribute="bottom" constant="14" id="OuC-RH-Dq8"/>
+                                            <constraint firstItem="qXT-oN-CUG" firstAttribute="top" secondItem="8AI-qf-uba" secondAttribute="top" constant="15" id="Ree-ci-Wx1"/>
+                                            <constraint firstAttribute="trailing" secondItem="qXT-oN-CUG" secondAttribute="trailing" constant="20" id="gc6-xl-wab"/>
+                                            <constraint firstItem="ByO-N5-6f3" firstAttribute="top" secondItem="8AI-qf-uba" secondAttribute="top" constant="8" id="hFI-u1-wiy"/>
+                                            <constraint firstItem="qXT-oN-CUG" firstAttribute="leading" secondItem="ByO-N5-6f3" secondAttribute="trailing" constant="8" id="wb7-mR-rIX"/>
+                                            <constraint firstAttribute="height" constant="50" id="zYq-EX-Bxf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="-50" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="+225 Puan Kazandın" image="trophy">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="X9W-Js-9qJ" firstAttribute="width" secondItem="sTc-gA-OZc" secondAttribute="width" id="SUr-ae-2mB"/>

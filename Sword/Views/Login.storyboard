@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="bold.ttf">
+            <string>MikadoBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Walkthrough View Controller-->
         <scene sceneID="E3Q-x7-ojE">
@@ -65,39 +70,61 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="a6V-Cn-2nC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="36"/>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="36"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="373-zm-C2I" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="373-zm-C2I" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
                                 <rect key="frame" x="62.5" y="338" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ulq-GW-HnQ"/>
                                     <constraint firstAttribute="width" constant="250" id="xkK-iu-Nmj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Kullanıcı Adıyla Giriş Yap" image="avatar">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginWithUserName:" destination="itg-qP-DPb" eventType="touchUpInside" id="ftx-fM-Im6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-he-m0a" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-he-m0a" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
                                 <rect key="frame" x="62.5" y="415" width="250" height="50"/>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Mqz-C1-LvM"/>
                                     <constraint firstAttribute="width" constant="250" id="hzt-KL-jFg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Facebook ile Giriş Yap" image="facebook-logo">
                                     <color key="titleColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginWithFaceBook:" destination="itg-qP-DPb" eventType="touchUpInside" id="KxN-rA-Pgq"/>
                                 </connections>
@@ -110,7 +137,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="DHK-NL-ojo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="11"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="highlightedColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
@@ -119,7 +146,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="PFX-bk-h7F"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="11"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="highlightedColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
@@ -141,7 +168,7 @@
                                     <constraint firstAttribute="height" constant="28" id="1dJ-CR-F2b"/>
                                     <constraint firstAttribute="width" constant="225" id="gHm-mW-sbS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="12"/>
                                 <state key="normal" title="Henüz bir hesabın yok mu? &quot;Kayıt Ol&quot;">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -245,7 +272,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="xqh-Zd-FXh"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     </textField>
                                                 </subviews>
@@ -280,7 +307,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="BLT-97-1Fz"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                                     </textField>
                                                 </subviews>
@@ -315,7 +342,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="zhx-D7-9mk"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
@@ -350,7 +377,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="q7c-Cv-dvA"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
@@ -370,15 +397,27 @@
                                             <constraint firstAttribute="trailing" secondItem="GL2-L3-9mh" secondAttribute="trailing" id="sgt-Z4-Zna"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxn-of-F5y" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxn-of-F5y" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="254" width="343" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="fhf-sP-D0r"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                         <color key="tintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Kayıt Ol">
                                             <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signUpTouchUpInside" destination="iBR-Sk-PcX" eventType="touchUpInside" id="sev-Fy-Ya3"/>
                                         </connections>
@@ -450,7 +489,7 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dWj-tZ-1mb">
-                                <rect key="frame" x="16" y="214.5" width="343" height="238"/>
+                                <rect key="frame" x="16" y="214" width="343" height="239"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-um-Rcy">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
@@ -467,7 +506,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="mgk-tK-td9"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                                     </textField>
                                                 </subviews>
@@ -500,7 +539,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="dPp-Ou-pax"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
@@ -519,8 +558,8 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1M-T9-6b5">
-                                        <rect key="frame" x="0.0" y="132" width="343" height="26"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                        <rect key="frame" x="0.0" y="132" width="343" height="27"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="11"/>
                                         <state key="normal" title="Şifremi unuttum">
                                             <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -528,15 +567,27 @@
                                             <action selector="forgotPasswordTouchUpInside" destination="qa1-SZ-IkD" eventType="touchUpInside" id="AoD-Pz-b6W"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87h-Lw-Dnk" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="188" width="343" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87h-Lw-Dnk" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="189" width="343" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Fo9-W8-fNg"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                         <color key="tintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Giriş Yap">
                                             <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signInTouchUpInside" destination="qa1-SZ-IkD" eventType="touchUpInside" id="FGS-CG-CIy"/>
                                         </connections>
@@ -593,17 +644,17 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SXe-aB-r1l">
-                                <rect key="frame" x="16" y="237" width="343" height="193"/>
+                                <rect key="frame" x="16" y="234" width="343" height="199"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtX-Dv-zXH">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="53"/>
                                         <string key="text">Şifrenizi yenilemeniz için size bir şifre sıfırlama linki göndereceğiz. Lütfen aşağıdaki alana geçerli ve kullandığınız bir mail adresinizi giriniz.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="13"/>
                                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lVf-Ef-i7V">
-                                        <rect key="frame" x="0.0" y="77" width="343" height="36"/>
+                                        <rect key="frame" x="0.0" y="83" width="343" height="36"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fuU-U0-dDZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -617,7 +668,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="w3f-0s-WpN"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                                     </textField>
                                                 </subviews>
@@ -635,14 +686,26 @@
                                             <constraint firstAttribute="trailing" secondItem="fuU-U0-dDZ" secondAttribute="trailing" id="k1a-Ym-1CI"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57P-bn-x7u" customClass="UIButtonWithRoundedCorners" customModule="Sword" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143" width="343" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57P-bn-x7u" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="149" width="343" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dgT-lm-H4v"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                         <state key="normal" title="Gönder">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="submitButtonTouchUpInside:" destination="e9n-XX-Hei" eventType="touchUpInside" id="Atn-7B-fVD"/>
                                         </connections>
@@ -683,11 +746,11 @@
         <image name="Close" width="15" height="15"/>
         <image name="avatar" width="14" height="16"/>
         <image name="facebook-logo" width="8" height="14"/>
-        <image name="lock" width="13" height="16"/>
-        <image name="mail" width="15" height="11"/>
-        <image name="swordBetaIcon" width="163" height="166"/>
+        <image name="lock" width="13.5" height="16"/>
+        <image name="mail" width="15.5" height="11"/>
+        <image name="swordBetaIcon" width="163.5" height="166.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jXx-aM-thw"/>
+        <segue reference="9d9-yX-h5u"/>
     </inferredMetricsTieBreakers>
 </document>

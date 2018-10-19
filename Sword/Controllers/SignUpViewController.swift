@@ -48,6 +48,10 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpTouchUpInside() {
+        
+        showBlurView(withBlurEffectStyle: .dark, andCompletion: nil)
+        startActivityIndicator()
+        
         if  let name = nameTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text,
@@ -72,6 +76,9 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
             if password == passwordValidation {
                 
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    
+                    self.stopActivityIndicator()
+                    self.hideBlurView()
                     
                     if let u = user {
                         print("SUCCESS: USER CREATED")

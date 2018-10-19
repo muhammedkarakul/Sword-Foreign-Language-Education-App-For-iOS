@@ -12,21 +12,21 @@ class MainViewController: CustomViewController {
 
     // MARK: Preferences -
     
-    @IBOutlet var loginWithUserNameButton: UIButtonWithRoundedCorners!
+    @IBOutlet var loginWithUserNameButton: CustomButton!
     
-    @IBAction func loginWithUserName(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func loginWithUserName(_ sender: CustomButton) {
         
         // Go to login with user name view
         performSegue(withIdentifier: "segueLoginWithUserName", sender: self)
     }
     
-    @IBAction func loginWithFaceBook(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func loginWithFaceBook(_ sender: CustomButton) {
         
         // Go to login with face book view
         performSegue(withIdentifier: "segueLoginWithFaceBook", sender: self)
     }
     
-    @IBAction func signUp(_ sender: UIButton) {
+    @IBAction func signUp(_ sender: CustomButton) {
         
         // Go to sign up view
         performSegue(withIdentifier: "segueSignUp", sender: self)

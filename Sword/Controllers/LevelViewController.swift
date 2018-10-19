@@ -14,7 +14,7 @@ class LevelViewController: CustomViewController, UITableViewDelegate, UITableVie
     // MARK: - Properties
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var contentTableView: UITableView!
-    @IBOutlet var submitButton: UIButtonWithRoundedCorners!
+    @IBOutlet var submitButton: CustomButton!
     
     // Firebase Firestore Referance
     //private let db = Firestore.firestore()
@@ -113,7 +113,7 @@ class LevelViewController: CustomViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Actions
     
-    @IBAction func nextTapped(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func nextTapped(_ sender: CustomButton) {
         // Go to topics view
         let topicsViewController = self.tabBarController?.viewControllers![1] as! TopicsViewController
         topicsViewController.selectedLevel = selectedLevel

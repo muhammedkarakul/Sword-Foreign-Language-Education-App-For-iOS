@@ -30,9 +30,17 @@ class ForgotPasswordViewController: CustomViewController {
     }
     
     
-    @IBAction func submitButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func submitButtonTouchUpInside(_ sender: CustomButton) {
+        
+        showBlurView(withBlurEffectStyle: .dark, andCompletion: nil)
+        startActivityIndicator()
+        
         if let email = emailTextField.text {
             Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+                
+                self.hideBlurView()
+                self.stopActivityIndicator()
+                
                 if let err = error {
                     ProgressHUD.showError(err.localizedDescription)
                 } else {

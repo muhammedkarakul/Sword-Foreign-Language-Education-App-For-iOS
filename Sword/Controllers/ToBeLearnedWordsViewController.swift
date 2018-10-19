@@ -58,7 +58,7 @@ class ToBeLearnedWordsViewController: CustomViewController, UITableViewDelegate,
     }
     
     
-    @IBAction func goToLearnButtonTouchUpInside(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func goToLearnButtonTouchUpInside(_ sender: CustomButton) {
         
         alertWithOkAndCancelAction(
             title: "Uyarı!",

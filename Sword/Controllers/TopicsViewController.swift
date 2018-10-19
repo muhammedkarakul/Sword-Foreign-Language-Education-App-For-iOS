@@ -11,7 +11,7 @@ import UIKit
 
 class TopicsViewController: CustomViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet var submitButton: UIButtonWithRoundedCorners!
+    @IBOutlet var submitButton: CustomButton!
     @IBOutlet var containerTableView: UITableView!
 
     private var topics = [Topic]()

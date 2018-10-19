@@ -26,7 +26,7 @@ class LearnResultViewController: UIViewController {
     }
     
     
-    @IBAction func completeLearning(_ sender: UIButtonWithRoundedCorners) {
+    @IBAction func completeLearning(_ sender: CustomButton) {
         performSegue(withIdentifier: "unwindSegueToHead", sender: self)
     }
     

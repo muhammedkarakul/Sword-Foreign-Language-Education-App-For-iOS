@@ -67,12 +67,12 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     
     // MARK: - Actions
     
-    @IBAction func cancelProfilePictureSelection(_ sender: UIButton) {
+    @IBAction func cancelProfilePictureSelection(_ sender: CustomButton) {
         pickProfilePicturePopUpView.removeFromSuperview()
         hideBlurView()
     }
     
-    @IBAction func okProfilePictureSelection(_ sender: UIButton) {
+    @IBAction func okProfilePictureSelection(_ sender: CustomButton) {
         
         if let selectedProfilePicture = userDefaults.string(forKey: "ProfilePicture") {
             
@@ -97,6 +97,9 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     @IBAction func pickProfilePicture(_ sender: UIButton) {
         
         showBlurView { (_) in
+            
+            self.pickProfilePicturePopUpView.frame = CGRect(x: 16, y: self.view.center.y, width: self.width - 32, height: self.width - 32)
+            
             self.view.addSubview(self.pickProfilePicturePopUpView)
             
             self.pickProfilePicturePopUpView.center = self.view.center
