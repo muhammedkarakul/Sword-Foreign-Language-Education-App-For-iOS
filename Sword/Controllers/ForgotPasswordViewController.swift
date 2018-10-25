@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import ProgressHUD
 
-class ForgotPasswordViewController: CustomViewController {
+class ForgotPasswordViewController: CustomViewController, UITextFieldDelegate {
 
     @IBOutlet var emailTextField: UITextField!
     
@@ -30,12 +30,13 @@ class ForgotPasswordViewController: CustomViewController {
     }
     
     
-    @IBAction func submitButtonTouchUpInside(_ sender: CustomButton) {
-        
-        showBlurView(withBlurEffectStyle: .dark, andCompletion: nil)
-        startActivityIndicator()
+    @IBAction func submitButtonTouchUpInside() {
         
         if let email = emailTextField.text {
+            
+            showBlurView(withBlurEffectStyle: .dark, andCompletion: nil)
+            startActivityIndicator()
+            
             Auth.auth().sendPasswordReset(withEmail: email) { (error) in
                 
                 self.hideBlurView()
@@ -48,6 +49,21 @@ class ForgotPasswordViewController: CustomViewController {
                 }
             }
         }
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        emailTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        emailTextField.resignFirstResponder()
+        
+        submitButtonTouchUpInside()
+        
+        return true
     }
     
     /*

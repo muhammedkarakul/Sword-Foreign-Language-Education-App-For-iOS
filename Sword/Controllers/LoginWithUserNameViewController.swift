@@ -59,14 +59,23 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
     @IBAction func signInTouchUpInside () {
         // Sign in operations.
         
-        // Show blur effect.
-        showBlurView(withBlurEffectStyle: .dark)
-        
-        // Start activity indicator and disable user interaction with view.
-        startActivityIndicator()
-        
         if let email = emailTextField.text, let password = passwordTextField.text {
+            
+            // Show blur effect.
+            showBlurView(withBlurEffectStyle: .dark)
+            
+            // Start activity indicator and disable user interaction with view.
+            startActivityIndicator()
+            
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                
+                
+                // Stop activity indicator and enable user interaction with view.
+                self.stopActivityIndicator()
+                
+                // Hide blur effect.
+                self.hideBlurView()
+                
                 if let u = user {
                     
                     self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(u.user.uid)
@@ -78,11 +87,6 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
                     // Error: Check error and show message
                     ProgressHUD.showError(error?.localizedDescription)
                     
-                    // Stop activity indicator and enable user interaction with view.
-                    self.stopActivityIndicator()
-                    
-                    // Hide blur effect.
-                    self.hideBlurView()
                 }
             }
         }

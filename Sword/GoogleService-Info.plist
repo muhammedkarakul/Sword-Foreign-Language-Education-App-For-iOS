@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>95688127122-n3t5h2nn5qj3m3o91d4c56lja3ro4s2b.apps.googleusercontent.com</string>
+	<string>600507151544-4gq551nhhdejkd6l1lvunqvk3l1j84n4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.95688127122-n3t5h2nn5qj3m3o91d4c56lja3ro4s2b</string>
+	<string>com.googleusercontent.apps.600507151544-4gq551nhhdejkd6l1lvunqvk3l1j84n4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCDXOlYZTnJR5x-nLVBZaPZzdmwiytHhic</string>
+	<string>AIzaSyAgCr64B0brgbsL7Fp9_Mixt19OoPAujOA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>95688127122</string>
+	<string>600507151544</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.swordTeam.Sword</string>
+	<string>com.swordApp.Sword</string>
 	<key>PROJECT_ID</key>
-	<string>fir-word-f4370</string>
+	<string>sword-87c4c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fir-word-f4370.appspot.com</string>
+	<string>sword-87c4c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:95688127122:ios:7066005a8261543a</string>
+	<string>1:600507151544:ios:21a16df77923f827</string>
 	<key>DATABASE_URL</key>
-	<string>https://fir-word-f4370.firebaseio.com</string>
+	<string>https://sword-87c4c.firebaseio.com</string>
 </dict>
 </plist>

@@ -7,13 +7,44 @@
 //
 
 import UIKit
+import UICircularProgressRing
 
-class ArenaViewController: UIViewController {
+class ArenaViewController: CustomViewController {
+    
+    // MARK: - Properties
+    @IBOutlet var timeCircularProgressRing: UICircularProgressRing!
+    
+    // User Data
+    @IBOutlet var userImageView: UIImageView!
+    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var userScoreLabel: UILabel!
+    
+    // Opponent Data
+    @IBOutlet var opponentImageView: UIImageView!
+    @IBOutlet var opponentNameLabel: UILabel!
+    @IBOutlet var opponentScoreLabel: UILabel!
+    
+    // Multiple Selection Objects
+    @IBOutlet var multipleSelectionFirstButton: CustomButton!
+    @IBOutlet var multipleSelectionSecondButton: CustomButton!
+    @IBOutlet var multipleSelectionThirdButton: CustomButton!
+    @IBOutlet var multipleSelectionFourthButton: CustomButton!
+    
+    // Multiple Selection Buttons Array
+    private var multipleSelectionButtons = [CustomButton]()
+    
+    // Game object
+    public var game: Game?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if let game = game {
+            print("GAME: \(game)")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

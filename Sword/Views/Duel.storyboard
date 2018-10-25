@@ -355,25 +355,18 @@
                                             <constraint firstItem="79e-mg-YMW" firstAttribute="top" secondItem="Zup-uc-54Q" secondAttribute="top" id="pgK-Xz-4Wu"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pcx-wV-by5">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pcx-wV-by5" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                         <rect key="frame" x="158" y="0.0" width="59" height="60"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjs-7P-DGq">
-                                                <rect key="frame" x="0.0" y="0.0" width="59" height="60"/>
-                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="tjs-7P-DGq" firstAttribute="centerX" secondItem="Pcx-wV-by5" secondAttribute="centerX" id="25W-yv-v6d"/>
                                             <constraint firstAttribute="height" constant="60" id="2tH-xB-XS5"/>
-                                            <constraint firstItem="tjs-7P-DGq" firstAttribute="height" secondItem="Pcx-wV-by5" secondAttribute="height" id="BSg-tt-YqC"/>
-                                            <constraint firstItem="tjs-7P-DGq" firstAttribute="width" secondItem="Pcx-wV-by5" secondAttribute="width" id="NxU-8r-smh"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="59" id="WBZ-4j-Rv2"/>
-                                            <constraint firstItem="tjs-7P-DGq" firstAttribute="centerY" secondItem="Pcx-wV-by5" secondAttribute="centerY" id="cSX-Hz-mZ4"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -560,6 +553,17 @@
                         <viewLayoutGuide key="safeArea" id="2OY-yZ-dYI"/>
                     </view>
                     <connections>
+                        <outlet property="multipleSelectionFirstButton" destination="BfD-cH-Xvv" id="k75-1z-G5n"/>
+                        <outlet property="multipleSelectionFourthButton" destination="omj-kT-FGb" id="8dE-wC-gex"/>
+                        <outlet property="multipleSelectionSecondButton" destination="c6e-KG-LNd" id="qXx-s1-Gc8"/>
+                        <outlet property="multipleSelectionThirdButton" destination="Bzr-Z0-HKE" id="3mF-pf-YeW"/>
+                        <outlet property="opponentImageView" destination="79e-mg-YMW" id="Glh-7o-pYw"/>
+                        <outlet property="opponentNameLabel" destination="RS6-Gq-quA" id="Qnv-jX-Ohr"/>
+                        <outlet property="opponentScoreLabel" destination="Cjt-5I-enI" id="jy1-Hz-b5Q"/>
+                        <outlet property="timeCircularProgressRing" destination="Pcx-wV-by5" id="bhC-xv-Wvq"/>
+                        <outlet property="userImageView" destination="BHV-Qx-RP9" id="Dyc-Kh-E6l"/>
+                        <outlet property="userNameLabel" destination="zGL-ec-iYN" id="yd4-rN-yn9"/>
+                        <outlet property="userScoreLabel" destination="HA5-JF-xXW" id="jQF-oe-Hfl"/>
                         <segue destination="eWZ-jS-Odd" kind="show" identifier="duelResultSegue" id="Ewm-2Q-Wx6"/>
                     </connections>
                 </viewController>

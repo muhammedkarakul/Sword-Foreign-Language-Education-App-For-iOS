@@ -33,6 +33,7 @@
 		5720955320AD8B34006C869D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720955220AD8B34006C869D /* SignUpViewController.swift */; };
 		572A806D2142BA9700102D54 /* LearnResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572A806C2142BA9700102D54 /* LearnResultViewController.swift */; };
 		5737FAFE20D2F5CA00209C9F /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */; };
+		574AA248217B6F0500731266 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574AA247217B6F0500731266 /* Game.swift */; };
 		574CC32420A31EDA003F0AA9 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */; };
 		574CC32820A32056003F0AA9 /* PickWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32720A32056003F0AA9 /* PickWordsViewController.swift */; };
 		574CC32A20A32080003F0AA9 /* DuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574CC32920A32080003F0AA9 /* DuelViewController.swift */; };
@@ -156,6 +157,7 @@
 		5720955220AD8B34006C869D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = Controllers/SignUpViewController.swift; sourceTree = "<group>"; };
 		572A806C2142BA9700102D54 /* LearnResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnResultViewController.swift; path = Controllers/LearnResultViewController.swift; sourceTree = "<group>"; };
 		5737FAFD20D2F5CA00209C9F /* RealmObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmObjects.swift; path = Models/RealmObjects.swift; sourceTree = "<group>"; };
+		574AA247217B6F0500731266 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Game.swift; path = Models/Game.swift; sourceTree = "<group>"; };
 		574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBarViewController.swift; path = Controllers/CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		574CC32720A32056003F0AA9 /* PickWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PickWordsViewController.swift; path = Controllers/PickWordsViewController.swift; sourceTree = "<group>"; };
 		574CC32920A32080003F0AA9 /* DuelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuelViewController.swift; path = Controllers/DuelViewController.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 		57CCCAE9215653AE0056BD80 /* Duel Models */ = {
 			isa = PBXGroup;
 			children = (
+				574AA247217B6F0500731266 /* Game.swift */,
 			);
 			name = "Duel Models";
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
+				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -802,6 +806,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -886,6 +891,7 @@
 				5720955320AD8B34006C869D /* SignUpViewController.swift in Sources */,
 				574CC32A20A32080003F0AA9 /* DuelViewController.swift in Sources */,
 				571944C420DF808200C3E56B /* CustomViewController.swift in Sources */,
+				574AA248217B6F0500731266 /* Game.swift in Sources */,
 				57B38C692148565700AF3B95 /* UIViewController+BlurEffect.swift in Sources */,
 				5719B0DF208CCE4B00962F1B /* LoginWithFaceBookViewController.swift in Sources */,
 				57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */,
@@ -1070,10 +1076,7 @@
 				DEVELOPMENT_TEAM = NP973XPAN9;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordApp.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1093,10 +1096,7 @@
 				DEVELOPMENT_TEAM = NP973XPAN9;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordApp.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1115,11 +1115,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1137,11 +1133,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1158,11 +1150,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1179,11 +1167,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

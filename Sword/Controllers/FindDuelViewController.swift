@@ -8,19 +8,20 @@
 
 import UIKit
 import FirebaseFunctions
+import FirebaseFirestore
 
 class FindDuelViewController: UIViewController {
     
     // MARK: - Properties
     
+    // Game object
+    private var game: Game?
+    
     // Current User
     var user = User()
     
-    // Timer
-    var timer = Timer()
-    
-    // Keeps opponent finding timer interval
-    var timeInterval = 0
+    // Firebase firestore database referance
+    private var db = Firestore.firestore()
     
     // User
     @IBOutlet var userImageView: UIImageView!
@@ -54,28 +55,24 @@ class FindDuelViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Find opponent again.
+        // Find opponent.
         self.findOpponent()
         
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
-            
-            // Increase time interval every seconds
-            self.timeInterval += 1
-            
-            // Find opponent
-            self.findOpponent()
-            
-            
-            if self.timeInterval == 10 {
-                self.alertWithOkAndCancelAction(title: "Rakip Bulunamadı", message: "Şu anda düllo yapabileceğiniz bir kullanıcı bulunamadı. Tekrar denemek ister misiniz?", okButtonTitle: "Tekrar Dene", cancelButtonTitle: "Hayır", okButtonHandler: { (_) in
-                    
-                }, cancelButtonHandler: { (_) in
-                    
-                    // Go to main view.
-                    self.performSegue(withIdentifier: "mainViewSegue", sender: self)
-                })
-            }
-        }
+//        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
+//
+//            // Increase time interval every seconds
+//            self.timeInterval += 1
+//
+//            if self.timeInterval == 10 {
+//                self.alertWithOkAndCancelAction(title: "Rakip Bulunamadı", message: "Şu anda düllo yapabileceğiniz bir kullanıcı bulunamadı. Tekrar denemek ister misiniz?", okButtonTitle: "Tekrar Dene", cancelButtonTitle: "Hayır", okButtonHandler: { (_) in
+//
+//                }, cancelButtonHandler: { (_) in
+//
+//                    // Go to main view.
+//                    self.performSegue(withIdentifier: "mainViewSegue", sender: self)
+//                })
+//            }
+//        }
         
     }
 
@@ -102,7 +99,7 @@ class FindDuelViewController: UIViewController {
     
     private func findOpponent() {
         
-        functions.httpsCallable("helloWorlds").call("duel") { (result, error) in
+        functions.httpsCallable("helloWorlds").call(["text" : "duel", "push" : true]) { (result, error) in
             
             if let error = error as NSError? {
                 if error.domain == FunctionsErrorDomain {
@@ -123,11 +120,55 @@ class FindDuelViewController: UIViewController {
                 }
                 
             }
-
-            if let text = (result?.data as? [String: Any])?["text"] as? String {
+            
+            if let text = result?.data as? [String : String] {
                 print("Result: \(text)")
-                self.timer.invalidate()
+                
+                self.db.collection("Game").getDocuments(completion: { (snapshot, error) in
+                    if let error = error {
+                        print("Error: \(error)")
+                    } else {
+                        if let documents = snapshot?.documents {
+                            for document in documents {
+                                if document.documentID == text["game"] {
+                                    self.game = Game(
+                                        win: document["win"] as? String,
+                                        message: document["message"] as? [String : String],
+                                        users: document["users"] as? [String : Bool],
+                                        scores: document["scores"] as? [String : Int],
+                                        moves: document["moves"] as? [String : Bool],
+                                        playing: document["playing"] as? Bool,
+                                        game: document["game"] as? String,
+                                        random: document["random"] as? Int
+                                    )
+                                    
+                                    self.performSegue(withIdentifier: "arenaSegue", sender: self)
+                                    
+                                }
+                            }
+                        }
+                    }
+                })
+                
+            } else {
+                self.alertWithOkAndCancelAction(title: "Rakip Bulunamadı", message: "Şu anda düllo yapabileceğiniz bir kullanıcı bulunamadı. Tekrar denemek ister misiniz?", okButtonTitle: "Tekrar Dene", cancelButtonTitle: "Hayır", okButtonHandler: { (_) in
+
+                    // Try find opponent again.
+                    self.findOpponent()
+                    
+                }, cancelButtonHandler: { (_) in
+
+                    // Go to main view.
+                    self.performSegue(withIdentifier: "mainViewSegue", sender: self)
+                })
             }
+        }
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ArenaViewController {
+            vc.game = game
         }
     }
 

@@ -341,6 +341,10 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
         
         sender.isUserInteractionEnabled = false
         
+        checkWritingAnswer()
+    }
+    
+    private func checkWritingAnswer() {
         if let currentQuestion = questions[currentQuestionIndex] as? Writing {
             
             let isAnswerRight = currentQuestion.answerTheQuestion(withText: writingAnswerTextField.text ?? "")
@@ -419,9 +423,14 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
     }
     
     // MARK: - UITextfield Delegate
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        checkWritingAnswer()
+        
+        return true
+    }
 
     /*
     // MARK: - Navigation

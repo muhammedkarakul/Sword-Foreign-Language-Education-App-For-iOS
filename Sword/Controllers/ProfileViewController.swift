@@ -98,7 +98,7 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         
         showBlurView { (_) in
             
-            self.pickProfilePicturePopUpView.frame = CGRect(x: 16, y: self.view.center.y, width: self.width - 32, height: self.width - 32)
+            self.pickProfilePicturePopUpView.frame = CGRect(x: 16, y: self.view.center.y, width: self.width - 32, height: 300)
             
             self.view.addSubview(self.pickProfilePicturePopUpView)
             

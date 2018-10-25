@@ -37,10 +37,28 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         nameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         passwordValidationTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag {
+        case 1:
+            emailTextField.becomeFirstResponder()
+        case 2:
+            passwordTextField.becomeFirstResponder()
+        case 3:
+            passwordValidationTextField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+            signUpTouchUpInside()
+        }
+        
+        return true
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -48,9 +66,6 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpTouchUpInside() {
-        
-        showBlurView(withBlurEffectStyle: .dark, andCompletion: nil)
-        startActivityIndicator()
         
         if  let name = nameTextField.text,
             let email = emailTextField.text,
@@ -74,6 +89,9 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
             )
             
             if password == passwordValidation {
+                
+                showBlurView(withBlurEffectStyle: .dark, andCompletion: nil)
+                startActivityIndicator()
                 
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                     

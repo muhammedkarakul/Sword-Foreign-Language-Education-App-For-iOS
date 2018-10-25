@@ -161,6 +161,7 @@ PODS:
   - RealmSwift (3.11.0):
     - Realm (= 3.11.0)
   - SwiftyPlistManager (1.0.2)
+  - UICircularProgressRing (4.1.0)
 
 DEPENDENCIES:
   - BWWalkthrough
@@ -177,6 +178,7 @@ DEPENDENCIES:
   - ProgressHUD
   - RealmSwift
   - SwiftyPlistManager
+  - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -213,6 +215,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SwiftyPlistManager
+    - UICircularProgressRing
 
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
@@ -248,7 +251,8 @@ SPEC CHECKSUMS:
   Realm: 92f09a102692b96a9a10e9617f214f15c5ab85fc
   RealmSwift: 5f0481cd658bb751c509314b964a35eaa264d2cf
   SwiftyPlistManager: 5895924cccb7fe28deccbe14890e8aed78ae78ae
+  UICircularProgressRing: 5a32c01f54474571b1e66e8fa050c0f83d6d981b
 
-PODFILE CHECKSUM: c53413da2bbdd80ba3a59acf13e403666fcf9e6c
+PODFILE CHECKSUM: e30f7a30cab40547c1b1924bc7f2bb72ef40e55d
 
 COCOAPODS: 1.5.0
