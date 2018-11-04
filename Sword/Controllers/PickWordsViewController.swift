@@ -108,7 +108,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     private func isLevelAndTopicSelected() {
-        let currentUser = Utilities.getCurrentUserFromRealm()
+        let currentUser = RealmUtilities.getCurrentUserFromRealm()
         let level = currentUser.getLevel()
         let topics = currentUser.getTopics()
         
@@ -248,20 +248,23 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
                 for word in querySnapshot!.documents {
                     
                     var date = Date()
-                    let timestampOptional = word.get("crearedDate") as? Timestamp
+                    let timestampOptional = word.get("createdDay") as? Timestamp
                     if let timestamp = timestampOptional {
                         date = timestamp.dateValue()
                     }
                     
-                    let tempWord = Word(
-                        id: word.documentID,
-                        foreignLang: word.data()["en"] as? String,
-                        motherLang: word.data()["tr"] as? String,
-                        createdDate: date,
-                        users: word.data()["users"] as? [String]
+                    self.addWordToRealm(word: Word(
+                            id: word.documentID,
+                            foreignLang: word.data()["en"] as? String,
+                            motherLang: word.data()["tr"] as? String,
+                            createdDate: date,
+                            users: word.data()["users"] as? [String],
+                            imageURL: word.data()["image"] as? String,
+                            random: word.data()["random"] as? Int,
+                            rating: word.data()["rating"] as? Int,
+                            sentence: word.data()["sentence"] as? String
+                        )
                     )
-                    
-                    self.addWordToRealm(word: tempWord)
                     
                 }
             }
@@ -271,7 +274,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     // MARK: - Get From Realm -
     
     private func getSelectedTopicsWordsFromRealm() {
-        let currentUser = Utilities.getCurrentUserFromRealm()
+        let currentUser = RealmUtilities.getCurrentUserFromRealm()
         
         if let topicIds = currentUser.getTopics() {
             for topicId in topicIds {
@@ -293,12 +296,17 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         var word = Word()
         let realmWords = uiRealm.objects(RealmWord.self)
         for realmWord in realmWords {
+            
             let tempWord = Word(
                 id: realmWord.id,
                 foreignLang: realmWord.foreignLang,
                 motherLang: realmWord.motherLang,
                 createdDate: realmWord.createdDate,
-                users: realmWord.users?.components(separatedBy: ",")
+                users: realmWord.users?.components(separatedBy: ","),
+                imageURL: realmWord.imageURL,
+                random: realmWord.random.value,
+                rating: realmWord.rating.value,
+                sentence: realmWord.sentence
             )
             
             if tempWord.getId() == id {
@@ -350,7 +358,12 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         realmWord.id = word.getId()
         realmWord.foreignLang = word.getForeignLang()
         realmWord.motherLang = word.getMotherLang()
+        realmWord.createdDate = word.getCreatedDate()
         realmWord.users = String.arrayToString(stringArray: word.getUsers(), divideBy: ",")
+        realmWord.imageURL = word.getImageURL()
+        realmWord.random.value = word.getRandom()
+        realmWord.rating.value = word.getRating()
+        realmWord.sentence = word.getSentence()
         realmWord.writeToRealm()
     }
     
@@ -587,7 +600,7 @@ extension PickWordsViewController: KolodaViewDataSource {
         label.backgroundColor = labelBGColor
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.black
-        label.font = UIFont(name: "HelveticaNeue-Thin", size: 24.0)
+        label.font = UIFont(name: "Mikado", size: 24.0)
         label.layer.borderWidth = 2
         label.layer.borderColor = labelBGColor.cgColor
         label.layer.cornerRadius = 8

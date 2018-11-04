@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xSR-7J-dvf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xSR-7J-dvf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -559,7 +559,7 @@
         <!--Düello-->
         <scene sceneID="AEQ-EH-u1T">
             <objects>
-                <viewController id="mLe-qg-KIh" customClass="DuelViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mLe-qg-KIh" customClass="GameViewController" customModule="Sword" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zMD-hU-Tko">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,33 +573,64 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swordBetaIcon" translatesAutoresizingMaskIntoConstraints="NO" id="69d-Df-0wn">
                                                 <rect key="frame" x="106" y="0.0" width="163" height="160"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQC-Io-A7R" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
-                                                <rect key="frame" x="87.5" y="190" width="200" height="50"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="31M-ri-JDN">
+                                                <rect key="frame" x="16" y="190" width="343" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQC-Io-A7R" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="50"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Düello Oyunu Bul">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="findDuel:" destination="mLe-qg-KIh" eventType="touchUpInside" id="d1c-if-KPD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C53-dt-DSl" customClass="CustomButton" customModule="Sword" customModuleProvider="target">
+                                                        <rect key="frame" x="187.5" y="0.0" width="155.5" height="50"/>
+                                                        <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Kart Oyunu Bul">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="findCardGame:" destination="mLe-qg-KIh" eventType="touchUpInside" id="50A-to-f84"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="4qh-Rq-Ev6"/>
-                                                    <constraint firstAttribute="height" constant="50" id="isO-vl-pST"/>
+                                                    <constraint firstAttribute="height" constant="50" id="JUL-W9-aAr"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="17"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Düello Bul">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="findDuel:" destination="mLe-qg-KIh" eventType="touchUpInside" id="d1c-if-KPD"/>
-                                                </connections>
-                                            </button>
+                                            </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="31M-ri-JDN" firstAttribute="leading" secondItem="5YG-Nh-Iyc" secondAttribute="leading" constant="16" id="UQU-hv-vzc"/>
+                                            <constraint firstAttribute="trailing" secondItem="31M-ri-JDN" secondAttribute="trailing" constant="16" id="fQd-nJ-mm9"/>
+                                            <constraint firstItem="31M-ri-JDN" firstAttribute="centerX" secondItem="5YG-Nh-Iyc" secondAttribute="centerX" id="hei-el-QwY"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -624,7 +655,7 @@
                     <connections>
                         <outlet property="findDuelButton" destination="tQC-Io-A7R" id="KrQ-m0-eag"/>
                         <outlet property="iconImageView" destination="69d-Df-0wn" id="ocF-jY-MQu"/>
-                        <segue destination="Bcd-az-QPC" kind="show" identifier="findDuelSegue" id="KiR-H1-SB8"/>
+                        <segue destination="Bcd-az-QPC" kind="show" identifier="findOpponentSegue" id="KiR-H1-SB8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gm-Kh-khA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1033,7 +1064,7 @@
                 <viewControllerPlaceholder storyboardName="Login" id="uBg-D6-MiV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSa-Ma-NNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4217" y="2641"/>
+            <point key="canvasLocation" x="3802" y="2641"/>
         </scene>
         <!--Custom Tab Bar View Controller-->
         <scene sceneID="is6-tb-bnd">
@@ -1073,10 +1104,10 @@
             </objects>
             <point key="canvasLocation" x="-1830" y="3106"/>
         </scene>
-        <!--Duel-->
+        <!--Game-->
         <scene sceneID="4E8-5b-Iuf">
             <objects>
-                <viewControllerPlaceholder storyboardName="Duel" id="Bcd-az-QPC" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Game" id="Bcd-az-QPC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33e-yA-m98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2112" y="3073"/>

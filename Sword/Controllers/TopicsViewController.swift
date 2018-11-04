@@ -46,7 +46,7 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
     // MARK: - Functions
     
     private func getTopicsDataFromRealm() {
-        let tempTopics = Utilities.getTopicsFromRealm()
+        let tempTopics = RealmUtilities.getTopicsFromRealm()
         
         let topicIds = selectedLevel.getTopics()
         
@@ -112,7 +112,7 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
             selectedTopics.append(topics[selectedTopicIndex])
         }
         
-        updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: Utilities.getCurrentUserFromRealm())
+        updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: RealmUtilities.getCurrentUserFromRealm())
         
         dismiss(animated: true, completion: nil)
     }

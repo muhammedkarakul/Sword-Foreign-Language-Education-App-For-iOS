@@ -47,7 +47,7 @@ class LevelViewController: CustomViewController, UITableViewDelegate, UITableVie
     // MARK: - Functions
 
     private func getLevelDataFromRealm() {
-        levels = Utilities.getLevelsFromRealm()
+        levels = RealmUtilities.getLevelsFromRealm()
     }
     
     

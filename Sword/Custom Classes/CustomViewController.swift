@@ -116,13 +116,21 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
             print("Error: \(error.localizedDescription)")
         }
     }
-
-//    internal func showAlert(withTitle title: String, andMessage message: String, andOKButtonHandler handler: ((UIAlertAction) -> Void)?) {
-//        alert(title: title, message: message)
-//        let cancelAction = UIAlertAction(title: "Tamam", style: .cancel, handler: handler)
-//        alert.addAction(cancelAction)
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    
+    internal func textToSpeech(withQuestion question: Question) {
+        var language = ""
+        
+        switch question.getLanguage() {
+        case .foreign: language = "en-UK"
+        case .mother: language = "tr-TR"
+        }
+        
+        let utterance = AVSpeechUtterance(string: question.getText())
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
+        
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+    }
 
 }
 

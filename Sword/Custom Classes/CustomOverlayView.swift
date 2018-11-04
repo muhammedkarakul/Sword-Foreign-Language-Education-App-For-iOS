@@ -36,7 +36,7 @@ class CustomOverlayView: UIView {
         userProfilePhotoImageView.clipsToBounds = true
         userProfilePhotoImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
         
-        user = Utilities.getCurrentUserFromRealm()
+        user = RealmUtilities.getCurrentUserFromRealm()
         
         // Kullanıcı bilgileri navigation bara yazdırılıyor.
         userNameLabel.text = user.getName()

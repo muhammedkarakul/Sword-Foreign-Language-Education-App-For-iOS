@@ -288,7 +288,6 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
         } else {
             playSound(withName: "wrong")
         }
-        
     }
     
     @IBAction func answerButtonTouchUpInside(_ sender: MultipleSelectionButton) {
@@ -397,31 +396,6 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
         updateView()
     }
     
-    private func textToSpeech(withQuestion question: Question) {
-        var language = ""
-        
-        switch question.getLanguage() {
-        case .foreign: language = "en-UK"
-        case .mother: language = "tr-TR"
-        }
-        
-        let utterance = AVSpeechUtterance(string: question.getText())
-        utterance.voice = AVSpeechSynthesisVoice(language: language)
-        
-        let synth = AVSpeechSynthesizer()
-        synth.speak(utterance)
-    }
-    
-    private func getCurrentQuestionText() -> String {
-        if let multipleSelectionQuestion = questions[currentQuestionIndex] as? MultipleSelection {
-            return multipleSelectionQuestion.getQuestion().getText()
-        } else if let writingQuestion = questions[currentQuestionIndex] as? Writing {
-            return writingQuestion.getQuestion().getText()
-        } else {
-            return ""
-        }
-    }
-    
     // MARK: - UITextfield Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -512,7 +486,7 @@ extension LearnViewController: KolodaViewDataSource {
             if let currentQuestion = questions[index] as? Writing {
                 label.text = currentQuestion.getQuestion().getText()
             }
-            //label.text = getCurrentQuestionText()
+            
         case .listening:
             label.addImage(imageName: "Sound", afterLabel: true)
         }
@@ -520,7 +494,7 @@ extension LearnViewController: KolodaViewDataSource {
         label.backgroundColor = labelBGColor
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.black
-        label.font = UIFont(name: "HelveticaNeue-Thin", size: 24.0)
+        label.font = UIFont(name: "Mikado", size: 24.0)
         label.layer.borderWidth = 2
         label.layer.borderColor = labelBGColor.cgColor
         label.layer.cornerRadius = 8

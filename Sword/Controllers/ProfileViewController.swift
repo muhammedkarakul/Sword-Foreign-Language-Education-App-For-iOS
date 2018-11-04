@@ -55,7 +55,7 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
         
         // Get current user data from Realm
-        user = Utilities.getCurrentUserFromRealm()
+        user = RealmUtilities.getCurrentUserFromRealm()
         
         // TODO: - Setup pie chart
     }
