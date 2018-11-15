@@ -124,9 +124,9 @@ class WalkthroughViewController: CustomViewController, BWWalkthroughViewControll
                         createdDate: date,
                         hearth: u.data()?["hearth"] as? Int,
                         profilePhotoURL: u.data()?["photo_url"] as? String,
-                        score: u.data()?["score"] as? Int,
-                        level: u.data()?["level"] as? String,
-                        topics: u.data()?["topic"] as? [String]
+                        score: u.data()?["score"] as? Int
+//                        level: u.data()?["level"] as? String,
+//                        topics: u.data()?["topic"] as? [String]
                     )
                     
                     currentUser.printUserData()
@@ -154,8 +154,8 @@ class WalkthroughViewController: CustomViewController, BWWalkthroughViewControll
         realmUser.hearth.value = user.getHearth()
         realmUser.profilePhotoURL = user.getProfilePhotoURL()
         realmUser.score.value = user.getScore()
-        realmUser.level = user.getLevel()
-        realmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+//        realmUser.level = user.getLevel()
+//        realmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
         
         realmUser.writeToRealm()
         

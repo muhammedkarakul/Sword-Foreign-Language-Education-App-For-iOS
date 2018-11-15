@@ -19,8 +19,6 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     @IBOutlet var pickProfilePicturePopUpView: UIView!
     @IBOutlet var profilePicturesCollectionView: UICollectionView!
     
-    private let userDefaults = UserDefaults.standard
-    
     private var selectedIndexPathRow: Int?
     
     private var profilePictures = [String]()
@@ -52,7 +50,9 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         // Setup view
         //userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
         
-        userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
+        //userImageView.image = UIImage(named: userDefaults.string(forKey: "ProfilePicture") ?? "defaultProfilePhoto-1")
+        
+        
         
         // Get current user data from Realm
         user = RealmUtilities.getCurrentUserFromRealm()
@@ -74,7 +74,8 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     
     @IBAction func okProfilePictureSelection(_ sender: CustomButton) {
         
-        if let selectedProfilePicture = userDefaults.string(forKey: "ProfilePicture") {
+        //if let selectedProfilePicture = userDefaults.string(forKey: "ProfilePicture") {
+        if let selectedProfilePicture = RealmUtilities.getCurrentUserFromRealm().getProfilePhotoURL() {
             
             user.setProfilePhotoURL(profilePhotoURL: selectedProfilePicture)
             
@@ -166,7 +167,12 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
 
         cell?.backgroundColor = UIColor.customColors.swordBlue
 
-        userDefaults.set(profilePictures[indexPath.row], forKey: "ProfilePicture")
+//        let currentUser = RealmUtilities.getCurrentUserFromRealm()
+//        currentUser.setProfilePhotoURL(profilePhotoURL: profilePictures[indexPath.row])
+//        let realmUser = RealmUser()
+//        realmUser.getDataFromUser(user: currentUser)
+//        realmUser.writeToRealm()
+        
         
         selectedIndexPathRow = indexPath.row
     }

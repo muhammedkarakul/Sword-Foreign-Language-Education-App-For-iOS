@@ -18,8 +18,8 @@ class User {
     private var hearth: Int?
     private var profilePhotoURL: String?
     private var score: Int?
-    private var level: String?
-    private var topics: [String]?
+//    private var level: String?
+//    private var topics: [String]?
     
     // MARK: - Constructor Methods -
     
@@ -32,11 +32,11 @@ class User {
         hearth = 0
         profilePhotoURL = ""
         score = 0
-        level = ""
-        topics = [String]()
+//        level = ""
+//        topics = [String]()
     }
     
-    init(id: String?, name: String?, email: String?, diamond: Int?, createdDate: Date?, hearth: Int?, profilePhotoURL: String?, score: Int?, level: String?, topics: [String]?) {
+    init(id: String?, name: String?, email: String?, diamond: Int?, createdDate: Date?, hearth: Int?, profilePhotoURL: String?, score: Int?) {
         self.id = id
         self.name = name
         self.email = email
@@ -45,9 +45,9 @@ class User {
         self.hearth = hearth
         self.profilePhotoURL = profilePhotoURL
         self.score = score
-        self.level = level
         self.score = score
-        self.topics = topics
+        //self.level = level
+        //self.topics = topics
     }
     
     // MARK: - Getter Methods -
@@ -60,8 +60,12 @@ class User {
     func getHearth() -> Int? { return hearth }
     func getScore() -> Int? { return score }
     func getProfilePhotoURL() -> String? { return profilePhotoURL }
-    func getLevel() -> String? { return level }
-    func getTopics() -> [String]? { return topics }
+    //func getLevel() -> String? { return level }
+    //func getTopics() -> [String]? { return topics }
+    
+    func getUserData(fromDictionary dictionary: [String : Any]?) {
+        
+    }
     
     // MARK: - Setter Methods -
     
@@ -73,12 +77,12 @@ class User {
     func setHearth(hearth: Int?) { self.hearth = hearth }
     func setProfilePhotoURL(profilePhotoURL: String) { self.profilePhotoURL = profilePhotoURL }
     func setScore(score: Int?) { self.score = score}
-    func setLevel(level: String?) { self.level = level }
-    func setTopic(topics: [String]?) { self.topics = topics }
+    //func setLevel(level: String?) { self.level = level }
+    //func setTopic(topics: [String]?) { self.topics = topics }
     
     // MARK: - Utilities Methods -
     
-    func printUserData() {
+    public func printUserData() {
         print("*** USER DATA ***")
         print("id: \(getId() ?? "")")
         print("name: \(getName() ?? "")")
@@ -88,9 +92,25 @@ class User {
         print("hearth: \(getHearth() ?? 0)")
         print("profile photo url: \(getProfilePhotoURL() ?? "")")
         print("score: \(getScore() ?? 0)")
-        print("level: \(getLevel() ?? "")")
-        print("topic: \(getTopics() ?? [String]())")
+        //print("level: \(getLevel() ?? "")")
+        //print("topic: \(getTopics() ?? [String]())")
         print("*****************")
+    }
+    
+    public func getData() -> [String : Any]? {
+        
+        let userData: [String : Any]? = [
+            "id": getId() ?? "",
+            "name": getName() ?? "",
+            "email": getEmail() ?? "",
+            "diamond": getDiamond() ?? 0,
+            "createddate":getCreatedDate() ?? Date(),
+            "hearth":getHearth() ?? 0,
+            "profile photo url":getProfilePhotoURL() ?? "",
+            "score": getScore() ?? 0
+        ]
+        
+        return userData
     }
     
 }

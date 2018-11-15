@@ -11,9 +11,7 @@ import Foundation
 class RealmUtilities {
     
     public static func getCurrentUserFromRealm() -> User {
-        
-        let userDefaults = UserDefaults.standard
-        let currentUser = getUserFromRealm(withId: userDefaults.string(forKey: "uid"))
+        let currentUser = getUserFromRealm(withId: UserDefaultsUtilities.getCurrentUserId())
         
         return currentUser
     }

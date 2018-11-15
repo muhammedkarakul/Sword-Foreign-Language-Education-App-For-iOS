@@ -39,13 +39,13 @@ class RealmUser: Object {
         hearth.value = user.getHearth()
         profilePhotoURL = user.getProfilePhotoURL()
         score.value = user.getScore()
-        level = user.getLevel()
-        topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+        //level = user.getLevel()
+        //topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
     }
     
     public func getUser() -> User {
         
-        let user = User(id: id, name: name, email: email, diamond: diamond.value, createdDate: createdDate, hearth: hearth.value, profilePhotoURL: profilePhotoURL, score: score.value, level: level, topics: topic?.components(separatedBy: ","))
+        let user = User(id: id, name: name, email: email, diamond: diamond.value, createdDate: createdDate, hearth: hearth.value, profilePhotoURL: profilePhotoURL, score: score.value)//, level: level, topics: topic?.components(separatedBy: ","))
         
         return user
     }

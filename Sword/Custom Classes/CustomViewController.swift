@@ -117,6 +117,12 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
+    internal func stopSound() {
+        if player!.isPlaying {
+            player?.stop()
+        }
+    }
+    
     internal func textToSpeech(withQuestion question: Question) {
         var language = ""
         

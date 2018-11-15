@@ -108,20 +108,20 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     private func isLevelAndTopicSelected() {
-        let currentUser = RealmUtilities.getCurrentUserFromRealm()
-        let level = currentUser.getLevel()
-        let topics = currentUser.getTopics()
+        //let currentUser = RealmUtilities.getCurrentUserFromRealm()
+//        let level = currentUser.getLevel()
+//        let topics = currentUser.getTopics()
         
-        if level != nil && topics != nil {
-            if isToBeLearnedWordsSelected {
-                changeView(currentView: CurrentView.letsLearnView)
-            } else {
-                getSelectedTopicsWordsFromRealm()
-                changeView(currentView: CurrentView.pickCardsView)
-            }
-        } else {
-            isLevelAndTopicsNotSelected = true
-        }
+//        if level != nil && topics != nil {
+//            if isToBeLearnedWordsSelected {
+//                changeView(currentView: CurrentView.letsLearnView)
+//            } else {
+//                getSelectedTopicsWordsFromRealm()
+//                changeView(currentView: CurrentView.pickCardsView)
+//            }
+//        } else {
+//            isLevelAndTopicsNotSelected = true
+//        }
     }
     
     // MARK: - Actions -
@@ -274,19 +274,19 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     // MARK: - Get From Realm -
     
     private func getSelectedTopicsWordsFromRealm() {
-        let currentUser = RealmUtilities.getCurrentUserFromRealm()
+        //let currentUser = RealmUtilities.getCurrentUserFromRealm()
         
-        if let topicIds = currentUser.getTopics() {
-            for topicId in topicIds {
-                if let tempTopic = getTopicDataFromRealmWithID(id: topicId) {
-                    if let wordIds = tempTopic.getWords() {
-                        for wordId in wordIds {
-                            words.append(getWordDataFromRealmWithID(id: wordId)!)
-                        }
-                    }
-                }
-            }
-        }
+//        if let topicIds = currentUser.getTopics() {
+//            for topicId in topicIds {
+//                if let tempTopic = getTopicDataFromRealmWithID(id: topicId) {
+//                    if let wordIds = tempTopic.getWords() {
+//                        for wordId in wordIds {
+//                            words.append(getWordDataFromRealmWithID(id: wordId)!)
+//                        }
+//                    }
+//                }
+//            }
+//        }
         
         updateView()
         

@@ -178,12 +178,12 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
     }
     
     private func updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: User) {
-        user.setLevel(level: selectedLevel.getId())
+        //user.setLevel(level: selectedLevel.getId())
         var topicsId = [String]()
         for topic in selectedTopics {
             topicsId.append(topic.getId() ?? "")
         }
-        user.setTopic(topics: topicsId)
+        //user.setTopic(topics: topicsId)
         
         let tempRealmUser = RealmUser()
         
@@ -195,9 +195,9 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
         tempRealmUser.hearth.value = user.getHearth()
         tempRealmUser.profilePhotoURL = user.getProfilePhotoURL()
         tempRealmUser.score.value = user.getScore()
-        tempRealmUser.level = user.getLevel()
+        //tempRealmUser.level = user.getLevel()
         //tempRealmUser.topic = appendStringArrayWithComma(strArray: user.getTopics()!)
-        tempRealmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
+        //tempRealmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
         
         tempRealmUser.writeToRealm()
         

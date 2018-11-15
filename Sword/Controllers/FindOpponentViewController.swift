@@ -51,17 +51,22 @@ class FindOpponentViewController: CustomViewController {
         // Setup view.
         setupView()
         
-        // Play background music.
-        playSound(withName: "peiring.mp3")
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Play background music.
+        playSound(withName: "peiring")
+        
         // Find opponent.
         self.findOpponent()
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopSound()
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,9 +80,9 @@ class FindOpponentViewController: CustomViewController {
             userImageView.image = UIImage(named: userImageUrl)
         }
         
-        if let userLevel = user.getLevel() {
-            userLevelLabel.text = userLevel
-        }
+//        if let userLevel = user.getLevel() {
+//            userLevelLabel.text = userLevel
+//        }
         
         if let userName = user.getName() {
             userNameLabel.text = userName

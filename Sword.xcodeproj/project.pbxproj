@@ -94,6 +94,7 @@
 		57CC0429208BD9AC002B1930 /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */; };
 		57CEA7EA216388770011CDB3 /* UIViewController+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEA7E9216388770011CDB3 /* UIViewController+FirebaseStorage.swift */; };
 		57CED0BC21428D5900CF04FB /* QuestionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CED0BB21428D5900CF04FB /* QuestionOrder.swift */; };
+		57DDE105219D6682006A1653 /* UserDefaultsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDE104219D6682006A1653 /* UserDefaultsUtilities.swift */; };
 		57EFB8A921481F04007FD864 /* Learning.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EFB8A821481F04007FD864 /* Learning.storyboard */; };
 		57F75600213AAD2A00F0011D /* LearnWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F755FF213AAD2A00F0011D /* LearnWord.swift */; };
 		57F75602213AAD6500F0011D /* Writing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F75601213AAD6500F0011D /* Writing.swift */; };
@@ -223,6 +224,7 @@
 		57CC0428208BD9AC002B1930 /* UIImageView+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+Color.swift"; path = "Extensions/UIImageView+Color.swift"; sourceTree = "<group>"; };
 		57CEA7E9216388770011CDB3 /* UIViewController+FirebaseStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+FirebaseStorage.swift"; path = "Extensions/UIViewController+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		57CED0BB21428D5900CF04FB /* QuestionOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionOrder.swift; path = Models/QuestionOrder.swift; sourceTree = "<group>"; };
+		57DDE104219D6682006A1653 /* UserDefaultsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsUtilities.swift; path = Utilities/UserDefaultsUtilities.swift; sourceTree = "<group>"; };
 		57EFB8A821481F04007FD864 /* Learning.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Learning.storyboard; path = Views/Learning.storyboard; sourceTree = "<group>"; };
 		57F755FF213AAD2A00F0011D /* LearnWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnWord.swift; path = Models/LearnWord.swift; sourceTree = "<group>"; };
 		57F75601213AAD6500F0011D /* Writing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Writing.swift; path = Models/Writing.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			children = (
 				57144CF22157B48F00E271F5 /* RealmUtilities.swift */,
 				57619C2721861EE500D111A0 /* FirebaseUtilities.swift */,
+				57DDE104219D6682006A1653 /* UserDefaultsUtilities.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57F75619213AB2A100F0011D /* AppDelegate.swift in Sources */,
+				57DDE105219D6682006A1653 /* UserDefaultsUtilities.swift in Sources */,
 				579388A0209DD4790081B4D2 /* User.swift in Sources */,
 				574CC33220A324FE003F0AA9 /* LevelViewController.swift in Sources */,
 				57FB9F5D2157D23B00F7418E /* Stone.swift in Sources */,

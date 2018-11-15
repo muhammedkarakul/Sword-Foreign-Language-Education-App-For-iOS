@@ -83,9 +83,9 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
                 createdDate: date,
                 hearth: 4,
                 profilePhotoURL: nil,
-                score: 0000,
-                level: nil,
-                topics: [String]()
+                score: 0000
+//                level: nil,
+//                topics: [String]()
             )
             
             if password == passwordValidation {
@@ -98,27 +98,28 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
                     self.stopActivityIndicator()
                     self.hideBlurView()
                     
-                    if let u = user {
+                    if let user = user {
                         print("SUCCESS: USER CREATED")
                         
+                        tempUser.setId(id: user.user.uid)
+                        
                         // Save user to Realm local database
-                        let realmUser = RealmUser()
-                        realmUser.id = u.user.uid
-                        realmUser.name = tempUser.getName()
-                        realmUser.email = tempUser.getEmail()
-                        realmUser.profilePhotoURL = tempUser.getProfilePhotoURL()
-                        realmUser.createdDate = date
-                        realmUser.hearth.value = tempUser.getHearth()
-                        realmUser.diamond.value = tempUser.getDiamond()
-                        realmUser.score.value = tempUser.getScore()
-                        realmUser.level = nil
-                        realmUser.topic = nil
+//                        let realmUser = RealmUser()
+//                        realmUser.id = user.user.uid
+//                        realmUser.name = tempUser.getName()
+//                        realmUser.email = tempUser.getEmail()
+//                        realmUser.profilePhotoURL = tempUser.getProfilePhotoURL()
+//                        realmUser.createdDate = date
+//                        realmUser.hearth.value = tempUser.getHearth()
+//                        realmUser.diamond.value = tempUser.getDiamond()
+//                        realmUser.score.value = tempUser.getScore()
+//                        realmUser.level = nil
+//                        realmUser.topic = nil
 
-                        realmUser.writeToRealm()
+//                        realmUser.writeToRealm()
                         
                         // Save user data to Firebase Firestore Database
-                        self.saveUserDataToDatabase(user: tempUser)
-
+                        //FirebaseUtilities.saveUserData(withUser: tempUser)
                         
                     } else {
                         print("ERROR: USER NOT CREATED")
@@ -138,36 +139,6 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
             ProgressHUD.showError("Lütfen tüm alanları eksiksiz doldurup tekrar deneyiniz.")
         }
     }
-    
-    /**
-     This method saves user data to Firebase Firestore Database.
-     - parameter user: The user to be registered to the database.
-     */
-    private func saveUserDataToDatabase(user: User) {
-        
-        let userData: [String : Any] = [
-            "createdDate" : user.getCreatedDate() ?? Date(),
-            "diamond" : user.getDiamond() ?? 0,
-            "email" : user.getEmail() ?? "",
-            "hearth" : user.getHearth() ?? 0,
-            "photo_url" : user.getProfilePhotoURL() ?? "",
-            "score" : user.getScore() ?? 0,
-            "username" : user.getName() ?? ""
-        ]
-        
-        
-        db.collection("User").document((Auth.auth().currentUser?.uid)!).setData(userData) { error in
-            if let err = error {
-                print("ERROR: \(err)")
-                ProgressHUD.showError(err.localizedDescription)
-            } else {
-                print("SUCCESS: Document successfully written!")
-                self.performSegue(withIdentifier: "MainViewSegue", sender: self)
-            }
-        }
-        
-    }
- 
  
     /*
     // MARK: - Navigation
