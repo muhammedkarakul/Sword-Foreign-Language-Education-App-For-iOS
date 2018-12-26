@@ -18,11 +18,11 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     // MARK: - Preferences -
     @IBOutlet var messageLabel: UILabel! // Info message about word choice
     @IBOutlet var kolodaView: KolodaView! // Card stack view
-    @IBOutlet weak var learnContainerView: UIView! // When user chose words this view appears
+    @IBOutlet weak var pickCardsContainerView: UIView! // When user chose words this view appears
     @IBOutlet weak var titleMessageLabel: UILabel! // Info message about learn screen
     @IBOutlet weak var wordProgressView: UIProgressView! // Progress bar about word learning
     @IBOutlet weak var wordCounterLabel: UILabel! // Which word you are in
-    @IBOutlet weak var selectWordContainerView: UIView! // If user wasn't select words this view appears
+    @IBOutlet weak var pickLevelAndTopicContainerView: UIView! // If user wasn't select words this view appears
     @IBOutlet weak var letsLearnContainerView: UIView!
     @IBOutlet weak var selectedWordsTableView: UITableView!
     @IBOutlet weak var letsLearnViewHeaderLabel: UILabel!
@@ -38,6 +38,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     private var currentCardIndex: Int = 0
     private var isLevelAndTopicsNotSelected: Bool = false
     private var isToBeLearnedWordsSelected: Bool = false
+    //private let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,23 +76,31 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     
     private func setupView() {
         
-        self.view.addSubview(learnContainerView)
-        self.view.addSubview(selectWordContainerView)
+        self.view.addSubview(pickCardsContainerView)
+        self.view.addSubview(pickLevelAndTopicContainerView)
         self.view.addSubview(letsLearnContainerView)
         
-        learnContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
+        setupContainerView(pickCardsContainerView)
         
-        selectWordContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
+        setupContainerView(pickLevelAndTopicContainerView)
         
-        letsLearnContainerView.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + headerView.height + 16, width: width - 16, height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66)
+        setupContainerView(letsLearnContainerView)
         
-        learnContainerView.alpha = 0.0
-        selectWordContainerView.alpha = 0.0
-        letsLearnContainerView.alpha = 0.0
+        letsLearnViewHeaderLabel.font = UIFont(name: "Mikado", size: 17)
+    }
+    
+    private func setupContainerView(_ view: UIView) {
         
-        learnContainerView.isHidden = true
-        selectWordContainerView.isHidden = true
-        letsLearnContainerView.isHidden = true
+        let containerRect = CGRect(
+            x: 8,
+            y: UIApplication.shared.statusBarFrame.height + headerView.height + 16,
+            width: width - 16,
+            height: height - UIApplication.shared.statusBarFrame.height - headerView.height - 66
+        )
+        
+        view.frame = containerRect
+        view.alpha = 0.0
+        view.isHidden = true
     }
     
     private func updateView() {
@@ -108,20 +117,20 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     }
     
     private func isLevelAndTopicSelected() {
-        //let currentUser = RealmUtilities.getCurrentUserFromRealm()
-//        let level = currentUser.getLevel()
-//        let topics = currentUser.getTopics()
         
-//        if level != nil && topics != nil {
-//            if isToBeLearnedWordsSelected {
-//                changeView(currentView: CurrentView.letsLearnView)
-//            } else {
-//                getSelectedTopicsWordsFromRealm()
-//                changeView(currentView: CurrentView.pickCardsView)
-//            }
-//        } else {
-//            isLevelAndTopicsNotSelected = true
-//        }
+        let level = userDefaults.string(forKey: "Level")
+        let topics = userDefaults.array(forKey: "Topics")
+        
+        if level != nil && topics != nil {
+            if isToBeLearnedWordsSelected {
+                changeView(currentView: CurrentView.letsLearnView)
+            } else {
+                getSelectedTopicsWordsFromRealm()
+                changeView(currentView: CurrentView.pickCardsView)
+            }
+        } else {
+            isLevelAndTopicsNotSelected = true
+        }
     }
     
     // MARK: - Actions -
@@ -258,7 +267,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
                             foreignLang: word.data()["en"] as? String,
                             motherLang: word.data()["tr"] as? String,
                             createdDate: date,
-                            users: word.data()["users"] as? [String],
+                            users: word.data()["users"] as? [String : Bool],
                             imageURL: word.data()["image"] as? String,
                             random: word.data()["random"] as? Int,
                             rating: word.data()["rating"] as? Int,
@@ -274,19 +283,18 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     // MARK: - Get From Realm -
     
     private func getSelectedTopicsWordsFromRealm() {
-        //let currentUser = RealmUtilities.getCurrentUserFromRealm()
         
-//        if let topicIds = currentUser.getTopics() {
-//            for topicId in topicIds {
-//                if let tempTopic = getTopicDataFromRealmWithID(id: topicId) {
-//                    if let wordIds = tempTopic.getWords() {
-//                        for wordId in wordIds {
-//                            words.append(getWordDataFromRealmWithID(id: wordId)!)
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        if let topicIds = userDefaults.array(forKey: "Topics") {
+            for topicId in topicIds as! [String] {
+                if let tempTopic = getTopicDataFromRealmWithID(id: topicId) {
+                    if let wordIds = tempTopic.getWords() {
+                        for wordId in wordIds {
+                            words.append(getWordDataFromRealmWithID(id: wordId)!)
+                        }
+                    }
+                }
+            }
+        }
         
         updateView()
         
@@ -297,20 +305,8 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         let realmWords = uiRealm.objects(RealmWord.self)
         for realmWord in realmWords {
             
-            let tempWord = Word(
-                id: realmWord.id,
-                foreignLang: realmWord.foreignLang,
-                motherLang: realmWord.motherLang,
-                createdDate: realmWord.createdDate,
-                users: realmWord.users?.components(separatedBy: ","),
-                imageURL: realmWord.imageURL,
-                random: realmWord.random.value,
-                rating: realmWord.rating.value,
-                sentence: realmWord.sentence
-            )
-            
-            if tempWord.getId() == id {
-                 word = tempWord
+            if realmWord.getWord().getId() == id {
+                 word = realmWord.getWord()
             }
         }
         
@@ -355,15 +351,8 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         print("SUCCESS: Word datas added to Realm Database.")
         
         let realmWord = RealmWord()
-        realmWord.id = word.getId()
-        realmWord.foreignLang = word.getForeignLang()
-        realmWord.motherLang = word.getMotherLang()
-        realmWord.createdDate = word.getCreatedDate()
-        realmWord.users = String.arrayToString(stringArray: word.getUsers(), divideBy: ",")
-        realmWord.imageURL = word.getImageURL()
-        realmWord.random.value = word.getRandom()
-        realmWord.rating.value = word.getRating()
-        realmWord.sentence = word.getSentence()
+        realmWord.getData(fromWord: word)
+
         realmWord.writeToRealm()
     }
     
@@ -378,9 +367,6 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         realmTopic.writeToRealm()
     }
     
-    
-    // MARK: - Control
-    
     public func isWordsSelected() -> Bool{
         if currentCardIndex == 10 {
             return true
@@ -389,7 +375,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         }
     }
     
-    // Selected words table view delegate and datasource
+    // MARK: - Table View Datasource And Delegate -
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -404,6 +390,7 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
         cell?.textLabel?.textAlignment = .center
         cell?.textLabel?.textColor = UIColor(white: 1.0, alpha: 0.5)
         cell?.textLabel?.text = toBeLearnedWords[indexPath.row].getForeignLang()
+        cell?.textLabel?.font = UIFont(name: "Mikado", size: 15)
         return cell!
     }
     
@@ -449,36 +436,35 @@ class PickWordsViewController: CustomMainViewController, UITableViewDelegate, UI
     public func changeView(currentView: CurrentView) {
         switch currentView {
         case .pickLevelAndTopicView:
-            
-            selectWordContainerView.isHidden = false
+            pickLevelAndTopicContainerView.isHidden = false
             UIView.animate(withDuration: 0.2) {
-                self.selectWordContainerView.alpha = 1.0
+                self.pickLevelAndTopicContainerView.alpha = 1.0
                 self.letsLearnContainerView.alpha = 0.0
-                self.learnContainerView.alpha = 0.0
+                self.pickCardsContainerView.alpha = 0.0
             }
-            learnContainerView.isHidden = true
+            pickCardsContainerView.isHidden = true
             letsLearnContainerView.isHidden = true
             
         case .pickCardsView:
-            learnContainerView.isHidden = false
+            pickCardsContainerView.isHidden = false
             UIView.animate(withDuration: 0.2) {
-                self.selectWordContainerView.alpha = 0.0
+                self.pickLevelAndTopicContainerView.alpha = 0.0
                 self.letsLearnContainerView.alpha = 0.0
-                self.learnContainerView.alpha = 1.0
+                self.pickCardsContainerView.alpha = 1.0
             }
-            selectWordContainerView.isHidden = true
+            pickLevelAndTopicContainerView.isHidden = true
             letsLearnContainerView.isHidden = true
             
         case .letsLearnView:
             
             letsLearnContainerView.isHidden = false
             UIView.animate(withDuration: 0.2) {
-                self.selectWordContainerView.alpha = 0.0
+                self.pickLevelAndTopicContainerView.alpha = 0.0
                 self.letsLearnContainerView.alpha = 1.0
-                self.learnContainerView.alpha = 0.0
+                self.pickCardsContainerView.alpha = 0.0
             }
-            learnContainerView.isHidden = true
-            selectWordContainerView.isHidden = true
+            pickCardsContainerView.isHidden = true
+            pickLevelAndTopicContainerView.isHidden = true
         }
     }
     

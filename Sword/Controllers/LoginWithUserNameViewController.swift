@@ -67,26 +67,30 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
             // Start activity indicator and disable user interaction with view.
             startActivityIndicator()
             
+            FirebaseUtilities.signIn(withEmail: email, andPassword: password) { (result, error) in
+                if let error = error {
+                    print("Fail")
+                    print("\(error.localizedDescription)")
+                } else {
+                    print("Success")
+                }
+            }
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                
-                
+
                 // Stop activity indicator and enable user interaction with view.
                 self.stopActivityIndicator()
-                
+
                 // Hide blur effect.
                 self.hideBlurView()
-                
-                if let u = user {
-                    
-                    self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(u.user.uid)
-                    
+
+                if let user = user {
                     print("SIGN IN: SUCCESS")
-                    
+                    self.getUserDataFromFirebaseWithUserIdAndWriteToRealm(user.user.uid)
                 } else {
                     print("SIGN IN: FAIL")
                     // Error: Check error and show message
                     ProgressHUD.showError(error?.localizedDescription)
-                    
+
                 }
             }
         }
@@ -102,49 +106,43 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
     private func getUserDataFromFirebaseWithUserIdAndWriteToRealm(_ userId: String?) {
         var currentUser: User?
         
+        
+        
         if let id = userId {
             let userRef = db.collection("User").document(id)
-            
+
             userRef.getDocument { (user, error) in
-                
+
                 // Stop activity indicator and enable user interaction with view.
                 self.stopActivityIndicator()
-                
+
                 // Hide blur effect.
                 self.hideBlurView()
-                
-                if let u = user, user!.exists {
-                    let dataDescription = u.data().map(String.init(describing: )) ?? "nil"
+
+                if let user = user, user.exists {
+                    let dataDescription = user.data().map(String.init(describing: )) ?? "nil"
                     print("Document data: \(dataDescription)")
-                    
-                    var date = Date()
-                    let timestampOptional = u.get("crearedDate") as? Timestamp
-                    if let timestamp = timestampOptional {
-                        date = timestamp.dateValue()
-                    }
-                    
+
+                    let date = Date.timeStampToDate(withAnyObject: user.get("createdDate"))
+        
                     currentUser = User(
-                        id: u.documentID,
-                        name: u.data()?["username"] as? String,
-                        email: u.data()?["email"] as? String,
-                        diamond: u.data()?["diamond"] as? Int,
+                        id: user.documentID,
+                        name: user.data()?["username"] as? String,
+                        email: user.data()?["email"] as? String,
+                        diamond: user.data()?["diamond"] as? Int,
                         createdDate: date,
-                        hearth: u.data()?["hearth"] as? Int,
-                        profilePhotoURL: u.data()?["photo_url"] as? String,
-                        score: u.data()?["score"] as? Int
-//                        level: u.data()?["level"] as? String,
-//                        topics: u.data()?["topic"] as? [String]
+                        hearth: user.data()?["hearth"] as? Int,
+                        profilePhotoURL: user.data()?["photo_url"] as? String,
+                        score: user.data()?["score"] as? Int
                     )
-                    
-                    currentUser?.printUserData()
                     
                     if let user = currentUser {
                         self.writeUserDataToRealm(user: user)
                     }
                     
-                    // Login process completed. Go to Learn Screen.
+                     //Login process completed. Go to Learn Screen.
                     self.performSegue(withIdentifier: "MainViewSegue", sender: self)
-                    
+
                 } else {
                     print("Document does not exist")
                 }
@@ -164,9 +162,9 @@ class LoginWithUserNameViewController: CustomViewController, UITextFieldDelegate
         realmUser.score.value = user.getScore()
         //realmUser.level = user.getLevel()
         //realmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
-        
+
         realmUser.writeToRealm()
-        
+
         print("USER WROTE TO REALM SUCCESSFULLY")
     }
     

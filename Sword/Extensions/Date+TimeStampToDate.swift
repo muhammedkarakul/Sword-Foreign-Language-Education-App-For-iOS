@@ -7,14 +7,19 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 extension Date {
-    static public func timeStampToDate(timeStamp: Double) -> Date? {
-        let date = Date(timeIntervalSince1970: timeStamp)
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-        dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
+    static public func timeStampToDate(withAnyObject any: Any?) -> Date? {
+        
+        var date = Date()
+        
+        let timestamp = any as? Timestamp
+        
+        if let timestamp = timestamp {
+            date = timestamp.dateValue()
+        }
+        
         return date
     }
 }

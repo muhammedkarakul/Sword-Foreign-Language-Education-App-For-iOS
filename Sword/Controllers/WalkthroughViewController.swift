@@ -47,10 +47,10 @@ class WalkthroughViewController: CustomViewController, BWWalkthroughViewControll
         } else {
             
             // Check if user has already logged in
-            if Auth.auth().currentUser != nil {
+            if let currentUser = Auth.auth().currentUser {
                 // User is signed in.
                 print("USER WAS LOGGED IN. GO TO MAIN SCREEN.")
-                userDefaults.set(Auth.auth().currentUser?.uid , forKey: "uid")
+                userDefaults.set(currentUser.uid , forKey: "uid")
                 userDefaults.synchronize()
                 
                 // User was logged in. Update user date and go to Learn Screen.

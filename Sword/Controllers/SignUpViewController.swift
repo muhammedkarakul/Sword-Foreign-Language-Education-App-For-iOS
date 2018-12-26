@@ -72,21 +72,7 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
             let password = passwordTextField.text,
             let passwordValidation = passwordValidationTextField.text {
             
-            let timestamp = Timestamp()
-            let date = timestamp.dateValue()
-            
-            let tempUser = User(
-                id: "",
-                name: name,
-                email: email,
-                diamond: 000,
-                createdDate: date,
-                hearth: 4,
-                profilePhotoURL: nil,
-                score: 0000
-//                level: nil,
-//                topics: [String]()
-            )
+            let date = Timestamp().dateValue()
             
             if password == passwordValidation {
                 
@@ -101,25 +87,18 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
                     if let user = user {
                         print("SUCCESS: USER CREATED")
                         
-                        tempUser.setId(id: user.user.uid)
-                        
-                        // Save user to Realm local database
-//                        let realmUser = RealmUser()
-//                        realmUser.id = user.user.uid
-//                        realmUser.name = tempUser.getName()
-//                        realmUser.email = tempUser.getEmail()
-//                        realmUser.profilePhotoURL = tempUser.getProfilePhotoURL()
-//                        realmUser.createdDate = date
-//                        realmUser.hearth.value = tempUser.getHearth()
-//                        realmUser.diamond.value = tempUser.getDiamond()
-//                        realmUser.score.value = tempUser.getScore()
-//                        realmUser.level = nil
-//                        realmUser.topic = nil
-
-//                        realmUser.writeToRealm()
-                        
-                        // Save user data to Firebase Firestore Database
-                        //FirebaseUtilities.saveUserData(withUser: tempUser)
+                        let realmUser = RealmUser()
+                        realmUser.initWith(userObject: User(
+                            id: user.user.uid,
+                            name: name,
+                            email: email,
+                            diamond: 000,
+                            createdDate: date,
+                            hearth: 4,
+                            profilePhotoURL: nil,
+                            score: 0000
+                        ))
+                        realmUser.writeToRealm()
                         
                     } else {
                         print("ERROR: USER NOT CREATED")

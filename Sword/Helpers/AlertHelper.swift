@@ -10,13 +10,6 @@ import UIKit
 
 extension UIViewController {
     
-//    internal func alert(title: String, message: String) {
-//        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-//        let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
-//        alertController.addAction(okAction)
-//        self.present(alertController, animated: true, completion: nil)
-//    }
-    
     internal func alertWithAction(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: handler)

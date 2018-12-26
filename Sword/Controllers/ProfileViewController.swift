@@ -74,25 +74,24 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
     
     @IBAction func okProfilePictureSelection(_ sender: CustomButton) {
         
-        //if let selectedProfilePicture = userDefaults.string(forKey: "ProfilePicture") {
-        if let selectedProfilePicture = RealmUtilities.getCurrentUserFromRealm().getProfilePhotoURL() {
+        if let selectedImageIndex = selectedIndexPathRow {
             
-            user.setProfilePhotoURL(profilePhotoURL: selectedProfilePicture)
+            RealmUtilities.updateUser(profilePhotoURL: profilePictures[selectedImageIndex])
             
-            let realmUser = RealmUser()
+            user = RealmUtilities.getCurrentUserFromRealm()
             
-            realmUser.getDataFromUser(user: user)
+            if let profileImageURL = user.getProfilePhotoURL() {
+                userImageView.image = UIImage(named: profileImageURL)
+                
+                headerView.update()
+                
+                pickProfilePicturePopUpView.removeFromSuperview()
+                
+                hideBlurView()
+            }
             
-            realmUser.writeToRealm()
-            
-            userImageView.image = UIImage(named: selectedProfilePicture)
-            
-            headerView.update()
         }
         
-        pickProfilePicturePopUpView.removeFromSuperview()
-        
-        hideBlurView()
     }
     
     @IBAction func pickProfilePicture(_ sender: UIButton) {
@@ -166,13 +165,6 @@ class ProfileViewController: CustomMainViewController, UICollectionViewDataSourc
         let cell = collectionView.cellForItem(at: indexPath)
 
         cell?.backgroundColor = UIColor.customColors.swordBlue
-
-//        let currentUser = RealmUtilities.getCurrentUserFromRealm()
-//        currentUser.setProfilePhotoURL(profilePhotoURL: profilePictures[indexPath.row])
-//        let realmUser = RealmUser()
-//        realmUser.getDataFromUser(user: currentUser)
-//        realmUser.writeToRealm()
-        
         
         selectedIndexPathRow = indexPath.row
     }

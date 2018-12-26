@@ -87,10 +87,12 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setup(multipleSelectionView, withAlpha: 1.0, andHiddenState: false)
-        setup(writingView, withAlpha: 0.0, andHiddenState: true)
-        
-        answerButtons = [self.multipleSelectionFirstButton, self.multipleSelectionSecondButton, self.multipleSelectionThirdButton, self.multipleSelectionFourthButton]
+        answerButtons = [
+            self.multipleSelectionFirstButton,
+            self.multipleSelectionSecondButton,
+            self.multipleSelectionThirdButton,
+            self.multipleSelectionFourthButton
+        ]
         
         // Update question and view
         updateView()
@@ -125,12 +127,41 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
     
     private func setupView() {
         
+//        let answersRect = CGRect(
+//            x: 16,
+//            y: kolodaView.frame.origin.y + kolodaView.frame.size.height + 8,
+//            width: width - 32,
+//            height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16
+//        )
+        
+//        multipleSelectionView = setupView(
+//            withAlpha: 1.0,
+//            andHiddenState: false,
+//            andRect: answersRect
+//        )
+        multipleSelectionView.frame = CGRect(
+            x: 16,
+            y: kolodaView.frame.origin.y + kolodaView.frame.size.height - 8,
+            width: width - 32,
+            height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16
+        )
+        
+//        writingView = setupView(
+//            withAlpha: 0.0,
+//            andHiddenState: true,
+//            andRect: answersRect
+//        )
+        writingView.frame = CGRect(
+            x: 16,
+            y: kolodaView.frame.origin.y + kolodaView.frame.size.height + 8,
+            width: width - 32,
+            height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16
+        )
+        
         self.view.addSubview(multipleSelectionView)
         self.view.addSubview(writingView)
         
-        multipleSelectionView.frame = CGRect(x: 16, y: kolodaView.frame.origin.y + kolodaView.frame.size.height + 8, width: width - 32, height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16)
-        
-        writingView.frame = CGRect(x: 8, y: kolodaView.frame.origin.y + kolodaView.frame.size.height + 8, width: width - 16, height: continueLaterButton.frame.origin.y - kolodaView.frame.origin.y - kolodaView.frame.size.height - 16)
+        writingAnswerTextField.delegate = self
     }
     
     private func getLearnWordsOrderFromPlistFile() {
@@ -148,15 +179,23 @@ class LearnViewController: CustomViewController, UITextFieldDelegate {
                         questionOrders.append(tempQuestionOrder)
                     }
                 }
-                
             }
         }
     }
     
-    private func setup(_ view: UIView, withAlpha alpha: CGFloat, andHiddenState state: Bool) {
-        view.alpha = alpha
-        view.isHidden = state
-    }
+//    private func setupView(
+//        withAlpha alpha: CGFloat,
+//        andHiddenState state: Bool,
+//        andRect rect: CGRect
+//        ) -> UIView {
+//
+//        let view = UIView()
+//        view.alpha = alpha
+//        view.isHidden = state
+//        view.frame = rect
+//
+//        return view
+//    }
     
     private func setupLearnWords() {
         // Setup learn words

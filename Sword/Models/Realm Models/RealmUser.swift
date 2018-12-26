@@ -17,8 +17,6 @@ class RealmUser: Object {
     var hearth = RealmOptional<Int>()
     @objc dynamic var profilePhotoURL: String? = nil
     var score = RealmOptional<Int>()
-    @objc dynamic var level: String? = nil
-    @objc dynamic var topic: String? = nil
     
     override static func primaryKey() -> String? {
         return "id"
@@ -30,7 +28,7 @@ class RealmUser: Object {
         }
     }
     
-    public func getDataFromUser(user: User) {
+    public func initWith(userObject user: User) {
         id = user.getId()
         name = user.getName()
         email = user.getEmail()
@@ -39,8 +37,6 @@ class RealmUser: Object {
         hearth.value = user.getHearth()
         profilePhotoURL = user.getProfilePhotoURL()
         score.value = user.getScore()
-        //level = user.getLevel()
-        //topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
     }
     
     public func getUser() -> User {

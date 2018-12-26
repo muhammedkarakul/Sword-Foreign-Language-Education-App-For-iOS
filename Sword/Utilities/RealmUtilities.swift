@@ -11,7 +11,12 @@ import Foundation
 class RealmUtilities {
     
     public static func getCurrentUserFromRealm() -> User {
-        let currentUser = getUserFromRealm(withId: UserDefaultsUtilities.getCurrentUserId())
+        
+        var currentUser = User()
+        
+        if let currentUserId = UserDefaultsUtilities.getCurrentUserId() {
+            currentUser = getUserFromRealm(withId: currentUserId)
+        }
         
         return currentUser
     }
@@ -44,6 +49,18 @@ class RealmUtilities {
         return levels
     }
     
+    public static func getLevel(withId id: String?) -> Level {
+        let levels = getLevelsFromRealm()
+        var tempLevel = Level()
+        for level in levels {
+            if level.getId() == id {
+                tempLevel = level
+            }
+        }
+        return tempLevel
+    }
+    
+    
     public static func getTopicsFromRealm() -> [Topic] {
         let realmTopics = uiRealm.objects(RealmTopic.self)
         var topics = [Topic]()
@@ -55,6 +72,18 @@ class RealmUtilities {
         }
         
         return topics
+    }
+    
+    public static func getTopic(withId id: String?) -> Topic {
+        let topics = getTopicsFromRealm()
+        var tempTopic = Topic()
+        for topic in topics {
+            if topic.getId() == id {
+                tempTopic = topic
+            }
+        }
+        
+        return tempTopic
     }
     
     public static func getWordsFromRealm() -> [Word] {
@@ -78,6 +107,16 @@ class RealmUtilities {
         }
         
         return wordsWithRandom
+    }
+    
+    public static func updateUser(profilePhotoURL url: String?) {
+        let currentUser = getCurrentUserFromRealm()
+        if let profilePhotoURL = url {
+            currentUser.setProfilePhotoURL(profilePhotoURL: profilePhotoURL)
+        }
+        let realmUser = RealmUser()
+        realmUser.initWith(userObject: currentUser)
+        realmUser.writeToRealm()
     }
     
 }

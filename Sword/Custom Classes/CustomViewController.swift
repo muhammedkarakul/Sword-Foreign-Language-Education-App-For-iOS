@@ -11,7 +11,6 @@ import AVFoundation
 
 class CustomViewController: UIViewController, AVAudioPlayerDelegate {
     
-    
     internal var width: CGFloat {
         return UIScreen.main.bounds.width
     }
@@ -22,15 +21,13 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
     
     private var player: AVAudioPlayer?
     
-    //private var blurEffectView = UIVisualEffectView()
+    internal let userDefaults = UserDefaults.standard
     
     private var alert = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Status bar color turns white
-        //UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewDidAppear(_ animated: Bool) {

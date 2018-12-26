@@ -28,11 +28,11 @@
                     <tabBarItem key="tabBarItem" title="Öğren" image="light-bulb" id="qRU-i6-phs"/>
                     <connections>
                         <outlet property="kolodaView" destination="yhZ-Sf-Y7Z" id="ibJ-Rx-KvC"/>
-                        <outlet property="learnContainerView" destination="QVo-Hf-Wc1" id="UBk-MH-R36"/>
                         <outlet property="letsLearnContainerView" destination="1y9-Be-MYP" id="KKs-X8-j64"/>
                         <outlet property="letsLearnViewHeaderLabel" destination="mPL-eA-hQL" id="l1y-cy-QYX"/>
                         <outlet property="messageLabel" destination="ctW-Ud-gPF" id="ekG-cm-Aje"/>
-                        <outlet property="selectWordContainerView" destination="RXE-ja-yPi" id="sOa-vM-qQT"/>
+                        <outlet property="pickCardsContainerView" destination="QVo-Hf-Wc1" id="UBk-MH-R36"/>
+                        <outlet property="pickLevelAndTopicContainerView" destination="RXE-ja-yPi" id="sOa-vM-qQT"/>
                         <outlet property="selectedWordsTableView" destination="wV2-hB-c63" id="uGt-aa-yd6"/>
                         <outlet property="titleMessageLabel" destination="vcs-Vf-xHa" id="uIQ-pD-hiL"/>
                         <outlet property="wordCounterLabel" destination="ziT-Ba-EUC" id="6sE-ne-jII"/>
@@ -76,6 +76,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="UmF-sa-YBa"/>
+                                                <constraint firstAttribute="width" constant="150" id="tMp-Zz-ACi"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="15"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -98,8 +99,9 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5F-qU-zL4">
-                                            <rect key="frame" x="93" y="58" width="139" height="17"/>
+                                            <rect key="frame" x="92.5" y="58" width="139" height="17"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="139" id="YDg-lB-Ibm"/>
                                                 <constraint firstAttribute="height" constant="17" id="aXu-Pr-M9R"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="MikadoBold" family="Mikado" pointSize="11"/>
@@ -114,13 +116,11 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="R85-Iz-hQD" firstAttribute="top" secondItem="qOE-Dz-4mW" secondAttribute="top" id="5mM-nv-WP3"/>
-                                        <constraint firstItem="N5F-qU-zL4" firstAttribute="leading" secondItem="qOE-Dz-4mW" secondAttribute="leading" constant="93" id="8o9-En-5Rk"/>
                                         <constraint firstItem="N5F-qU-zL4" firstAttribute="top" secondItem="R85-Iz-hQD" secondAttribute="bottom" constant="8" id="9dt-V0-HXz"/>
+                                        <constraint firstItem="N5F-qU-zL4" firstAttribute="centerX" secondItem="qOE-Dz-4mW" secondAttribute="centerX" id="GK6-yW-vKg"/>
                                         <constraint firstAttribute="height" constant="75" id="HgM-WG-wEI"/>
+                                        <constraint firstItem="R85-Iz-hQD" firstAttribute="centerX" secondItem="qOE-Dz-4mW" secondAttribute="centerX" id="QnM-6A-mMo"/>
                                         <constraint firstAttribute="bottom" secondItem="N5F-qU-zL4" secondAttribute="bottom" id="Za6-8q-6SF"/>
-                                        <constraint firstAttribute="trailing" secondItem="N5F-qU-zL4" secondAttribute="trailing" constant="92" id="kW0-am-6sz"/>
-                                        <constraint firstAttribute="trailing" secondItem="R85-Iz-hQD" secondAttribute="trailing" constant="87" id="ved-me-XsX"/>
-                                        <constraint firstItem="R85-Iz-hQD" firstAttribute="leading" secondItem="qOE-Dz-4mW" secondAttribute="leading" constant="87" id="xoa-zG-cKH"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPL-eA-hQL">

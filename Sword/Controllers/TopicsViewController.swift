@@ -15,12 +15,8 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
     @IBOutlet var containerTableView: UITableView!
 
     private var topics = [Topic]()
-    private var selectedTopics = [Topic]()
     private var selectedTopicIndexes = [Int]()
     private var selectedCellCounter = 0
-    //private var db = Firestore.firestore()
-    
-    public var selectedLevel = Level()
     
     
     override func viewDidLoad() {
@@ -46,15 +42,21 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
     // MARK: - Functions
     
     private func getTopicsDataFromRealm() {
+        
         let tempTopics = RealmUtilities.getTopicsFromRealm()
         
-        let topicIds = selectedLevel.getTopics()
-        
-        if let ids = topicIds {
-            for id in ids {
-                for tempTopic in tempTopics {
-                    if id == tempTopic.getId() {
-                        topics.append(tempTopic)
+        if let levelId = userDefaults.string(forKey: "Level") {
+            
+            let selectedLevel = RealmUtilities.getLevel(withId: levelId)
+            
+            let topicIds = selectedLevel.getTopics()
+            
+            if let topicIds = topicIds {
+                for topicId in topicIds {
+                    for tempTopic in tempTopics {
+                        if topicId == tempTopic.getId() {
+                            topics.append(tempTopic)
+                        }
                     }
                 }
             }
@@ -62,57 +64,19 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
         
     }
     
-//    private func getTopicDataWithId() {
-//        // Show activity indicator and disable user interaction with view.
-//        startActivityIndicator()
-//
-//        db.collection("Topic").getDocuments { (snapshot, error) in
-//            // Stop and hide activity indicator and disable user interaction with view.
-//            self.stopActivityIndicator()
-//
-//            if let err = error {
-//                print("Error: \(err)")
-//            } else {
-//                for topic in snapshot!.documents {
-//
-//                    var date = Date()
-//                    let timestampOptional = topic.get("crearedDate") as? Timestamp
-//                    if let timestamp = timestampOptional {
-//                        date = timestamp.dateValue()
-//                    }
-//
-//                    let tempTopic = Topic(
-//                        id: topic.documentID,
-//                        createdDate: date,
-//                        name: topic.data()["name"] as? String,
-//                        words: topic.data()["words"] as? [String]
-//                    )
-//
-//                    if let topics = self.selectedLevel.getTopics() {
-//                        for id in topics {
-//                            if tempTopic.getId() == id {
-//                                self.topics.append(tempTopic)
-//                            }
-//                        }
-//                    }
-//
-//                }
-//
-//                self.containerTableView.reloadData()
-//            }
-//        }
-//    }
-    
     // MARK: - Actions
     
     @IBAction func nextTapped(_ sender: UIButton) {
-        //getCurrentUserFromRealm().printUserData()
+        
+        var selectedTopicsIds = [String]()
         
         for selectedTopicIndex in selectedTopicIndexes {
-            selectedTopics.append(topics[selectedTopicIndex])
+            if let selectedTopicId = topics[selectedTopicIndex].getId() {
+                selectedTopicsIds.append(selectedTopicId)
+            }
         }
         
-        updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: RealmUtilities.getCurrentUserFromRealm())
+        userDefaults.set(selectedTopicsIds, forKey: "Topics")
         
         dismiss(animated: true, completion: nil)
     }
@@ -177,35 +141,6 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
         }
     }
     
-    private func updateCurrentUserLevelAndTopicDataAndWriteToRealm(user: User) {
-        //user.setLevel(level: selectedLevel.getId())
-        var topicsId = [String]()
-        for topic in selectedTopics {
-            topicsId.append(topic.getId() ?? "")
-        }
-        //user.setTopic(topics: topicsId)
-        
-        let tempRealmUser = RealmUser()
-        
-        tempRealmUser.id = user.getId()
-        tempRealmUser.name = user.getName()
-        tempRealmUser.email = user.getEmail()
-        tempRealmUser.diamond.value = user.getDiamond()
-        tempRealmUser.createdDate = user.getCreatedDate()
-        tempRealmUser.hearth.value = user.getHearth()
-        tempRealmUser.profilePhotoURL = user.getProfilePhotoURL()
-        tempRealmUser.score.value = user.getScore()
-        //tempRealmUser.level = user.getLevel()
-        //tempRealmUser.topic = appendStringArrayWithComma(strArray: user.getTopics()!)
-        //tempRealmUser.topic = String.arrayToString(stringArray: user.getTopics(), divideBy: ",")
-        
-        tempRealmUser.writeToRealm()
-        
-        //let userDefaults = UserDefaults.standard
-        //userDefaults.set(true, forKey: "isLevelAndTopicsSelected")
-        //userDefaults.synchronize()
-    }
-    
     private func isSubmitButtonHidden(_ state: Bool) {
         if state {
             UIView.animate(withDuration: 0.2) {
@@ -219,15 +154,5 @@ class TopicsViewController: CustomViewController, UITableViewDataSource, UITable
             }
         }
     }
-    
-    // MARK: - Navigation
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if let seg : LearnViewController = segue.destination as? LearnViewController {
-        seg.delegate = self
-     }
-    }
-     */
- 
 
 }
