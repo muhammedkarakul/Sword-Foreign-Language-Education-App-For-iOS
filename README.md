@@ -1,1 +1,16 @@
 # Sword iOS App
+
+## How to use?
+
+Clone project and write to terminal:
+	pod install
+
+Open Sword.xcworkspace named file with Xcode IDE. Build and run. Have fun.
+
+## Preview
+
+<img src="https://giant.gfycat.com/SilentFeistyIrukandjijellyfish.mp4">
+
+## Attention
+
+Project backend working on Google Firebase. If project not working you must create project on Firebase and connect with application.
