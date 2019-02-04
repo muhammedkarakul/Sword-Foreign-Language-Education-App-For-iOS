@@ -11,6 +11,6 @@ Open Sword.xcworkspace named file with Xcode IDE. Build and run. Have fun.
 
 <img src="https://thumbs.gfycat.com/ForsakenSadAmericankestrel-size_restricted.gif">
 
-## Attention
+## Important
 
 Project backend working on Google Firebase. If project not working you must create project on Firebase and connect with application.
