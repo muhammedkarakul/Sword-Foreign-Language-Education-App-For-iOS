@@ -9,7 +9,7 @@ Open Sword.xcworkspace named file with Xcode IDE. Build and run. Have fun.
 
 ## Preview
 
-<img src="https://giant.gfycat.com/SilentFeistyIrukandjijellyfish.gif">
+<img src="https://thumbs.gfycat.com/ForsakenSadAmericankestrel-small.gif">
 
 ## Attention
 
