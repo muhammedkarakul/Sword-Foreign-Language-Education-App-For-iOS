@@ -404,6 +404,7 @@
 		574CC32520A32012003F0AA9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5720954E20AD8B1D006C869D /* MainViewController.swift */,
 				5720955020AD8B2C006C869D /* WalkthroughViewController.swift */,
 				5719B0DC208CCE3A00962F1B /* LoginWithUserNameViewController.swift */,
 				5719B0DE208CCE4B00962F1B /* LoginWithFaceBookViewController.swift */,
@@ -419,7 +420,6 @@
 				574CC32920A32080003F0AA9 /* GameViewController.swift */,
 				574CC32720A32056003F0AA9 /* PickWordsViewController.swift */,
 				574CC32320A31EDA003F0AA9 /* CustomTabBarViewController.swift */,
-				5720954E20AD8B1D006C869D /* MainViewController.swift */,
 				574CC32B20A32095003F0AA9 /* MarketViewController.swift */,
 				574CC32D20A320CA003F0AA9 /* RankViewController.swift */,
 				574CC32F20A320E5003F0AA9 /* ProfileViewController.swift */,
@@ -1137,7 +1137,10 @@
 				DEVELOPMENT_TEAM = NP973XPAN9;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordApp.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1157,7 +1160,10 @@
 				DEVELOPMENT_TEAM = NP973XPAN9;
 				INFOPLIST_FILE = Sword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swordApp.Sword;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1176,7 +1182,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1194,7 +1204,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1211,7 +1225,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1228,7 +1246,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P6RBQAP3JT;
 				INFOPLIST_FILE = SwordUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedkarakul.SwordUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

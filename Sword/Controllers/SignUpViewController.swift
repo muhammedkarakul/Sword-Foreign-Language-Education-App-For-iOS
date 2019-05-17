@@ -29,12 +29,29 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
         self.passwordTextField.delegate = self
         self.passwordValidationTextField.delegate = self
         
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(keyboardWillShow(sender:)),
+//            name: UIWindow.keyboardWillShowNotification,
+//            object: nil
+//        )
+//        
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(keyboardWillHide(sender:)),
+//            name: UIWindow.keyboardWillHideNotification,
+//            object: nil
+//        )
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+//    @objc func keyboardWillShow(sender: NSNotification) {
+//        self.view.frame.origin.y = -150
+//    }
+//
+//    @objc func keyboardWillHide(sender: NSNotification) {
+//        self.view.frame.origin.y = 0
+//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -99,6 +116,8 @@ class SignUpViewController: CustomViewController, UITextFieldDelegate {
                             score: 0000
                         ))
                         realmUser.writeToRealm()
+                        
+                        self.dismiss(animated: true, completion: nil)
                         
                     } else {
                         print("ERROR: USER NOT CREATED")

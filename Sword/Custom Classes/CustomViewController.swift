@@ -28,6 +28,28 @@ class CustomViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(sender:)),
+            name: UIWindow.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(sender:)),
+            name: UIWindow.keyboardWillHideNotification,
+            object: nil
+        )
+        
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y = -75
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
